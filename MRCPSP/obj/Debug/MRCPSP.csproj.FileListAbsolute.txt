@@ -14,3 +14,5 @@ C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_s
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.CanvasEditor.resources
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ProblemCreatorMonitor.resources
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.StepItem.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_bgu\MRCPSP\obj\Debug\MRCPSP.exe
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_bgu\MRCPSP\obj\Debug\MRCPSP.pdb
