@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8374E9EC-7695-4035-B60B-7AA0C5ED9044}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MRCPSP</RootNamespace>
+    <AssemblyName>MRCPSP</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Gui\ApplicationFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\ProblemCreator\CanvasEditor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Gui\ProblemCreator\ConstraintFromState.cs" />
+    <Compile Include="Gui\ProblemCreator\EraserState.cs" />
+    <Compile Include="Gui\ProblemCreator\PointerState.cs" />
+    <Compile Include="Gui\ProblemCreator\ProblemCreatorMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\ProblemCreator\ProblemCreatorState.cs" />
+    <Compile Include="Gui\ProblemCreator\StateBase.cs" />
+    <Compile Include="Gui\ProblemCreator\StepItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Gui\ProblemCreator\StepState.cs" />
+    <Compile Include="Program.cs">
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Gui\pics\eraser_pic.bmp" />
+    <Content Include="Gui\pics\new_arrow_pic.bmp" />
+    <Content Include="Gui\pics\new_step_pic.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Gui\ApplicationFrame.resx">
+      <DependentUpon>ApplicationFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProblemCreator\CanvasEditor.resx">
+      <DependentUpon>CanvasEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProblemCreator\ProblemCreatorMonitor.resx">
+      <DependentUpon>ProblemCreatorMonitor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProblemCreator\StepItem.resx">
+      <DependentUpon>StepItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Gui\pics\accept.xpm" />
+    <None Include="Gui\pics\admiration.xpm" />
+    <None Include="Gui\pics\area_cursor.xpm" />
+    <None Include="Gui\pics\back.xpm" />
+    <None Include="Gui\pics\blue_left_32.xpm" />
+    <None Include="Gui\pics\blue_left_end_32.xpm" />
+    <None Include="Gui\pics\blue_right_32.xpm" />
+    <None Include="Gui\pics\blue_right_end_32.xpm" />
+    <None Include="Gui\pics\broom3.xpm" />
+    <None Include="Gui\pics\control_go.xpm" />
+    <None Include="Gui\pics\control_lock.xpm" />
+    <None Include="Gui\pics\control_params.xpm" />
+    <None Include="Gui\pics\cross_x.xpm" />
+    <None Include="Gui\pics\cursor_area32.xpm" />
+    <None Include="Gui\pics\cursor_edit32.xpm" />
+    <None Include="Gui\pics\cursor_erase.xpm" />
+    <None Include="Gui\pics\cursor_erase1.xpm" />
+    <None Include="Gui\pics\cursor_erase_big.xpm" />
+    <None Include="Gui\pics\cursor_marker.xpm" />
+    <None Include="Gui\pics\cursor_move32.xpm" />
+    <None Include="Gui\pics\cursor_ruler32.xpm" />
+    <None Include="Gui\pics\cursor_target.xpm" />
+    <None Include="Gui\pics\cursor_target1.xpm" />
+    <None Include="Gui\pics\cursor_target2.xpm" />
+    <None Include="Gui\pics\cursor_target3.xpm" />
+    <None Include="Gui\pics\edit.xpm" />
+    <None Include="Gui\pics\erase.xpm" />
+    <None Include="Gui\pics\eraser.xpm" />
+    <None Include="Gui\pics\exchange.xpm" />
+    <None Include="Gui\pics\exit_grey.xpm" />
+    <None Include="Gui\pics\eye.xpm" />
+    <None Include="Gui\pics\fileopen.xpm" />
+    <None Include="Gui\pics\fileopen16.xpm" />
+    <None Include="Gui\pics\filesave.xpm" />
+    <None Include="Gui\pics\file_cabinet_close.xpm" />
+    <None Include="Gui\pics\file_cabinet_open.xpm" />
+    <None Include="Gui\pics\file_open.xpm" />
+    <None Include="Gui\pics\file_open1.xpm" />
+    <None Include="Gui\pics\file_print.xpm" />
+    <None Include="Gui\pics\file_save.xpm" />
+    <None Include="Gui\pics\FlipVertBig.xpm" />
+    <None Include="Gui\pics\flip_y.xpm" />
+    <None Include="Gui\pics\fullscreen.xpm" />
+    <None Include="Gui\pics\global_delete.xpm" />
+    <None Include="Gui\pics\global_edit.xpm" />
+    <None Include="Gui\pics\gray_dot.xpm" />
+    <None Include="Gui\pics\green_dot.xpm" />
+    <None Include="Gui\pics\hip_play.xpm" />
+    <None Include="Gui\pics\home.xpm" />
+    <None Include="Gui\pics\home24.xpm" />
+    <None Include="Gui\pics\jbomb.xpm" />
+    <None Include="Gui\pics\key.xpm" />
+    <None Include="Gui\pics\learn.xpm" />
+    <None Include="Gui\pics\move.xpm" />
+    <None Include="Gui\pics\new_file.xpm" />
+    <None Include="Gui\pics\off_red.xpm" />
+    <None Include="Gui\pics\oneone.xpm" />
+    <None Include="Gui\pics\on_green.xpm" />
+    <None Include="Gui\pics\pics\cursor_edit32.xpm" />
+    <None Include="Gui\pics\player_play.xpm" />
+    <None Include="Gui\pics\player_play2.xpm" />
+    <None Include="Gui\pics\player_stop.xpm" />
+    <None Include="Gui\pics\player_stop2.xpm" />
+    <None Include="Gui\pics\read_only.xpm" />
+    <None Include="Gui\pics\read_only_2.xpm" />
+    <None Include="Gui\pics\redflag2.xpm" />
+    <None Include="Gui\pics\redv.xpm" />
+    <None Include="Gui\pics\red_dot.xpm" />
+    <None Include="Gui\pics\red_flag.xpm" />
+    <None Include="Gui\pics\reset.xpm" />
+    <None Include="Gui\pics\ruler1.xpm" />
+    <None Include="Gui\pics\ruler2.xpm" />
+    <None Include="Gui\pics\ruler_cursor.xpm" />
+    <None Include="Gui\pics\ruller.xpm" />
+    <None Include="Gui\pics\save_tags.xpm" />
+    <None Include="Gui\pics\selectionarrow.xpm" />
+    <None Include="Gui\pics\stop.xpm" />
+    <None Include="Gui\pics\stop1.xpm" />
+    <None Include="Gui\pics\stop2.xpm" />
+    <None Include="Gui\pics\target1.xpm" />
+    <None Include="Gui\pics\target2.xpm" />
+    <None Include="Gui\pics\traffic_light.xpm" />
+    <None Include="Gui\pics\trash.xpm" />
+    <None Include="Gui\pics\video_off.xpm" />
+    <None Include="Gui\pics\video_on.xpm" />
+    <None Include="Gui\pics\viewmagminus.xpm" />
+    <None Include="Gui\pics\viewmagplus.xpm" />
+    <None Include="Gui\pics\warning.xpm" />
+    <None Include="Gui\pics\warning40.xpm" />
+    <None Include="Gui\pics\windows.xpm" />
+    <None Include="Gui\pics\zoom_in.xpm" />
+    <None Include="Gui\pics\zoom_one.xpm" />
+    <None Include="Gui\pics\zoom_out.xpm" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

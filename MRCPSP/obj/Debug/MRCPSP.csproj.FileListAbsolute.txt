@@ -1,0 +1,16 @@
+C:\Documents and Settings\shay\Local Settings\Application Data\Temporary Projects\MRCPSP\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\shay\Local Settings\Application Data\Temporary Projects\MRCPSP\bin\Debug\MRCPSP.exe
+C:\Documents and Settings\shay\Local Settings\Application Data\Temporary Projects\MRCPSP\bin\Debug\MRCPSP.pdb
+C:\Documents and Settings\shay\Local Settings\Application Data\Temporary Projects\MRCPSP\obj\Debug\MRCPSP.exe
+C:\Documents and Settings\shay\Local Settings\Application Data\Temporary Projects\MRCPSP\obj\Debug\MRCPSP.pdb
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.exe
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.pdb
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\bin\Debug\MRCPSP.exe
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\bin\Debug\MRCPSP.pdb
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ApplicationFrame.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.csproj.GenerateResource.Cache
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Properties.Resources.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.CanvasEditor.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ProblemCreatorMonitor.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.StepItem.resources
