@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace MRCPSP.Gui.ProblemCreator
 {
@@ -34,6 +35,7 @@ namespace MRCPSP.Gui.ProblemCreator
         private ToolStripButton m_new_constraint_button;
         private ToolStripButton m_eraser_button;
         private ToolStripButton m_pointer_button;
+        private StatusStrip statusStrip1;
         private CanvasEditor m_canvas_pic;
 
 
@@ -55,6 +57,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_worker_list = new System.Windows.Forms.ListBox();
             this.m_add_worker_button = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.m_problem_title_le = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -91,6 +94,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_machine_list.Name = "m_machine_list";
             this.m_machine_list.Size = new System.Drawing.Size(133, 69);
             this.m_machine_list.TabIndex = 0;
+            this.m_machine_list.MouseDoubleClick += new MouseEventHandler(this.m_machine_list_Selected_doubleClicked);
             // 
             // panel1
             // 
@@ -143,6 +147,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_add_machine_button.TabIndex = 1;
             this.m_add_machine_button.Text = "add new machine";
             this.m_add_machine_button.UseVisualStyleBackColor = true;
+            this.m_add_machine_button.Click += new System.EventHandler(this.m_add_machine_button_Click);
             // 
             // groupBox3
             // 
@@ -180,6 +185,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.statusStrip1);
             this.panel2.Controls.Add(this.m_problem_title_le);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -188,9 +194,17 @@ namespace MRCPSP.Gui.ProblemCreator
             this.panel2.Size = new System.Drawing.Size(712, 61);
             this.panel2.TabIndex = 2;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 39);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(712, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
             // m_problem_title_le
             // 
-            this.m_problem_title_le.Location = new System.Drawing.Point(578, 29);
+            this.m_problem_title_le.Location = new System.Drawing.Point(568, 16);
             this.m_problem_title_le.Name = "m_problem_title_le";
             this.m_problem_title_le.Size = new System.Drawing.Size(100, 20);
             this.m_problem_title_le.TabIndex = 1;
@@ -198,7 +212,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(575, 3);
+            this.label1.Location = new System.Drawing.Point(484, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 0;
@@ -356,12 +370,6 @@ namespace MRCPSP.Gui.ProblemCreator
 
         }
 
-        private void m_add_worker_button_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("worker added");
-          
-        }
-
         private void m_new_step_button_Click(object sender, EventArgs e)
         {
             ProblemCreatorState.Instance.state = new StepState();
@@ -404,6 +412,42 @@ namespace MRCPSP.Gui.ProblemCreator
                   }
                 
             }
+        }
+
+        private void m_add_machine_button_Click(object sender, EventArgs e)
+        {
+            Machine m = new Machine();
+            AddMachineWidget widget = new AddMachineWidget(m);
+            widget.ShowDialog(new Form());
+            if (widget.DialogResult == DialogResult.OK)
+            {       
+                ProblemCreatorState.Instance.addMachine(m);                 
+                m_machine_list.Items.Add(m);          
+            }
+            if (widget.DialogResult == DialogResult.Cancel)
+            {
+                Console.WriteLine("add nachine canceled");
+            }
+        }
+
+        private void m_add_worker_button_Click(object sender, EventArgs e)
+        {
+            Worker w = new Worker();
+            AddWorkerWidget widget = new AddWorkerWidget(w);
+            widget.ShowDialog(new Form());
+            if (widget.DialogResult == DialogResult.OK)
+            {                          
+                ProblemCreatorState.Instance.addWorker(w);                 
+                m_worker_list.Items.Add(w);         
+            }
+            if (widget.DialogResult == DialogResult.Cancel)
+            {
+                Console.WriteLine("add worker canceled");
+            }
+        }
+
+        private void m_machine_list_Selected_doubleClicked(object sender, EventArgs e)
+        {
         }
     }
 

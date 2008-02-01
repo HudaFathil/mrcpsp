@@ -74,6 +74,13 @@ namespace MRCPSP.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap new_problem {
+            get {
+                object obj = ResourceManager.GetObject("new_problem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap new_step_pic {
             get {
                 object obj = ResourceManager.GetObject("new_step_pic", resourceCulture);

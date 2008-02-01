@@ -10,10 +10,13 @@ using System.Drawing;
 
 namespace MRCPSP.Gui.ProblemCreator
 {
-    class StepItem : System.Windows.Forms.Label
+    public class StepItem : System.Windows.Forms.Label
     {
+        ModesMonitor m_mode_monitor;
+
         public StepItem()
         {
+            m_mode_monitor = new ModesMonitor();
             InitializeComponent();
         }
 
@@ -24,19 +27,32 @@ namespace MRCPSP.Gui.ProblemCreator
             // StepItem
             // 
             this.ResumeLayout(false);
-            this.MouseMove += new MouseEventHandler(this.onMouseEntered);
+            this.MouseEnter += new EventHandler(this.onMouseEntered);
             this.MouseDoubleClick += new MouseEventHandler(this.onMouseDoubleClicked);
+            this.MouseLeave += new EventHandler(this.onMouseLeave);
+            this.MouseClick += new MouseEventHandler(this.onMouseClicked);
         }
 
-
-        private void onMouseEntered(object sender, MouseEventArgs e)
+        private void onMouseEntered(object sender, EventArgs e)
         {
-            Console.WriteLine("im over");
+            this.ForeColor = Color.CornflowerBlue;
+        }
+
+        private void onMouseLeave(object sender, EventArgs e)
+        {
+            this.ForeColor = Color.Black;    
         }
 
         private void onMouseDoubleClicked(object sender, MouseEventArgs e)
         {
             Console.WriteLine("im double clicked");
+
+        }
+
+        private void onMouseClicked(object sender, MouseEventArgs e)
+        {
+            ProblemCreatorState.Instance.state.onStepClicked(
+                    (CanvasEditor)this.Parent, this);
         }
     }
 }

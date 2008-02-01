@@ -18,8 +18,8 @@ namespace MRCPSP.Gui.ProblemCreator
                 // do nothing
             }
 
-            public override void onStepClicked() {
-                // do nothing
+            public override void onStepClicked(CanvasEditor c, StepItem s) {
+                ProblemCreatorState.Instance.state = new ConstraintToState(s);
             }
 
             public override void onCanvasClicked(CanvasEditor c, MouseEventArgs e)

@@ -12,7 +12,8 @@ namespace MRCPSP.Gui {
         private ToolStrip toolStrip1;
         private ToolStripButton m_create_new_problem_button;
         private ToolStripButton m_solve_problem_button;
-        private ToolStripButton m_view_statistics_button; 
+        private ToolStripButton m_view_statistics_button;
+        private StatusStrip statusStrip1; 
         MainMenu MyMenu; 
  
         public ApplicationFrame() { 
@@ -41,6 +42,7 @@ namespace MRCPSP.Gui {
 
             // update buttons action
             this.m_create_new_problem_button.Click += new System.EventHandler(this.onStartNewProblem);
+
         }   
   
   // Handler for main menu Open selection. 
@@ -70,6 +72,7 @@ namespace MRCPSP.Gui {
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ApplicationFrame));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.m_create_new_problem_button = new System.Windows.Forms.ToolStripButton();
             this.m_solve_problem_button = new System.Windows.Forms.ToolStripButton();
             this.m_view_statistics_button = new System.Windows.Forms.ToolStripButton();
@@ -84,20 +87,28 @@ namespace MRCPSP.Gui {
             this.m_view_statistics_button});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(707, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(707, 50);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 377);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(707, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // m_create_new_problem_button
             // 
             this.m_create_new_problem_button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_create_new_problem_button.Image = ((System.Drawing.Image)(resources.GetObject("m_create_new_problem_button.Image")));
+            this.m_create_new_problem_button.Image = global::MRCPSP.Properties.Resources.new_problem;
+            this.m_create_new_problem_button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.m_create_new_problem_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_create_new_problem_button.Name = "m_create_new_problem_button";
-            this.m_create_new_problem_button.Size = new System.Drawing.Size(23, 22);
+            this.m_create_new_problem_button.Size = new System.Drawing.Size(52, 47);
             this.m_create_new_problem_button.Text = "toolStripButton1";
             this.m_create_new_problem_button.ToolTipText = "start new problem";
-            
             // 
             // m_solve_problem_button
             // 
@@ -105,7 +116,7 @@ namespace MRCPSP.Gui {
             this.m_solve_problem_button.Image = ((System.Drawing.Image)(resources.GetObject("m_solve_problem_button.Image")));
             this.m_solve_problem_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_solve_problem_button.Name = "m_solve_problem_button";
-            this.m_solve_problem_button.Size = new System.Drawing.Size(23, 22);
+            this.m_solve_problem_button.Size = new System.Drawing.Size(23, 47);
             this.m_solve_problem_button.Text = "toolStripButton2";
             this.m_solve_problem_button.ToolTipText = "open problem solver monitor";
             // 
@@ -124,6 +135,7 @@ namespace MRCPSP.Gui {
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 399);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.IsMdiContainer = true;
             this.Name = "ApplicationFrame";

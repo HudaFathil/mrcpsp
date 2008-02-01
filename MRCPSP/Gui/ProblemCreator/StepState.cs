@@ -18,7 +18,7 @@ namespace MRCPSP.Gui.ProblemCreator
                 // do nothing
         }
 
-        public override void onStepClicked() {
+        public override void onStepClicked(CanvasEditor c, StepItem s) {
                 // do nothing
         }
 
@@ -30,7 +30,13 @@ namespace MRCPSP.Gui.ProblemCreator
             si.Location = new System.Drawing.Point(e.X + canvas.Left - img.Width ,
                       e.Y + canvas.Top - img.Height / 2);
             si.Show();         
-            si.Parent = canvas;                      
+            si.Parent = canvas;
+            si.ImageAlign = ContentAlignment.TopCenter;
+            si.TextAlign = ContentAlignment.BottomCenter;
+            si.Text = "shay";
+            Size s = new Size(40, 60);
+            si.MinimumSize = s;
+            si.MaximumSize = s;
         }
 
             public override void onConstraintClicked() {

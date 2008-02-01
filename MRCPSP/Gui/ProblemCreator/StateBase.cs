@@ -12,7 +12,7 @@ namespace MRCPSP.Gui.ProblemCreator
 {
     public abstract class StateBase
     {
-        abstract public void onStepClicked();
+        abstract public void onStepClicked(CanvasEditor c, StepItem s);
         abstract public void onCanvasClicked(CanvasEditor c, MouseEventArgs e);
         abstract public void onConstraintClicked();
         abstract public void onStepDoubleClicked();

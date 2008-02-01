@@ -17,7 +17,8 @@ namespace MRCPSP.Gui.ProblemCreator
                 // do nothing
             }
 
-            public override void onStepClicked() {
+            public override void onStepClicked(CanvasEditor c, StepItem s)
+            {
                 // do nothing
             }
 
