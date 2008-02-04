@@ -27,7 +27,7 @@ namespace MRCPSP.Gui.ProblemCreator
         public override void onStepClicked(CanvasEditor c, StepItem s)
         {
             ConstraintItem item = new ConstraintItem(c, m_from_step, s);
-            c.Controls.Add(item);
+            ProblemCreatorState.Instance.addConstraint(item);       
         }
 
         public override void onCanvasClicked(CanvasEditor c, MouseEventArgs e)
@@ -35,12 +35,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // do nothing
         }
 
-        public override void onConstraintClicked()
-        {
-            // do nothing
-        }
-
-        public override void onStepDoubleClicked()
+        public override void onStepDoubleClicked(StepItem s)
         {
             // do nothing
         }

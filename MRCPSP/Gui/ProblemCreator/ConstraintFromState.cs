@@ -27,12 +27,8 @@ namespace MRCPSP.Gui.ProblemCreator
                 // do nothing
             }
 
-            public override void onConstraintClicked() {
+            public override void onStepDoubleClicked(StepItem s) {
                 // do nothing
-            }
-
-            public override void onStepDoubleClicked() {
-                // open mode window
             }
 
         }

@@ -37,14 +37,12 @@ namespace MRCPSP.Gui.ProblemCreator
             Size s = new Size(40, 60);
             si.MinimumSize = s;
             si.MaximumSize = s;
+            ProblemCreatorState.Instance.addStep(si);
         }
 
-            public override void onConstraintClicked() {
+      
+            public override void onStepDoubleClicked(StepItem s) {
                 // do nothing
-            }
-
-            public override void onStepDoubleClicked() {
-                // open mode window
             }
 
         }

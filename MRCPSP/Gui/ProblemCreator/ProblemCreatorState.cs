@@ -14,6 +14,8 @@ namespace MRCPSP.Gui.ProblemCreator
            // problem data
            private System.Collections.ArrayList m_machine_list;
            private System.Collections.ArrayList m_worker_list;
+           private System.Collections.ArrayList m_constraint_list;
+           private System.Collections.ArrayList m_step_list;
 
            static ProblemCreatorState()
            {
@@ -24,7 +26,8 @@ namespace MRCPSP.Gui.ProblemCreator
                state = new PointerState();
                m_worker_list = new System.Collections.ArrayList();
                m_machine_list = new System.Collections.ArrayList();
-
+               m_constraint_list = new System.Collections.ArrayList();
+               m_step_list = new System.Collections.ArrayList();
            }
 
            public static ProblemCreatorState Instance
@@ -40,7 +43,38 @@ namespace MRCPSP.Gui.ProblemCreator
            internal void addMachine(Machine m)
            {
              
-                    m_machine_list.Add(m);
+              m_machine_list.Add(m);
            }
+
+           internal void addStep(StepItem s)
+           {
+               m_step_list.Add(s);
+           }
+
+           internal void addConstraint(ConstraintItem c)
+           {
+
+               m_constraint_list.Add(c);
+           }
+
+           internal System.Collections.ArrayList getConstraints()
+           {
+               return m_constraint_list;
+           }
+
+           internal System.Collections.ArrayList getSteps()
+           {
+               return m_step_list;
+           }
+           internal System.Collections.ArrayList getMachines()
+           {
+               return m_machine_list;
+           }
+
+           internal System.Collections.ArrayList getWorkers()
+           {
+               return m_worker_list;
+           }
+
        }
 }

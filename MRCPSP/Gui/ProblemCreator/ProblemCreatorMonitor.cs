@@ -83,7 +83,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.panel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.m_controls_strip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
+    //        ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
             this.SuspendLayout();
             // 
             // m_machine_list
@@ -365,7 +365,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.groupBox1.PerformLayout();
             this.m_controls_strip.ResumeLayout(false);
             this.m_controls_strip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
+ //           ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
             this.ResumeLayout(false);
 
         }
