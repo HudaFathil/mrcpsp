@@ -29,3 +29,18 @@ C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_b
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_bgu\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ResourceBase.resources
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_bgu\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.AddWorkerWidget.resources
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_bgu\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.AddMachineWidget.resources
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.exe
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.pdb
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\bin\Debug\MRCPSP.exe
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\bin\Debug\MRCPSP.pdb
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ApplicationFrame.resources
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.AddMachineWidget.resources
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.AddWorkerWidget.resources
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.CanvasEditor.resources
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ModesMonitor.resources
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ProblemCreatorMonitor.resources
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ResourceBase.resources
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.StepItem.resources
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Properties.Resources.resources
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.csproj.GenerateResource.Cache

@@ -85,6 +85,9 @@
     <Compile Include="Gui\ProblemCreator\StepState.cs" />
     <Compile Include="Gui\ProblemCreator\Worker.cs">
     </Compile>
+    <Compile Include="Logger\ILogger.cs" />
+    <Compile Include="Logger\Logger.cs" />
+    <Compile Include="Logger\LoggerFactory.cs" />
     <Compile Include="Program.cs">
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
