@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using MRCPSP.Gui.ProblemCreator;
+using MRCPSP.Gui.Logger;
+using MRCPSP.Logger;
 
 namespace MRCPSP.Gui {
     public class ApplicationFrame : Form {
@@ -13,10 +15,14 @@ namespace MRCPSP.Gui {
         private ToolStripButton m_create_new_problem_button;
         private ToolStripButton m_solve_problem_button;
         private ToolStripButton m_view_statistics_button;
-        private StatusStrip statusStrip1; 
+        private StatusStrip statusStrip1;
+        private MRCPSP.Logger.Logger m_logger;
+
         MainMenu MyMenu; 
  
         public ApplicationFrame() { 
+            //initalizing the logger
+            this.m_logger = LoggerFactory.getSimpleLogger();
             // Create a main menu object. 
             MyMenu  = new MainMenu(); 
             // Add top-level menu items to the menu. 
@@ -31,11 +37,14 @@ namespace MRCPSP.Gui {
             m1.MenuItems.Add(subm2); 
             // Create Tools submenu
             MenuItem subm3 = new MenuItem("select DB");
-            m2.MenuItems.Add(subm3); 
+            m2.MenuItems.Add(subm3);
+            MenuItem subm4 = new MenuItem("Log Controller");
+            m2.MenuItems.Add(subm4); 
             // Add event handlers for the menu items. 
             subm1.Click += new EventHandler(MMNewClick);        
             subm2.Click += new EventHandler(MMExitClick);
-            subm3.Click += new EventHandler(MMSelectDBClick); 
+            subm3.Click += new EventHandler(MMSelectDBClick);
+            subm4.Click += new EventHandler(MMLogController); 
             // Assign the menu to the form. 
             Menu = MyMenu;
             InitializeComponent();
@@ -43,8 +52,16 @@ namespace MRCPSP.Gui {
             // update buttons action
             this.m_create_new_problem_button.Click += new System.EventHandler(this.onStartNewProblem);
 
-        }   
-  
+        }
+
+    // Handler for main menu Open selection. 
+        protected void MMLogController(object who, EventArgs e)
+        {
+            LoggerFrame logC = new LoggerFrame();
+            logC.MdiParent = this;
+            logC.Show();
+            m_logger.debug("Started log controller");
+        }
   // Handler for main menu Open selection. 
         protected void MMNewClick(object who, EventArgs e) {
             MessageBox.Show("Inactive", "Inactive",
@@ -72,10 +89,10 @@ namespace MRCPSP.Gui {
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ApplicationFrame));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.m_create_new_problem_button = new System.Windows.Forms.ToolStripButton();
             this.m_solve_problem_button = new System.Windows.Forms.ToolStripButton();
             this.m_view_statistics_button = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,14 +107,6 @@ namespace MRCPSP.Gui {
             this.toolStrip1.Size = new System.Drawing.Size(707, 50);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 377);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(707, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // m_create_new_problem_button
             // 
@@ -126,9 +135,17 @@ namespace MRCPSP.Gui {
             this.m_view_statistics_button.Image = ((System.Drawing.Image)(resources.GetObject("m_view_statistics_button.Image")));
             this.m_view_statistics_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_view_statistics_button.Name = "m_view_statistics_button";
-            this.m_view_statistics_button.Size = new System.Drawing.Size(23, 22);
+            this.m_view_statistics_button.Size = new System.Drawing.Size(23, 47);
             this.m_view_statistics_button.Text = "toolStripButton3";
             this.m_view_statistics_button.ToolTipText = "open statistics viewer monitor";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 377);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(707, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // ApplicationFrame
             // 
@@ -140,6 +157,7 @@ namespace MRCPSP.Gui {
             this.IsMdiContainer = true;
             this.Name = "ApplicationFrame";
             this.Text = "MRCPSP";
+            this.Load += new System.EventHandler(this.ApplicationFrame_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -152,6 +170,11 @@ namespace MRCPSP.Gui {
             pcm.MdiParent = this;
             pcm.Show();
             Console.WriteLine("create new monitor");
+        }
+
+        private void ApplicationFrame_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

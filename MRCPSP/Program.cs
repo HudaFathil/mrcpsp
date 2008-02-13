@@ -12,12 +12,7 @@ namespace MRCPSP
 
         static void Main(string[] args)
         {
-            ILogger log = LoggerFactory.getSimpleLogger("C:/Users/Ofir/Desktop/Project/MRCPSP2/logs/TestLogger.log");
-            log.debug("Teating the logger1");
-            log.info("Teating the logger2");
-            log.warn("Teating the logger3");
-            log.error("Teating the logger4");
-
+            ILogger log = LoggerFactory.getSimpleLogger();
             ApplicationFrame skel = new ApplicationFrame();
             Application.Run(skel);
         }

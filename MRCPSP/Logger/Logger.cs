@@ -9,31 +9,47 @@ namespace MRCPSP.Logger
     class Logger : ILogger
     {
 
-        private static ILogger instance;
-        private String logFileName;
-        private static LOGGER_STATE state; 
+        private static Logger m_instance;
+        private String m_logFileName;
+        private static LOGGER_STATE m_state; 
 
-        static Logger()
+        private Logger()
         {
-            instance = new Logger();
-            state = LOGGER_STATE.DEBUG;
+            m_instance = null;
+            m_state = LOGGER_STATE.DEBUG;
         }
 
+       
 
-        public static ILogger Instance
+        public static Logger Instance
         {
-            get { return instance; }
+            get
+            {
+                if (null == m_instance)
+                {
+                    m_instance = new Logger();
+                }
+                return m_instance;
+            }
+        }
+
+        public override LOGGER_STATE State 
+        { 
+            get { return m_state;}
+            set { 
+                m_state = value;  
+            } 
         }
 
         public override string LogFile 
         {
-            get { return logFileName; }
-            set { logFileName = value; }
+            get { return m_logFileName; }
+            set { m_logFileName = value; }
         }
 
         private void writeToLog(String message)
         {
-            StreamWriter outLog = new StreamWriter(this.logFileName, true);
+            StreamWriter outLog = new StreamWriter(m_logFileName, true);
             DateTime time = DateTime.Now;
             if (outLog == null)
                 Console.WriteLine("{0:G} " + message, time);
@@ -45,25 +61,25 @@ namespace MRCPSP.Logger
 
         public override void debug(String message)
         {
-            if (state <= LOGGER_STATE.DEBUG)
+            if (m_state <= LOGGER_STATE.DEBUG)
                 writeToLog("DEBUG: " + message);
         }
 
         public override void info(String message)
         {
-            if (state <= LOGGER_STATE.INFO)
+            if (m_state <= LOGGER_STATE.INFO)
                 writeToLog("INFO: " + message);
         }
 
         public override void warn(String message)
         {
-            if (state <= LOGGER_STATE.WARN)
+            if (m_state <= LOGGER_STATE.WARN)
                 writeToLog("WARNING: " + message);
         }
 
         public override void error(String message)
         {
-            if (state <= LOGGER_STATE.ERROR)
+            if (m_state <= LOGGER_STATE.ERROR)
                 writeToLog("ERROR: " + message);
         }
 

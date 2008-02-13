@@ -83,6 +83,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.label1.Size = new System.Drawing.Size(50, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Title:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // panel2
             // 
@@ -114,6 +115,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(227, 122);
             this.panel1.TabIndex = 5;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // checkBox1
             // 
@@ -151,6 +153,16 @@ namespace MRCPSP.Gui.ProblemCreator
         private void m_cancel_button_Click(object sender, EventArgs e)
         {
             return;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

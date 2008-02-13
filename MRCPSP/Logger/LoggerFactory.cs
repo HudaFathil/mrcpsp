@@ -7,10 +7,12 @@ namespace MRCPSP.Logger
 {
     class LoggerFactory
     {
-        public static ILogger getSimpleLogger(String outFile)
+
+        public static Logger getSimpleLogger()
         {
-            ILogger logger = Logger.Instance;
-            logger.LogFile = outFile;
+            Logger logger = Logger.Instance;
+            if (logger.LogFile == null)
+                logger.LogFile = "C:/Users/Ofir/Desktop/Project/MRCPSP2/logs/TestLogger.log";
             return logger;
         }
     }

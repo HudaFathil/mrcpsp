@@ -44,3 +44,4 @@ C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator
 C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.StepItem.resources
 C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Properties.Resources.resources
 C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.csproj.GenerateResource.Cache
+C:\Users\Ofir\Desktop\Project\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.Logger.LoggerFrame.resources
