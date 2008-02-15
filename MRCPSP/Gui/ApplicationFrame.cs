@@ -17,6 +17,7 @@ namespace MRCPSP.Gui {
         private ToolStripButton m_view_statistics_button;
         private StatusStrip statusStrip1;
         private MRCPSP.Logger.Logger m_logger;
+        private static int m_problem_monitor_id;
 
         MainMenu MyMenu; 
  
@@ -51,7 +52,7 @@ namespace MRCPSP.Gui {
 
             // update buttons action
             this.m_create_new_problem_button.Click += new System.EventHandler(this.onStartNewProblem);
-
+            m_problem_monitor_id = 0;
         }
 
     // Handler for main menu Open selection. 
@@ -166,9 +167,11 @@ namespace MRCPSP.Gui {
         }
 
         private void onStartNewProblem(object who, EventArgs e) {
-            ProblemCreatorMonitor pcm = new ProblemCreatorMonitor();
+            ProblemCreatorMonitor pcm = new ProblemCreatorMonitor(m_problem_monitor_id);
             pcm.MdiParent = this;
+            m_problem_monitor_id++;
             pcm.Show();
+           
             Console.WriteLine("create new monitor");
         }
 

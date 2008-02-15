@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonTypes\Mode.cs" />
+    <Compile Include="CommonTypes\Operation.cs" />
+    <Compile Include="CommonTypes\StringPair.cs" />
+    <Compile Include="Controllers\ApplicManager.cs" />
+    <Compile Include="Domain\Problem.cs" />
     <Compile Include="Gui\ApplicationFrame.cs">
       <SubType>Form</SubType>
     </Compile>

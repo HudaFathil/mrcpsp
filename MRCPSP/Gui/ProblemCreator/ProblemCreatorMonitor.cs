@@ -36,13 +36,16 @@ namespace MRCPSP.Gui.ProblemCreator
         private ToolStripButton m_eraser_button;
         private ToolStripButton m_pointer_button;
         private StatusStrip statusStrip1;
+        private Button m_load_problem_button;
         private CanvasEditor m_canvas_pic;
+        private int m_monitor_id;
 
-
-        public ProblemCreatorMonitor()
+        public ProblemCreatorMonitor(int monitor_id)
         {
+            m_monitor_id = monitor_id;
+            Text = "Problem Creator Monitor # " + m_monitor_id.ToString();
             InitializeComponent();
-
+            m_canvas_pic.monitor_id = monitor_id;
         }
 
         private void InitializeComponent()
@@ -57,6 +60,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_worker_list = new System.Windows.Forms.ListBox();
             this.m_add_worker_button = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.m_load_problem_button = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.m_problem_title_le = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -83,7 +87,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.panel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.m_controls_strip.SuspendLayout();
-    //        ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
             this.SuspendLayout();
             // 
             // m_machine_list
@@ -94,7 +98,6 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_machine_list.Name = "m_machine_list";
             this.m_machine_list.Size = new System.Drawing.Size(133, 69);
             this.m_machine_list.TabIndex = 0;
-            this.m_machine_list.MouseDoubleClick += new MouseEventHandler(this.m_machine_list_Selected_doubleClicked);
             // 
             // panel1
             // 
@@ -185,6 +188,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.m_load_problem_button);
             this.panel2.Controls.Add(this.statusStrip1);
             this.panel2.Controls.Add(this.m_problem_title_le);
             this.panel2.Controls.Add(this.label1);
@@ -193,6 +197,16 @@ namespace MRCPSP.Gui.ProblemCreator
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(712, 61);
             this.panel2.TabIndex = 2;
+            // 
+            // m_load_problem_button
+            // 
+            this.m_load_problem_button.Location = new System.Drawing.Point(12, 11);
+            this.m_load_problem_button.Name = "m_load_problem_button";
+            this.m_load_problem_button.Size = new System.Drawing.Size(91, 23);
+            this.m_load_problem_button.TabIndex = 3;
+            this.m_load_problem_button.Text = "load problem";
+            this.m_load_problem_button.UseVisualStyleBackColor = true;
+            this.m_load_problem_button.Click += new System.EventHandler(this.m_load_problem_button_Click);
             // 
             // statusStrip1
             // 
@@ -204,7 +218,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // m_problem_title_le
             // 
-            this.m_problem_title_le.Location = new System.Drawing.Point(568, 16);
+            this.m_problem_title_le.Location = new System.Drawing.Point(559, 13);
             this.m_problem_title_le.Name = "m_problem_title_le";
             this.m_problem_title_le.Size = new System.Drawing.Size(100, 20);
             this.m_problem_title_le.TabIndex = 1;
@@ -242,9 +256,9 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // m_center_panel
             // 
+            this.m_center_panel.Controls.Add(this.m_canvas_pic);
             this.m_center_panel.Controls.Add(this.panel5);
             this.m_center_panel.Controls.Add(this.panel1);
-            this.m_center_panel.Controls.Add(this.m_canvas_pic);
             this.m_center_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.m_center_panel.Location = new System.Drawing.Point(0, 45);
             this.m_center_panel.Name = "m_center_panel";
@@ -335,11 +349,12 @@ namespace MRCPSP.Gui.ProblemCreator
             // m_canvas_pic
             // 
             this.m_canvas_pic.BackColor = System.Drawing.Color.White;
-            this.m_canvas_pic.Cursor = System.Windows.Forms.Cursors.Default;
+            this.m_canvas_pic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.m_canvas_pic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.m_canvas_pic.Location = new System.Drawing.Point(0, 0);
+            this.m_canvas_pic.Location = new System.Drawing.Point(69, 0);
+            this.m_canvas_pic.monitor_id = 0;
             this.m_canvas_pic.Name = "m_canvas_pic";
-            this.m_canvas_pic.Size = new System.Drawing.Size(712, 247);
+            this.m_canvas_pic.Size = new System.Drawing.Size(488, 247);
             this.m_canvas_pic.TabIndex = 5;
             this.m_canvas_pic.TabStop = false;
             // 
@@ -365,14 +380,14 @@ namespace MRCPSP.Gui.ProblemCreator
             this.groupBox1.PerformLayout();
             this.m_controls_strip.ResumeLayout(false);
             this.m_controls_strip.PerformLayout();
- //           ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         private void m_new_step_button_Click(object sender, EventArgs e)
         {
-            ProblemCreatorState.Instance.state = new StepState();
+            ProblemCreatorState.Instance(monitor_id).state = new StepState(monitor_id);
             m_new_step_button.CheckState = CheckState.Checked;
             uncheck_other((ToolStripButton) sender);
       
@@ -380,21 +395,21 @@ namespace MRCPSP.Gui.ProblemCreator
 
         private void m_new_constraint_button_Click(object sender, EventArgs e)
         {
-            ProblemCreatorState.Instance.state = new ConstraintFromState();
+            ProblemCreatorState.Instance(monitor_id).state = new ConstraintFromState(monitor_id);
             m_new_constraint_button.CheckState = CheckState.Checked;
             uncheck_other((ToolStripButton)sender);
         }
 
         private void m_eraser_button_Click(object sender, EventArgs e)
         {
-            ProblemCreatorState.Instance.state = new EraserState();
+            ProblemCreatorState.Instance(monitor_id).state = new EraserState(monitor_id);
             m_eraser_button.CheckState = CheckState.Checked;
             uncheck_other((ToolStripButton)sender);
         }
 
         private void m_pointer_button_Click(object sender, EventArgs e)
         {
-            ProblemCreatorState.Instance.state = new PointerState();
+            ProblemCreatorState.Instance(monitor_id).state = new PointerState(monitor_id);
             m_pointer_button.CheckState = CheckState.Checked;
             uncheck_other((ToolStripButton)sender);
         }
@@ -421,7 +436,7 @@ namespace MRCPSP.Gui.ProblemCreator
             widget.ShowDialog(new Form());
             if (widget.DialogResult == DialogResult.OK)
             {       
-                ProblemCreatorState.Instance.addMachine(m);                 
+                ProblemCreatorState.Instance(monitor_id).addMachine(m);                 
                 m_machine_list.Items.Add(m);          
             }
             if (widget.DialogResult == DialogResult.Cancel)
@@ -437,7 +452,7 @@ namespace MRCPSP.Gui.ProblemCreator
             widget.ShowDialog(new Form());
             if (widget.DialogResult == DialogResult.OK)
             {                          
-                ProblemCreatorState.Instance.addWorker(w);                 
+                ProblemCreatorState.Instance(monitor_id).addWorker(w);                 
                 m_worker_list.Items.Add(w);         
             }
             if (widget.DialogResult == DialogResult.Cancel)
@@ -448,6 +463,20 @@ namespace MRCPSP.Gui.ProblemCreator
 
         private void m_machine_list_Selected_doubleClicked(object sender, EventArgs e)
         {
+        }
+
+        public int monitor_id
+        {
+            get { return m_monitor_id; }
+            set
+            {
+                m_monitor_id = value;
+            }
+        }
+
+        private void m_load_problem_button_Click(object sender, EventArgs e)
+        {
+            ProblemCreatorState.Instance(monitor_id).loadCurrentProblem();
         }
     }
 

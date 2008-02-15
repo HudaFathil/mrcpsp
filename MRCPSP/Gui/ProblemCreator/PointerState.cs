@@ -13,7 +13,7 @@ namespace MRCPSP.Gui.ProblemCreator
     class PointerState : StateBase
     {
        
-            public PointerState() : base()
+            public PointerState(int id) : base(id)
             {
                 // do nothing
             }

@@ -23,16 +23,14 @@ namespace MRCPSP.Gui.ProblemCreator
         private Label label3;
         private Label label2;
         private Label label1;
+        private int m_monitor_id;
 
         private System.Collections.ArrayList m_modes_list;
 
-        public ModesMonitor()
+        public ModesMonitor(int monitor_id)
         {
             InitializeComponent();
             m_modes_list = new System.Collections.ArrayList();
-            foreach (Worker w in ProblemCreatorState.Instance.getWorkers())
-                m_resource_name_cb.Items.Add(w);
-         
         }
 
         private void InitializeComponent()
@@ -45,11 +43,11 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_start_time_sb = new System.Windows.Forms.NumericUpDown();
             this.m_mode_id_sb = new System.Windows.Forms.NumericUpDown();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.m_center_panel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.m_center_panel = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_end_time_sb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_start_time_sb)).BeginInit();
@@ -142,38 +140,17 @@ namespace MRCPSP.Gui.ProblemCreator
             this.panel2.Size = new System.Drawing.Size(557, 53);
             this.panel2.TabIndex = 3;
             // 
-            // m_center_panel
+            // label4
             // 
-            this.m_center_panel.AutoScroll = true;
-            this.m_center_panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.m_center_panel.Location = new System.Drawing.Point(0, 53);
-            this.m_center_panel.Name = "m_center_panel";
-            this.m_center_panel.Size = new System.Drawing.Size(557, 180);
-            this.m_center_panel.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label1.Location = new System.Drawing.Point(431, 6);
-            this.label1.MinimumSize = new System.Drawing.Size(120, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "end time";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label2.Location = new System.Drawing.Point(311, 6);
-            this.label2.MinimumSize = new System.Drawing.Size(120, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 24);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "start time";
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label4.Location = new System.Drawing.Point(71, 6);
+            this.label4.MinimumSize = new System.Drawing.Size(120, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(120, 24);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "mode id";
             // 
             // label3
             // 
@@ -187,17 +164,38 @@ namespace MRCPSP.Gui.ProblemCreator
             this.label3.TabIndex = 2;
             this.label3.Text = "resource";
             // 
-            // label4
+            // label2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label4.Location = new System.Drawing.Point(71, 6);
-            this.label4.MinimumSize = new System.Drawing.Size(120, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 24);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "mode id";
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label2.Location = new System.Drawing.Point(311, 6);
+            this.label2.MinimumSize = new System.Drawing.Size(120, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 24);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "start time";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label1.Location = new System.Drawing.Point(431, 6);
+            this.label1.MinimumSize = new System.Drawing.Size(120, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(120, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "end time";
+            // 
+            // m_center_panel
+            // 
+            this.m_center_panel.AutoScroll = true;
+            this.m_center_panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_center_panel.Location = new System.Drawing.Point(0, 53);
+            this.m_center_panel.Name = "m_center_panel";
+            this.m_center_panel.Size = new System.Drawing.Size(557, 180);
+            this.m_center_panel.TabIndex = 4;
             // 
             // ModesMonitor
             // 
@@ -251,7 +249,7 @@ namespace MRCPSP.Gui.ProblemCreator
             current_item.m_start_time_list.Items.Add(m_start_time_sb.Value.ToString());
             current_item.m_end_time_list.Items.Add(m_end_time_sb.Value.ToString());
         }
-
+        /*
         protected override void  OnClosing(CancelEventArgs e)
         {
  	        this.Hide();
@@ -274,6 +272,24 @@ namespace MRCPSP.Gui.ProblemCreator
         protected override void OnLeave(EventArgs e)
         {
             Hide();
+        }
+        */
+        public void updateResources()
+        {
+            m_resource_name_cb.Items.Clear();
+            foreach (Worker w in ProblemCreatorState.Instance(monitor_id).getWorkers())
+                m_resource_name_cb.Items.Add(w);
+            foreach (Machine w in ProblemCreatorState.Instance(monitor_id).getMachines())
+                m_resource_name_cb.Items.Add(w);
+        }
+        public int monitor_id
+        {
+            get { return m_monitor_id; }
+            set
+            {
+                m_monitor_id = value;
+                Text = "Problem Creator Monitor # " + m_monitor_id.ToString();
+            }
         }
     }
 

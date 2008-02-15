@@ -13,16 +13,24 @@ namespace MRCPSP.Gui.ProblemCreator
     public class StepItem : System.Windows.Forms.Label
     {
         ModesMonitor m_mode_monitor;
-
         private bool m_isDragging;
         private int m_offset_x;
         private int m_offset_y;
-        public StepItem()
+        private int m_monitor_id;
+        public StepItem(int monitor_id)
         {
-            m_mode_monitor = new ModesMonitor();
+            m_monitor_id = monitor_id;
+            m_mode_monitor = new ModesMonitor(m_monitor_id);
             InitializeComponent();
             m_isDragging = false;
-          
+            Show(); 
+            ImageAlign = ContentAlignment.TopCenter;
+            TextAlign = ContentAlignment.BottomCenter;
+            int step_id = ProblemCreatorState.Instance(monitor_id).getNextStepId();
+            Text = "step: " + step_id; 
+            Size s = new Size(50, 60);
+            MinimumSize = s;
+            MaximumSize = s;      
         }
 
         private void InitializeComponent()
@@ -75,18 +83,28 @@ namespace MRCPSP.Gui.ProblemCreator
 
         private void onMouseDoubleClicked(object sender, MouseEventArgs e)
         {
-            ProblemCreatorState.Instance.state.onStepDoubleClicked(this);
+            ProblemCreatorState.Instance(monitor_id).state.onStepDoubleClicked(this);
         }
 
         private void onMouseClicked(object sender, MouseEventArgs e)
         {
-            ProblemCreatorState.Instance.state.onStepClicked(
+            ProblemCreatorState.Instance(monitor_id).state.onStepClicked(
                     (CanvasEditor)this.Parent, this);
         }
 
         public void onShowModeMonitor()
-        {          
+        {
+            m_mode_monitor.updateResources();
             m_mode_monitor.ShowDialog(new Form());         
+        }
+
+        public int monitor_id
+        {
+            get { return m_monitor_id; }
+            set
+            {
+                m_monitor_id = value;
+            }
         }
     }
 }

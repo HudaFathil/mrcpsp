@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MRCPSP.Controllers;
 
 namespace MRCPSP.Gui.ProblemCreator
 {
@@ -9,30 +10,43 @@ namespace MRCPSP.Gui.ProblemCreator
        public class ProblemCreatorState {
            private static ProblemCreatorState instance;
 
+           public static System.Collections.Hashtable m_state_for_monitor;
+           
+           static ProblemCreatorState()
+           {
+               instance = new ProblemCreatorState();
+               m_state_for_monitor = new System.Collections.Hashtable();
+           }
+
+           public static MonitorState Instance(int id)
+           {
+               if (! m_state_for_monitor.ContainsKey(id))
+                   m_state_for_monitor.Add(id, new MonitorState(id));
+               return (MonitorState)m_state_for_monitor[id];
+           }
+
+       }
+
+       public class MonitorState
+       {
            public StateBase state;
+           private int m_monitor_id;
 
            // problem data
            private System.Collections.ArrayList m_machine_list;
            private System.Collections.ArrayList m_worker_list;
            private System.Collections.ArrayList m_constraint_list;
            private System.Collections.ArrayList m_step_list;
-
-           static ProblemCreatorState()
-           {
-               instance = new ProblemCreatorState();
-           }
-
-           private ProblemCreatorState() {
-               state = new PointerState();
+           private int m_next_step_id;
+  
+           public MonitorState(int id) {
+               m_monitor_id = id;
+               state = new PointerState(id);
                m_worker_list = new System.Collections.ArrayList();
                m_machine_list = new System.Collections.ArrayList();
                m_constraint_list = new System.Collections.ArrayList();
                m_step_list = new System.Collections.ArrayList();
-           }
-
-           public static ProblemCreatorState Instance
-           {
-               get { return instance; }
+               m_next_step_id = 0;
            }
 
            internal void addWorker(Worker w)
@@ -75,6 +89,24 @@ namespace MRCPSP.Gui.ProblemCreator
            {
                return m_worker_list;
            }
+           public int monitor_id
+           {
+               get { return m_monitor_id; }
+               set
+               {
+                   m_monitor_id = value;
+               }
+           }
 
+           internal int getNextStepId()
+           {
+               m_next_step_id++;
+               return m_next_step_id;
+           }
+
+           internal void loadCurrentProblem()
+           {
+               ApplicManager.Instance.loadProblemFromDataBase("None");
+           }
        }
 }

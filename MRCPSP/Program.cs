@@ -13,6 +13,7 @@ namespace MRCPSP
         static void Main(string[] args)
         {
             ILogger log = LoggerFactory.getSimpleLogger();
+
             ApplicationFrame skel = new ApplicationFrame();
             Application.Run(skel);
         }

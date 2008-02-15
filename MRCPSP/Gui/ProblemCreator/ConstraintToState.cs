@@ -18,8 +18,8 @@ namespace MRCPSP.Gui.ProblemCreator
     {
         private StepItem m_from_step;
 
-        public ConstraintToState(StepItem from)
-            : base()
+        public ConstraintToState(int id, StepItem from)
+            : base(id)
         {
             m_from_step = from;
         }
@@ -27,7 +27,7 @@ namespace MRCPSP.Gui.ProblemCreator
         public override void onStepClicked(CanvasEditor c, StepItem s)
         {
             ConstraintItem item = new ConstraintItem(c, m_from_step, s);
-            ProblemCreatorState.Instance.addConstraint(item);       
+            ProblemCreatorState.Instance(monitor_id).addConstraint(item);       
         }
 
         public override void onCanvasClicked(CanvasEditor c, MouseEventArgs e)

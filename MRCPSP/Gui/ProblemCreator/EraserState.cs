@@ -12,7 +12,7 @@ namespace MRCPSP.Gui.ProblemCreator
 {
     class EraserState : StateBase
     {
-            public EraserState() : base()
+            public EraserState(int id) : base(id)
             {
                 // do nothing
             }
@@ -21,7 +21,7 @@ namespace MRCPSP.Gui.ProblemCreator
             {
                 // erase step and all constraint items              
                 System.Collections.ArrayList constraint_to_remove = new System.Collections.ArrayList();
-                foreach (ConstraintItem c in ProblemCreatorState.Instance.getConstraints())
+                foreach (ConstraintItem c in ProblemCreatorState.Instance(monitor_id).getConstraints())
                 {
                     if ((c.getFromStep() == s) || (c.getToStep() == s))
                     {
@@ -30,10 +30,10 @@ namespace MRCPSP.Gui.ProblemCreator
                 }
                 foreach (ConstraintItem c in constraint_to_remove)
                 {               
-                        ProblemCreatorState.Instance.getConstraints().Remove(c);
+                        ProblemCreatorState.Instance(monitor_id).getConstraints().Remove(c);
                         c.Dispose();
                }
-                ProblemCreatorState.Instance.getConstraints().Remove(s);
+                ProblemCreatorState.Instance(monitor_id).getConstraints().Remove(s);
                 s.Dispose();
                 canvas.Refresh();
             }
