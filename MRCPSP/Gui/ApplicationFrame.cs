@@ -8,6 +8,7 @@ using System.Drawing;
 using MRCPSP.Gui.ProblemCreator;
 using MRCPSP.Gui.Logger;
 using MRCPSP.Logger;
+using MRCPSP.Gui.ProblemSolver;
 
 namespace MRCPSP.Gui {
     public class ApplicationFrame : Form {
@@ -18,7 +19,7 @@ namespace MRCPSP.Gui {
         private StatusStrip statusStrip1;
         private MRCPSP.Logger.Logger m_logger;
         private static int m_problem_monitor_id;
-
+        private ProblemSolverMonitor m_problem_solver_monitor;
         MainMenu MyMenu; 
  
         public ApplicationFrame() { 
@@ -53,6 +54,8 @@ namespace MRCPSP.Gui {
             // update buttons action
             this.m_create_new_problem_button.Click += new System.EventHandler(this.onStartNewProblem);
             m_problem_monitor_id = 0;
+            m_problem_solver_monitor = new ProblemSolverMonitor();
+            m_problem_solver_monitor.MdiParent = this;
         }
 
     // Handler for main menu Open selection. 
@@ -129,6 +132,7 @@ namespace MRCPSP.Gui {
             this.m_solve_problem_button.Size = new System.Drawing.Size(23, 47);
             this.m_solve_problem_button.Text = "toolStripButton2";
             this.m_solve_problem_button.ToolTipText = "open problem solver monitor";
+            this.m_solve_problem_button.Click += new System.EventHandler(this.m_solve_problem_button_Click);
             // 
             // m_view_statistics_button
             // 
@@ -158,7 +162,6 @@ namespace MRCPSP.Gui {
             this.IsMdiContainer = true;
             this.Name = "ApplicationFrame";
             this.Text = "MRCPSP";
-            this.Load += new System.EventHandler(this.ApplicationFrame_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -175,9 +178,9 @@ namespace MRCPSP.Gui {
             Console.WriteLine("create new monitor");
         }
 
-        private void ApplicationFrame_Load(object sender, EventArgs e)
+        private void m_solve_problem_button_Click(object sender, EventArgs e)
         {
-
+            m_problem_solver_monitor.Show();
         }
     }
 

@@ -4,15 +4,20 @@ using System.Linq;
 using System.Text;
 
 using MRCPSP.Domain;
+using MRCPSP.Logger;
+
 namespace MRCPSP.Controllers
 {
     class ApplicManager
     {
         private static ApplicManager instance = null;
         Problem m_current_problem;
+        ProblemSolverManager m_problem_solver_manager;
+
 
         private ApplicManager()
         {
+            m_problem_solver_manager = new ProblemSolverManager();
         }
 
         public static ApplicManager Instance
@@ -33,7 +38,12 @@ namespace MRCPSP.Controllers
 
         public  void loadProblemFromDataBase(string title)
         {
-            Logger.Logger.Instance.info("ApplicManager::lodProblemFromDataBase, title: " + title);
+            LoggerFactory.getSimpleLogger().info("ApplicManager::lodProblemFromDataBase, title: " + title);
+        }
+
+        public void sendStopRequest()
+        {
+            m_problem_solver_manager.stopRequested = true;
         }
     }
 }
