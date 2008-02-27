@@ -8,11 +8,11 @@ namespace MRCPSP.Logger
     class LoggerFactory
     {
 
-        public static Logger getSimpleLogger()
+        public static SimpleLogger getSimpleLogger()
         {
-            Logger logger = Logger.Instance;
+            SimpleLogger logger = SimpleLogger.Instance;
             if (logger.LogFile == null)
-                logger.LogFile = "C:/Users/Ofir/Desktop/Project/MRCPSP2/logs/TestLogger.log";
+                logger.LogFile = "../../../logs/TestLogger.log";
             return logger;
         }
     }
