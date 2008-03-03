@@ -70,6 +70,11 @@ namespace MRCPSP.Gui.ProblemCreator
 
                m_constraint_list.Add(c);
            }
+           internal void removeConstraint(ConstraintItem c)
+           {
+
+               m_constraint_list.Remove(c);
+           }
 
            internal System.Collections.ArrayList getConstraints()
            {

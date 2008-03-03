@@ -27,6 +27,11 @@ namespace MRCPSP.Gui.ProblemCreator
                 // do nothing
             }
 
+            public override void onCanvasMoved(CanvasEditor canvas, MouseEventArgs e)
+            {
+                // do nothing
+            }
+
             public override void onStepDoubleClicked(StepItem s) {
                 s.onShowModeMonitor();
                 // open mode window

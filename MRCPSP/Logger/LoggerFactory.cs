@@ -8,9 +8,9 @@ namespace MRCPSP.Logger
     class LoggerFactory
     {
 
-        public static SimpleLogger getSimpleLogger()
+        public static Logger getSimpleLogger()
         {
-            SimpleLogger logger = SimpleLogger.Instance;
+            Logger logger = Logger.Instance;
             if (logger.LogFile == null)
                 logger.LogFile = "../../../logs/TestLogger.log";
             return logger;

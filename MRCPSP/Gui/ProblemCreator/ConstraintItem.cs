@@ -90,5 +90,15 @@ namespace MRCPSP.Gui.ProblemCreator
         {
             return this.m_to_step;
         }
+
+        public Point getFromPoint()
+        {
+            return m_point_from;
+        }
+
+        public Point getToPoint()
+        {
+            return m_point_to;
+        }
     }
 }

@@ -34,6 +34,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.ResumeLayout(false);
 
             this.MouseClick += new MouseEventHandler(this.onMouseClicked);
+            this.MouseMove+=new MouseEventHandler(this.onMouseMoved);
             this.ClientSize = new System.Drawing.Size(628, 426);
             this.Resize += new System.EventHandler(this.OnResize2);
             this.Paint += new PaintEventHandler(CanvasEditor_Paint);     
@@ -51,7 +52,12 @@ namespace MRCPSP.Gui.ProblemCreator
         {
             ProblemCreatorState.Instance(monitor_id).state.onCanvasClicked((CanvasEditor)sender, e);
         }
-       
+
+        private void onMouseMoved(object sender, MouseEventArgs e)
+        {
+            ProblemCreatorState.Instance(monitor_id).state.onCanvasMoved((CanvasEditor)sender, e);
+        }
+
         protected void OnResize2(object sender, System.EventArgs e)
         {
             Invalidate();

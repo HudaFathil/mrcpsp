@@ -29,6 +29,7 @@ namespace MRCPSP.Gui.ProblemCreator
 
         abstract public void onStepClicked(CanvasEditor c, StepItem s);
         abstract public void onCanvasClicked(CanvasEditor c, MouseEventArgs e);
+        abstract public void onCanvasMoved(CanvasEditor c, MouseEventArgs e);
         abstract public void onStepDoubleClicked(StepItem s);
     }
 }

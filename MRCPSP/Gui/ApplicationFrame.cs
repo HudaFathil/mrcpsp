@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using MRCPSP.Gui.ProblemCreator;
-using MRCPSP.Gui.LoggerLevel;
+using MRCPSP.Gui.Logger;
 using MRCPSP.Logger;
 using MRCPSP.Gui.ProblemSolver;
 
@@ -17,7 +17,7 @@ namespace MRCPSP.Gui {
         private ToolStripButton m_solve_problem_button;
         private ToolStripButton m_view_statistics_button;
         private StatusStrip statusStrip1;
-        private MRCPSP.Logger.SimpleLogger m_logger;
+        private MRCPSP.Logger.Logger m_logger;
         private static int m_problem_monitor_id;
         private ProblemSolverMonitor m_problem_solver_monitor;
         MainMenu MyMenu; 

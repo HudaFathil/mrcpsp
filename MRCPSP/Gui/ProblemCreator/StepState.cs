@@ -33,7 +33,11 @@ namespace MRCPSP.Gui.ProblemCreator
             ProblemCreatorState.Instance(monitor_id).addStep(si);
         }
 
-      
+        public override void onCanvasMoved(CanvasEditor canvas, MouseEventArgs e)
+        {
+            // do nothing
+        }
+
         public override void onStepDoubleClicked(StepItem s) {
                 // do nothing
             }
