@@ -42,7 +42,10 @@ namespace MRCPSP.Gui.ProblemCreator
 
         void CanvasEditor_Paint(object sender, PaintEventArgs e)
         {
-            foreach (ConstraintItem c in ProblemCreatorState.Instance(monitor_id).getConstraints())
+            ProductItem p = ProblemCreatorState.Instance(monitor_id).CurrentProduct;
+            if (p == null)
+                return;
+            foreach (ConstraintItem c in ProblemCreatorState.Instance(monitor_id).getConstraints(p))
             {
                 c.ConstraintItem_Paint(sender, e);
             }
@@ -61,7 +64,10 @@ namespace MRCPSP.Gui.ProblemCreator
         protected void OnResize2(object sender, System.EventArgs e)
         {
             Invalidate();
-            foreach (ConstraintItem c in ProblemCreatorState.Instance(monitor_id).getConstraints())
+            ProductItem p = ProblemCreatorState.Instance(monitor_id).CurrentProduct;
+            if (p == null)
+                return;
+            foreach (ConstraintItem c in ProblemCreatorState.Instance(monitor_id).getConstraints(p))
             {
                 c.ConstraintItem_Resize(sender, e);
             }

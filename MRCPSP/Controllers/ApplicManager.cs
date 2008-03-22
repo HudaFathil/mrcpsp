@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using MRCPSP.Domain;
+using MRCPSP.CommonTypes;
 using MRCPSP.Logger;
 
 namespace MRCPSP.Controllers
@@ -29,10 +30,14 @@ namespace MRCPSP.Controllers
             }
         }
 
-        public void loadProblem(System.Collections.ArrayList steps_name_list,
-                                         System.Collections.ArrayList constraints_list,
-                                         System.Collections.ArrayList operation_list)
+        public void loadProblem(Resource[] resource_array,
+                                System.Collections.Hashtable modes_in_step,
+                                Step[] step_array, 
+                                System.Collections.ArrayList all_constraints,
+                                Product[] products_array)
         {
+            m_current_problem = new Problem(resource_array, modes_in_step, step_array, all_constraints, products_array);
+            
         }
 
 
@@ -44,6 +49,12 @@ namespace MRCPSP.Controllers
         public void sendStopRequest()
         {
             m_problem_solver_manager.stopRequested = true;
+        }
+
+        public Problem CurrentProblem
+        {
+            get { return m_current_problem;  }
+            set { m_current_problem = value; }
         }
     }
 }

@@ -49,7 +49,11 @@ namespace MRCPSP.Logger
 
         private void writeToLog(String message)
         {
-            StreamWriter outLog = new StreamWriter(m_logFileName, true);
+            StreamWriter outLog = null;
+            if (File.Exists(m_logFileName))
+            {
+                outLog = new StreamWriter(m_logFileName, true);
+            }
             DateTime time = DateTime.Now;
             if (outLog == null)
                 Console.WriteLine("{0:G} " + message, time);

@@ -12,11 +12,13 @@ namespace MRCPSP.Gui.ProblemCreator
 {
     public class StepItem : System.Windows.Forms.Label
     {
-        ModesMonitor m_mode_monitor;
+        private ModesMonitor m_mode_monitor;
         private bool m_isDragging;
         private int m_offset_x;
         private int m_offset_y;
         private int m_monitor_id;
+        private int m_id;
+
         public StepItem(int monitor_id)
         {
             m_monitor_id = monitor_id;
@@ -26,8 +28,8 @@ namespace MRCPSP.Gui.ProblemCreator
             Show(); 
             ImageAlign = ContentAlignment.TopCenter;
             TextAlign = ContentAlignment.BottomCenter;
-            int step_id = ProblemCreatorState.Instance(monitor_id).getNextStepId();
-            Text = "step: " + step_id; 
+            m_id = ProblemCreatorState.Instance(monitor_id).getNextStepId();
+            Text = "step: " + m_id;           
             Size s = new Size(50, 60);
             MinimumSize = s;
             MaximumSize = s;      
@@ -105,6 +107,16 @@ namespace MRCPSP.Gui.ProblemCreator
             {
                 m_monitor_id = value;
             }
+        }
+
+        public System.Collections.ArrayList getAllModes()
+        {
+            return m_mode_monitor.getModesItemsList();
+        }
+
+        public int getID()
+        {
+            return m_id;
         }
     }
 }

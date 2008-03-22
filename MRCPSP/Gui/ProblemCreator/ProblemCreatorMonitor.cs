@@ -41,6 +41,9 @@ namespace MRCPSP.Gui.ProblemCreator
         private ComboBox m_product_cb;
         private Button m_add_product_button;
         private Label label3;
+        private GroupBox groupBox4;
+        private Button m_remove_product_button;
+        private Label m_product_color_lbl;
         private int m_monitor_id;
 
         public ProblemCreatorMonitor(int monitor_id)
@@ -63,6 +66,11 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_worker_list = new System.Windows.Forms.ListBox();
             this.m_add_worker_button = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.m_remove_product_button = new System.Windows.Forms.Button();
+            this.m_add_product_button = new System.Windows.Forms.Button();
+            this.m_product_cb = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.m_load_problem_button = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.m_problem_title_le = new System.Windows.Forms.TextBox();
@@ -78,9 +86,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_new_constraint_button = new System.Windows.Forms.ToolStripButton();
             this.m_eraser_button = new System.Windows.Forms.ToolStripButton();
             this.m_pointer_button = new System.Windows.Forms.ToolStripButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.m_add_product_button = new System.Windows.Forms.Button();
-            this.m_product_cb = new System.Windows.Forms.ComboBox();
+            this.m_product_color_lbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -88,6 +94,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.m_center_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
@@ -102,17 +109,17 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_machine_list.FormattingEnabled = true;
             this.m_machine_list.Location = new System.Drawing.Point(6, 42);
             this.m_machine_list.Name = "m_machine_list";
-            this.m_machine_list.Size = new System.Drawing.Size(133, 56);
+            this.m_machine_list.Size = new System.Drawing.Size(133, 69);
             this.m_machine_list.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(557, 0);
+            this.panel1.Location = new System.Drawing.Point(645, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(155, 231);
+            this.panel1.Size = new System.Drawing.Size(155, 267);
             this.panel1.TabIndex = 1;
             // 
             // splitContainer1
@@ -129,8 +136,8 @@ namespace MRCPSP.Gui.ProblemCreator
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
-            this.splitContainer1.Size = new System.Drawing.Size(145, 221);
-            this.splitContainer1.SplitterDistance = 110;
+            this.splitContainer1.Size = new System.Drawing.Size(145, 257);
+            this.splitContainer1.SplitterDistance = 127;
             this.splitContainer1.TabIndex = 2;
             // 
             // groupBox2
@@ -142,7 +149,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.groupBox2.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox2.Size = new System.Drawing.Size(145, 110);
+            this.groupBox2.Size = new System.Drawing.Size(145, 127);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Machines";
@@ -167,7 +174,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.groupBox3.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox3.Size = new System.Drawing.Size(145, 107);
+            this.groupBox3.Size = new System.Drawing.Size(145, 126);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Workers";
@@ -178,7 +185,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_worker_list.FormattingEnabled = true;
             this.m_worker_list.Location = new System.Drawing.Point(6, 42);
             this.m_worker_list.Name = "m_worker_list";
-            this.m_worker_list.Size = new System.Drawing.Size(133, 56);
+            this.m_worker_list.Size = new System.Drawing.Size(133, 69);
             this.m_worker_list.TabIndex = 4;
             // 
             // m_add_worker_button
@@ -194,22 +201,71 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.m_product_cb);
-            this.panel2.Controls.Add(this.m_add_product_button);
+            this.panel2.Controls.Add(this.groupBox4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.m_load_problem_button);
             this.panel2.Controls.Add(this.statusStrip1);
             this.panel2.Controls.Add(this.m_problem_title_le);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 276);
+            this.panel2.Location = new System.Drawing.Point(0, 312);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(712, 77);
+            this.panel2.Size = new System.Drawing.Size(800, 99);
             this.panel2.TabIndex = 2;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.m_product_color_lbl);
+            this.groupBox4.Controls.Add(this.m_remove_product_button);
+            this.groupBox4.Controls.Add(this.m_add_product_button);
+            this.groupBox4.Controls.Add(this.m_product_cb);
+            this.groupBox4.Location = new System.Drawing.Point(12, 3);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(246, 71);
+            this.groupBox4.TabIndex = 8;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Products";
+            // 
+            // m_remove_product_button
+            // 
+            this.m_remove_product_button.Location = new System.Drawing.Point(6, 42);
+            this.m_remove_product_button.Name = "m_remove_product_button";
+            this.m_remove_product_button.Size = new System.Drawing.Size(101, 23);
+            this.m_remove_product_button.TabIndex = 8;
+            this.m_remove_product_button.Text = "Remove Product";
+            this.m_remove_product_button.UseVisualStyleBackColor = true;
+            // 
+            // m_add_product_button
+            // 
+            this.m_add_product_button.Location = new System.Drawing.Point(6, 13);
+            this.m_add_product_button.Name = "m_add_product_button";
+            this.m_add_product_button.Size = new System.Drawing.Size(101, 23);
+            this.m_add_product_button.TabIndex = 6;
+            this.m_add_product_button.Text = "Add Product";
+            this.m_add_product_button.UseVisualStyleBackColor = true;
+            this.m_add_product_button.Click += new System.EventHandler(this.m_add_product_button_Click);
+            // 
+            // m_product_cb
+            // 
+            this.m_product_cb.FormattingEnabled = true;
+            this.m_product_cb.Location = new System.Drawing.Point(119, 15);
+            this.m_product_cb.Name = "m_product_cb";
+            this.m_product_cb.Size = new System.Drawing.Size(121, 21);
+            this.m_product_cb.TabIndex = 7;
+            this.m_product_cb.SelectedIndexChanged += new System.EventHandler(this.m_product_cb_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(632, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "select";
             // 
             // m_load_problem_button
             // 
-            this.m_load_problem_button.Location = new System.Drawing.Point(435, 11);
+            this.m_load_problem_button.Location = new System.Drawing.Point(688, 40);
             this.m_load_problem_button.Name = "m_load_problem_button";
             this.m_load_problem_button.Size = new System.Drawing.Size(91, 23);
             this.m_load_problem_button.TabIndex = 3;
@@ -219,15 +275,15 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 55);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 77);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(712, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // m_problem_title_le
             // 
-            this.m_problem_title_le.Location = new System.Drawing.Point(607, 13);
+            this.m_problem_title_le.Location = new System.Drawing.Point(688, 14);
             this.m_problem_title_le.Name = "m_problem_title_le";
             this.m_problem_title_le.Size = new System.Drawing.Size(100, 20);
             this.m_problem_title_le.TabIndex = 1;
@@ -235,7 +291,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(532, 16);
+            this.label1.Location = new System.Drawing.Point(613, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 0;
@@ -247,7 +303,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(712, 45);
+            this.panel3.Size = new System.Drawing.Size(800, 45);
             this.panel3.TabIndex = 3;
             // 
             // label2
@@ -258,7 +314,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(712, 45);
+            this.label2.Size = new System.Drawing.Size(800, 45);
             this.label2.TabIndex = 4;
             this.label2.Text = "Problem Creator";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -271,7 +327,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_center_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.m_center_panel.Location = new System.Drawing.Point(0, 45);
             this.m_center_panel.Name = "m_center_panel";
-            this.m_center_panel.Size = new System.Drawing.Size(712, 231);
+            this.m_center_panel.Size = new System.Drawing.Size(800, 267);
             this.m_center_panel.TabIndex = 4;
             // 
             // m_canvas_pic
@@ -282,7 +338,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_canvas_pic.Location = new System.Drawing.Point(69, 0);
             this.m_canvas_pic.monitor_id = 0;
             this.m_canvas_pic.Name = "m_canvas_pic";
-            this.m_canvas_pic.Size = new System.Drawing.Size(488, 231);
+            this.m_canvas_pic.Size = new System.Drawing.Size(576, 267);
             this.m_canvas_pic.TabIndex = 5;
             this.m_canvas_pic.TabStop = false;
             // 
@@ -292,7 +348,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(69, 231);
+            this.panel5.Size = new System.Drawing.Size(69, 267);
             this.panel5.TabIndex = 2;
             // 
             // groupBox1
@@ -367,35 +423,18 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_pointer_button.Text = "toolStripButton4";
             this.m_pointer_button.Click += new System.EventHandler(this.m_pointer_button_Click);
             // 
-            // label3
+            // m_product_color_lbl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "select";
-            // 
-            // m_add_product_button
-            // 
-            this.m_add_product_button.Location = new System.Drawing.Point(12, 29);
-            this.m_add_product_button.Name = "m_add_product_button";
-            this.m_add_product_button.Size = new System.Drawing.Size(101, 23);
-            this.m_add_product_button.TabIndex = 6;
-            this.m_add_product_button.Text = "Add Product";
-            this.m_add_product_button.UseVisualStyleBackColor = true;
-            // 
-            // m_product_cb
-            // 
-            this.m_product_cb.FormattingEnabled = true;
-            this.m_product_cb.Location = new System.Drawing.Point(119, 31);
-            this.m_product_cb.Name = "m_product_cb";
-            this.m_product_cb.Size = new System.Drawing.Size(121, 21);
-            this.m_product_cb.TabIndex = 7;
+            this.m_product_color_lbl.AutoSize = true;
+            this.m_product_color_lbl.Location = new System.Drawing.Point(116, 42);
+            this.m_product_color_lbl.Name = "m_product_color_lbl";
+            this.m_product_color_lbl.Size = new System.Drawing.Size(108, 13);
+            this.m_product_color_lbl.TabIndex = 9;
+            this.m_product_color_lbl.Text = "Current Product Color";
             // 
             // ProblemCreatorMonitor
             // 
-            this.ClientSize = new System.Drawing.Size(712, 353);
+            this.ClientSize = new System.Drawing.Size(800, 411);
             this.Controls.Add(this.m_center_panel);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -408,6 +447,8 @@ namespace MRCPSP.Gui.ProblemCreator
             this.groupBox3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.m_center_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
@@ -512,6 +553,29 @@ namespace MRCPSP.Gui.ProblemCreator
         private void m_load_problem_button_Click(object sender, EventArgs e)
         {
             ProblemCreatorState.Instance(monitor_id).loadCurrentProblem();
+        }
+
+        private void m_add_product_button_Click(object sender, EventArgs e)
+        {
+            ProductItem p = new ProductItem();
+            AddProductWidget widget = new AddProductWidget(p);
+            widget.ShowDialog(new Form());
+            if (widget.DialogResult == DialogResult.OK)
+            {
+                ProblemCreatorState.Instance(monitor_id).addProduct(p);
+                m_product_cb.Items.Add(p);
+            }
+            if (widget.DialogResult == DialogResult.Cancel)
+            {
+                p.deleteMe();
+            }
+        }
+
+        private void m_product_cb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProductItem p = (ProductItem)(m_product_cb.SelectedItem);
+            m_product_color_lbl.BackColor = p.ConstraintsColor;
+            ProblemCreatorState.Instance(monitor_id).CurrentProduct = p;
         }
     }
 

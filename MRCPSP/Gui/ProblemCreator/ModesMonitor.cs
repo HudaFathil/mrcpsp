@@ -249,31 +249,7 @@ namespace MRCPSP.Gui.ProblemCreator
             current_item.m_start_time_list.Items.Add(m_start_time_sb.Value.ToString());
             current_item.m_end_time_list.Items.Add(m_end_time_sb.Value.ToString());
         }
-        /*
-        protected override void  OnClosing(CancelEventArgs e)
-        {
- 	        this.Hide();
-        }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            this.Hide();
-        }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            this.Hide();
-        }
-
-        protected override void OnFormClosed(FormClosedEventArgs e)
-        {
-            Hide();
-        }
-        protected override void OnLeave(EventArgs e)
-        {
-            Hide();
-        }
-        */
+    
         public void updateResources()
         {
             m_resource_name_cb.Items.Clear();
@@ -288,8 +264,12 @@ namespace MRCPSP.Gui.ProblemCreator
             set
             {
                 m_monitor_id = value;
-                Text = "Problem Creator Monitor # " + m_monitor_id.ToString();
             }
+        }
+
+        public System.Collections.ArrayList getModesItemsList()
+        {
+            return m_modes_list;
         }
     }
 

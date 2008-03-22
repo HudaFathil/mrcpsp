@@ -47,8 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\AlgorithmManager.cs" />
+    <Compile Include="Algorithm\GeneratePolicyBase.cs" />
+    <Compile Include="Algorithm\GenerateRandomPopulation.cs" />
+    <Compile Include="Algorithm\Solution.cs" />
+    <Compile Include="CommonTypes\Constraint.cs" />
     <Compile Include="CommonTypes\Mode.cs" />
     <Compile Include="CommonTypes\Operation.cs" />
+    <Compile Include="CommonTypes\Product.cs" />
+    <Compile Include="CommonTypes\Resource.cs" />
+    <Compile Include="CommonTypes\Step.cs" />
     <Compile Include="CommonTypes\StringPair.cs" />
     <Compile Include="Controllers\ApplicManager.cs" />
     <Compile Include="Controllers\ProblemSolverManager.cs" />
@@ -60,6 +68,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gui\ProblemCreator\AddMachineWidget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\ProblemCreator\AddProductWidget.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gui\ProblemCreator\AddWorkerWidget.cs">
@@ -84,6 +95,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gui\ProblemCreator\ProblemCreatorState.cs" />
+    <Compile Include="Gui\ProblemCreator\ProductItem.cs" />
     <Compile Include="Gui\ProblemCreator\ResourceBase.cs">
     </Compile>
     <Compile Include="Gui\ProblemCreator\StateBase.cs">
@@ -128,6 +140,10 @@
       <DependentUpon>AddMachineWidget.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProblemCreator\AddProductWidget.resx">
+      <DependentUpon>AddProductWidget.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Gui\ProblemCreator\AddWorkerWidget.resx">
       <DependentUpon>AddWorkerWidget.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -160,6 +176,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

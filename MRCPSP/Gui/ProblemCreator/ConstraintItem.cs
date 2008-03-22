@@ -28,7 +28,7 @@ namespace MRCPSP.Gui.ProblemCreator
             m_from_step = from;
             m_to_step = to;
             Graphics graphics = m_canvas.CreateGraphics();
-            m_pen = new Pen(Color.Black, 5);
+            m_pen = new Pen(ProblemCreatorState.Instance(m_from_step.monitor_id).CurrentProduct.ConstraintsColor, 5);
             m_pen.StartCap = LineCap.Round;
             m_pen.EndCap = LineCap.ArrowAnchor;
 

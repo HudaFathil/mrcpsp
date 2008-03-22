@@ -5,11 +5,17 @@ using System.Text;
 
 namespace MRCPSP.CommonTypes
 {
-    class Operation
+    public class Operation
     {
         private int m_start_time;
         private int m_end_time;
-        private string m_resource_name;
+        private Resource m_resource;
 
+        public Operation(int start, int end, Resource resource)
+        {
+            m_start_time = start;
+            m_end_time = end;
+            m_resource = resource;
+        }
     }
 }

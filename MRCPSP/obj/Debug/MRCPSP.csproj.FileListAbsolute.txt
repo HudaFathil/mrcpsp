@@ -51,3 +51,4 @@ C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_s
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ModesMonitor.resources
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ResourceBase.resources
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemSolver.ProblemSolverMonitor.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.AddProductWidget.resources
