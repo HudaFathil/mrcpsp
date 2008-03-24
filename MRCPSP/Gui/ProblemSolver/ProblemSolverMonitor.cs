@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using MRCPSP.Controllers;
 
 namespace MRCPSP.Gui.ProblemSolver
 {
@@ -88,6 +89,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_start_test_button.TabIndex = 3;
             this.m_start_test_button.Text = "start";
             this.m_start_test_button.UseVisualStyleBackColor = true;
+            this.m_start_test_button.Click += new System.EventHandler(this.m_start_test_button_Click);
             // 
             // m_all_problems_lst
             // 
@@ -190,6 +192,14 @@ namespace MRCPSP.Gui.ProblemSolver
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void m_start_test_button_Click(object sender, EventArgs e)
+        {
+            // need to load pselected arams
+
+            ApplicManager.Instance.run();
+        
         }
 
     }

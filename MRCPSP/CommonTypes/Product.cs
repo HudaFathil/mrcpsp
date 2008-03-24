@@ -34,6 +34,12 @@ namespace MRCPSP.CommonTypes
                 m_product_name = value;
             }
         }
+
+        public int Id
+        {
+            get { return m_product_id; }
+            set { m_product_id = value; }
+        }
       
     }
 }

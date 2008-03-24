@@ -50,6 +50,10 @@ namespace MRCPSP.Controllers
         {
             m_problem_solver_manager.stopRequested = true;
         }
+        public void run()
+        {
+            m_problem_solver_manager.run();
+        }
 
         public Problem CurrentProblem
         {

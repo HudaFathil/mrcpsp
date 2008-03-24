@@ -48,8 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithm\AlgorithmManager.cs" />
+    <Compile Include="Algorithm\FitnessFunctionBase.cs" />
     <Compile Include="Algorithm\GeneratePolicyBase.cs" />
     <Compile Include="Algorithm\GenerateRandomPopulation.cs" />
+    <Compile Include="Algorithm\lindo.cs" />
+    <Compile Include="Algorithm\LindoHandler.cs" />
+    <Compile Include="Algorithm\MinimumMakeSpanPolicy.cs" />
     <Compile Include="Algorithm\Solution.cs" />
     <Compile Include="CommonTypes\Constraint.cs" />
     <Compile Include="CommonTypes\Mode.cs" />

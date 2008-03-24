@@ -15,5 +15,11 @@ namespace MRCPSP.CommonTypes
             m_id = id;
             m_name = name;
         }
+
+        public int Id
+        {
+            get { return m_id; }
+            set { m_id = value; }
+        }
     }
 }

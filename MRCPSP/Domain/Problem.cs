@@ -76,5 +76,137 @@ namespace MRCPSP.Domain
                 throw new EntryPointNotFoundException("request non existing product");
             return ((System.Collections.ArrayList)m_steps_in_product[product]).Count;
         }
+
+        public Resource[] Resources
+        {
+            get { return m_resource_array; }
+            set { m_resource_array = value; }
+        }
+
+        public System.Collections.Hashtable ModesInStep
+        {
+            get { return m_modes_in_step; }
+            set { m_modes_in_step = value; }
+        }
+
+        public Step[] Steps
+        {
+            get { return m_step_array; }
+            set { m_step_array = value; }
+        }
+
+        public Product[] Products
+        {
+            get { return m_products_array; }
+            set { m_products_array = value; }
+        }
+
+        public System.Collections.ArrayList Constraints
+        {
+            get { return m_all_constraints; }
+            set { m_all_constraints = value; }
+        }
+
+        public System.Collections.Hashtable StepsInProduct
+        {
+            get { return m_steps_in_product; }
+            set { m_steps_in_product = value; }
+        }
+
+        public System.Collections.ArrayList getAllResourcesInStep(Step step)
+        {
+            System.Collections.ArrayList resources = new System.Collections.ArrayList();
+            foreach (Mode m in (System.Collections.ArrayList)m_modes_in_step[step])
+            {
+                foreach (Operation o in m.operations)
+                {
+                    if (!resources.Contains(o.Rseource))
+                        resources.Add(o.Rseource);
+                }
+            }
+            return resources;
+        }
+
+        public System.Collections.ArrayList getAllResourcesInProduct(Product p)
+        {
+            System.Collections.ArrayList resources = new System.Collections.ArrayList();
+            foreach (Step s in (System.Collections.ArrayList)m_steps_in_product[p])
+            {
+                foreach (Resource r in getAllResourcesInStep(s))
+                {
+                    if (!resources.Contains(r))
+                        resources.Add(r);
+                }
+            }
+            return resources;
+        }
+
+        public int getNumberOfResourceShowsInProduct(Resource r, Product p)
+        {
+            int count = 0;
+            for (int i = 0; i < m_products_array.Length; i++)
+            {
+                foreach (Step s in (System.Collections.ArrayList)m_steps_in_product[m_products_array[i]])
+                {
+                    foreach (Mode m in (System.Collections.ArrayList)m_modes_in_step[s])
+                    {
+                        for (int j = 0; j < m.operations.Count; j++)
+                        {
+                            if (((Operation)m.operations[j]).Rseource == r)
+                                count++;
+                        }
+                    }
+                }
+            }
+            return count;
+        }
+
+        public System.Collections.ArrayList getAllConstraintForProduct(Product p)
+        {
+            System.Collections.ArrayList constr = new System.Collections.ArrayList();
+            foreach (Constraint c in m_all_constraints)
+            {
+                if (c.Product == p)
+                    constr.Add(c);
+            }
+            return constr;
+        }
+        
+        public System.Collections.ArrayList getAllImmediatePrecedence(Product p, Step s)
+        {
+            System.Collections.ArrayList preced = new System.Collections.ArrayList();
+            foreach (Constraint c in m_all_constraints)
+            {
+                if ((c.Product == p) && (c.StepTo == s))
+                    if (!preced.Contains(c.StepTo))
+                        preced.Add(c.StepTo);
+            }
+            return preced;
+        }
+        
+        public System.Collections.ArrayList getAllImmediatePrecedence(Product p)
+        {
+            System.Collections.ArrayList preced = new System.Collections.ArrayList();
+            foreach (Constraint c in m_all_constraints)
+            {
+                if (c.Product == p)
+                    if (!preced.Contains(c.StepTo))
+                        preced.Add(c.StepTo);
+            }
+            return preced;
+        }
+
+        public System.Collections.ArrayList getAllImmediateSubsequent(Product p, Step s)
+        {
+            System.Collections.ArrayList subs = new System.Collections.ArrayList();
+            foreach (Constraint c in m_all_constraints)
+            {
+                if ((c.Product == p) && (c.StepFrom == s))
+                    if (!subs.Contains(c.StepFrom))
+                        subs.Add(c.StepFrom);
+            }
+            return subs;
+        }
+         
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using MRCPSP.Algorithm;
+using MRCPSP.Logger;
 
 namespace MRCPSP.Controllers
 {
@@ -11,11 +13,13 @@ namespace MRCPSP.Controllers
         private bool m_is_stop_requested;
         private int m_timeout;
         TimerCallback m_tc;
+        private AlgorithmManager m_algorithm_manager;
 
         public ProblemSolverManager()
         {
             m_is_stop_requested = false;
             m_tc = new TimerCallback(onTimeoutOver);
+            m_algorithm_manager = new AlgorithmManager();
         }
        
         public bool stopRequested {
@@ -43,14 +47,20 @@ namespace MRCPSP.Controllers
 
         public  void onTimeoutOver(Object state)
         {
+            LoggerFactory.getSimpleLogger().info("ProblemSolverManager::exiting on timeout");
             m_is_stop_requested = true;
         }
 
         public void run()
         {
-            Timer t = new Timer(m_tc, null, 0, m_timeout);
+            LoggerFactory.getSimpleLogger().info("ProblemSolverManager::run() activated");
+   //       Timer t = new Timer(m_tc, null, 0, m_timeout);
             // do the run
-            t.Dispose();
+
+            m_algorithm_manager.run(10,10,10.0);
+
+     //       t.Dispose();
+            LoggerFactory.getSimpleLogger().info("ProblemSolverManager::run() finished");
         }
     }
 }

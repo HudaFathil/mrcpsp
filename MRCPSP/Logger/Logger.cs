@@ -58,9 +58,11 @@ namespace MRCPSP.Logger
             if (outLog == null)
                 Console.WriteLine("{0:G} " + message, time);
             else
+            {
                 outLog.WriteLine("{0:G} " + message, time);
-            outLog.Flush();
-            outLog.Close();
+                outLog.Flush();
+                outLog.Close();
+            }
         }
 
         public override void debug(String message)
