@@ -61,10 +61,17 @@ namespace MRCPSP.Domain
         {
             for (int i = 0; i < m_products_array.Count(); i++)
             {
+                Product p = m_products_array[i];
+                int num_steps = ((System.Collections.ArrayList)m_steps_in_product[m_products_array[i]]).Count;
                 if (matrix_id < 0)
                     throw new IndexOutOfRangeException();
-                if (matrix_id < (m_products_array[i].Size * ((System.Collections.ArrayList)m_steps_in_product[m_products_array[i]]).Count))
-                    return matrix_id % ((System.Collections.ArrayList)m_steps_in_product[m_products_array[i]]).Count;
+                int size_of_current_family_block = (m_products_array[i].Size * num_steps);
+                if (matrix_id < size_of_current_family_block)
+                {
+                    int pos_in_step_list = (matrix_id % num_steps);
+                    Step s = (Step)((System.Collections.ArrayList)m_steps_in_product[p])[pos_in_step_list];                 
+                    return ((System.Collections.ArrayList)m_modes_in_step[s]).Count;
+                }
                 matrix_id-= (m_products_array[i].Size * ((System.Collections.ArrayList)m_steps_in_product[m_products_array[i]]).Count);
             }
             throw new IndexOutOfRangeException();

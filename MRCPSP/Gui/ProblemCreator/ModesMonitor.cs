@@ -242,8 +242,9 @@ namespace MRCPSP.Gui.ProblemCreator
                 current_item.m_resource_list.Dock = DockStyle.Right;
                 current_item.m_start_time_list.Dock = DockStyle.Right;
                 current_item.m_end_time_list.Dock = DockStyle.Right;
+                m_modes_list.Add(current_item);
             }
-            m_modes_list.Add(current_item);
+            
             current_item.m_id.Text = m_mode_id_sb.Value.ToString();   
             current_item.m_resource_list.Items.Add((ResourceBase)(m_resource_name_cb.SelectedItem));
             current_item.m_start_time_list.Items.Add(m_start_time_sb.Value.ToString());
