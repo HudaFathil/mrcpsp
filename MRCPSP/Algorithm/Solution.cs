@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using MRCPSP.Domain;
@@ -19,6 +19,12 @@ namespace MRCPSP.Algorithm
                                             
         }
 
+        public Solution(int distSize, int resourceNum)
+        {
+            m_selected_mode_list = new int[distSize];
+            m_distribution_matrix = new int[resourceNum, distSize];
+        }
+
         public int[,] DistributionMatrix
         {
             get { return m_distribution_matrix;}
@@ -35,5 +41,6 @@ namespace MRCPSP.Algorithm
                 m_selected_mode_list = value;
             }
         }
+
     }
 }

@@ -47,12 +47,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithm\AlgorithmManager.cs" />
-    <Compile Include="Algorithm\FitnessFunctionBase.cs" />
-    <Compile Include="Algorithm\GeneratePolicyBase.cs" />
-    <Compile Include="Algorithm\GenerateRandomPopulation.cs" />
-    <Compile Include="Algorithm\lindo.cs" />
-    <Compile Include="Algorithm\LindoHandler.cs" />
+    <Compile Include="Algorithm\AlgorithmManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Algorithm\FitnessFunctionBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Algorithm\GeneratePolicyBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Algorithm\GenerateRandomPopulation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Algorithm\lindo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Lindo\LindoAPIHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Lindo\LindoParameter.cs" />
+    <Compile Include="Lindo\LindoSolution.cs" />
     <Compile Include="Algorithm\MinimumMakeSpanPolicy.cs" />
     <Compile Include="Algorithm\Solution.cs" />
     <Compile Include="CommonTypes\Constraint.cs" />
@@ -174,6 +188,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\ProblemSolver\ProblemSolverMonitor.resx">
       <DependentUpon>ProblemSolverMonitor.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

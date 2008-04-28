@@ -9,7 +9,7 @@ namespace MRCPSP.CommonTypes
     {
         private int m_product_id;
         private string m_product_name;
-        private int m_product_size;
+        private int m_product_size; // number of jobs
     
 
         public Product(int id, string name, int size) {    

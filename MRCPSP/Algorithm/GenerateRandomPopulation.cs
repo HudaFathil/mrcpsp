@@ -9,7 +9,8 @@ using MRCPSP.CommonTypes;
 namespace MRCPSP.Algorithm
 {
     class GenerateRandomPopulation : GeneratePolicyBase
-    {  
+    {
+      
         public GenerateRandomPopulation() : base()
         {
         }
@@ -20,20 +21,24 @@ namespace MRCPSP.Algorithm
             Problem problem = ApplicManager.Instance.CurrentProblem;
             int distribution_count = problem.getTotalDistributionSize();
             int resource_count = problem.getNumberOfResources();
-            for (int i = 0; i < resource_count; i++)
-            {
-                int[] permutation = createPermutation(distribution_count);
-                for (int j=0; j < distribution_count; j++) 
-                {
-                    solution.DistributionMatrix[i,j] = permutation[j];
-                }
-            }
+            
             Random rand = new Random();   
             for (int i=0; i < distribution_count; i++) 
             {
                 int available_modes = problem.getNumberOfModesById(i);                    
-                solution.SelectedModeList[i] =  rand.Next(available_modes);
+                solution.SelectedModeList[i] =  rand.Next(available_modes)+1;
             }
+
+           
+                for (int i = 0; i < resource_count; i++)
+                {
+                    int[] permutation = createPermutation(distribution_count);
+                    for (int j = 0; j < distribution_count; j++)
+                    {
+                        solution.DistributionMatrix[i, j] = permutation[j];
+                    }
+                }
+           
         }
 
         private int[] createPermutation(int n) // 1 .. n

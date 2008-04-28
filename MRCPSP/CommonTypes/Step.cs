@@ -1,10 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 
 namespace MRCPSP.CommonTypes
 {
+    class StepComparer : IComparer
+    {
+        public StepComparer() : base() { }
+        int IComparer.Compare(Object x, Object y)
+        {
+            Step x1 = (Step)x;
+            Step y1 = (Step)y;
+            if (x1.Id == y1.Id)
+                return 0;
+            if (x1.Id < y1.Id)
+                return -1;
+            return 1;
+        }
+    }
+
     public class Step
     {
         private int m_id;

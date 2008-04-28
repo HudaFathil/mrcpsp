@@ -6,6 +6,8 @@ using MRCPSP.CommonTypes;
 
 namespace MRCPSP.Domain
 {
+    
+
     class Problem
     {
         private Resource[] m_resource_array;

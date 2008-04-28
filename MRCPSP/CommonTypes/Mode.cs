@@ -10,6 +10,7 @@ namespace MRCPSP.CommonTypes
         private System.Collections.ArrayList m_operations_list;
         private static int id_counter = 1;
         private int m_id;
+        private int m_name;
 
         public Mode()
         {
@@ -27,13 +28,49 @@ namespace MRCPSP.CommonTypes
             }
         }
 
+
+
         public int Id
         {
             get { return m_id; }
-            set
+        }
+
+        public int name
+        {
+            get { return m_name; }
+            set 
             {
-                m_id = value;
+                m_name = value;
             }
+        }
+
+        /* calculates the total process time of the mode
+         * <total process time> = MAX(operations finish time) MIN (operations start time)
+         * return <total process time>
+         */
+        public int getTotalProcessTime()
+        {
+            if (m_operations_list == null) 
+            {
+                return 0;
+            }
+
+            int min = -1;
+            int max = -1;
+
+            foreach (Operation op in m_operations_list) 
+            {
+                if (op.StartTime < min || min == -1)
+                {
+                    min = op.StartTime;
+                }
+                if (op.EndTime > max)
+                {
+                    max = op.EndTime;
+                }
+
+            }
+            return max - min;
         }
     }
 }

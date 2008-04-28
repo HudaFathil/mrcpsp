@@ -6,23 +6,11 @@ using MRCPSP.Logger;
 using MRCPSP.CommonTypes;
 using MRCPSP.Domain;
 using System.Runtime.InteropServices;
-
+using MRCPSP.Lindo;
 
 namespace MRCPSP.Algorithm
 {
-    /*
-    [StructLayout(LayoutKind.Sequential)]
-    public class CallbackData
-    {
-        public int count;
-
-        // Constructor:    
-        public CallbackData()
-        {
-            count = 0;
-        }
-    }
-    */
+    
     class MinimumMakeSpanPolicy : FitnessFunctionBase
     {
 
@@ -48,10 +36,17 @@ namespace MRCPSP.Algorithm
         public override void evalFitness(Solution solution, MRCPSP.Domain.Problem problem)
         {
             LoggerFactory.getSimpleLogger().info("MinimumMakeSpanPolicy::evalFitness");
-         //   connectToLindo();
+            //connectToLindo();
 
-            LindoHandler l1 = new LindoHandler();
-            l1.run();
+            LindoAPIHandler l1 = new LindoAPIHandler();
+            LindoSolution lindoSolution = new LindoSolution(solution,problem);
+            double results = l1.getResults(lindoSolution);
+            LoggerFactory.getSimpleLogger().debug("Fitness = " + results);
+
+        }
+
+        private void prepareConstrainsForLindo(MRCPSP.Domain.Problem problem)
+        {
 
         }
 

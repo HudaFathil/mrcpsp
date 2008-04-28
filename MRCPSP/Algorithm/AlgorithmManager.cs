@@ -39,7 +39,8 @@ namespace MRCPSP.Algorithm
             }
 
             performingGrowingLoop(population_size, num_of_generation, mutate_percent);
-
+            
+           // m_fitness_function.evalFitness(null, null);
             return true;
         }
 

@@ -272,6 +272,8 @@ namespace MRCPSP.Gui.ProblemCreator
         {
             return m_modes_list;
         }
+
+       
     }
 
     public class ModeItem

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using MRCPSP.Controllers;
@@ -182,6 +182,7 @@ namespace MRCPSP.Gui.ProblemCreator
                            new_mode.operations.Add(new Operation(Convert.ToInt32(m.m_start_time_list.Items[i]),
                                                                  Convert.ToInt32(m.m_end_time_list.Items[i]),
                                                                  (Resource)all_resources[name]));
+                           new_mode.name =Convert.ToInt32(m.m_id.Text) + 1;
                        }
                        ((System.Collections.ArrayList)modes_in_step[new_step]).Add(new_mode);
                    }
@@ -201,8 +202,17 @@ namespace MRCPSP.Gui.ProblemCreator
                all_products.Values.CopyTo(products_array, 0);
                Resource[] resource_array = new Resource[all_resources.Count];
                all_resources.Values.CopyTo(resource_array, 0);
+
                Step[] step_array = new Step[all_steps.Count];
-               all_steps.Values.CopyTo(step_array, 0);
+               ArrayList steps = new ArrayList();
+               
+               foreach (Step s in all_steps.Values)
+               {
+                   steps.Add(s);
+               }
+               steps.Sort(new StepComparer());
+               steps.CopyTo(step_array, 0);
+
                all_constraints.Cast<Constraint>();
                ApplicManager.Instance.loadProblem(resource_array, modes_in_step,step_array, all_constraints, products_array);
            }
