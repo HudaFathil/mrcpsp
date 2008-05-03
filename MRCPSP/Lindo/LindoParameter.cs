@@ -23,8 +23,14 @@ namespace MRCPSP.Lindo
         private LINDO_PARAMETER_TYPE m_type;
         private ArrayList m_column;
         private ArrayList m_row;
+        private bool m_nextStepWaiting;
+        private Step m_step;
 
-        public LindoParameter(LINDO_PARAMETER_TYPE type , LindoParameter cons ,Mode m , Resource r)
+        public LindoParameter(LINDO_PARAMETER_TYPE type , 
+                              LindoParameter cons ,
+                              Mode m , 
+                              Resource r , 
+                              Step s)
         {
             m_id = idCounter;
             m_type = type;
@@ -33,14 +39,35 @@ namespace MRCPSP.Lindo
             m_column = new ArrayList();
             m_row = new ArrayList();
             m_mode = m;
+            m_nextStepWaiting = false;
             idCounter++;
+            m_step = s;
+        }
 
+        public static void init()
+        {
+            idCounter = 1;
         }
 
         public int Id
         {
             get { return m_id; }
         }
+
+        public Step Step
+        {
+            get { return m_step; }
+        }
+
+        public bool NextStepWaiting
+        {
+            get { return m_nextStepWaiting ; }
+            set
+            {
+                m_nextStepWaiting = value;
+            }
+        }
+
 
         public ArrayList Columns
         {
@@ -66,8 +93,12 @@ namespace MRCPSP.Lindo
         public Mode mode
         {
             get { return m_mode; }
+            set
+            {
+                m_mode = value;
+            }
         }
-
+           
          
 
         public double getProcessTime()
@@ -100,8 +131,12 @@ namespace MRCPSP.Lindo
         public LindoParameter Predecessor
         {
             get { return m_constrain; }
+            set
+            {
+                m_constrain = value;
+            }
         }
-        public String ToString()
+        public override String ToString()
         {
             if (m_type.Equals(LINDO_PARAMETER_TYPE.START))
                 return "S" + m_id;

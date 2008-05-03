@@ -50,16 +50,21 @@
     <Compile Include="Algorithm\AlgorithmManager.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Algorithm\FitnessFunctionBase.cs">
+    <Compile Include="Algorithm\CrossOver\CorssOverBase.cs" />
+    <Compile Include="Algorithm\CrossOver\OnePointCrossOver.cs" />
+    <Compile Include="Algorithm\Fitness\FitnessFunctionBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Algorithm\GeneratePolicyBase.cs">
+    <Compile Include="Algorithm\FirstGeneration\GeneratePolicyBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Algorithm\GenerateRandomPopulation.cs">
+    <Compile Include="Algorithm\FirstGeneration\GenerateRandomPopulation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Algorithm\lindo.cs">
+    <Compile Include="Algorithm\SelectionPolicy\RankSelectionPolicy.cs" />
+    <Compile Include="Algorithm\SelectionPolicy\SelectionPolicyBase.cs" />
+    <Compile Include="Algorithm\SolutionComparer.cs" />
+    <Compile Include="Lindo\lindo.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Lindo\LindoAPIHandler.cs">
@@ -67,7 +72,7 @@
     </Compile>
     <Compile Include="Lindo\LindoParameter.cs" />
     <Compile Include="Lindo\LindoSolution.cs" />
-    <Compile Include="Algorithm\MinimumMakeSpanPolicy.cs" />
+    <Compile Include="Algorithm\Fitness\MinimumMakeSpanPolicy.cs" />
     <Compile Include="Algorithm\Solution.cs" />
     <Compile Include="CommonTypes\Constraint.cs" />
     <Compile Include="CommonTypes\Mode.cs" />
@@ -138,6 +143,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Util\CommonFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gui\pics\eraser_pic.bmp" />

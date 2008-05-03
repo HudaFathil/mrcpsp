@@ -29,11 +29,14 @@ namespace MRCPSP.Lindo
     {
         public Product product;
         public Step step;
+        public int jobNum;
     }
 
     class ResourceSelectedOperation
     {
         public Mode mode;
+        public Step step;
+        public int jobNum;
         public Resource resource;
         public int index;
     }
@@ -48,6 +51,8 @@ namespace MRCPSP.Lindo
         private String m_constrains;
         private System.Collections.ArrayList m_constrainsValues;
         private int m_paramsNum;
+        private Problem m_problem;
+
         /*
 
         // For debugging only 
@@ -170,7 +175,7 @@ namespace MRCPSP.Lindo
             m_rowIndex = new ArrayList();
             m_constrainsValues = new ArrayList();
             m_constrains = "";
-           
+            m_problem = prob;
             //convertValues(createSolutionForDebugging() , createProblemForDebugging());
             convertValues(sol, prob);
         }
@@ -210,6 +215,7 @@ namespace MRCPSP.Lindo
                         {
                             title[counter].product = problem.Products[p];
                             title[counter].step = problem.Steps[s];
+                            title[counter].jobNum = j;
                             counter++;
                         }
                     }
@@ -237,6 +243,7 @@ namespace MRCPSP.Lindo
                                 ResourceSelectedOperation sel = new ResourceSelectedOperation();
                                 sel.index = matrix[r, c];
                                 sel.mode = mode;
+                                sel.step = title[c].step;
                                 sel.resource  = problem.Resources[r];
 
                                 if (resources[r] == null)
@@ -250,7 +257,7 @@ namespace MRCPSP.Lindo
 
                     }
                 }
-            updateLindoSolutionVariables(getLindoParametersList(resources));
+                updateLindoSolutionVariables(getLindoParametersList(resources));
             printResultsToLog();            
         }
 
@@ -303,8 +310,9 @@ namespace MRCPSP.Lindo
 
         private void updateLindoSolutionVariables(ArrayList LindoParams)
         {
-            m_paramsNum = LindoParams.Count;
+            
             int rowIndex = 0;
+            // adding all solution dependancies 
             foreach (LindoParameter lp1 in LindoParams)
             {
                 if (lp1.Predecessor == null)
@@ -358,6 +366,24 @@ namespace MRCPSP.Lindo
                 }
 
             }
+            // adding step dependancy parameters
+            foreach (LindoParameter lp in LindoParams)
+            {
+                if (lp.Step.Id == 1)
+                    continue;
+                if (lp.type == LINDO_PARAMETER_TYPE.FINISH)
+                    continue;
+                LindoParameter previousLP = getPreviousLP(LindoParams, lp.Step);
+                if (previousLP == null)
+                    continue;
+                addColAndRow(lp, previousLP, rowIndex);
+                m_constrainsValues.Add(0.0);
+                m_constrains += "G";
+                rowIndex++;
+                Console.WriteLine(lp.ToString() + " - " + previousLP.ToString() + " >= " + "0.00");
+
+            }
+
             int col = 0;
             m_colStart.Add(col);
             foreach (LindoParameter lp in LindoParams)
@@ -369,17 +395,27 @@ namespace MRCPSP.Lindo
             }
 
             Console.WriteLine("");
+
+
             if ((int)m_colStart[m_colStart.Count - 1] < m_values.Count)
             {
                 m_colStart.Add(m_values.Count);
             }
+
+            m_paramsNum = LindoParams.Count;
         }
 
-
+        /**
+         *  creating Lindo Parameters 
+         */ 
         private ArrayList getLindoParametersList(ArrayList[] resources)
         {
             System.Collections.ArrayList LindoParams = new ArrayList();
+           
             Hashtable modeStartParams = new Hashtable();
+
+            
+
             for (int i = 0 ; i < resources.Length ; i++) 
             {
                 if (resources[i] == null)
@@ -388,27 +424,31 @@ namespace MRCPSP.Lindo
                 }
                 resources[i].Sort(new ResourceSelectedOperationComparer());
                 ResourceSelectedOperation[] selections = (ResourceSelectedOperation[])resources[i].ToArray(typeof(ResourceSelectedOperation));
+                
                 if (! modeStartParams.ContainsKey(selections[0].mode)) 
                 {
-                    LindoParameter lpSM = new LindoParameter(LINDO_PARAMETER_TYPE.START, null ,selections[0].mode ,selections[0].resource);
+                    LindoParameter lpSM;
+                    lpSM = new LindoParameter(LINDO_PARAMETER_TYPE.START, null, selections[0].mode, selections[0].resource, selections[0].step);
                     LindoParams.Add(lpSM);
                     modeStartParams.Add(selections[0].mode,lpSM);
                 }
-                LindoParameter lpS0 = new LindoParameter(LINDO_PARAMETER_TYPE.START, (LindoParameter)modeStartParams[selections[0].mode], selections[0].mode, selections[0].resource);
-                LindoParameter lpF0 = new LindoParameter(LINDO_PARAMETER_TYPE.FINISH, lpS0, selections[0].mode, selections[0].resource);
+                LindoParameter lpS0 = new LindoParameter(LINDO_PARAMETER_TYPE.START, (LindoParameter)modeStartParams[selections[0].mode], selections[0].mode, selections[0].resource, selections[0].step);
+                LindoParameter lpF0 = new LindoParameter(LINDO_PARAMETER_TYPE.FINISH, lpS0, selections[0].mode, selections[0].resource, selections[0].step);
 
                 LindoParams.Add(lpS0);
                 LindoParams.Add(lpF0);
                 
                 for (int j = 1 ; j < selections.Length ; j++) 
                 {
-                    LindoParameter lpS = new LindoParameter(LINDO_PARAMETER_TYPE.START,(LindoParameter)LindoParams[LindoParams.Count-1], selections[j].mode, selections[j].resource);
-                    LindoParameter lpF = new LindoParameter(LINDO_PARAMETER_TYPE.FINISH , lpS,selections[j].mode, selections[j].resource);
+                    LindoParameter lpS = new LindoParameter(LINDO_PARAMETER_TYPE.START, (LindoParameter)LindoParams[LindoParams.Count - 1], selections[j].mode, selections[j].resource, selections[0].step);
+                    LindoParameter lpF = new LindoParameter(LINDO_PARAMETER_TYPE.FINISH, lpS, selections[j].mode, selections[j].resource, selections[0].step);
 
                     LindoParams.Add(lpS);
                     LindoParams.Add(lpF);
                 }
             }
+
+           
             return LindoParams;
         }
 
@@ -420,6 +460,35 @@ namespace MRCPSP.Lindo
             lp2.Rows.Add(row);
         }
 
+        private List<Step> getPredecessorSteps(Step step)
+        {
+            List<Step> toReturn = new List<Step>();
+            foreach (Constraint c in m_problem.Constraints)
+            {
+                if (c.StepTo.Equals(step))
+                    toReturn.Add(c.StepFrom);
+            }
+            return toReturn;
+        }
+
+        private LindoParameter getPreviousLP(ArrayList LindoParams, Step step)
+        {
+            List<Step> constrainStep = getPredecessorSteps(step);
+            List<LindoParameter> toReturn = new List<LindoParameter>();
+            foreach (LindoParameter lp in LindoParams)
+            {
+                if (lp.type == LINDO_PARAMETER_TYPE.FINISH) {
+                    if (constrainStep.Contains(lp.Step) && ! lp.NextStepWaiting)
+                    {
+                        lp.NextStepWaiting = true;
+                        return lp;
+                    }
+
+                }
+                
+            }
+            return null;
+        }
 
 
         public double[] getValue()

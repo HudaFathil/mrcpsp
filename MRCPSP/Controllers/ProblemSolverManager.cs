@@ -57,7 +57,7 @@ namespace MRCPSP.Controllers
    //       Timer t = new Timer(m_tc, null, 0, m_timeout);
             // do the run
 
-            m_algorithm_manager.run(10,10,10.0);
+            m_algorithm_manager.run(8,15,10.0);
 
      //       t.Dispose();
             LoggerFactory.getSimpleLogger().info("ProblemSolverManager::run() finished");

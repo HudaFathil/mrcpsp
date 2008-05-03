@@ -5,7 +5,7 @@ using System.Text;
 using MRCPSP.CommonTypes;
 using MRCPSP.Domain;
 
-namespace MRCPSP.Algorithm
+namespace MRCPSP.Algorithm.Fitness
 {
     abstract class FitnessFunctionBase
     {

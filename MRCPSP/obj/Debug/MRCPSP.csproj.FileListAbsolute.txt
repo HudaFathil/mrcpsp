@@ -52,3 +52,21 @@ C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_s
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ResourceBase.resources
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemSolver.ProblemSolverMonitor.resources
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP_sol\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.AddProductWidget.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.exe
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.pdb
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Gui.ApplicationFrame.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Gui.Logger.LoggerFrame.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.AddMachineWidget.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.AddProductWidget.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.AddWorkerWidget.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.CanvasEditor.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ModesMonitor.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ProblemCreatorMonitor.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ResourceBase.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.StepItem.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemSolver.ProblemSolverMonitor.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Properties.Resources.resources
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.csproj.GenerateResource.Cache
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\bin\Debug\MRCPSP.exe
+C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\bin\Debug\MRCPSP.pdb

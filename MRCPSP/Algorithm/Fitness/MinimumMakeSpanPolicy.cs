@@ -8,7 +8,7 @@ using MRCPSP.Domain;
 using System.Runtime.InteropServices;
 using MRCPSP.Lindo;
 
-namespace MRCPSP.Algorithm
+namespace MRCPSP.Algorithm.Fitness
 {
     
     class MinimumMakeSpanPolicy : FitnessFunctionBase
@@ -41,6 +41,7 @@ namespace MRCPSP.Algorithm
             LindoAPIHandler l1 = new LindoAPIHandler();
             LindoSolution lindoSolution = new LindoSolution(solution,problem);
             double results = l1.getResults(lindoSolution);
+            solution.resultFromLindo = results;
             LoggerFactory.getSimpleLogger().debug("Fitness = " + results);
 
         }

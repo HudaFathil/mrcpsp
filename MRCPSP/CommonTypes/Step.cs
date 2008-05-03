@@ -36,5 +36,10 @@ namespace MRCPSP.CommonTypes
             get { return m_id; }
             set { m_id = value; }
         }
+
+        public override bool Equals(object obj)
+        {
+            return m_id == ((Step)obj).Id;
+        }
     }
 }
