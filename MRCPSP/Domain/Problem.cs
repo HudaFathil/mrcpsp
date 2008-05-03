@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using MRCPSP.CommonTypes;
@@ -10,33 +11,33 @@ namespace MRCPSP.Domain
 
     class Problem
     {
-        private Resource[] m_resource_array;
-        private System.Collections.Hashtable m_modes_in_step;
-        private Step[] m_step_array;
-        private System.Collections.ArrayList m_all_constraints;
-        private Product[] m_products_array;
-        private System.Collections.Hashtable m_steps_in_product;
+        private List<Resource> m_resource_list;
+        private Dictionary< Step, List < Mode > > m_modes_in_step;     
+        private List<Step> m_step_list;
+        private List<Constraint> m_all_constraints;
+        private List<Product> m_products_list;
+        private Dictionary<Product, List<Step>> m_steps_in_product;
 
-        public Problem(Resource[] resource_array,
-                                System.Collections.Hashtable modes_in_step,
-                                Step[] step_array,
-                                System.Collections.ArrayList all_constraints,
-                                Product[] products_array)
+        public Problem( List<Resource> resource_list,
+                        Dictionary< Step, List < Mode > > modes_in_step,
+                        List<Step> step_list,       
+                        List<Constraint> all_constraints,
+                        List<Product> products_list)
         {
-            m_resource_array = resource_array;
+            m_resource_list = resource_list;
             m_modes_in_step = modes_in_step;
-            m_step_array = step_array;
+            m_step_list = step_list;
             m_all_constraints = all_constraints;
-            m_products_array = products_array;
-            m_steps_in_product = new System.Collections.Hashtable();
-            for (int i=0; i < m_products_array.Count(); i++)
-                m_steps_in_product.Add(m_products_array[i], new System.Collections.ArrayList());
+            m_products_list = products_list;
+            m_steps_in_product = new Dictionary<Product, List<Step>>();
+            for (int i=0; i < m_products_list.Count(); i++)
+                m_steps_in_product.Add(m_products_list[i], new List<Step>());
 
             foreach (Constraint c in m_all_constraints)
             {
                 if (! m_steps_in_product.ContainsKey(c.Product))
                     throw new EntryPointNotFoundException("found constraint for non existing product"); 
-               System.Collections.ArrayList product_steps = (System.Collections.ArrayList)m_steps_in_product[c.Product];
+               List<Step> product_steps = m_steps_in_product[c.Product];
                if (!product_steps.Contains(c.StepFrom))
                     product_steps.Add(c.StepFrom);
                if (!product_steps.Contains(c.StepTo))
@@ -47,34 +48,34 @@ namespace MRCPSP.Domain
         public int getTotalDistributionSize()
         {
             int size = 0;
-            for (int i = 0; i < m_products_array.Count(); i++)
+            for (int i = 0; i < m_products_list.Count(); i++)
             {
-                size += (m_products_array[i].Size * getNumberOfStepsPerProduct(m_products_array[i])); 
+                size += (m_products_list[i].Size * getNumberOfStepsPerProduct(m_products_list[i])); 
             }
             return size;
         }
 
         public int getNumberOfResources()
         {
-            return m_resource_array.Count();
+            return m_resource_list.Count();
         }
 
         public int getNumberOfModesById(int matrix_id)
         {
-            for (int i = 0; i < m_products_array.Count(); i++)
+            for (int i = 0; i < m_products_list.Count(); i++)
             {
-                Product p = m_products_array[i];
-                int num_steps = ((System.Collections.ArrayList)m_steps_in_product[m_products_array[i]]).Count;
+                Product p = m_products_list[i];
+                int num_steps = m_steps_in_product[p].Count;
                 if (matrix_id < 0)
                     throw new IndexOutOfRangeException();
-                int size_of_current_family_block = (m_products_array[i].Size * num_steps);
+                int size_of_current_family_block = (p.Size * num_steps);
                 if (matrix_id < size_of_current_family_block)
                 {
                     int pos_in_step_list = (matrix_id % num_steps);
-                    Step s = (Step)((System.Collections.ArrayList)m_steps_in_product[p])[pos_in_step_list];                 
-                    return ((System.Collections.ArrayList)m_modes_in_step[s]).Count;
+                    Step s = m_steps_in_product[p][pos_in_step_list];                 
+                    return m_modes_in_step[s].Count;
                 }
-                matrix_id-= (m_products_array[i].Size * ((System.Collections.ArrayList)m_steps_in_product[m_products_array[i]]).Count);
+                matrix_id-= (p.Size * m_steps_in_product[p].Count);
             }
             throw new IndexOutOfRangeException();
         }
@@ -83,49 +84,49 @@ namespace MRCPSP.Domain
         {
             if (! m_steps_in_product.ContainsKey(product))
                 throw new EntryPointNotFoundException("request non existing product");
-            return ((System.Collections.ArrayList)m_steps_in_product[product]).Count;
+            return m_steps_in_product[product].Count;
         }
 
-        public Resource[] Resources
+        public List<Resource> Resources
         {
-            get { return m_resource_array; }
-            set { m_resource_array = value; }
+            get { return m_resource_list; }
+            set { m_resource_list = value; }
         }
 
-        public System.Collections.Hashtable ModesInStep
+        public Dictionary<Step, List<Mode>> ModesInStep
         {
             get { return m_modes_in_step; }
             set { m_modes_in_step = value; }
         }
 
-        public Step[] Steps
+        public List<Step> Steps
         {
-            get { return m_step_array; }
-            set { m_step_array = value; }
+            get { return m_step_list; }
+            set { m_step_list = value; }
         }
 
-        public Product[] Products
+        public List<Product> Products
         {
-            get { return m_products_array; }
-            set { m_products_array = value; }
+            get { return m_products_list; }
+            set { m_products_list = value; }
         }
 
-        public System.Collections.ArrayList Constraints
+        public List<Constraint> Constraints
         {
             get { return m_all_constraints; }
             set { m_all_constraints = value; }
         }
 
-        public System.Collections.Hashtable StepsInProduct
+        public Dictionary<Product, List<Step>> StepsInProduct
         {
             get { return m_steps_in_product; }
             set { m_steps_in_product = value; }
         }
 
-        public System.Collections.ArrayList getAllResourcesInStep(Step step)
+        public List<Resource> getAllResourcesInStep(Step step)
         {
-            System.Collections.ArrayList resources = new System.Collections.ArrayList();
-            foreach (Mode m in (System.Collections.ArrayList)m_modes_in_step[step])
+            List<Resource> resources = new List<Resource>();
+            foreach (Mode m in m_modes_in_step[step])
             {
                 foreach (Operation o in m.operations)
                 {
@@ -136,10 +137,10 @@ namespace MRCPSP.Domain
             return resources;
         }
 
-        public System.Collections.ArrayList getAllResourcesInProduct(Product p)
+        public List<Resource> getAllResourcesInProduct(Product p)
         {
-            System.Collections.ArrayList resources = new System.Collections.ArrayList();
-            foreach (Step s in (System.Collections.ArrayList)m_steps_in_product[p])
+            List<Resource> resources = new List<Resource>();
+            foreach (Step s in m_steps_in_product[p])
             {
                 foreach (Resource r in getAllResourcesInStep(s))
                 {
@@ -153,11 +154,11 @@ namespace MRCPSP.Domain
         public int getNumberOfResourceShowsInProduct(Resource r, Product p)
         {
             int count = 0;
-            for (int i = 0; i < m_products_array.Length; i++)
+            for (int i = 0; i < m_products_list.Count; i++)
             {
-                foreach (Step s in (System.Collections.ArrayList)m_steps_in_product[m_products_array[i]])
+                foreach (Step s in m_steps_in_product[m_products_list[i]])
                 {
-                    foreach (Mode m in (System.Collections.ArrayList)m_modes_in_step[s])
+                    foreach (Mode m in m_modes_in_step[s])
                     {
                         for (int j = 0; j < m.operations.Count; j++)
                         {
@@ -170,9 +171,9 @@ namespace MRCPSP.Domain
             return count;
         }
 
-        public System.Collections.ArrayList getAllConstraintForProduct(Product p)
+        public List<Constraint> getAllConstraintForProduct(Product p)
         {
-            System.Collections.ArrayList constr = new System.Collections.ArrayList();
+            List<Constraint> constr = new List<Constraint>();
             foreach (Constraint c in m_all_constraints)
             {
                 if (c.Product == p)
@@ -181,9 +182,9 @@ namespace MRCPSP.Domain
             return constr;
         }
         
-        public System.Collections.ArrayList getAllImmediatePrecedence(Product p, Step s)
+        public List<Step> getAllImmediatePrecedence(Product p, Step s)
         {
-            System.Collections.ArrayList preced = new System.Collections.ArrayList();
+            List<Step> preced = new List<Step>();
             foreach (Constraint c in m_all_constraints)
             {
                 if ((c.Product == p) && (c.StepTo == s))
@@ -193,9 +194,9 @@ namespace MRCPSP.Domain
             return preced;
         }
         
-        public System.Collections.ArrayList getAllImmediatePrecedence(Product p)
+        public List<Step> getAllImmediatePrecedence(Product p)
         {
-            System.Collections.ArrayList preced = new System.Collections.ArrayList();
+            List<Step> preced = new List<Step>();
             foreach (Constraint c in m_all_constraints)
             {
                 if (c.Product == p)
@@ -205,9 +206,9 @@ namespace MRCPSP.Domain
             return preced;
         }
 
-        public System.Collections.ArrayList getAllImmediateSubsequent(Product p, Step s)
+        public List<Step> getAllImmediateSubsequent(Product p, Step s)
         {
-            System.Collections.ArrayList subs = new System.Collections.ArrayList();
+            List<Step> subs = new List<Step>();
             foreach (Constraint c in m_all_constraints)
             {
                 if ((c.Product == p) && (c.StepFrom == s))

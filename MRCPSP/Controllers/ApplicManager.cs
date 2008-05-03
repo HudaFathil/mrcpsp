@@ -30,13 +30,13 @@ namespace MRCPSP.Controllers
             }
         }
 
-        public void loadProblem(Resource[] resource_array,
-                                System.Collections.Hashtable modes_in_step,
-                                Step[] step_array, 
-                                System.Collections.ArrayList all_constraints,
-                                Product[] products_array)
+        public void loadProblem(List<Resource> resource_list,
+                        Dictionary< Step, List < Mode > > modes_in_step,
+                        List<Step> step_list,       
+                        List<Constraint> all_constraints,
+                        List<Product> products_list)                                                         
         {
-            m_current_problem = new Problem(resource_array, modes_in_step, step_array, all_constraints, products_array);
+            m_current_problem = new Problem(resource_list, modes_in_step, step_list, all_constraints, products_list);
             
         }
 

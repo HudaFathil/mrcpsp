@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MRCPSP.Controllers;
@@ -153,12 +154,12 @@ namespace MRCPSP.Gui.ProblemCreator
            }
 
            internal void loadCurrentProblem()
-           {
-               System.Collections.Hashtable modes_in_step = new System.Collections.Hashtable();
+           {       
+               Dictionary< Step, List < Mode > > modes_in_step = new Dictionary<Step,List<Mode>>();           
                System.Collections.Hashtable all_resources = new System.Collections.Hashtable();
                System.Collections.Hashtable all_steps = new System.Collections.Hashtable();
                System.Collections.Hashtable all_products = new System.Collections.Hashtable();
-               System.Collections.ArrayList all_constraints = new System.Collections.ArrayList();
+               List<Constraint> all_constraints = new List<Constraint>();
 
                foreach (ProductItem p in m_product_list)
                {
@@ -168,7 +169,7 @@ namespace MRCPSP.Gui.ProblemCreator
                foreach (StepItem s in m_step_list)
                {
                    Step new_step = new Step(s.getID(), s.Text);
-                   modes_in_step.Add(new_step, new System.Collections.ArrayList());
+                   modes_in_step.Add(new_step, new List<Mode>());
                    all_steps[s] = new_step;
 
                    foreach (ModeItem m in s.getAllModes())
@@ -184,7 +185,7 @@ namespace MRCPSP.Gui.ProblemCreator
                                                                  (Resource)all_resources[name]));
                            new_mode.name =Convert.ToInt32(m.m_id.Text) + 1;
                        }
-                       ((System.Collections.ArrayList)modes_in_step[new_step]).Add(new_mode);
+                       modes_in_step[new_step].Add(new_mode);
                    }
                }
               
@@ -200,21 +201,21 @@ namespace MRCPSP.Gui.ProblemCreator
        
                Product[] products_array = new Product[all_products.Count];
                all_products.Values.CopyTo(products_array, 0);
+               List<Product> products_list = products_array.ToList<Product>();
+
                Resource[] resource_array = new Resource[all_resources.Count];
                all_resources.Values.CopyTo(resource_array, 0);
+               List<Resource> resource_list = resource_array.ToList<Resource>();
 
-               Step[] step_array = new Step[all_steps.Count];
-               ArrayList steps = new ArrayList();
-               
+              
+               List<Step> step_list = new List<Step>();              
                foreach (Step s in all_steps.Values)
                {
-                   steps.Add(s);
+                   step_list.Add(s);
                }
-               steps.Sort(new StepComparer());
-               steps.CopyTo(step_array, 0);
-
-               all_constraints.Cast<Constraint>();
-               ApplicManager.Instance.loadProblem(resource_array, modes_in_step,step_array, all_constraints, products_array);
+            //   step_list.Sort(new StepComparer());
+               
+               ApplicManager.Instance.loadProblem(resource_list, modes_in_step,step_list, all_constraints, products_list);        
            }
        }
 }

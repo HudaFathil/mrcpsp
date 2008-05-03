@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MRCPSP.Controllers;
@@ -47,9 +48,10 @@ namespace MRCPSP.Lindo
         private String m_constrains;
         private System.Collections.ArrayList m_constrainsValues;
         private int m_paramsNum;
-
+        /*
 
         // For debugging only 
+        
         private Problem createProblemForDebugging()
         {
             
@@ -125,6 +127,10 @@ namespace MRCPSP.Lindo
             Problem pr = new Problem(ra, modesInStep, steps, ca, pa);
             return pr;
         }
+
+        */
+        /*
+
         // For debugging only
         private Solution createSolutionForDebugging()
         {
@@ -152,10 +158,11 @@ namespace MRCPSP.Lindo
             return s;
         }
 
-
+        */
         /**
          * Constructor
          */
+        
         public LindoSolution(Solution sol, Problem prob)
         {
             m_values = new ArrayList();
@@ -195,11 +202,11 @@ namespace MRCPSP.Lindo
             SolutionColTitle[] title = new SolutionColTitle[matrix.GetLength(1)];
             int counter = 0;
             
-            for (int p = 0; p < problem.Products.Length; p++)
+            for (int p = 0; p < problem.Products.Count; p++)
             {
                 for (int j = 0; j < problem.Products[p].Size; j++)
                     {
-                        for (int s = 0; s < problem.Steps.Length; s++)
+                        for (int s = 0; s < problem.Steps.Count; s++)
                         {
                             title[counter].product = problem.Products[p];
                             title[counter].step = problem.Steps[s];
@@ -213,7 +220,7 @@ namespace MRCPSP.Lindo
                 {
                     for (int c = 0; c < matrix.GetLength(1); c++)
                     {
-                        System.Collections.ArrayList modesInStep = (System.Collections.ArrayList)problem.ModesInStep[title[c].step];
+                        List<Mode> modesInStep = problem.ModesInStep[title[c].step];
                         MRCPSP.CommonTypes.Mode mode = null;
                         foreach (MRCPSP.CommonTypes.Mode m in modesInStep)
                         {
