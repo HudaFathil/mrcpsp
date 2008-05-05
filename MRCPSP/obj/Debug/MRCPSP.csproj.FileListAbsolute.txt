@@ -70,3 +70,21 @@ C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Properties.Res
 C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\obj\Debug\MRCPSP.csproj.GenerateResource.Cache
 C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\bin\Debug\MRCPSP.exe
 C:\Users\My Computer\Links\Studies\MRCPSP\MRCPSP\bin\Debug\MRCPSP.pdb
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.exe
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.pdb
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\bin\Debug\MRCPSP.exe
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\bin\Debug\MRCPSP.pdb
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ApplicationFrame.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.Logger.LoggerFrame.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.AddMachineWidget.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.AddProductWidget.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.AddWorkerWidget.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.CanvasEditor.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ModesMonitor.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ProblemCreatorMonitor.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.ResourceBase.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemCreator.StepItem.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.ProblemSolver.ProblemSolverMonitor.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Properties.Resources.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.csproj.GenerateResource.Cache

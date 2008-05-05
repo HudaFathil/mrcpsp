@@ -12,8 +12,6 @@ namespace MRCPSP.Gui.ProblemSolver
 {
     class ProblemSolverMonitor : Form
     {
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
         private Label label1;
         private Button m_start_test_button;
         private ListBox m_all_problems_lst;
@@ -23,6 +21,13 @@ namespace MRCPSP.Gui.ProblemSolver
         private ListBox m_selected_problems_lst;
         private Button m_clear_selected_button;
         private Label label2;
+        private GroupBox groupBox1;
+        private TextBox m_mutation_percent_le;
+        private TextBox m_num_of_gen_le;
+        private TextBox m_population_size_le;
+        private Label label5;
+        private Label label4;
+        private Label label3;
         private Panel panel2;
 
         public ProblemSolverMonitor()
@@ -32,8 +37,6 @@ namespace MRCPSP.Gui.ProblemSolver
 
         private void InitializeComponent()
         {
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.m_start_test_button = new System.Windows.Forms.Button();
             this.m_all_problems_lst = new System.Windows.Forms.ListBox();
@@ -44,32 +47,18 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_clear_selected_button = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.m_population_size_le = new System.Windows.Forms.TextBox();
+            this.m_num_of_gen_le = new System.Windows.Forms.TextBox();
+            this.m_mutation_percent_le = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(33, 24);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(33, 47);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -117,7 +106,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(177, 75);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(27, 26);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -175,13 +164,78 @@ namespace MRCPSP.Gui.ProblemSolver
             this.panel1.Size = new System.Drawing.Size(129, 136);
             this.panel1.TabIndex = 9;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.m_mutation_percent_le);
+            this.groupBox1.Controls.Add(this.m_num_of_gen_le);
+            this.groupBox1.Controls.Add(this.m_population_size_le);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Location = new System.Drawing.Point(303, 26);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(255, 142);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 39);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Population Size";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 65);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(113, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Number Of Generation";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(15, 103);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(106, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Mutation Percentage";
+            // 
+            // m_population_size_le
+            // 
+            this.m_population_size_le.Location = new System.Drawing.Point(146, 32);
+            this.m_population_size_le.Name = "m_population_size_le";
+            this.m_population_size_le.Size = new System.Drawing.Size(100, 20);
+            this.m_population_size_le.TabIndex = 3;
+            this.m_population_size_le.Text = "10";
+            // 
+            // m_num_of_gen_le
+            // 
+            this.m_num_of_gen_le.Location = new System.Drawing.Point(146, 58);
+            this.m_num_of_gen_le.Name = "m_num_of_gen_le";
+            this.m_num_of_gen_le.Size = new System.Drawing.Size(100, 20);
+            this.m_num_of_gen_le.TabIndex = 4;
+            this.m_num_of_gen_le.Text = "10";
+            // 
+            // m_mutation_percent_le
+            // 
+            this.m_mutation_percent_le.Location = new System.Drawing.Point(146, 98);
+            this.m_mutation_percent_le.Name = "m_mutation_percent_le";
+            this.m_mutation_percent_le.Size = new System.Drawing.Size(100, 20);
+            this.m_mutation_percent_le.TabIndex = 5;
+            this.m_mutation_percent_le.Text = "0";
+            // 
             // ProblemSolverMonitor
             // 
             this.ClientSize = new System.Drawing.Size(592, 321);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.m_start_test_button);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
             this.Name = "ProblemSolverMonitor";
             this.Text = "Problem Solver Monitor";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -189,8 +243,9 @@ namespace MRCPSP.Gui.ProblemSolver
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -198,7 +253,9 @@ namespace MRCPSP.Gui.ProblemSolver
         {
             // need to load pselected arams
 
-            ApplicManager.Instance.run();
+            ApplicManager.Instance.run(Convert.ToInt32(m_population_size_le.Text),
+                                        Convert.ToInt32(m_num_of_gen_le.Text),
+                                        Convert.ToInt32(m_mutation_percent_le.Text));
         
         }
 

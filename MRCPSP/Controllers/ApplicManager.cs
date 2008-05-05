@@ -50,9 +50,9 @@ namespace MRCPSP.Controllers
         {
             m_problem_solver_manager.stopRequested = true;
         }
-        public void run()
+        public void run(int pop_size, int num_of_gen, double mutation_percentage)
         {
-            m_problem_solver_manager.run();
+            m_problem_solver_manager.run(pop_size, num_of_gen, mutation_percentage);
         }
 
         public Problem CurrentProblem

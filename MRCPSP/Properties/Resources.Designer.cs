@@ -60,9 +60,23 @@ namespace MRCPSP.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap bulb {
+            get {
+                object obj = ResourceManager.GetObject("bulb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap eraser_pic {
             get {
                 object obj = ResourceManager.GetObject("eraser_pic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap graphs {
+            get {
+                object obj = ResourceManager.GetObject("graphs", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -84,6 +98,13 @@ namespace MRCPSP.Properties {
         internal static System.Drawing.Bitmap new_step_pic {
             get {
                 object obj = ResourceManager.GetObject("new_step_pic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap selectarrow {
+            get {
+                object obj = ResourceManager.GetObject("selectarrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -146,10 +146,13 @@
     <Compile Include="Util\CommonFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Gui\pics\bulb.bmp" />
     <Content Include="Gui\pics\eraser_pic.bmp" />
+    <None Include="Gui\pics\graphs.bmp" />
     <Content Include="Gui\pics\new_arrow_pic.bmp" />
     <Content Include="Gui\pics\new_problem.bmp" />
     <Content Include="Gui\pics\new_step_pic.bmp" />
+    <None Include="Gui\pics\selectarrow.bmp" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Gui\ApplicationFrame.resx">

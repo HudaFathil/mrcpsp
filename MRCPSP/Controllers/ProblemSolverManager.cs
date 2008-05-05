@@ -51,13 +51,13 @@ namespace MRCPSP.Controllers
             m_is_stop_requested = true;
         }
 
-        public void run()
+        public void run(int population_size, int num_of_generation, double mutation_percentage)
         {
             LoggerFactory.getSimpleLogger().info("ProblemSolverManager::run() activated");
    //       Timer t = new Timer(m_tc, null, 0, m_timeout);
             // do the run
 
-            m_algorithm_manager.run(8,15,10.0);
+            m_algorithm_manager.run(population_size, num_of_generation, mutation_percentage);
 
      //       t.Dispose();
             LoggerFactory.getSimpleLogger().info("ProblemSolverManager::run() finished");

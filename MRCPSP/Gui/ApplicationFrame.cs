@@ -91,7 +91,6 @@ namespace MRCPSP.Gui {
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ApplicationFrame));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.m_create_new_problem_button = new System.Windows.Forms.ToolStripButton();
             this.m_solve_problem_button = new System.Windows.Forms.ToolStripButton();
@@ -108,7 +107,7 @@ namespace MRCPSP.Gui {
             this.m_view_statistics_button});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(948, 50);
+            this.toolStrip1.Size = new System.Drawing.Size(948, 52);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -119,17 +118,18 @@ namespace MRCPSP.Gui {
             this.m_create_new_problem_button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.m_create_new_problem_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_create_new_problem_button.Name = "m_create_new_problem_button";
-            this.m_create_new_problem_button.Size = new System.Drawing.Size(52, 47);
+            this.m_create_new_problem_button.Size = new System.Drawing.Size(52, 49);
             this.m_create_new_problem_button.Text = "toolStripButton1";
             this.m_create_new_problem_button.ToolTipText = "start new problem";
             // 
             // m_solve_problem_button
             // 
             this.m_solve_problem_button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_solve_problem_button.Image = ((System.Drawing.Image)(resources.GetObject("m_solve_problem_button.Image")));
+            this.m_solve_problem_button.Image = global::MRCPSP.Properties.Resources.bulb;
+            this.m_solve_problem_button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.m_solve_problem_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_solve_problem_button.Name = "m_solve_problem_button";
-            this.m_solve_problem_button.Size = new System.Drawing.Size(23, 47);
+            this.m_solve_problem_button.Size = new System.Drawing.Size(52, 49);
             this.m_solve_problem_button.Text = "toolStripButton2";
             this.m_solve_problem_button.ToolTipText = "open problem solver monitor";
             this.m_solve_problem_button.Click += new System.EventHandler(this.m_solve_problem_button_Click);
@@ -137,10 +137,11 @@ namespace MRCPSP.Gui {
             // m_view_statistics_button
             // 
             this.m_view_statistics_button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_view_statistics_button.Image = ((System.Drawing.Image)(resources.GetObject("m_view_statistics_button.Image")));
+            this.m_view_statistics_button.Image = global::MRCPSP.Properties.Resources.graphs;
+            this.m_view_statistics_button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.m_view_statistics_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_view_statistics_button.Name = "m_view_statistics_button";
-            this.m_view_statistics_button.Size = new System.Drawing.Size(23, 47);
+            this.m_view_statistics_button.Size = new System.Drawing.Size(62, 49);
             this.m_view_statistics_button.Text = "toolStripButton3";
             this.m_view_statistics_button.ToolTipText = "open statistics viewer monitor";
             // 
