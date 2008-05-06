@@ -76,9 +76,7 @@ namespace MRCPSP.Gui.ProblemCreator
            }
 
            internal void addConstraint(ProductItem p, ConstraintItem c)
-           {
-               if (!m_constraint_map.ContainsKey(p))
-                   m_constraint_map.Add(p, new System.Collections.ArrayList());
+           {                 
                System.Collections.ArrayList array = (System.Collections.ArrayList)m_constraint_map[p];
                array.Add(c);
            }
@@ -90,9 +88,7 @@ namespace MRCPSP.Gui.ProblemCreator
            }
 
            internal void removeConstraint(ProductItem p, ConstraintItem c)
-           {
-               if (!m_constraint_map.ContainsKey(p))
-                   return;
+           {            
                System.Collections.ArrayList array = (System.Collections.ArrayList)m_constraint_map[p];
                if (array.Contains(c))
                     array.Remove(c);
@@ -101,12 +97,11 @@ namespace MRCPSP.Gui.ProblemCreator
            internal void addProduct(ProductItem p)
            {
                m_product_list.Add(p);
+               m_constraint_map.Add(p, new System.Collections.ArrayList());             
            }
 
            internal System.Collections.ArrayList getConstraints(ProductItem p)
            {
-               if (!m_constraint_map.ContainsKey(p))
-                   m_constraint_map.Add(p, new System.Collections.ArrayList());
                return (System.Collections.ArrayList)m_constraint_map[p];
            }
 
@@ -216,6 +211,22 @@ namespace MRCPSP.Gui.ProblemCreator
             //   step_list.Sort(new StepComparer());
                
                ApplicManager.Instance.loadProblem(resource_list, modes_in_step,step_list, all_constraints, products_list);        
+           }
+
+           internal bool isStepPrecedenceToNewStep(StepItem from_step, StepItem s)
+           {
+               ArrayList array = (ArrayList)m_constraint_map[m_current_product];
+               foreach (ConstraintItem c in array)
+               {
+                   if (from_step.Equals(c.getFromStep()))
+                   {
+                       if (s == c.getToStep())
+                           return true;
+                       if (isStepPrecedenceToNewStep(c.getToStep(), s))
+                           return true;
+                   }
+               }
+               return false;
            }
        }
 }

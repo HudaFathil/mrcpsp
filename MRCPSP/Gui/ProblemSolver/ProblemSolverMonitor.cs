@@ -48,12 +48,12 @@ namespace MRCPSP.Gui.ProblemSolver
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.m_population_size_le = new System.Windows.Forms.TextBox();
-            this.m_num_of_gen_le = new System.Windows.Forms.TextBox();
             this.m_mutation_percent_le = new System.Windows.Forms.TextBox();
+            this.m_num_of_gen_le = new System.Windows.Forms.TextBox();
+            this.m_population_size_le = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -179,23 +179,29 @@ namespace MRCPSP.Gui.ProblemSolver
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // label3
+            // m_mutation_percent_le
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 39);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Population Size";
+            this.m_mutation_percent_le.Location = new System.Drawing.Point(146, 98);
+            this.m_mutation_percent_le.Name = "m_mutation_percent_le";
+            this.m_mutation_percent_le.Size = new System.Drawing.Size(100, 20);
+            this.m_mutation_percent_le.TabIndex = 5;
+            this.m_mutation_percent_le.Text = "0";
             // 
-            // label4
+            // m_num_of_gen_le
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 65);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Number Of Generation";
+            this.m_num_of_gen_le.Location = new System.Drawing.Point(146, 58);
+            this.m_num_of_gen_le.Name = "m_num_of_gen_le";
+            this.m_num_of_gen_le.Size = new System.Drawing.Size(100, 20);
+            this.m_num_of_gen_le.TabIndex = 4;
+            this.m_num_of_gen_le.Text = "10";
+            // 
+            // m_population_size_le
+            // 
+            this.m_population_size_le.Location = new System.Drawing.Point(146, 32);
+            this.m_population_size_le.Name = "m_population_size_le";
+            this.m_population_size_le.Size = new System.Drawing.Size(100, 20);
+            this.m_population_size_le.TabIndex = 3;
+            this.m_population_size_le.Text = "10";
             // 
             // label5
             // 
@@ -206,29 +212,23 @@ namespace MRCPSP.Gui.ProblemSolver
             this.label5.TabIndex = 2;
             this.label5.Text = "Mutation Percentage";
             // 
-            // m_population_size_le
+            // label4
             // 
-            this.m_population_size_le.Location = new System.Drawing.Point(146, 32);
-            this.m_population_size_le.Name = "m_population_size_le";
-            this.m_population_size_le.Size = new System.Drawing.Size(100, 20);
-            this.m_population_size_le.TabIndex = 3;
-            this.m_population_size_le.Text = "10";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 65);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(113, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Number Of Generation";
             // 
-            // m_num_of_gen_le
+            // label3
             // 
-            this.m_num_of_gen_le.Location = new System.Drawing.Point(146, 58);
-            this.m_num_of_gen_le.Name = "m_num_of_gen_le";
-            this.m_num_of_gen_le.Size = new System.Drawing.Size(100, 20);
-            this.m_num_of_gen_le.TabIndex = 4;
-            this.m_num_of_gen_le.Text = "10";
-            // 
-            // m_mutation_percent_le
-            // 
-            this.m_mutation_percent_le.Location = new System.Drawing.Point(146, 98);
-            this.m_mutation_percent_le.Name = "m_mutation_percent_le";
-            this.m_mutation_percent_le.Size = new System.Drawing.Size(100, 20);
-            this.m_mutation_percent_le.TabIndex = 5;
-            this.m_mutation_percent_le.Text = "0";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 39);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Population Size";
             // 
             // ProblemSolverMonitor
             // 

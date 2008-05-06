@@ -10,7 +10,7 @@ namespace MRCPSP.Gui.ProblemCreator
 {
     public class ProductItem
     {
-        private static int m_product_id_counter = 0;
+        private static int m_product_id_counter = 1;
         private int m_product_id;
         private string m_product_name;
         private int m_product_size;

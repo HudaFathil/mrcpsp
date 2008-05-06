@@ -28,6 +28,15 @@ namespace MRCPSP.Gui.ProblemCreator
         {
             if (ProblemCreatorState.Instance(monitor_id).CurrentProduct == null)
                 return;
+            if (m_from_step == s)
+                return;
+            if (ProblemCreatorState.Instance(monitor_id).isStepPrecedenceToNewStep(s, m_from_step))
+            {
+                
+                //popup
+                return;
+            }
+
             ConstraintItem item = new ConstraintItem(c, m_from_step, s);
             ProblemCreatorState.Instance(monitor_id).addConstraint(ProblemCreatorState.Instance(monitor_id).CurrentProduct, item);
             ProblemCreatorState.Instance(monitor_id).state = new ConstraintToState(monitor_id, s);        
