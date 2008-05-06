@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using MRCPSP.Lindo;
@@ -112,7 +113,7 @@ namespace MRCPSP.Lindo
             {
                 pdLower[i] = 0.0;
                 pdUpper[i] = lindo.LS_INFINITY;
-                varnames[i] = "V"+i;
+                varnames[i] = solution.getVarName(i);
                 adC[i] = 1.0;
             }
             string[] connames = new string[solution.getConstrainsValue().Length]; //{ "C1", "C2", "C3" , "C4"};
@@ -160,18 +161,22 @@ namespace MRCPSP.Lindo
                 nErrorCode = lindo.LSgetPrimalSolution(pModel, adX);
                 APIErrorCheck(pEnv, nErrorCode);
                 double maxSpan = 0;
-                for (int i = 1; i < nVars; i++)
+                Hashtable varsValues = new Hashtable();
+                for (int i = 0; i < nVars; i++)
                 {
+                    varsValues.Add(varnames[i], adX[i]);
+                    Console.WriteLine(varnames[i] + " = " + adX[i]);
                     if (maxSpan < adX[i])
                         maxSpan = adX[i];
                 }
+                solution.VariablesResultValues = varsValues;
                 Console.WriteLine("results: {0}", maxSpan);
 
-                /* >>> Step 6 <<< Delete the LINDO environment */
-                nErrorCode = lindo.LSdeleteModel(ref pModel);
 
-                nErrorCode = lindo.LSdeleteEnv(ref pEnv);
+            /* >>> Step 6 <<< Delete the LINDO environment */
+            nErrorCode = lindo.LSdeleteModel(ref pModel);
 
+            nErrorCode = lindo.LSdeleteEnv(ref pEnv);
                 return maxSpan;
         }
        }

@@ -43,6 +43,7 @@ namespace MRCPSP.Algorithm.Fitness
             double results = l1.getResults(lindoSolution);
             solution.resultFromLindo = results;
             LoggerFactory.getSimpleLogger().debug("Fitness = " + results);
+            lindoSolution.getResults();
 
         }
 

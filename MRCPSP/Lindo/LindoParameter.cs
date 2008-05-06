@@ -25,12 +25,15 @@ namespace MRCPSP.Lindo
         private ArrayList m_row;
         private bool m_nextStepWaiting;
         private Step m_step;
+        private int m_jobNum;
+        private double m_finalValue;
 
         public LindoParameter(LINDO_PARAMETER_TYPE type , 
                               LindoParameter cons ,
                               Mode m , 
                               Resource r , 
-                              Step s)
+                              Step s,
+                              int jobNum)
         {
             m_id = idCounter;
             m_type = type;
@@ -42,11 +45,22 @@ namespace MRCPSP.Lindo
             m_nextStepWaiting = false;
             idCounter++;
             m_step = s;
+            m_jobNum = jobNum;
         }
 
         public static void init()
         {
             idCounter = 1;
+        }
+
+
+        public double Value
+        {
+            get { return m_finalValue;  }
+            set
+            {
+                m_finalValue = value;
+            }
         }
 
         public int Id
@@ -68,6 +82,10 @@ namespace MRCPSP.Lindo
             }
         }
 
+        public int JobNum
+        {
+            get { return m_jobNum; }
+        }
 
         public ArrayList Columns
         {
