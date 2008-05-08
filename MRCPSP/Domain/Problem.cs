@@ -17,6 +17,7 @@ namespace MRCPSP.Domain
         private List<Constraint> m_all_constraints;
         private List<Product> m_products_list;
         private Dictionary<Product, List<Step>> m_steps_in_product;
+        private String m_title = "not implemented";
 
         public Problem( List<Resource> resource_list,
                         Dictionary< Step, List < Mode > > modes_in_step,
@@ -217,6 +218,13 @@ namespace MRCPSP.Domain
             }
             return subs;
         }
+
+        public String Title
+        {
+            get { return m_title; }
+            set { m_title = value; }
+        }
+
          
     }
 }

@@ -12,13 +12,15 @@ namespace MRCPSP.Controllers
     class ApplicManager
     {
         private static ApplicManager instance = null;
-        Problem m_current_problem;
-        ProblemSolverManager m_problem_solver_manager;
+        private Problem m_current_problem;
+        private ProblemSolverManager m_problem_solver_manager;
+        private List<ResultSummary> m_saved_results;
 
 
         private ApplicManager()
         {
             m_problem_solver_manager = new ProblemSolverManager();
+            m_saved_results = new List<ResultSummary>();
         }
 
         public static ApplicManager Instance
@@ -59,6 +61,12 @@ namespace MRCPSP.Controllers
         {
             get { return m_current_problem;  }
             set { m_current_problem = value; }
+        }
+
+        public List<ResultSummary> SavedResults
+        {
+            get { return m_saved_results; }
+            set { m_saved_results = value; }
         }
     }
 }

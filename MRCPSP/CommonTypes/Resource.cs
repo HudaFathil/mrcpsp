@@ -41,5 +41,16 @@ namespace MRCPSP.CommonTypes
             get { return m_id; }
             set { m_id = value; }
         }
+
+        public string Name
+        {
+            get { return m_resource_name; }
+            set { m_resource_name = value; }
+        }
+
+        public override string ToString()
+        {
+            return m_resource_name;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using MRCPSP.Controllers;
 using MRCPSP.CommonTypes;
 using MRCPSP.Logger;
@@ -10,7 +11,7 @@ using MRCPSP.Algorithm.Fitness;
 using MRCPSP.Algorithm.CrossOver;
 using MRCPSP.Algorithm.FirstGeneration;
 using MRCPSP.Algorithm.SelectionPolicy;
-using MRCPSP.Logger;
+using MRCPSP.Domain;
 
 namespace MRCPSP.Algorithm
 {
@@ -23,6 +24,8 @@ namespace MRCPSP.Algorithm
 
         private List<Solution> m_solutions;
 
+        private ResultSummary m_result_summary;
+
         public AlgorithmManager()
         {
             m_generate_method_policy = new GenerateRandomPopulation();
@@ -34,6 +37,8 @@ namespace MRCPSP.Algorithm
         public bool run(int population_size, int num_of_generation, double mutate_percent)
         {
             LindoParameter.init();
+            createNewResultSummary(population_size, num_of_generation, mutate_percent);
+
             LoggerFactory.getSimpleLogger().info("AlgorithmManager::run() activated");
             if (ApplicManager.Instance.CurrentProblem == null) {
                 LoggerFactory.getSimpleLogger().error("AlgorithmManager::run() problem is not loaded to the system");
@@ -83,9 +88,21 @@ namespace MRCPSP.Algorithm
 
                 forDebugging += "\n";
                 m_solutions =  m_selection_policy.keepOnlySuitedSolutions(m_solutions, childSolutions, population_size);
-
+                m_result_summary.BestSolutions.Add(m_solutions[0].resultFromLindo);
             }
             Logger.LoggerFactory.getSimpleLogger().debug(forDebugging);
+
+            ApplicManager.Instance.SavedResults.Add(m_result_summary);
+        }
+
+        private void createNewResultSummary(int pop_size, int num_of_gen, double mutate_percent)
+        {
+            m_result_summary = new ResultSummary();
+
+            m_result_summary.Title = ApplicManager.Instance.CurrentProblem.Title;
+            m_result_summary.CrossoverType = m_crossOverFunction.ToString();
+            m_result_summary.SelectionType = m_selection_policy.ToString();
+            m_result_summary.GeneratePopulationType = m_generate_method_policy.ToString();
         }
     }
 }

@@ -215,8 +215,43 @@ namespace MRCPSP.Gui.ProblemCreator
 
         }
 
+        private bool isOperationParamsLegal()
+        {
+            if (m_resource_name_cb.SelectedItem == null)
+                return false;
+            if (m_start_time_sb.Value < 0)
+                return false;
+            if (m_end_time_sb.Value <= m_start_time_sb.Value)
+                return false;
+            ModeItem current_item = null;
+            int id_of_operation = Convert.ToInt32(m_mode_id_sb.Value);
+            foreach (ModeItem item in m_modes_list)
+            {
+                if (id_of_operation == Convert.ToInt32(item.m_id.Text))
+                    current_item = item;
+            }
+            if (current_item == null)
+                return true;
+            for (int i=0; i < current_item.m_resource_list.Items.Count; i++)
+            {
+                if (current_item.m_resource_list.Items[i] == m_resource_name_cb.SelectedItem)
+                {
+                    if ((m_start_time_sb.Value <= Convert.ToInt32(current_item.m_start_time_list.Items[i])) && (m_end_time_sb.Value >= Convert.ToInt32(current_item.m_start_time_list.Items[i])))
+                        return false;
+                    if ((m_start_time_sb.Value <= Convert.ToInt32(current_item.m_end_time_list.Items[i])) && (m_end_time_sb.Value >= Convert.ToInt32(current_item.m_end_time_list.Items[i])))
+                        return false;
+                }
+            }
+            return true;
+        }
+
         private void m_add_operation_button_Click(object sender, EventArgs e)
         {
+            if (!isOperationParamsLegal())
+            {
+                MessageBox.Show("Illegal Parameters of Operation", "Error");
+                return;
+            }
             int id_of_operation = Convert.ToInt32(m_mode_id_sb.Value);
             ModeItem current_item = null;
             

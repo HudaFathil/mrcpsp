@@ -32,8 +32,7 @@ namespace MRCPSP.Gui.ProblemCreator
                 return;
             if (ProblemCreatorState.Instance(monitor_id).isStepPrecedenceToNewStep(s, m_from_step))
             {
-                
-                //popup
+                MessageBox.Show("Illegal Constraint", "Error");
                 return;
             }
 

@@ -41,7 +41,11 @@ namespace MRCPSP.Algorithm.FirstGeneration
                     }
                 }
            
-        }   
-      
+        }
+
+        public override string ToString()
+        {
+            return "Random Population";
+        }
     }
 }

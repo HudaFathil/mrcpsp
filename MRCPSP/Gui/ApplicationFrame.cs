@@ -9,6 +9,7 @@ using MRCPSP.Gui.ProblemCreator;
 using MRCPSP.Gui.Logger;
 using MRCPSP.Logger;
 using MRCPSP.Gui.ProblemSolver;
+using MRCPSP.Gui.StatisticsViewer;
 
 namespace MRCPSP.Gui {
     public class ApplicationFrame : Form {
@@ -20,6 +21,7 @@ namespace MRCPSP.Gui {
         private MRCPSP.Logger.Logger m_logger;
         private static int m_problem_monitor_id;
         private ProblemSolverMonitor m_problem_solver_monitor;
+        private StatisticsMonitor m_statistics_monitor;
         MainMenu MyMenu; 
  
         public ApplicationFrame() { 
@@ -54,8 +56,6 @@ namespace MRCPSP.Gui {
             // update buttons action
             this.m_create_new_problem_button.Click += new System.EventHandler(this.onStartNewProblem);
             m_problem_monitor_id = 0;
-            m_problem_solver_monitor = new ProblemSolverMonitor();
-            m_problem_solver_monitor.MdiParent = this;
         }
 
     // Handler for main menu Open selection. 
@@ -144,6 +144,7 @@ namespace MRCPSP.Gui {
             this.m_view_statistics_button.Size = new System.Drawing.Size(62, 49);
             this.m_view_statistics_button.Text = "toolStripButton3";
             this.m_view_statistics_button.ToolTipText = "open statistics viewer monitor";
+            this.m_view_statistics_button.Click += new System.EventHandler(this.m_view_statistics_button_Click);
             // 
             // statusStrip1
             // 
@@ -181,7 +182,20 @@ namespace MRCPSP.Gui {
 
         private void m_solve_problem_button_Click(object sender, EventArgs e)
         {
+            if (m_problem_solver_monitor != null)
+                m_problem_solver_monitor.Dispose();
+            m_problem_solver_monitor = new ProblemSolverMonitor();
+            m_problem_solver_monitor.MdiParent = this;
             m_problem_solver_monitor.Show();
+        }
+
+        private void m_view_statistics_button_Click(object sender, EventArgs e)
+        {
+            if (m_statistics_monitor != null)
+                m_statistics_monitor.Dispose();
+            m_statistics_monitor = new StatisticsMonitor();
+            m_statistics_monitor.MdiParent = this;
+            m_statistics_monitor.Show();
         }
     }
 

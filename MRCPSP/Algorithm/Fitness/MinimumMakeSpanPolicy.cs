@@ -90,6 +90,11 @@ namespace MRCPSP.Algorithm.Fitness
             }
         }
         */
+
+        public override string ToString()
+        {
+            return "Minimum Makespan";
+        }
     }
 }
 

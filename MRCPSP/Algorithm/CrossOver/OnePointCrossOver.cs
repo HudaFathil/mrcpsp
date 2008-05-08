@@ -90,6 +90,9 @@ namespace MRCPSP.Algorithm.CrossOver
             return minAvailable;
         }
 
-
+        public override string ToString()
+        {
+            return "One Point Crossover";
+        }
     }
 }

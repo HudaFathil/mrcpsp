@@ -22,6 +22,11 @@ namespace MRCPSP.Algorithm.SelectionPolicy
             List<Solution> temp = parent_solutions.GetRange(0, populationSize);
             return temp;
         }
+
+        public override string ToString()
+        {
+            return "Rank";
+        }
     }
    
 }
