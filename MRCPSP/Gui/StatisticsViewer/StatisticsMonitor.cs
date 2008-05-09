@@ -44,6 +44,7 @@ namespace MRCPSP.Gui.StatisticsViewer
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label m_crossover_lbl;
         private System.Windows.Forms.Label label7;
+        private MRCPSP.Gui.StatisticsViewer.Graph.GanttChart m_resources_gantt;
         private MRCPSP.Gui.StatisticsViewer.Graph.PieGraph m_resources_pie_chart;
     
 
@@ -87,6 +88,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.m_resources_gantt = new MRCPSP.Gui.StatisticsViewer.Graph.GanttChart();
             this.m_resources_pie_chart = new MRCPSP.Gui.StatisticsViewer.Graph.PieGraph();
             this.m_generation_over_time_graph = new MRCPSP.Gui.StatisticsViewer.Graph.XYGraph();
             ((System.ComponentModel.ISupportInitialize)(this.m_bind_navigator)).BeginInit();
@@ -119,7 +121,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_bind_navigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.m_bind_navigator.Name = "m_bind_navigator";
             this.m_bind_navigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.m_bind_navigator.Size = new System.Drawing.Size(869, 25);
+            this.m_bind_navigator.Size = new System.Drawing.Size(923, 25);
             this.m_bind_navigator.TabIndex = 2;
             this.m_bind_navigator.Text = "bindingNavigator1";
             // 
@@ -326,6 +328,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.m_resources_gantt);
             this.panel1.Controls.Add(this.m_resources_pie_chart);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.m_generation_over_time_graph);
@@ -333,8 +336,16 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(869, 393);
+            this.panel1.Size = new System.Drawing.Size(923, 393);
             this.panel1.TabIndex = 6;
+            // 
+            // m_resources_gantt
+            // 
+            this.m_resources_gantt.Location = new System.Drawing.Point(391, 43);
+            this.m_resources_gantt.Name = "m_resources_gantt";
+            this.m_resources_gantt.Size = new System.Drawing.Size(501, 200);
+            this.m_resources_gantt.TabIndex = 7;
+            this.m_resources_gantt.Title = "";
             // 
             // m_resources_pie_chart
             // 
@@ -343,8 +354,6 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_resources_pie_chart.Size = new System.Drawing.Size(524, 228);
             this.m_resources_pie_chart.TabIndex = 6;
             this.m_resources_pie_chart.Title = "";
-            this.m_resources_pie_chart.XAxis = "";
-            this.m_resources_pie_chart.YAxis = "";
             // 
             // m_generation_over_time_graph
             // 
@@ -358,7 +367,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             // StatisticsMonitor
             // 
-            this.ClientSize = new System.Drawing.Size(869, 418);
+            this.ClientSize = new System.Drawing.Size(923, 418);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.m_bind_navigator);
             this.Name = "StatisticsMonitor";
@@ -431,12 +440,20 @@ namespace MRCPSP.Gui.StatisticsViewer
             m_resources_pie_chart.Refresh();
         }
 
+        private void updateResourcesInGantt(ResultSummary summary)
+        {
+            PointPairList list = new PointPairList();
+            m_resources_gantt.setGanttData(list, "solution");
+            m_resources_gantt.Title = "Best Result in Generation";
+            m_resources_gantt.Refresh();     
+        }
 
         private void updateReport(ResultSummary summary)
         {
             updateGeneralParams(summary);
             updateGenerationOverTime(summary);
             updateResourcesInPie(summary);
+            updateResourcesInGantt(summary);
         }
 
         private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)

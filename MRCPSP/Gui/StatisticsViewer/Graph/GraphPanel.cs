@@ -64,17 +64,5 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             set { m_graph_pane.Title.Text = value; }
         }
 
-        public String YAxis
-        {
-            get { return m_graph_pane.YAxis.Title.Text; }
-            set { m_graph_pane.YAxis.Title.Text = value; }
-        }
-
-        public String XAxis
-        {
-            get { return m_graph_pane.XAxis.Title.Text; }
-            set { m_graph_pane.XAxis.Title.Text = value; }
-        }
-
     }
 }

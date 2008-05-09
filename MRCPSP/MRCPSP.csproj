@@ -73,6 +73,9 @@
     <Compile Include="Algorithm\SelectionPolicy\SelectionPolicyBase.cs" />
     <Compile Include="Algorithm\SolutionComparer.cs" />
     <Compile Include="Domain\ResultSummary.cs" />
+    <Compile Include="Gui\StatisticsViewer\Graph\GanttChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Gui\StatisticsViewer\Graph\GraphPanel.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -31,6 +31,18 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             m_graph_control.Location = new Point(10, 10);
             m_graph_control.Size = new Size(this.ClientRectangle.Width - 20, this.ClientRectangle.Height - 20);
         }
+
+        public String YAxis
+        {
+            get { return m_graph_pane.YAxis.Title.Text; }
+            set { m_graph_pane.YAxis.Title.Text = value; }
+        }
+
+        public String XAxis
+        {
+            get { return m_graph_pane.XAxis.Title.Text; }
+            set { m_graph_pane.XAxis.Title.Text = value; }
+        }
 		
     }
 }
