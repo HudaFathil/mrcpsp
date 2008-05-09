@@ -7,15 +7,19 @@ using System.Windows.Forms;
 
 namespace MRCPSP
 {
+ 
+
     class Program
     {
 
         static void Main(string[] args)
         {
+
             ILogger log = LoggerFactory.getSimpleLogger();
 
             ApplicationFrame skel = new ApplicationFrame();
             Application.Run(skel);
         }
     }
+ 
 }

@@ -541,44 +541,47 @@ namespace MRCPSP.Lindo
 
         /**
          * returns a hashtable containing the results as follows <resource name , ArrayList of integers> 
-         */ 
-        public void getResults()
+         */
+        public Dictionary<Resource, List<KeyValuePair<LindoParameter, LindoParameter>>> getResults()
         {
+
+            Dictionary<Resource, List<KeyValuePair<LindoParameter, LindoParameter>>> toReturn = new Dictionary<Resource, List<KeyValuePair<LindoParameter, LindoParameter>>>();
             Hashtable results = new Hashtable();
             
             foreach (LindoParameter lp in m_lindoParams)
             {
                 if (lp.resource != null)
                 {
-                    if (results[lp.resource.Id] == null)
-                        results.Add(lp.resource.Id, new ArrayList());
+                    if (results[lp.resource] == null)
+                        results.Add(lp.resource, new ArrayList());
 
-                    ArrayList resourceTiming = (ArrayList)results[lp.resource.Id];
+                    ArrayList resourceTiming = (ArrayList)results[lp.resource];
                     lp.Value = (double)m_finalResults[lp.ToString()];
                     resourceTiming.Add(lp);
-                    //Console.WriteLine()
                 }
             }
             
             foreach (Resource r in m_problem.Resources)
             {
-                ArrayList a = (ArrayList)results[r.Id];
+                ArrayList a = (ArrayList)results[r];
                 if (a == null)
                     continue;
                 Console.WriteLine("Resource "+ r.Id+" Results : ");
                 foreach (LindoParameter lp in a) 
                 {
-                    if (lp.type == LINDO_PARAMETER_TYPE.START)
-                    {
-                        Console.WriteLine("Starting S"+lp.Step.Id+"J"+lp.JobNum+" in mode "+lp.mode.name+" At "+lp.Value);
-                    }
                     if (lp.type == LINDO_PARAMETER_TYPE.FINISH)
                     {
-                        Console.WriteLine("Finishing S" + lp.Step.Id + "J" + lp.JobNum + " in mode " + lp.mode.name + " At " + lp.Value);
+                         
+                         if (! toReturn.ContainsKey(r))
+                         {
+                             toReturn.Add(r, new List<KeyValuePair<LindoParameter, LindoParameter>>());
+                         }
+                         List<KeyValuePair<LindoParameter, LindoParameter>> list = toReturn[r];
+                        list.Add(new KeyValuePair<LindoParameter,LindoParameter>(lp.Predecessor,lp));
                     }
                 }
-                //Console.WriteLine("");
             }
+            return toReturn;
         }
 
     }

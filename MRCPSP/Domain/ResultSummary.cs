@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MRCPSP.Algorithm;
 
 using MRCPSP.CommonTypes;
 
@@ -10,7 +11,8 @@ namespace MRCPSP.Domain
     class ResultSummary
     {
         private Dictionary<Resource, List<int>> m_resources_gantt_data;
-        private List<double> m_best_solutions_in_generation;
+      //  private 
+        private List<Solution> m_best_solutions_in_generation;
         private String m_problem_title;
         private String m_selection_type;
         private String m_crossover_type;
@@ -19,7 +21,7 @@ namespace MRCPSP.Domain
         public ResultSummary()
         {
             m_resources_gantt_data = new Dictionary<Resource, List<int>>();
-            m_best_solutions_in_generation = new List<double>();
+            m_best_solutions_in_generation = new List<Solution>();
         }
         public Dictionary<Resource, List<int>> ResourcesGanttData
         {
@@ -30,13 +32,26 @@ namespace MRCPSP.Domain
             }
         }
 
-        public List<double> BestSolutions
+        public List<Solution> BestSolutions
         {
             get { return m_best_solutions_in_generation; }
             set
             {
                 m_best_solutions_in_generation = value;
             }
+        }
+
+        public Solution getBestSolution()
+        {
+            Solution best = m_best_solutions_in_generation[0];
+            foreach (Solution s in m_best_solutions_in_generation) 
+            {
+                if (s.scoreFromLindo < best.scoreFromLindo && s.scoreFromLindo != 0 || best.scoreFromLindo == 0) 
+                {
+                    best = s;
+                }
+            }
+            return best;
         }
 
         public String Title

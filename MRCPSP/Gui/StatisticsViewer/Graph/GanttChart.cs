@@ -71,5 +71,21 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
          
         }
 
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // m_graph_control
+            // 
+            this.m_graph_control.Load += new System.EventHandler(this.m_graph_control_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void m_graph_control_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

@@ -422,7 +422,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             PointPairList list = new PointPairList();
             for (int i = 0; i < summary.BestSolutions.Count; i++)
             {
-                list.Add(i, summary.BestSolutions[i]);
+                list.Add(i, summary.BestSolutions[i].scoreFromLindo);
             }         
             m_generation_over_time_graph.setGraphData(list, "solution");
             m_generation_over_time_graph.XAxis = "Generation Number";

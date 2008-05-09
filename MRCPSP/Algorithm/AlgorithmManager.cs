@@ -88,7 +88,7 @@ namespace MRCPSP.Algorithm
 
                 forDebugging += "\n";
                 m_solutions =  m_selection_policy.keepOnlySuitedSolutions(m_solutions, childSolutions, population_size);
-                m_result_summary.BestSolutions.Add(m_solutions[0].resultFromLindo);
+                m_result_summary.BestSolutions.Add(m_solutions[0]);
             }
             Logger.LoggerFactory.getSimpleLogger().debug(forDebugging);
 

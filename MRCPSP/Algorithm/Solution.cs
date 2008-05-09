@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using MRCPSP.CommonTypes;
+using MRCPSP.Lindo;
 using System.Linq;
 using System.Text;
 using MRCPSP.Domain;
@@ -11,7 +14,8 @@ namespace MRCPSP.Algorithm
     {
         private int[] m_selected_mode_list;
         private int[,] m_distribution_matrix;
-        private double m_resultFromLindo;
+        private double m_scoreFromLindo;
+        private Dictionary<Resource, List<KeyValuePair<LindoParameter, LindoParameter>>> m_results;
 
         public Solution()
         {
@@ -46,12 +50,21 @@ namespace MRCPSP.Algorithm
             }
         }
         
-        public double resultFromLindo
+        public double scoreFromLindo
         {
-            get { return m_resultFromLindo ; }
+            get { return m_scoreFromLindo ; }
             set
             {
-                m_resultFromLindo = value;
+                m_scoreFromLindo = value;
+            }
+        }
+
+        public Dictionary<Resource, List<KeyValuePair<LindoParameter, LindoParameter>>> resultFromLindo
+        {
+            get { return m_results; }
+            set
+            {
+                m_results = value;
             }
         }
         

@@ -11,8 +11,11 @@ namespace MRCPSP.Algorithm
         public SolutionComparer() : base() { }
         public int Compare(T x, T y) 
         {
-            
-            return (int) x.resultFromLindo - (int)y.resultFromLindo ;
+            if (x.scoreFromLindo == 0) 
+                return 1;
+            if (y.scoreFromLindo == 0)
+                return -1;
+            return (int) x.scoreFromLindo - (int)y.scoreFromLindo ;
             
         }
     }

@@ -81,9 +81,23 @@ namespace MRCPSP.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap new_arrow {
+            get {
+                object obj = ResourceManager.GetObject("new_arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap new_arrow_pic {
             get {
                 object obj = ResourceManager.GetObject("new_arrow_pic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap new_arrow1 {
+            get {
+                object obj = ResourceManager.GetObject("new_arrow1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -98,6 +112,20 @@ namespace MRCPSP.Properties {
         internal static System.Drawing.Bitmap new_step_pic {
             get {
                 object obj = ResourceManager.GetObject("new_step_pic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap new_step_pic1 {
+            get {
+                object obj = ResourceManager.GetObject("new_step_pic1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap new_step_pic2 {
+            get {
+                object obj = ResourceManager.GetObject("new_step_pic2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
