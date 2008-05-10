@@ -25,7 +25,7 @@ namespace MRCPSP.Lindo
         private ArrayList m_row;
         private bool m_nextStepWaiting;
         private Step m_step;
-        private int m_jobNum;
+        private int m_jobNum = -1;
         private double m_finalValue;
 
         public LindoParameter(LINDO_PARAMETER_TYPE type , 
