@@ -352,9 +352,19 @@ namespace MRCPSP.Gui.ProblemCreator
             // m_new_product_size_sb
             // 
             this.m_new_product_size_sb.Location = new System.Drawing.Point(99, 12);
+            this.m_new_product_size_sb.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.m_new_product_size_sb.Name = "m_new_product_size_sb";
             this.m_new_product_size_sb.Size = new System.Drawing.Size(77, 20);
             this.m_new_product_size_sb.TabIndex = 10;
+            this.m_new_product_size_sb.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // m_add_product_button
             // 
@@ -456,7 +466,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_new_step_button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.m_new_step_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_new_step_button.Name = "m_new_step_button";
-            this.m_new_step_button.Size = new System.Drawing.Size(73, 68);
+            this.m_new_step_button.Size = new System.Drawing.Size(73, 76);
             this.m_new_step_button.Text = "toolStripButton1";
             this.m_new_step_button.ToolTipText = "Add Step to Canvas";
             this.m_new_step_button.MouseLeave += new System.EventHandler(this.new_step_mouseLeave);
@@ -467,14 +477,14 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             this.m_new_constraint_button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_new_constraint_button.Image = global::MRCPSP.Properties.Resources.new_arrow1;
-            this.m_new_constraint_button.MouseEnter += new System.EventHandler(this.new_arrow_mouseEnter);
-            this.m_new_constraint_button.MouseLeave += new System.EventHandler(this.new_arrow_mouseLeave);
             this.m_new_constraint_button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.m_new_constraint_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_new_constraint_button.Name = "m_new_constraint_button";
             this.m_new_constraint_button.Size = new System.Drawing.Size(73, 52);
             this.m_new_constraint_button.Text = "toolStripButton2";
             this.m_new_constraint_button.ToolTipText = "Add Scheduling Constraint";
+            this.m_new_constraint_button.MouseLeave += new System.EventHandler(this.new_arrow_mouseLeave);
+            this.m_new_constraint_button.MouseEnter += new System.EventHandler(this.new_arrow_mouseEnter);
             this.m_new_constraint_button.Click += new System.EventHandler(this.m_new_constraint_button_Click);
             // 
             // m_eraser_button

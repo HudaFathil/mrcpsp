@@ -10,8 +10,6 @@ namespace MRCPSP.Domain
 {
     class ResultSummary
     {
-        private Dictionary<Resource, List<int>> m_resources_gantt_data;
-      //  private 
         private List<Solution> m_best_solutions_in_generation;
         private String m_problem_title;
         private String m_selection_type;
@@ -19,17 +17,8 @@ namespace MRCPSP.Domain
         private String m_generate_population_type;
 
         public ResultSummary()
-        {
-            m_resources_gantt_data = new Dictionary<Resource, List<int>>();
+        {      
             m_best_solutions_in_generation = new List<Solution>();
-        }
-        public Dictionary<Resource, List<int>> ResourcesGanttData
-        {
-            get { return m_resources_gantt_data; }
-            set
-            {
-                m_resources_gantt_data = value;
-            }
         }
 
         public List<Solution> BestSolutions

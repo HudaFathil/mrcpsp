@@ -89,7 +89,8 @@ C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Properties.Resources.resources
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.csproj.GenerateResource.Cache
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.StatisticsViewer.StatisticsMonitor.resources
-C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\bin\Debug\ZedGraph.dll
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.StatisticsViewer.Graph.XYGraph.resources
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.StatisticsViewer.Graph.PieGraph.resources
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\obj\Debug\MRCPSP.Gui.StatisticsViewer.Graph.GraphPanel.resources
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\bin\Debug\ZedGraph.dll
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP2\MRCPSP\bin\Debug\ZedGraph.xml

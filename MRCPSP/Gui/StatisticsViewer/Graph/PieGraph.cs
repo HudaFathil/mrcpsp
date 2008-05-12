@@ -10,6 +10,10 @@ using System.Drawing;
 using System.Collections;
 
 using MRCPSP.CommonTypes;
+using MRCPSP.Domain;
+using MRCPSP.Controllers;
+using MRCPSP.Algorithm;
+using MRCPSP.Lindo;
 
 using ZedGraph;
 
@@ -23,27 +27,37 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
           
         }  
 
-        public void setPieData(Dictionary<Resource, int> vals)
+        public void setPieData(ResultSummary summary)
         {
             // Set the legend to an arbitrary location
             m_graph_pane.Legend.Position = LegendPos.Float;
             m_graph_pane.Legend.Location = new Location( 0.95f, 0.15f, CoordType.PaneFraction, AlignH.Right, AlignV.Top );
-            m_graph_pane.Legend.FontSpec.Size = 10f;
+            m_graph_pane.Legend.FontSpec.Size = 13f;
             m_graph_pane.Legend.IsHStack = false;
 
-            String[] names = new String[vals.Count];
-            double[] values = new double[vals.Count];
-            int i=0;
-            foreach (Resource r in vals.Keys)
-            {
-                names[i] = r.ToString();
-                values[i] = (double)vals[r];
-                i++;
-            }
+            Solution best_solution = summary.getBestSolution();
             m_graph_pane.CurveList.Clear();
+
+            String[] names = new String[best_solution.resultFromLindo.Keys.Count];
+            double[] values = new double[best_solution.resultFromLindo.Keys.Count];
+            int resource_counter = 0;
+            foreach (Resource r in best_solution.resultFromLindo.Keys)
+            {
+                names[resource_counter] = r.Name;
+                List<KeyValuePair<LindoParameter, LindoParameter>> resource_operations_done = best_solution.resultFromLindo[r];
+                for (int i = 0; i < resource_operations_done.Count; i++)
+                {
+                    values[resource_counter] += (resource_operations_done[i].Value.Value - resource_operations_done[i].Key.Value);                    
+                }
+                resource_counter++;
+            }
             m_graph_pane.AddPieSlices(values, names);
-              
-            TextObj text = new TextObj( "most used resource \na", 0.18F, 0.40F, CoordType.PaneFraction );
+
+            int best_iter = 0;
+            for (int i = 1; i < values.Length; i++)
+                if (values[i] > values[best_iter])
+                    best_iter = i;
+            TextObj text = new TextObj( "most used resource \n"+ names[best_iter].ToString() + " = " + values[best_iter].ToString(), 0.18F, 0.40F, CoordType.PaneFraction );
             text.Location.AlignH = AlignH.Center;
             text.Location.AlignV = AlignV.Bottom;
             text.FontSpec.Border.IsVisible = false;
@@ -55,6 +69,7 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             text2.FontSpec.Fill = new Fill( Color.Black );
             text2.Location.X += 0.008f;
             text2.Location.Y += 0.01f;
+            text2.FontSpec.Size = 13f;
             m_graph_pane.GraphObjList.Add( text2 );
             m_graph_control.AxisChange();
             m_graph_control.Location = new Point(10, 10);

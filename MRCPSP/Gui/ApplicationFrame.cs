@@ -10,6 +10,7 @@ using MRCPSP.Gui.Logger;
 using MRCPSP.Logger;
 using MRCPSP.Gui.ProblemSolver;
 using MRCPSP.Gui.StatisticsViewer;
+using MRCPSP.Controllers;
 
 namespace MRCPSP.Gui {
     public class ApplicationFrame : Form {
@@ -22,6 +23,10 @@ namespace MRCPSP.Gui {
         private static int m_problem_monitor_id;
         private ProblemSolverMonitor m_problem_solver_monitor;
         private StatisticsMonitor m_statistics_monitor;
+        private ProgressBar m_progress_bar;
+        private IContainer components;
+        private Label label1;
+        public BackgroundWorker backgroundWorker1;
         MainMenu MyMenu; 
  
         public ApplicationFrame() { 
@@ -56,6 +61,34 @@ namespace MRCPSP.Gui {
             // update buttons action
             this.m_create_new_problem_button.Click += new System.EventHandler(this.onStartNewProblem);
             m_problem_monitor_id = 0;
+
+
+            backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
+            backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker1_RunWorkerCompleted);
+            ApplicManager.Instance.signBackgroundWorker(backgroundWorker1);
+
+        }
+
+        void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            // First, handle the case where an exception was thrown.
+            if (e.Error != null)
+            {
+                MessageBox.Show("error in execution", "notify");
+            }
+            else if (e.Cancelled)
+            {
+                MessageBox.Show("execution was terminated by the user", "notify");
+            }
+            else
+            {
+                MessageBox.Show("execution done", "notify");
+            }         
+        }
+
+        void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            m_progress_bar.Value = e.ProgressPercentage;
         }
 
     // Handler for main menu Open selection. 
@@ -96,6 +129,9 @@ namespace MRCPSP.Gui {
             this.m_solve_problem_button = new System.Windows.Forms.ToolStripButton();
             this.m_view_statistics_button = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.m_progress_bar = new System.Windows.Forms.ProgressBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,11 +190,35 @@ namespace MRCPSP.Gui {
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // m_progress_bar
+            // 
+            this.m_progress_bar.Location = new System.Drawing.Point(664, 548);
+            this.m_progress_bar.Name = "m_progress_bar";
+            this.m_progress_bar.Size = new System.Drawing.Size(194, 23);
+            this.m_progress_bar.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label1.Location = new System.Drawing.Point(582, 549);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 20);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Progress:";
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            // 
             // ApplicationFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(948, 571);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.m_progress_bar);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.IsMdiContainer = true;
@@ -187,6 +247,7 @@ namespace MRCPSP.Gui {
             m_problem_solver_monitor = new ProblemSolverMonitor();
             m_problem_solver_monitor.MdiParent = this;
             m_problem_solver_monitor.Show();
+            m_problem_solver_monitor.signBackgroundWorker(backgroundWorker1);
         }
 
         private void m_view_statistics_button_Click(object sender, EventArgs e)
@@ -197,6 +258,8 @@ namespace MRCPSP.Gui {
             m_statistics_monitor.MdiParent = this;
             m_statistics_monitor.Show();
         }
+
+    
     }
 
 

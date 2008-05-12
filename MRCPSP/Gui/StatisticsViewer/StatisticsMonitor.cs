@@ -15,6 +15,8 @@ using MRCPSP.Logger;
 
 using ZedGraph;
 
+//using ExpertChart;
+
 namespace MRCPSP.Gui.StatisticsViewer
 {
     class StatisticsMonitor : Form
@@ -44,11 +46,11 @@ namespace MRCPSP.Gui.StatisticsViewer
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label m_crossover_lbl;
         private System.Windows.Forms.Label label7;
-        private MRCPSP.Gui.StatisticsViewer.Graph.GanttChart m_resources_gantt;
+        private Panel m_gantt_panel;
         private MRCPSP.Gui.StatisticsViewer.Graph.PieGraph m_resources_pie_chart;
-    
 
-      
+        private MRCPSP.Gui.StatisticsViewer.Graph.GanttChart m_resources_gantt;
+
         public StatisticsMonitor()
         {
             InitializeComponent();
@@ -58,7 +60,7 @@ namespace MRCPSP.Gui.StatisticsViewer
 
         void StatisticsMonitor_GotFocus(object sender, EventArgs e)
         {
-            refreshMonitor();    
+            refreshMonitor();
         }
 
         private void InitializeComponent()
@@ -88,7 +90,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.m_resources_gantt = new MRCPSP.Gui.StatisticsViewer.Graph.GanttChart();
+            this.m_gantt_panel = new System.Windows.Forms.Panel();
             this.m_resources_pie_chart = new MRCPSP.Gui.StatisticsViewer.Graph.PieGraph();
             this.m_generation_over_time_graph = new MRCPSP.Gui.StatisticsViewer.Graph.XYGraph();
             ((System.ComponentModel.ISupportInitialize)(this.m_bind_navigator)).BeginInit();
@@ -328,7 +330,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // panel1
             // 
             this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.m_resources_gantt);
+            this.panel1.Controls.Add(this.m_gantt_panel);
             this.panel1.Controls.Add(this.m_resources_pie_chart);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.m_generation_over_time_graph);
@@ -339,17 +341,16 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.panel1.Size = new System.Drawing.Size(923, 393);
             this.panel1.TabIndex = 6;
             // 
-            // m_resources_gantt
+            // m_gantt_panel
             // 
-            this.m_resources_gantt.Location = new System.Drawing.Point(391, 43);
-            this.m_resources_gantt.Name = "m_resources_gantt";
-            this.m_resources_gantt.Size = new System.Drawing.Size(501, 200);
-            this.m_resources_gantt.TabIndex = 7;
-            this.m_resources_gantt.Title = "";
+            this.m_gantt_panel.Location = new System.Drawing.Point(32, 247);
+            this.m_gantt_panel.Name = "m_gantt_panel";
+            this.m_gantt_panel.Size = new System.Drawing.Size(820, 279);
+            this.m_gantt_panel.TabIndex = 7;
             // 
             // m_resources_pie_chart
             // 
-            this.m_resources_pie_chart.Location = new System.Drawing.Point(32, 552);
+            this.m_resources_pie_chart.Location = new System.Drawing.Point(12, 862);
             this.m_resources_pie_chart.Name = "m_resources_pie_chart";
             this.m_resources_pie_chart.Size = new System.Drawing.Size(524, 228);
             this.m_resources_pie_chart.TabIndex = 6;
@@ -357,7 +358,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             // m_generation_over_time_graph
             // 
-            this.m_generation_over_time_graph.Location = new System.Drawing.Point(32, 249);
+            this.m_generation_over_time_graph.Location = new System.Drawing.Point(12, 545);
             this.m_generation_over_time_graph.Name = "m_generation_over_time_graph";
             this.m_generation_over_time_graph.Size = new System.Drawing.Size(524, 277);
             this.m_generation_over_time_graph.TabIndex = 3;
@@ -382,18 +383,41 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.PerformLayout();
 
         }
-     
+
         private void refreshMonitor()
         {
-            bindingNavigatorCountItem.Text = "of {"+ApplicManager.Instance.SavedResults.Count.ToString()+ "}";
-            bool val = (ApplicManager.Instance.SavedResults.Count > 0);       
+            bindingNavigatorCountItem.Text = "of {" + ApplicManager.Instance.SavedResults.Count.ToString() + "}";
+            bool val = (ApplicManager.Instance.SavedResults.Count > 0);
             bindingNavigatorMoveFirstItem.Enabled = val;
             bindingNavigatorMoveLastItem.Enabled = val;
             bindingNavigatorMoveNextItem.Enabled = val;
             bindingNavigatorMovePreviousItem.Enabled = val;
             bindingNavigatorPositionItem.Enabled = val;
-            bindingNavigatorCountItem.Enabled = val;          
+            bindingNavigatorCountItem.Enabled = val;
+            /*
+            WebChart WebChart1 = new WebChart();
+            WebChart1.DataSource =GetTestData();           
+            // top title            
+            WebChart1.Titles.Top.Visible = true;            
+            WebChart1.Titles.Top.Text = "Chart title";            
+            WebChart1.Titles.Top.Color = Color.Blue;            
+            WebChart1.Titles.Top.Font = new Font("Verdana", 12, FontStyle.Bold);            
+            // bottom title            
+            WebChart1.Titles.Bottom.Visible = true;            
+            WebChart1.Titles.Bottom.Text = "NOTE: This is the bottom title - red, smaller, italic, right aligned"; 
+            WebChart1.Titles.Bottom.Color = Color.Red;            
+            WebChart1.Titles.Bottom.Font = new Font("Verdana", 8, FontStyle.Italic);            
+            WebChart1.Titles.Bottom.Align = ExpertChart.Align.Right;             
+            // left title            
+            WebChart1.Titles.Left.Visible = true;            
+            WebChart1.Titles.Left.Text = "Left title can be used as Y axis label";            
+            WebChart1.Titles.Left.Color = Color.Green;            
+            WebChart1.Titles.Left.Font = new Font("Verdana", 10);
+            this.components.Add(WebChart1);
+            WebChart1.Visible = true;
+           */
         }
+
 
         void bindingNavigatorPositionItem_TextChanged(object sender, EventArgs e)
         {
@@ -418,34 +442,43 @@ namespace MRCPSP.Gui.StatisticsViewer
         }
 
         private void updateGenerationOverTime(ResultSummary summary)
-        {       
+        {
             PointPairList list = new PointPairList();
             for (int i = 0; i < summary.BestSolutions.Count; i++)
             {
                 list.Add(i, summary.BestSolutions[i].scoreFromLindo);
-            }         
+            }
             m_generation_over_time_graph.setGraphData(list, "solution");
             m_generation_over_time_graph.XAxis = "Generation Number";
             m_generation_over_time_graph.YAxis = "Best Result";
-            m_generation_over_time_graph.Title = "Best Result in Generation"; 
+            m_generation_over_time_graph.Title = "Best Result in Generation";
             m_generation_over_time_graph.Refresh();
         }
 
         private void updateResourcesInPie(ResultSummary summary)
         {
-            Dictionary<Resource, int> a = new Dictionary<Resource, int>();
-            a.Add(new Resource("a"), 10);
-            a.Add(new Resource("b"), 20);
-            m_resources_pie_chart.setPieData(a);
+         
+            m_resources_pie_chart.setPieData(summary);
             m_resources_pie_chart.Refresh();
         }
 
         private void updateResourcesInGantt(ResultSummary summary)
         {
+            if (m_resources_gantt != null)
+                m_resources_gantt.Dispose();
+            m_resources_gantt = new MRCPSP.Gui.StatisticsViewer.Graph.GanttChart();
+            this.m_resources_gantt.Location = new System.Drawing.Point(0, 0);
+            this.m_resources_gantt.Name = "m_resources_gantt";
+            this.m_resources_gantt.Size = new System.Drawing.Size(m_gantt_panel.Width, m_gantt_panel.Height);
+            this.m_resources_gantt.TabIndex = 7;
+            this.m_resources_gantt.Title = "";
+            this.m_gantt_panel.Controls.Add(this.m_resources_gantt);
             PointPairList list = new PointPairList();
-            m_resources_gantt.setGanttData(list, "solution");
+            m_resources_gantt.setGanttData(summary);
+            m_resources_gantt.Refresh();
+            m_resources_gantt.setGanttData2(summary);
             m_resources_gantt.Title = "Best Result in Generation";
-            m_resources_gantt.Refresh();     
+            m_resources_gantt.Refresh();
         }
 
         private void updateReport(ResultSummary summary)

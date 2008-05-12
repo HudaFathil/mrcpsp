@@ -46,16 +46,14 @@ namespace MRCPSP.Controllers
         public  void loadProblemFromDataBase(string title)
         {
             LoggerFactory.getSimpleLogger().info("ApplicManager::lodProblemFromDataBase, title: " + title);
-        }
+        }   
 
-        public void sendStopRequest()
-        {
-            m_problem_solver_manager.stopRequested = true;
-        }
+        /*
         public void run(int pop_size, int num_of_gen, double mutation_percentage)
         {
             m_problem_solver_manager.run(pop_size, num_of_gen, mutation_percentage);
         }
+        */
 
         public Problem CurrentProblem
         {
@@ -67,6 +65,16 @@ namespace MRCPSP.Controllers
         {
             get { return m_saved_results; }
             set { m_saved_results = value; }
+        }
+
+        public void loadAdvancedParams(int loops)
+        {
+            m_problem_solver_manager.loadAdvancedParams(loops);
+        }
+
+        public void signBackgroundWorker(System.ComponentModel.BackgroundWorker backgroundWorker1)
+        {
+            m_problem_solver_manager.signBackgroundWorker(backgroundWorker1);
         }
     }
 }
