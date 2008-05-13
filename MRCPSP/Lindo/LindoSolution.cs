@@ -37,6 +37,7 @@ namespace MRCPSP.Lindo
         public Mode mode;
         public Step step;
         public int jobNum;
+        public int productNum;
         public Resource resource;
         public int index;
     }
@@ -248,6 +249,7 @@ namespace MRCPSP.Lindo
                                 sel.mode = mode;
                                 sel.step = title[c].step;
                                 sel.jobNum = title[c].jobNum;
+                                sel.productNum = title[c].product.Id;
                                 sel.resource  = problem.Resources[r];
 
                                 if (resources[r] == null)
@@ -378,7 +380,7 @@ namespace MRCPSP.Lindo
                     continue;
                 if (lp.type == LINDO_PARAMETER_TYPE.FINISH)
                     continue;
-                List<LindoParameter> previousLPList = getPreviousLP(m_lindoParams, lp.Step,lp.JobNum);
+                List<LindoParameter> previousLPList = getPreviousLP(m_lindoParams, lp.Step,lp.JobNum  , lp.ProductId);
                 foreach (LindoParameter previousLP in previousLPList)
                 {
                     addColAndRow(lp, previousLP, rowIndex);
@@ -434,20 +436,20 @@ namespace MRCPSP.Lindo
                 if (! modeStartParams.ContainsKey(selections[0].mode)) 
                 {
                     LindoParameter lpSM;
-                    lpSM = new LindoParameter(LINDO_PARAMETER_TYPE.START, null, selections[0].mode, selections[0].resource, selections[0].step , -1);
+                    lpSM = new LindoParameter(LINDO_PARAMETER_TYPE.START, null, selections[0].mode, selections[0].resource, selections[0].step , -1 , -1);
                     LindoParams.Add(lpSM);
                     modeStartParams.Add(selections[0].mode,lpSM);
                 }
-                LindoParameter lpS0 = new LindoParameter(LINDO_PARAMETER_TYPE.START, (LindoParameter)modeStartParams[selections[0].mode], selections[0].mode, selections[0].resource, selections[0].step, selections[0].jobNum);
-                LindoParameter lpF0 = new LindoParameter(LINDO_PARAMETER_TYPE.FINISH, lpS0, selections[0].mode, selections[0].resource, selections[0].step, selections[0].jobNum);
+                LindoParameter lpS0 = new LindoParameter(LINDO_PARAMETER_TYPE.START, (LindoParameter)modeStartParams[selections[0].mode], selections[0].mode, selections[0].resource, selections[0].step, selections[0].jobNum , selections[0].productNum);
+                LindoParameter lpF0 = new LindoParameter(LINDO_PARAMETER_TYPE.FINISH, lpS0, selections[0].mode, selections[0].resource, selections[0].step, selections[0].jobNum, selections[0].productNum);
 
                 LindoParams.Add(lpS0);
                 LindoParams.Add(lpF0);
                 
                 for (int j = 1 ; j < selections.Length ; j++) 
                 {
-                    LindoParameter lpS = new LindoParameter(LINDO_PARAMETER_TYPE.START, (LindoParameter)LindoParams[LindoParams.Count - 1], selections[j].mode, selections[j].resource, selections[j].step, selections[j].jobNum );
-                    LindoParameter lpF = new LindoParameter(LINDO_PARAMETER_TYPE.FINISH, lpS, selections[j].mode, selections[j].resource, selections[j].step , selections[j].jobNum);
+                    LindoParameter lpS = new LindoParameter(LINDO_PARAMETER_TYPE.START, (LindoParameter)LindoParams[LindoParams.Count - 1], selections[j].mode, selections[j].resource, selections[j].step, selections[j].jobNum, selections[0].productNum);
+                    LindoParameter lpF = new LindoParameter(LINDO_PARAMETER_TYPE.FINISH, lpS, selections[j].mode, selections[j].resource, selections[j].step, selections[j].jobNum, selections[0].productNum);
 
                     LindoParams.Add(lpS);
                     LindoParams.Add(lpF);
@@ -477,14 +479,14 @@ namespace MRCPSP.Lindo
             return toReturn;
         }
 
-        private List<LindoParameter> getPreviousLP(ArrayList LindoParams, Step step , int jobNum)
+        private List<LindoParameter> getPreviousLP(ArrayList LindoParams, Step step , int jobNum , int productID)
         {
             List<Step> constrainStep = getPredecessorSteps(step);
             List<LindoParameter> toReturn = new List<LindoParameter>();
             foreach (LindoParameter lp in LindoParams)
             {
                 if (lp.type == LINDO_PARAMETER_TYPE.FINISH) {
-                    if (constrainStep.Contains(lp.Step) && lp.JobNum == jobNum)
+                    if (constrainStep.Contains(lp.Step) && lp.JobNum == jobNum && lp.ProductId == productID)
                     {
                         toReturn.Add(lp);
                     }

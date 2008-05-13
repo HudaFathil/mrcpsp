@@ -26,6 +26,7 @@ namespace MRCPSP.Lindo
         private bool m_nextStepWaiting;
         private Step m_step;
         private int m_jobNum = -1;
+        private int m_productID;
         private double m_finalValue;
 
         public LindoParameter(LINDO_PARAMETER_TYPE type , 
@@ -33,7 +34,7 @@ namespace MRCPSP.Lindo
                               Mode m , 
                               Resource r , 
                               Step s,
-                              int jobNum)
+                              int jobNum , int productID)
         {
             m_id = idCounter;
             m_type = type;
@@ -46,6 +47,7 @@ namespace MRCPSP.Lindo
             idCounter++;
             m_step = s;
             m_jobNum = jobNum;
+            m_productID = productID;
         }
 
         public static void init()
@@ -66,6 +68,11 @@ namespace MRCPSP.Lindo
         public int Id
         {
             get { return m_id; }
+        }
+
+        public int ProductId
+        {
+            get { return m_productID; }
         }
 
         public Step Step
@@ -121,6 +128,7 @@ namespace MRCPSP.Lindo
 
         public double getProcessTime()
         {
+            /*
             int processTime = 0;
             foreach (Operation op in m_mode.operations)
             {
@@ -128,8 +136,8 @@ namespace MRCPSP.Lindo
                 {
                     processTime += op.EndTime - op.StartTime;
                 }
-            }
-            return processTime;
+            }*/
+            return m_mode.getTotalProcessTime();
         }
 
         public double getOperationStartTime() 
