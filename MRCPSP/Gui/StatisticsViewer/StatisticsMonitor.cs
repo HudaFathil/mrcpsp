@@ -473,10 +473,11 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_resources_gantt.TabIndex = 7;
             this.m_resources_gantt.Title = "";
             this.m_gantt_panel.Controls.Add(this.m_resources_gantt);
-            PointPairList list = new PointPairList();
+          
             m_resources_gantt.setGanttData(summary);
+            /*
             m_resources_gantt.Refresh();
-            m_resources_gantt.setGanttData2(summary);
+            m_resources_gantt.setGanttData2(summary);*/
             m_resources_gantt.Title = "Best Result in Generation";
             m_resources_gantt.Refresh();
         }

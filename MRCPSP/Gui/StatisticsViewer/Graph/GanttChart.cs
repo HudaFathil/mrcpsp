@@ -50,7 +50,7 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
                 labels[i] = resources[i].Name;
             return labels;
         }
-
+        /*
         public PointPairList getGanttListByType(Step step, int JobNum) {
             // need to add family
             if (!m_list_of_charts_by_type.Contains(step))
@@ -60,7 +60,46 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
                 map_after_step.Add(JobNum, new PointPairList());
             return (PointPairList)map_after_step[JobNum];
         }
+        */
+        public void setGanttData(ResultSummary summary)
+        {
+            Solution best_solution = summary.getBestSolution();
+            m_graph_pane.CurveList.Clear();
+            m_graph_pane.GraphObjList.Clear();
+            List<Color> color_list = initColorList();        
+            int color_counter = 0;
+            int resource_counter = 1;
+            foreach (Resource r in best_solution.resultFromLindo.Keys)
+            {
+                List<KeyValuePair<LindoParameter, LindoParameter>> resource_operations_done = best_solution.resultFromLindo[r];
+                PointPairList list = new PointPairList();
+                for (int i = 0; i < resource_operations_done.Count; i++)
+                {              
+                    list.Add(resource_operations_done[i].Key.Value, resource_counter, resource_operations_done[i].Value.Value);
+                    Console.Out.WriteLine("resource: " + r.Name + " start at " + resource_operations_done[i].Key.Value.ToString() + " ends at " + resource_operations_done[i].Value.Value.ToString() + " job id start: " + resource_operations_done[i].Key.JobNum.ToString() + " job id end " + resource_operations_done[i].Value.JobNum.ToString());          
+                }
+                HiLowBarItem myCurve = m_graph_pane.AddHiLowBar(r.Name, list, color_list[color_counter % color_list.Count]);
+                myCurve.Bar.Fill = new Fill(color_list[color_counter % color_list.Count], Color.White, color_list[color_counter % color_list.Count], 90);
+                resource_counter++;
+                color_counter++;
+            }
+            // Set the legend to an arbitrary location
+            m_graph_pane.Legend.Position = LegendPos.Float;
+            m_graph_pane.Legend.Location = new Location(0.95f, 0.15f, CoordType.PaneFraction, AlignH.Right, AlignV.Top);
+            m_graph_pane.Legend.FontSpec.Size = 14f;
+            m_graph_pane.Legend.IsHStack = false;
+       
+            m_graph_pane.BarSettings.Base = BarBase.Y;       
+            m_graph_pane.BarSettings.ClusterScaleWidth = 13;  
 
+            m_graph_pane.Fill = new Fill(Color.White, Color.FromArgb(255, 255, 166), 90F);
+            m_graph_control.AxisChange();
+            m_graph_control.Location = new Point(10, 10);
+            m_graph_control.Size = new Size(this.ClientRectangle.Width - 20, this.ClientRectangle.Height - 20);
+         
+        }
+
+        /*
         public void setGanttData(ResultSummary summary)
         {
             Solution best_solution = summary.getBestSolution();
@@ -109,7 +148,7 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             m_graph_pane.BarSettings.ClusterScaleWidth = 15;
           
    
-            /*
+            
        //m_graph_pane.BarSettings.Type = BarType.Stack;
             string[] labels = getSummaryLabels(best_solution.resultFromLindo.Keys.ToArray<Resource>());
             // Set the YAxis labels
@@ -117,7 +156,7 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             // Set the YAxis to Text type
             m_graph_pane.YAxis.Type = AxisType.Text;
             m_graph_pane.YAxis.MajorTic.IsBetweenLabels = true;  
-           */
+           
             // Fill the axis background with a color gradient
             m_graph_pane.Fill = new Fill( Color.White, Color.FromArgb( 255, 255, 166 ), 90F );
             //BarItem.CreateBarLabels(m_graph_pane, true,"", "david", 13,Color.Black,false,false,false);
@@ -128,7 +167,7 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             m_graph_control.Size = new Size(this.ClientRectangle.Width - 20, this.ClientRectangle.Height - 20);
        
         }
-
+        */
         private void InitializeComponent()
         {
             this.SuspendLayout();
