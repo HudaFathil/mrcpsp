@@ -192,13 +192,15 @@ namespace MRCPSP.Gui {
             // 
             // m_progress_bar
             // 
+            this.m_progress_bar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.m_progress_bar.Location = new System.Drawing.Point(664, 548);
             this.m_progress_bar.Name = "m_progress_bar";
-            this.m_progress_bar.Size = new System.Drawing.Size(194, 23);
+            this.m_progress_bar.Size = new System.Drawing.Size(272, 23);
             this.m_progress_bar.TabIndex = 4;
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.label1.Location = new System.Drawing.Point(582, 549);

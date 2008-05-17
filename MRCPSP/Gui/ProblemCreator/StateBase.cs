@@ -31,5 +31,27 @@ namespace MRCPSP.Gui.ProblemCreator
         abstract public void onCanvasClicked(CanvasEditor c, MouseEventArgs e);
         abstract public void onCanvasMoved(CanvasEditor c, MouseEventArgs e);
         abstract public void onStepDoubleClicked(StepItem s);
+
+        public ConstraintItem findConstraintnearPos(int x, int y)
+        {
+            foreach (ProductItem p in ProblemCreatorState.Instance(monitor_id).getProducts())
+            {
+                foreach (ConstraintItem c in ProblemCreatorState.Instance(monitor_id).getConstraints(p))
+                {
+                    Point p1 = c.getFromPoint();
+                    Point p2 = c.getToPoint();
+                    if (p1.X > x && p2.X > x)
+                        return null;
+                    if (p1.X < x && p2.X < x)
+                        return null;
+                    double a = (double)(p1.Y - p2.Y) / (double)(p1.X - p2.X);
+                    double b = (double)p1.Y - (a * p1.X);
+                    double res = Math.Abs((double)y - a * x - b);
+                    if (res < 10) // tolerance for being close to the arrow
+                        return c;
+                }
+            }
+            return null;
+        }
     }
 }

@@ -25,22 +25,37 @@ namespace MRCPSP.Algorithm.FirstGeneration
             int distribution_count = problem.getTotalDistributionSize();
             int resource_count = problem.getNumberOfResources();
             
-            for (int i=0; i < distribution_count; i++) 
-            {
-                int available_modes = problem.getNumberOfModesById(i);                    
-                solution.SelectedModeList[i] =  m_random.Next(available_modes)+1;
-            }
+          
 
-           
+            MatrixCell[] cells = createAllPossibleMatrixCells();
                 for (int i = 0; i < resource_count; i++)
                 {
                     int[] permutation = CommonFunctions.Instance.createPermutation(distribution_count);
                     for (int j = 0; j < distribution_count; j++)
-                    {
-                        solution.DistributionMatrix[i, j] = permutation[j];
+                    {                       
+                        solution.DistributionMatrix[i, j] = cells[permutation[j]];
                     }
                 }
            
+        }
+
+        private MatrixCell[] createAllPossibleMatrixCells()
+        {
+            int counter =0;
+            MatrixCell[] cells = new MatrixCell[ApplicManager.Instance.CurrentProblem.getTotalDistributionSize()];
+            for (int p = 0; p < ApplicManager.Instance.CurrentProblem.Products.Count; p++)
+            {
+                for (int j = 0; j < ApplicManager.Instance.CurrentProblem.Products[p].Size; j++)
+                {
+                    List<Step> steps = ApplicManager.Instance.CurrentProblem.StepsInProduct[ApplicManager.Instance.CurrentProblem.Products[p]];
+                    for (int s = 0; s < steps.Count; s++)
+                    {
+                        int mode_id = m_random.Next(ApplicManager.Instance.CurrentProblem.ModesInStep[steps[s]].Count) + 1;
+                        cells[counter] = new MatrixCell(ApplicManager.Instance.CurrentProblem.Products[p], j, steps[s], ApplicManager.Instance.CurrentProblem.ModesInStep[steps[s]][mode_id]);
+                    }
+                }
+            }
+            return cells;
         }
 
         public override string ToString()

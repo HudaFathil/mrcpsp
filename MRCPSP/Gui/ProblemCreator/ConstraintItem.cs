@@ -13,7 +13,7 @@ using System.Data;
 namespace MRCPSP.Gui.ProblemCreator
 {
   
-    class ConstraintItem : System.Windows.Forms.UserControl
+    public class ConstraintItem : System.Windows.Forms.UserControl
     {
         private CanvasEditor m_canvas;
         private Pen m_pen;
@@ -21,12 +21,17 @@ namespace MRCPSP.Gui.ProblemCreator
         private StepItem m_to_step;
         private Point m_point_from;
         private Point m_point_to;
+        private ConstraintProperties m_properties;
+        private double m_max_queue_time;
+        private double m_min_queue_time;
 
         public ConstraintItem(CanvasEditor c, StepItem from, StepItem to)
         {
             m_canvas = c;
             m_from_step = from;
             m_to_step = to;
+            m_max_queue_time = Double.PositiveInfinity;
+            m_min_queue_time = 0.0;
             Graphics graphics = m_canvas.CreateGraphics();
             m_pen = new Pen(ProblemCreatorState.Instance(m_from_step.monitor_id).CurrentProduct.ConstraintsColor, 5);
             m_pen.StartCap = LineCap.Round;
@@ -40,7 +45,7 @@ namespace MRCPSP.Gui.ProblemCreator
             graphics.Dispose();
             this.Paint += new PaintEventHandler(ConstraintItem_Paint);
             this.Resize += new EventHandler(ConstraintItem_Resize);
-
+            m_properties = new ConstraintProperties();
         }
 
         public void ConstraintItem_Resize(object sender, EventArgs e)
@@ -79,6 +84,28 @@ namespace MRCPSP.Gui.ProblemCreator
                     m_point_to.Y = m_to_step.Location.Y + m_to_step.Height / 2;
                 }
             }
+        }
+
+        public void openPropertiesWindow()
+        {
+            m_properties.MinQueueTime.Text = m_min_queue_time.ToString();
+            m_properties.MaxQueueTime.Text = m_max_queue_time.ToString();
+            m_properties.ShowDialog(new Form());
+            if (m_properties.DialogResult == DialogResult.OK)
+            {
+                m_min_queue_time = Convert.ToDouble(m_properties.MinQueueTime.Text);
+                m_max_queue_time = Convert.ToDouble(m_properties.MaxQueueTime.Text);
+            }
+        }
+
+        public double MinQueueTime
+        {
+            get { return m_min_queue_time; }
+        }
+
+        public double MaxQueueTime
+        {
+            get { return m_min_queue_time; }
         }
 
         public StepItem getFromStep()

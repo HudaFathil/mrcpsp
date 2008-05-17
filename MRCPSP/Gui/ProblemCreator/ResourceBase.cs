@@ -9,10 +9,11 @@ namespace MRCPSP.Gui.ProblemCreator
     {
         private static int resource_counter= 0;
         private string m_title;
-
-        public ResourceBase()
-        {                    
-            this.m_title = "Resource " + resource_counter.ToString();
+        private int m_available_time;
+        public ResourceBase(int available_time)
+        {
+            m_available_time = available_time;
+            this.m_title = "Resource " + resource_counter.ToString() + " ("+ m_available_time.ToString()+")";
             resource_counter++;
         }
 

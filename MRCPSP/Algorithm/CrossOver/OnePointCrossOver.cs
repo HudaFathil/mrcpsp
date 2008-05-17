@@ -11,10 +11,13 @@ namespace MRCPSP.Algorithm.CrossOver
     {
 
         private Random m_random;
+        private int m_last_index_found_child1;
+        private int m_last_index_found_child2;
 
         public OnePointCrossOver()
         {
             m_random = new Random();
+
         }
 
         public override List<Solution> doCrossOver(List<Solution> solutions)
@@ -35,27 +38,26 @@ namespace MRCPSP.Algorithm.CrossOver
             Solution child2 = new Solution();
             ApplicManager.Instance.CurrentProblem.getTotalDistributionSize();           
             int crossPoint = m_random.Next(ApplicManager.Instance.CurrentProblem.getTotalDistributionSize()-1) + 1;
-
+            m_last_index_found_child1 = 0;
+            m_last_index_found_child2 = 0;
             for (int i = 0; i < crossPoint; i++)
             {
-                child1.SelectedModeList[i] = sol1.SelectedModeList[i];
-                child2.SelectedModeList[i] = sol2.SelectedModeList[i];
+            //    child1.SelectedModeList[i] = sol1.SelectedModeList[i];
+             //   child2.SelectedModeList[i] = sol2.SelectedModeList[i];
                 for (int j = 0; j < ApplicManager.Instance.CurrentProblem.getNumberOfResources(); j++)
                 {
-                    child1.DistributionMatrix[j, i] = sol1.DistributionMatrix[j, i];
-                    child2.DistributionMatrix[j, i] = sol2.DistributionMatrix[j, i];
+                    child1.DistributionMatrix[j, i] = new MatrixCell(sol1.DistributionMatrix[j, i]);
+                    child2.DistributionMatrix[j, i] = new MatrixCell(sol2.DistributionMatrix[j, i]);
                 }
             }
             for (int i = crossPoint; i < ApplicManager.Instance.CurrentProblem.getTotalDistributionSize(); i++)
             {
-                child2.SelectedModeList[i] = sol1.SelectedModeList[i];
-                child1.SelectedModeList[i] = sol2.SelectedModeList[i];
+             //   child2.SelectedModeList[i] = sol1.SelectedModeList[i];
+             //   child1.SelectedModeList[i] = sol2.SelectedModeList[i];
                 for (int j = 0; j < ApplicManager.Instance.CurrentProblem.getNumberOfResources(); j++)
                 {
-
-                    child2.DistributionMatrix[j, i] = getNextValueForChild(child1.getRowArray(j, 0, i), sol1.DistributionMatrix[j, i]);
-                    child1.DistributionMatrix[j, i] = getNextValueForChild(child2.getRowArray(j, 0, i), sol2.DistributionMatrix[j, i]);
-
+                    getNextValueForChild(child2, j,i, sol1, ref m_last_index_found_child2);
+                    getNextValueForChild(child1, j,i, sol2, ref m_last_index_found_child1);
                 }
             }
 
@@ -66,7 +68,28 @@ namespace MRCPSP.Algorithm.CrossOver
          * return the valueInParentMatrix if it doesn't exists in currentArray
          * else returns the minimum available value
          */
-        private int getNextValueForChild(int[] currentArray, int valueInParentMatrix)
+        private MatrixCell getNextValueForChild(Solution child, int row, int col, Solution parent, ref int last_index)
+        {
+            for (last_index=0; last_index < parent.DistributionMatrix.GetLength(1); last_index++) 
+            {
+                MatrixCell parent_val = parent.DistributionMatrix[row,last_index];
+                bool exists = false;
+                for (int j=0; j < col; j++) {
+                    if (child.DistributionMatrix[row, j] == parent_val)
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
+                if (exists)
+                    continue;
+                child.DistributionMatrix[row, col] = new MatrixCell(parent_val);
+            }
+            
+            return null;
+        }
+        /*
+        private int getNextValueForChild(MatrixCell[] currentArray, int valueInParentMatrix)
         {
             bool isAvailable = true;
             int minAvailable = 1;
@@ -89,7 +112,7 @@ namespace MRCPSP.Algorithm.CrossOver
                 return valueInParentMatrix;
             return minAvailable;
         }
-
+        */
         public override string ToString()
         {
             return "One Point Crossover";

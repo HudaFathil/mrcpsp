@@ -181,7 +181,7 @@ namespace MRCPSP.Lindo
             m_constrains = "";
             m_problem = prob;
             //convertValues(createSolutionForDebugging() , createProblemForDebugging());
-            convertValues(sol, prob);
+            //convertValues(sol, prob);
         }
 
         /**
@@ -202,6 +202,7 @@ namespace MRCPSP.Lindo
         /*
          * This is the main function , converts from regular Solution to LindoSolution
          */  
+        /*
         private void convertValues(Solution sol, Problem problem)
         {
             int[,] matrix = sol.DistributionMatrix;

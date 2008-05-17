@@ -7,8 +7,8 @@ namespace MRCPSP.Gui.ProblemCreator
 {
     public class Worker : ResourceBase
     {
-        public Worker()
-            : base()
+        public Worker(int available_time)
+            : base(available_time)
         {
         }
     }

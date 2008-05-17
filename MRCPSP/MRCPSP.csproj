@@ -69,10 +69,17 @@
     <Compile Include="Algorithm\FirstGeneration\GenerateRandomPopulation.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Algorithm\MatrixCell.cs" />
     <Compile Include="Algorithm\SelectionPolicy\RankSelectionPolicy.cs" />
     <Compile Include="Algorithm\SelectionPolicy\SelectionPolicyBase.cs" />
     <Compile Include="Algorithm\SolutionComparer.cs" />
     <Compile Include="Domain\ResultSummary.cs" />
+    <Compile Include="Gui\ProblemCreator\ConstraintProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\ProblemCreator\ResourceTimeConstraint.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Gui\StatisticsViewer\Graph\GanttChart.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -112,15 +119,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gui\Logger\LoggerFrame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gui\ProblemCreator\AddMachineWidget.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gui\ProblemCreator\AddProductWidget.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gui\ProblemCreator\AddWorkerWidget.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gui\ProblemCreator\CanvasEditor.cs">
@@ -187,6 +185,14 @@
       <DependentUpon>LoggerFrame.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProblemCreator\ConstraintProperties.resx">
+      <DependentUpon>ConstraintProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProblemCreator\ResourceTimeConstraint.resx">
+      <DependentUpon>ResourceTimeConstraint.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Gui\StatisticsViewer\Graph\GraphPanel.resx">
       <DependentUpon>GraphPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -197,18 +203,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\StatisticsViewer\Graph\XYGraph.resx">
       <DependentUpon>XYGraph.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\ProblemCreator\AddMachineWidget.resx">
-      <DependentUpon>AddMachineWidget.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\ProblemCreator\AddProductWidget.resx">
-      <DependentUpon>AddProductWidget.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\ProblemCreator\AddWorkerWidget.resx">
-      <DependentUpon>AddWorkerWidget.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\ProblemCreator\CanvasEditor.resx">

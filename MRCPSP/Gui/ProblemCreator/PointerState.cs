@@ -24,7 +24,11 @@ namespace MRCPSP.Gui.ProblemCreator
             }
 
             public override void onCanvasClicked(CanvasEditor canvas, MouseEventArgs e) {
-                // do nothing
+                ConstraintItem c = findConstraintnearPos(e.X, e.Y);
+                if (c == null)
+                    return;
+                c.openPropertiesWindow();
+                canvas.Refresh();
             }
 
             public override void onCanvasMoved(CanvasEditor canvas, MouseEventArgs e)

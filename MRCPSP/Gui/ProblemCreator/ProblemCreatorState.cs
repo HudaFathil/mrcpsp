@@ -190,7 +190,7 @@ namespace MRCPSP.Gui.ProblemCreator
                    {
                        Step from = (Step)all_steps[c.getFromStep()];
                        Step to = (Step)all_steps[c.getToStep()];
-                       all_constraints.Add(new Constraint((Product)all_products[p],from ,to));
+                       all_constraints.Add(new Constraint((Product)all_products[p],from ,to, c.MinQueueTime, c.MaxQueueTime));
                    }
                }
        
