@@ -5,22 +5,47 @@ using System.Text;
 
 using MRCPSP.Domain;
 using MRCPSP.CommonTypes;
+using MRCPSP.Controllers;
 
 namespace MRCPSP.Algorithm
 {
+
+    class MatrixCellComparer<T> : IComparer<T> where T : MatrixCell
+    {
+        public MatrixCellComparer() : base() { }
+        public int Compare(T x, T y)
+        {
+            if (x.product != y.product)
+                return 0;
+            if (x.jobId != y.jobId)
+                return 0;
+            if (x.step == y.step)
+            {
+                return 0;
+            }
+            if (isStepPrecedenceToNewStep(x.product, x.step, y.step))
+                return -1;
+            else
+                return 1;
+        }
+
+        internal bool isStepPrecedenceToNewStep(Product p, Step from, Step to)
+        {
+            return ApplicManager.Instance.CurrentProblem.isStepSubsequentToStep(p, from, to);
+        }
+    }
+
     class MatrixCell
     {
         public Product product;
         public int jobId;
         public Step step;
-        public Mode mode;
 
-        public MatrixCell(Product p, int job, Step s, Mode m)
+        public MatrixCell(Product p, int job, Step s)
         {
             product = p;
             jobId = job;
             step = s;
-            mode = m;
         }
 
         public MatrixCell(MatrixCell toCopy)
@@ -28,7 +53,6 @@ namespace MRCPSP.Algorithm
             product = toCopy.product; 
             jobId = toCopy.jobId;
             step = toCopy.step;
-            mode = toCopy.mode;
         }
     }
 }

@@ -189,8 +189,8 @@ namespace MRCPSP.Domain
             foreach (Constraint c in m_all_constraints)
             {
                 if ((c.Product == p) && (c.StepTo == s))
-                    if (!preced.Contains(c.StepTo))
-                        preced.Add(c.StepTo);
+                    if (!preced.Contains(c.StepFrom))
+                        preced.Add(c.StepFrom);
             }
             return preced;
         }
@@ -213,10 +213,25 @@ namespace MRCPSP.Domain
             foreach (Constraint c in m_all_constraints)
             {
                 if ((c.Product == p) && (c.StepFrom == s))
-                    if (!subs.Contains(c.StepFrom))
-                        subs.Add(c.StepFrom);
+                    if (!subs.Contains(c.StepTo))
+                        subs.Add(c.StepTo);
             }
             return subs;
+        }
+
+        public bool isStepSubsequentToStep(Product p, Step from, Step to)
+        {
+            if (from == to)
+                return false;
+            List<Step> steps = getAllImmediateSubsequent(p, from);
+            for (int i = 0; i < steps.Count; i++)
+            {
+                if (steps[i] == to)
+                    return true;
+                if (isStepSubsequentToStep(p,steps[i], to))
+                    return true;
+            }
+            return false;
         }
 
         public String Title

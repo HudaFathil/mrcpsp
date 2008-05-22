@@ -12,14 +12,14 @@ namespace MRCPSP.Algorithm
 {
     class Solution
     {
- //       private int[] m_selected_mode_list;
+        private int[] m_selected_mode_list;
         private MatrixCell[,] m_distribution_matrix;
         private double m_scoreFromLindo;
         private Dictionary<Resource, List<KeyValuePair<LindoParameter, LindoParameter>>> m_results;
 
         public Solution()
         {
-     //       m_selected_mode_list = new int[ApplicManager.Instance.CurrentProblem.getTotalDistributionSize()];
+            m_selected_mode_list = new int[ApplicManager.Instance.CurrentProblem.getTotalDistributionSize()];
             m_distribution_matrix = new MatrixCell [ApplicManager.Instance.CurrentProblem.getNumberOfResources(), ApplicManager.Instance.CurrentProblem.getTotalDistributionSize()];
                                             
         }
@@ -27,7 +27,7 @@ namespace MRCPSP.Algorithm
         // for debugging only for Ofir!!!!!
         public Solution(int distSize, int resourceNum)
         {
-       //     m_selected_mode_list = new int[distSize];
+            m_selected_mode_list = new int[distSize];
             m_distribution_matrix = new MatrixCell[resourceNum, distSize];
         }
         // 
@@ -41,7 +41,7 @@ namespace MRCPSP.Algorithm
                 m_distribution_matrix = value;
             }
         }
-        /*
+        
         public int[] SelectedModeList
         {
             get { return m_selected_mode_list; }
@@ -50,7 +50,7 @@ namespace MRCPSP.Algorithm
                 m_selected_mode_list = value;
             }
         }
-        */
+        
         public double scoreFromLindo
         {
             get { return m_scoreFromLindo ; }

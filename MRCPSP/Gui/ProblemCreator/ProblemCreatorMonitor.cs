@@ -83,6 +83,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.m_worker_list = new System.Windows.Forms.ListBox();
+            this.m_resource_time_constraint_button = new System.Windows.Forms.Button();
             this.m_add_machine_button = new System.Windows.Forms.Button();
             this.m_add_worker_button = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -115,6 +116,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.m_center_panel = new System.Windows.Forms.Panel();
+            this.m_canvas_pic = new MRCPSP.Gui.ProblemCreator.CanvasEditor();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.m_controls_strip = new System.Windows.Forms.ToolStrip();
@@ -122,8 +124,6 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_new_constraint_button = new System.Windows.Forms.ToolStripButton();
             this.m_eraser_button = new System.Windows.Forms.ToolStripButton();
             this.m_pointer_button = new System.Windows.Forms.ToolStripButton();
-            this.m_resource_time_constraint_button = new System.Windows.Forms.Button();
-            this.m_canvas_pic = new MRCPSP.Gui.ProblemCreator.CanvasEditor();
             this.panel1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -142,10 +142,10 @@ namespace MRCPSP.Gui.ProblemCreator
             ((System.ComponentModel.ISupportInitialize)(this.m_new_product_size_sb)).BeginInit();
             this.panel3.SuspendLayout();
             this.m_center_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
             this.panel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.m_controls_strip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
             this.SuspendLayout();
             // 
             // m_machine_list
@@ -154,7 +154,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_machine_list.FormattingEnabled = true;
             this.m_machine_list.Location = new System.Drawing.Point(6, 19);
             this.m_machine_list.Name = "m_machine_list";
-            this.m_machine_list.Size = new System.Drawing.Size(133, 95);
+            this.m_machine_list.Size = new System.Drawing.Size(133, 82);
             this.m_machine_list.TabIndex = 0;
             // 
             // panel1
@@ -183,7 +183,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer1.Size = new System.Drawing.Size(145, 250);
-            this.splitContainer1.SplitterDistance = 120;
+            this.splitContainer1.SplitterDistance = 119;
             this.splitContainer1.TabIndex = 2;
             // 
             // groupBox2
@@ -194,7 +194,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.groupBox2.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox2.Size = new System.Drawing.Size(145, 120);
+            this.groupBox2.Size = new System.Drawing.Size(145, 119);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Machines";
@@ -207,7 +207,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.groupBox3.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox3.Size = new System.Drawing.Size(145, 126);
+            this.groupBox3.Size = new System.Drawing.Size(145, 127);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Workers";
@@ -221,13 +221,26 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_worker_list.Size = new System.Drawing.Size(133, 95);
             this.m_worker_list.TabIndex = 4;
             // 
+            // m_resource_time_constraint_button
+            // 
+            this.m_resource_time_constraint_button.BackColor = System.Drawing.Color.RoyalBlue;
+            this.m_resource_time_constraint_button.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.m_resource_time_constraint_button.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.m_resource_time_constraint_button.Location = new System.Drawing.Point(5, 255);
+            this.m_resource_time_constraint_button.Name = "m_resource_time_constraint_button";
+            this.m_resource_time_constraint_button.Size = new System.Drawing.Size(145, 23);
+            this.m_resource_time_constraint_button.TabIndex = 0;
+            this.m_resource_time_constraint_button.Text = "Edit Resource Constraint";
+            this.m_resource_time_constraint_button.UseVisualStyleBackColor = false;
+            this.m_resource_time_constraint_button.Click += new System.EventHandler(this.m_resource_time_constraint_button_Click);
+            // 
             // m_add_machine_button
             // 
             this.m_add_machine_button.Location = new System.Drawing.Point(6, 69);
             this.m_add_machine_button.Name = "m_add_machine_button";
             this.m_add_machine_button.Size = new System.Drawing.Size(104, 23);
             this.m_add_machine_button.TabIndex = 1;
-            this.m_add_machine_button.Text = "add new machine";
+            this.m_add_machine_button.Text = "Add New Machine";
             this.m_add_machine_button.UseVisualStyleBackColor = true;
             this.m_add_machine_button.Click += new System.EventHandler(this.m_add_machine_button_Click);
             // 
@@ -237,7 +250,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_add_worker_button.Name = "m_add_worker_button";
             this.m_add_worker_button.Size = new System.Drawing.Size(103, 23);
             this.m_add_worker_button.TabIndex = 3;
-            this.m_add_worker_button.Text = "add new worker";
+            this.m_add_worker_button.Text = "Add New Worker";
             this.m_add_worker_button.UseVisualStyleBackColor = true;
             this.m_add_worker_button.Click += new System.EventHandler(this.m_add_worker_button_Click);
             // 
@@ -289,9 +302,9 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             this.button2.Location = new System.Drawing.Point(9, 96);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(101, 23);
             this.button2.TabIndex = 4;
-            this.button2.Text = "button2";
+            this.button2.Text = "Remove Machine";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // m_machine_batch_size_sb
@@ -401,9 +414,9 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             this.button1.Location = new System.Drawing.Point(6, 96);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(103, 23);
             this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
+            this.button1.Text = "Remove Worker";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // groupBox5
@@ -556,6 +569,18 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_center_panel.Size = new System.Drawing.Size(851, 283);
             this.m_center_panel.TabIndex = 4;
             // 
+            // m_canvas_pic
+            // 
+            this.m_canvas_pic.BackColor = System.Drawing.Color.White;
+            this.m_canvas_pic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.m_canvas_pic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_canvas_pic.Location = new System.Drawing.Point(85, 0);
+            this.m_canvas_pic.monitor_id = 0;
+            this.m_canvas_pic.Name = "m_canvas_pic";
+            this.m_canvas_pic.Size = new System.Drawing.Size(611, 283);
+            this.m_canvas_pic.TabIndex = 5;
+            this.m_canvas_pic.TabStop = false;
+            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.groupBox1);
@@ -646,31 +671,6 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_pointer_button.ToolTipText = "Select";
             this.m_pointer_button.Click += new System.EventHandler(this.m_pointer_button_Click);
             // 
-            // m_resource_time_constraint_button
-            // 
-            this.m_resource_time_constraint_button.BackColor = System.Drawing.Color.RoyalBlue;
-            this.m_resource_time_constraint_button.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.m_resource_time_constraint_button.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.m_resource_time_constraint_button.Location = new System.Drawing.Point(5, 255);
-            this.m_resource_time_constraint_button.Name = "m_resource_time_constraint_button";
-            this.m_resource_time_constraint_button.Size = new System.Drawing.Size(145, 23);
-            this.m_resource_time_constraint_button.TabIndex = 0;
-            this.m_resource_time_constraint_button.Text = "Edit Resource Constraint";
-            this.m_resource_time_constraint_button.UseVisualStyleBackColor = false;
-            this.m_resource_time_constraint_button.Click += new System.EventHandler(this.m_resource_time_constraint_button_Click);
-            // 
-            // m_canvas_pic
-            // 
-            this.m_canvas_pic.BackColor = System.Drawing.Color.White;
-            this.m_canvas_pic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.m_canvas_pic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.m_canvas_pic.Location = new System.Drawing.Point(85, 0);
-            this.m_canvas_pic.monitor_id = 0;
-            this.m_canvas_pic.Name = "m_canvas_pic";
-            this.m_canvas_pic.Size = new System.Drawing.Size(611, 283);
-            this.m_canvas_pic.TabIndex = 5;
-            this.m_canvas_pic.TabStop = false;
-            // 
             // ProblemCreatorMonitor
             // 
             this.ClientSize = new System.Drawing.Size(851, 471);
@@ -701,12 +701,12 @@ namespace MRCPSP.Gui.ProblemCreator
             ((System.ComponentModel.ISupportInitialize)(this.m_new_product_size_sb)).EndInit();
             this.panel3.ResumeLayout(false);
             this.m_center_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
             this.panel5.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.m_controls_strip.ResumeLayout(false);
             this.m_controls_strip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
             this.ResumeLayout(false);
 
         }

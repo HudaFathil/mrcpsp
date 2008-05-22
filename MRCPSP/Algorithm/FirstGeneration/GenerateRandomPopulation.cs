@@ -9,6 +9,7 @@ using MRCPSP.Util;
 
 namespace MRCPSP.Algorithm.FirstGeneration
 {
+
     class GenerateRandomPopulation : GeneratePolicyBase
     {
 
@@ -24,19 +25,51 @@ namespace MRCPSP.Algorithm.FirstGeneration
             Problem problem = ApplicManager.Instance.CurrentProblem;
             int distribution_count = problem.getTotalDistributionSize();
             int resource_count = problem.getNumberOfResources();
-            
-          
 
-            MatrixCell[] cells = createAllPossibleMatrixCells();
-                for (int i = 0; i < resource_count; i++)
+            for (int i = 0; i < distribution_count; i++)
+            {
+                int available_modes = problem.getNumberOfModesById(i);
+                solution.SelectedModeList[i] = m_random.Next(available_modes) + 1;
+            }
+                      
+            for (int i = 0; i < resource_count; i++)
+            {           
+                MatrixCell[] cells = createAllPossibleMatrixCells();
+                int[] permutation = CommonFunctions.Instance.createPermutation(distribution_count);
+                List<MatrixCell> items_to_sort = new List<MatrixCell>();
+                for (int j = 0; j < distribution_count; j++)
                 {
-                    int[] permutation = CommonFunctions.Instance.createPermutation(distribution_count);
+                    items_to_sort.Add(cells[permutation[j] - 1]);
+                }
+                items_to_sort.Sort(new MatrixCellComparer<MatrixCell>());
+                for (int j = 0; j < distribution_count; j++)
+                {
+                    solution.DistributionMatrix[i, j] = items_to_sort[j];
+                }
+            }
+
+           
+        }
+
+        private void fixSolutionConstraints(Solution solution)
+        {
+            
+            /*
+            Problem problem = ApplicManager.Instance.CurrentProblem;
+            int distribution_count = problem.getTotalDistributionSize();
+            int resource_count = problem.getNumberOfResources();
+            for (int i = 0; i < resource_count; i++)
+            {
+                bool not_valid = true;
+                while (not_valid)
+                {
                     for (int j = 0; j < distribution_count; j++)
-                    {                       
-                        solution.DistributionMatrix[i, j] = cells[permutation[j]];
+                    {
+
                     }
                 }
-           
+            }
+              */
         }
 
         private MatrixCell[] createAllPossibleMatrixCells()
@@ -49,9 +82,9 @@ namespace MRCPSP.Algorithm.FirstGeneration
                 {
                     List<Step> steps = ApplicManager.Instance.CurrentProblem.StepsInProduct[ApplicManager.Instance.CurrentProblem.Products[p]];
                     for (int s = 0; s < steps.Count; s++)
-                    {
-                        int mode_id = m_random.Next(ApplicManager.Instance.CurrentProblem.ModesInStep[steps[s]].Count) + 1;
-                        cells[counter] = new MatrixCell(ApplicManager.Instance.CurrentProblem.Products[p], j, steps[s], ApplicManager.Instance.CurrentProblem.ModesInStep[steps[s]][mode_id]);
+                    {                   
+                        cells[counter] = new MatrixCell(ApplicManager.Instance.CurrentProblem.Products[p], j, steps[s]);
+                        counter++;
                     }
                 }
             }
