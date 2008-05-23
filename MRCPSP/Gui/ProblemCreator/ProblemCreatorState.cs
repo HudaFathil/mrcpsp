@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using MRCPSP.Controllers;
 using MRCPSP.CommonTypes;
+using System.Windows.Forms;
 
 namespace MRCPSP.Gui.ProblemCreator
 {
@@ -166,22 +167,33 @@ namespace MRCPSP.Gui.ProblemCreator
                    Step new_step = new Step(s.getID(), s.Text);
                    modes_in_step.Add(new_step, new List<Mode>());
                    all_steps[s] = new_step;
-
-                   foreach (ModeItem m in s.getAllModes())
+                   int modes_id = 1;
+                   foreach (DataGridView data in s.getModesDictionary().Values)
                    {
+                       if (data.RowCount == 1)
+                           continue;
+                      
                        Mode new_mode = new Mode();
-                       for (int i = 0; i < m.m_resource_list.Items.Count; i++)
+                       for (int i = 0; i < data.RowCount; i++)
                        {
-                           string name = m.m_resource_list.Items[i].ToString();
+                           if (data["Resource", i] == null)
+                               continue;
+                           if (data["Resource", i].Value == null)
+                               continue;
+                           string name = data["Resource",i].Value.ToString();
                            if (!all_resources.Contains(name))
                                all_resources[name] = new Resource(name);
-                           new_mode.operations.Add(new Operation(Convert.ToInt32(m.m_start_time_list.Items[i]),
-                                                                 Convert.ToInt32(m.m_end_time_list.Items[i]),
-                                                                 (Resource)all_resources[name]));
-                           new_mode.name =Convert.ToInt32(m.m_id.Text) + 1;
+                           new_mode.operations.Add(new Operation(Convert.ToInt32(data["StartTime",i].Value),
+                                                                 Convert.ToInt32(data["EndTime",i].Value),
+                                                                 (Resource)all_resources[name]));                        
                        }
-                       modes_in_step[new_step].Add(new_mode);
-                   }
+                       if (new_mode.operations.Count > 0)
+                       {
+                           new_mode.name = modes_id;
+                           modes_id++;
+                           modes_in_step[new_step].Add(new_mode);
+                       }
+                    }
                }
               
                foreach (ProductItem p in m_constraint_map.Keys)

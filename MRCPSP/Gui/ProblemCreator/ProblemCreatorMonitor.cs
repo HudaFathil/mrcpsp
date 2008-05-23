@@ -835,6 +835,8 @@ namespace MRCPSP.Gui.ProblemCreator
 
         private void m_job_properties_button_Click(object sender, EventArgs e)
         {
+            if (m_product_cb.SelectedIndex < 0)
+                return;
             ProductItem p = ProblemCreatorState.Instance(monitor_id).CurrentProduct;
             Form f = new Form();            
             f.Controls.Add(p.JobsData);

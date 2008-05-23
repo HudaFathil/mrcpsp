@@ -169,11 +169,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Gui\pics\bulb.bmp" />
+    <None Include="Gui\pics\dna800x600.jpg" />
+    <None Include="Gui\pics\arrow_left.GIF" />
+    <None Include="Gui\pics\arrow_right.gif" />
     <Content Include="Gui\pics\eraser_pic.bmp" />
     <None Include="Gui\pics\graphs.bmp" />
     <Content Include="Gui\pics\new_arrow_pic.bmp" />
     <Content Include="Gui\pics\new_problem.bmp" />
     <Content Include="Gui\pics\new_step_pic.bmp" />
+    <None Include="Gui\pics\play.bmp" />
+    <None Include="Gui\pics\stop.bmp" />
     <None Include="Gui\pics\selectarrow.bmp" />
   </ItemGroup>
   <ItemGroup>
@@ -238,9 +243,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

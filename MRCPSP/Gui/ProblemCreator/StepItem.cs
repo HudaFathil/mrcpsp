@@ -109,9 +109,9 @@ namespace MRCPSP.Gui.ProblemCreator
             }
         }
 
-        public System.Collections.ArrayList getAllModes()
+        public Dictionary<int,DataGridView> getModesDictionary()
         {
-            return m_mode_monitor.getModesItemsList();
+            return m_mode_monitor.getModesDictionary();
         }
 
         public int getID()

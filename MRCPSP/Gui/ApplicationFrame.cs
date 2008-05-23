@@ -184,6 +184,7 @@ namespace MRCPSP.Gui {
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.Color.Gray;
             this.statusStrip1.Location = new System.Drawing.Point(0, 549);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(948, 22);
@@ -193,6 +194,7 @@ namespace MRCPSP.Gui {
             // m_progress_bar
             // 
             this.m_progress_bar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.m_progress_bar.BackColor = System.Drawing.Color.Gray;
             this.m_progress_bar.Location = new System.Drawing.Point(664, 548);
             this.m_progress_bar.Name = "m_progress_bar";
             this.m_progress_bar.Size = new System.Drawing.Size(272, 23);
@@ -202,6 +204,7 @@ namespace MRCPSP.Gui {
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.label1.Location = new System.Drawing.Point(582, 549);
             this.label1.Name = "label1";
@@ -218,6 +221,8 @@ namespace MRCPSP.Gui {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::MRCPSP.Properties.Resources.dna800x600;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(948, 571);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.m_progress_bar);

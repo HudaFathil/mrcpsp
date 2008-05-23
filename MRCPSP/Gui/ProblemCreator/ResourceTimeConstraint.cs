@@ -180,19 +180,11 @@ namespace MRCPSP.Gui.ProblemCreator
 
     public class StepModeItem
     {
-        private ModeItem m_mode;
         private StepItem m_step;
 
-        public StepModeItem(ModeItem m, StepItem s)
+        public StepModeItem(StepItem s)
         {
-            m_mode = m;
             m_step = s;
-        }
-
-        public ModeItem myModeItem
-        {
-            get { return m_mode; }
-            set { m_mode = value; }
         }
 
         public StepItem myStep
@@ -203,7 +195,7 @@ namespace MRCPSP.Gui.ProblemCreator
 
         public override string ToString()
         {
-            return m_mode.ToString() + " " + m_step.ToString();
+            return  m_step.ToString();
         }
     }
 }
