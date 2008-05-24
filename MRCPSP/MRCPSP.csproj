@@ -31,9 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -73,6 +72,7 @@
     <Compile Include="Algorithm\SelectionPolicy\RankSelectionPolicy.cs" />
     <Compile Include="Algorithm\SelectionPolicy\SelectionPolicyBase.cs" />
     <Compile Include="Algorithm\SolutionComparer.cs" />
+    <Compile Include="CommonTypes\Job.cs" />
     <Compile Include="Domain\ResultSummary.cs" />
     <Compile Include="Gui\ProblemCreator\ConstraintProperties.cs">
       <SubType>Form</SubType>
@@ -172,8 +172,15 @@
     <None Include="Gui\pics\dna800x600.jpg" />
     <None Include="Gui\pics\arrow_left.GIF" />
     <None Include="Gui\pics\arrow_right.gif" />
+    <None Include="Gui\pics\Chromosom2.gif" />
+    <None Include="Gui\pics\dna.jpg" />
+    <None Include="Gui\pics\dna_alfa.jpg" />
+    <None Include="Gui\pics\DNA_Overview.png" />
+    <None Include="Gui\pics\DNAComp.gif" />
     <Content Include="Gui\pics\eraser_pic.bmp" />
     <None Include="Gui\pics\graphs.bmp" />
+    <None Include="Gui\pics\neurons.jpg" />
+    <None Include="Gui\pics\neurons_color.jpg" />
     <Content Include="Gui\pics\new_arrow_pic.bmp" />
     <Content Include="Gui\pics\new_problem.bmp" />
     <Content Include="Gui\pics\new_step_pic.bmp" />

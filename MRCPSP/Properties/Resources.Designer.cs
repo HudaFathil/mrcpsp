@@ -81,9 +81,51 @@ namespace MRCPSP.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Chromosom2 {
+            get {
+                object obj = ResourceManager.GetObject("Chromosom2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap dna {
+            get {
+                object obj = ResourceManager.GetObject("dna", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap dna_alfa {
+            get {
+                object obj = ResourceManager.GetObject("dna_alfa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap DNA_Overview {
+            get {
+                object obj = ResourceManager.GetObject("DNA_Overview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap dna800x600 {
             get {
                 object obj = ResourceManager.GetObject("dna800x600", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap dna800x6001 {
+            get {
+                object obj = ResourceManager.GetObject("dna800x6001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap DNAComp {
+            get {
+                object obj = ResourceManager.GetObject("DNAComp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -98,6 +140,20 @@ namespace MRCPSP.Properties {
         internal static System.Drawing.Bitmap graphs {
             get {
                 object obj = ResourceManager.GetObject("graphs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap neurons {
+            get {
+                object obj = ResourceManager.GetObject("neurons", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap neurons_color {
+            get {
+                object obj = ResourceManager.GetObject("neurons_color", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

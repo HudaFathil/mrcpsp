@@ -310,6 +310,7 @@ namespace MRCPSP.Gui.ProblemCreator
             foreach (Machine w in ProblemCreatorState.Instance(monitor_id).getMachines())
                 m_resource_name_cb.Items.Add(w);
         }
+
         public int monitor_id
         {
             get { return m_monitor_id; }

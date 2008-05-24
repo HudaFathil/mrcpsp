@@ -36,9 +36,10 @@ namespace MRCPSP.Controllers
                         Dictionary< Step, List < Mode > > modes_in_step,
                         List<Step> step_list,       
                         List<Constraint> all_constraints,
-                        List<Product> products_list)                                                         
+                        List<Product> products_list,
+                        Dictionary<Product, List<Job>> jobs_in_product)                                                         
         {
-            m_current_problem = new Problem(resource_list, modes_in_step, step_list, all_constraints, products_list);
+            m_current_problem = new Problem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product);
             
         }
 

@@ -160,6 +160,30 @@
   <data name="arrow_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\arrow_right.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Chromosom2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\Chromosom2.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dna" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\dna.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dna800x6001" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\dna800x600.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DNAComp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\DNAComp.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dna_alfa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\dna_alfa.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DNA_Overview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\DNA_Overview.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="neurons" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\neurons.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="neurons_color" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\neurons_color.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="play" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\play.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

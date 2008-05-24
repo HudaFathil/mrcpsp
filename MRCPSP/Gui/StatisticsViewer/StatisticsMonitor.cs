@@ -47,7 +47,15 @@ namespace MRCPSP.Gui.StatisticsViewer
         private System.Windows.Forms.Label m_crossover_lbl;
         private System.Windows.Forms.Label label7;
         private Panel m_gantt_panel;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private TabPage tabPage3;
+        private TabPage tabPage4;
         private MRCPSP.Gui.StatisticsViewer.Graph.PieGraph m_resources_pie_chart;
+        private ToolStrip toolStrip1;
+        private ToolStripButton m_export_to_excel_button;
+        private SaveFileDialog saveFileDialog1;
 
         private MRCPSP.Gui.StatisticsViewer.Graph.GanttChart m_resources_gantt;
 
@@ -56,6 +64,8 @@ namespace MRCPSP.Gui.StatisticsViewer
             InitializeComponent();
             bindingNavigatorPositionItem.TextChanged += new EventHandler(bindingNavigatorPositionItem_TextChanged);
             this.GotFocus += new EventHandler(StatisticsMonitor_GotFocus);
+            tabControl1.BackColor = Color.FromArgb(0, 0, 0, 0);
+
         }
 
         void StatisticsMonitor_GotFocus(object sender, EventArgs e)
@@ -90,13 +100,27 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.m_gantt_panel = new System.Windows.Forms.Panel();
-            this.m_resources_pie_chart = new MRCPSP.Gui.StatisticsViewer.Graph.PieGraph();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.m_generation_over_time_graph = new MRCPSP.Gui.StatisticsViewer.Graph.XYGraph();
+            this.m_resources_pie_chart = new MRCPSP.Gui.StatisticsViewer.Graph.PieGraph();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.m_export_to_excel_button = new System.Windows.Forms.ToolStripButton();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.m_bind_navigator)).BeginInit();
             this.m_bind_navigator.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_bind_navigator
@@ -221,7 +245,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(54, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(336, 31);
             this.label1.TabIndex = 4;
@@ -237,7 +261,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.groupBox1.Controls.Add(this.m_problem_title_lbl);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(32, 43);
+            this.groupBox1.Location = new System.Drawing.Point(95, 46);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(342, 186);
             this.groupBox1.TabIndex = 5;
@@ -330,35 +354,80 @@ namespace MRCPSP.Gui.StatisticsViewer
             // panel1
             // 
             this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.m_gantt_panel);
-            this.panel1.Controls.Add(this.m_resources_pie_chart);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.m_generation_over_time_graph);
-            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.tabControl1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(923, 393);
+            this.panel1.Size = new System.Drawing.Size(923, 426);
             this.panel1.TabIndex = 6;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Location = new System.Drawing.Point(12, 18);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(868, 344);
+            this.tabControl1.TabIndex = 9;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(860, 318);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.m_gantt_panel);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(860, 318);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // m_gantt_panel
             // 
-            this.m_gantt_panel.Location = new System.Drawing.Point(32, 247);
+            this.m_gantt_panel.Location = new System.Drawing.Point(16, 6);
             this.m_gantt_panel.Name = "m_gantt_panel";
             this.m_gantt_panel.Size = new System.Drawing.Size(820, 279);
             this.m_gantt_panel.TabIndex = 7;
             // 
-            // m_resources_pie_chart
+            // tabPage3
             // 
-            this.m_resources_pie_chart.Location = new System.Drawing.Point(12, 862);
-            this.m_resources_pie_chart.Name = "m_resources_pie_chart";
-            this.m_resources_pie_chart.Size = new System.Drawing.Size(524, 228);
-            this.m_resources_pie_chart.TabIndex = 6;
-            this.m_resources_pie_chart.Title = "";
+            this.tabPage3.Controls.Add(this.m_generation_over_time_graph);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(860, 318);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.m_resources_pie_chart);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(860, 318);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // m_generation_over_time_graph
             // 
-            this.m_generation_over_time_graph.Location = new System.Drawing.Point(12, 545);
+            this.m_generation_over_time_graph.Location = new System.Drawing.Point(52, 25);
             this.m_generation_over_time_graph.Name = "m_generation_over_time_graph";
             this.m_generation_over_time_graph.Size = new System.Drawing.Size(524, 277);
             this.m_generation_over_time_graph.TabIndex = 3;
@@ -366,19 +435,57 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_generation_over_time_graph.XAxis = "";
             this.m_generation_over_time_graph.YAxis = "";
             // 
+            // m_resources_pie_chart
+            // 
+            this.m_resources_pie_chart.Location = new System.Drawing.Point(51, 19);
+            this.m_resources_pie_chart.Name = "m_resources_pie_chart";
+            this.m_resources_pie_chart.Size = new System.Drawing.Size(524, 228);
+            this.m_resources_pie_chart.TabIndex = 7;
+            this.m_resources_pie_chart.Title = "";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_export_to_excel_button});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 426);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(923, 25);
+            this.toolStrip1.TabIndex = 7;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // m_export_to_excel_button
+            // 
+            this.m_export_to_excel_button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.m_export_to_excel_button.Image = ((System.Drawing.Image)(resources.GetObject("m_export_to_excel_button.Image")));
+            this.m_export_to_excel_button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.m_export_to_excel_button.Name = "m_export_to_excel_button";
+            this.m_export_to_excel_button.Size = new System.Drawing.Size(23, 22);
+            this.m_export_to_excel_button.Text = "toolStripButton1";
+            this.m_export_to_excel_button.Click += new System.EventHandler(this.m_export_to_excel_button_Click);
+            // 
             // StatisticsMonitor
             // 
-            this.ClientSize = new System.Drawing.Size(923, 418);
+            this.ClientSize = new System.Drawing.Size(923, 451);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.m_bind_navigator);
             this.Name = "StatisticsMonitor";
+            this.Text = "Statistics Monitor";
             ((System.ComponentModel.ISupportInitialize)(this.m_bind_navigator)).EndInit();
             this.m_bind_navigator.ResumeLayout(false);
             this.m_bind_navigator.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -547,6 +654,24 @@ namespace MRCPSP.Gui.StatisticsViewer
                 LoggerFactory.getSimpleLogger().error("StatisticsMonitor:: failed to generate report");
             }
         }
+
+        private void m_export_to_excel_button_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "Excel Files (*.xls) |*.xls";
+            saveFileDialog1.OverwritePrompt = true;
+            saveFileDialog1.InitialDirectory = Application.StartupPath;
+
+            if (!(saveFileDialog1.ShowDialog() == DialogResult.OK))
+            {
+                return;
+           
+            }
+            Console.Out.WriteLine(saveFileDialog1.FileName);
+        }
+
+        
+
+
 
     }
 }

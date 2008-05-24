@@ -118,5 +118,10 @@ namespace MRCPSP.Gui.ProblemCreator
         {
             return m_id;
         }
+
+        public override string ToString()
+        {
+            return Text;
+        }
     }
 }

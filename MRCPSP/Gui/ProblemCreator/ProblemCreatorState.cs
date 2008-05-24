@@ -157,9 +157,14 @@ namespace MRCPSP.Gui.ProblemCreator
                System.Collections.Hashtable all_products = new System.Collections.Hashtable();
                List<Constraint> all_constraints = new List<Constraint>();
 
+               Dictionary<Product, List<Job>> jobs_in_product = new Dictionary<Product,List<Job>>();
                foreach (ProductItem p in m_product_list)
                {
                    all_products[p] = new Product(p.Id, p.Name, p.Size);
+                   jobs_in_product.Add((Product)all_products[p], new List<Job>());
+                   for (int i=0; i < p.Size; i++) {
+                       jobs_in_product[(Product)all_products[p]].Add(new Job(Convert.ToDouble(p.JobsData[1,i].Value), Convert.ToDouble(p.JobsData[2,i].Value)));
+                   }
                }
 
                foreach (StepItem s in m_step_list)
@@ -222,7 +227,7 @@ namespace MRCPSP.Gui.ProblemCreator
                }
             //   step_list.Sort(new StepComparer());
                
-               ApplicManager.Instance.loadProblem(resource_list, modes_in_step,step_list, all_constraints, products_list);        
+               ApplicManager.Instance.loadProblem(resource_list, modes_in_step,step_list, all_constraints, products_list, jobs_in_product);        
            }
 
            internal bool isStepPrecedenceToNewStep(StepItem from_step, StepItem s)

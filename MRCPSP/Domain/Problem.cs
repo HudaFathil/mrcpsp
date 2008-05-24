@@ -17,19 +17,22 @@ namespace MRCPSP.Domain
         private List<Constraint> m_all_constraints;
         private List<Product> m_products_list;
         private Dictionary<Product, List<Step>> m_steps_in_product;
+        private Dictionary<Product, List<Job>> m_jobs_in_product;
         private String m_title = "not implemented";
 
         public Problem( List<Resource> resource_list,
                         Dictionary< Step, List < Mode > > modes_in_step,
                         List<Step> step_list,       
                         List<Constraint> all_constraints,
-                        List<Product> products_list)
+                        List<Product> products_list,
+                        Dictionary<Product, List<Job>> jobs_in_product)
         {
             m_resource_list = resource_list;
             m_modes_in_step = modes_in_step;
             m_step_list = step_list;
             m_all_constraints = all_constraints;
             m_products_list = products_list;
+            m_jobs_in_product = jobs_in_product;
             m_steps_in_product = new Dictionary<Product, List<Step>>();
             for (int i=0; i < m_products_list.Count(); i++)
                 m_steps_in_product.Add(m_products_list[i], new List<Step>());

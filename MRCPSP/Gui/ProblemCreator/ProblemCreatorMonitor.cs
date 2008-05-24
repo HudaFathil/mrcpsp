@@ -846,6 +846,7 @@ namespace MRCPSP.Gui.ProblemCreator
 
         private void m_resource_time_constraint_button_Click(object sender, EventArgs e)
         {
+            m_resource_time_constraints.updateResources();
             m_resource_time_constraints.ShowDialog(new Form());
         }
     }
