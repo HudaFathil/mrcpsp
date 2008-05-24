@@ -6,6 +6,7 @@ using System.Text;
 using MRCPSP.Domain;
 using MRCPSP.CommonTypes;
 using MRCPSP.Logger;
+using MRCPSP.Algorithm;
 
 namespace MRCPSP.Controllers
 {
@@ -15,7 +16,7 @@ namespace MRCPSP.Controllers
         private Problem m_current_problem;
         private ProblemSolverManager m_problem_solver_manager;
         private List<ResultSummary> m_saved_results;
-
+        private Solution m_currentSolution;
 
         private ApplicManager()
         {
@@ -60,6 +61,12 @@ namespace MRCPSP.Controllers
         {
             get { return m_current_problem;  }
             set { m_current_problem = value; }
+        }
+
+        public Solution CurrentSolution
+        {
+            get { return m_currentSolution; }
+            set { m_currentSolution = value; }
         }
 
         public List<ResultSummary> SavedResults

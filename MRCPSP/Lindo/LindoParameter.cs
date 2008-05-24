@@ -7,6 +7,50 @@ using System.Collections;
 
 namespace MRCPSP.Lindo
 {
+   /* enum PARAMETER_TYPE
+    {
+        Y = "Y",
+        X = "X",
+        T = "T",
+        Z = "Z",
+        V = "V"
+    }
+
+    class LindoParameter
+    {
+        private String m_name;
+
+
+
+        public LindoParameter(PARAMETER_TYPE type ,int familiy , int job , int step , int mode, int resource , int task)
+        {
+            m_name = type+ "" +job+ ""+familiy+""+step+""+mode+""+resource+""+task;
+        }
+        public LindoParameter(PARAMETER_TYPE type, int familiy, int job, int step, int mode)
+        {
+            m_name = type + "" + job + "" + familiy + "" + step + "" + mode;
+        }
+        public LindoParameter(PARAMETER_TYPE type, int step, int mode, int resource, int task)
+        {
+            m_name = type + "" + step + "" + mode + "" + resource + "" + task;
+        }
+
+        public LindoParameter(PARAMETER_TYPE type, int resource, int task)
+        {
+            m_name = type + "" + resource + "" + task;
+        }
+
+        public LindoParameter(PARAMETER_TYPE type, int familiy, int job, int step)
+        {
+            m_name = type + "" + job + "" + familiy + "" + step;
+        }
+
+        public String Name
+        {
+            get { return m_name; }
+        }
+    }
+    */
     public enum LINDO_PARAMETER_TYPE
     {
         START = 1 ,
@@ -128,15 +172,16 @@ namespace MRCPSP.Lindo
 
         public double getProcessTime()
         {
-            /*
-            int processTime = 0;
+            
+/*int processTime = 0;
             foreach (Operation op in m_mode.operations)
             {
                 if (op.Rseource.Id == m_resource.Id)
                 {
                     processTime += op.EndTime - op.StartTime;
-                }
-            }*/
+               
+            }
+ * */
             return m_mode.getTotalProcessTime();
         }
 
@@ -177,4 +222,5 @@ namespace MRCPSP.Lindo
             return m_id == other.Id;
         }
     }
+   
 }

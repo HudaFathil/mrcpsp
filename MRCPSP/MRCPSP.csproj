@@ -95,6 +95,13 @@
     <Compile Include="Gui\StatisticsViewer\StatisticsMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Lindo\Constrain\ConstrainNo1.cs" />
+    <Compile Include="Lindo\Constrain\ConstrainNo10.cs" />
+    <Compile Include="Lindo\Constrain\ConstrainNo2.cs" />
+    <Compile Include="Lindo\Constrain\ConstrainNo3.cs" />
+    <Compile Include="Lindo\Constrain\IConstrain.cs" />
+    <Compile Include="Lindo\LindoContainer.cs" />
+    <Compile Include="Lindo\MrcpspVariable.cs" />
     <Compile Include="Lindo\lindo.cs">
       <SubType>Code</SubType>
     </Compile>

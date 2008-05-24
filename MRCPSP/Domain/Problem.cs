@@ -103,6 +103,12 @@ namespace MRCPSP.Domain
             set { m_modes_in_step = value; }
         }
 
+        public Dictionary<Product, List<Job>> JobsInProduct
+        {
+            get { return m_jobs_in_product; }
+            set { m_jobs_in_product = value; }
+        }
+
         public List<Step> Steps
         {
             get { return m_step_list; }

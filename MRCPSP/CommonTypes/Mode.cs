@@ -72,5 +72,11 @@ namespace MRCPSP.CommonTypes
             }
             return max - min;
         }
+
+
+        public override bool Equals(object obj)
+        {
+            return m_id == ((Mode)obj).Id;
+        }
     }
 }

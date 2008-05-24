@@ -6,6 +6,7 @@ using MRCPSP.Logger;
 using MRCPSP.CommonTypes;
 using MRCPSP.Domain;
 using System.Runtime.InteropServices;
+using MRCPSP.Controllers;
 using MRCPSP.Lindo;
 
 namespace MRCPSP.Algorithm.Fitness
@@ -36,14 +37,17 @@ namespace MRCPSP.Algorithm.Fitness
         public override void evalFitness(Solution solution, MRCPSP.Domain.Problem problem)
         {
             LoggerFactory.getSimpleLogger().info("MinimumMakeSpanPolicy::evalFitness");
-            //connectToLindo();
-
+            ApplicManager.Instance.CurrentSolution = solution;
+            
             LindoAPIHandler l1 = new LindoAPIHandler();
+            double results = l1.getResults();
+            /*
             LindoSolution lindoSolution = new LindoSolution(solution,problem);
             double results = l1.getResults(lindoSolution);
             solution.scoreFromLindo = results;
             solution.resultFromLindo = lindoSolution.getResults();
             LoggerFactory.getSimpleLogger().debug("Fitness = " + results);
+             */
             
            
 
