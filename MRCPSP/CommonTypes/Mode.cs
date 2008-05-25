@@ -73,6 +73,33 @@ namespace MRCPSP.CommonTypes
             return max - min;
         }
 
+        public int getTotalProcessTime(Resource r)
+        {
+            if (m_operations_list == null)
+            {
+                return 0;
+            }
+
+            int min = -1;
+            int max = -1;
+
+            foreach (Operation op in m_operations_list)
+            {
+                if (op.Rseource.Equals(r))
+                {
+                    if (op.StartTime < min || min == -1)
+                    {
+                        min = op.StartTime;
+                    }
+                    if (op.EndTime > max)
+                    {
+                        max = op.EndTime;
+                    }
+                }
+
+            }
+            return max - min;
+        }
 
         public override bool Equals(object obj)
         {

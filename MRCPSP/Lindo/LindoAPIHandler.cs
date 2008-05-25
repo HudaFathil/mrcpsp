@@ -9,6 +9,7 @@ using MRCPSP.Lindo.Constrains;
 
 namespace MRCPSP.Lindo
 {
+   
     class LindoAPIHandler
     {
         
@@ -27,15 +28,16 @@ namespace MRCPSP.Lindo
          */ 
         public double getResults ()  {
 
+            LindoContainer.Instance.init();
             IConstrain.createAllConstrains();
-
 			List<int> anRoxList = new List<int>();
 			List<double> adAList = new List<double>();
 			List<int> pnLenColList = new List<int>();
 			List<int> anBegCol_1 = new List<int>();
-
+            String varType = "";
 			foreach (MrcpspVariable mrcpsp in LindoContainer.Instance.Variables.Values)
 			{
+                varType += mrcpsp.Type;
                 mrcpsp.TransferListsToVectors(ref adAList, ref anRoxList, ref pnLenColList);
 			}			
 
@@ -105,7 +107,7 @@ namespace MRCPSP.Lindo
 
             double[] adC = new double[LindoContainer.Instance.Variables.Count]; //new double[] { 20.0, 30.0 , 10.0};
             for (int i = 0; i < LindoContainer.Instance.Variables.Count - 1; i++)
-                adC[i] = 0.0;
+                adC[i] = 1.0;
             adC[LindoContainer.Instance.Variables.Count - 1] = 1.0;
             /* The right-hand sides of the constraints */
             double[] adB = LindoContainer.Instance.RightHandSideValues.ToArray<double>();//new double[] { 120.0, 60.0, 50.0 ,10.0};
@@ -159,20 +161,6 @@ namespace MRCPSP.Lindo
             }
            
 
-            Console.Write("Cons = [");
-            for (int i = 0; i < connames.Length; i++)
-            {
-                Console.Write(connames[i]);
-            }
-            Console.WriteLine("]");
-
-            Console.Write("Vars = [");
-            for (int i = 0; i < varnames.Length; i++)
-            {
-                Console.Write(varnames[i]);
-            }
-            Console.WriteLine("]");
-
                 /* We have now assembled a full description of the model.
                 We pass this information to LSloadLPData with the
                 following call. */
@@ -180,40 +168,40 @@ namespace MRCPSP.Lindo
                     dObjConst, adC, adB, acConTypes, nNZ, anBegCol,
                     pnLenCol, adA, anRowX, pdLower, pdUpper);
             APIErrorCheck(pEnv, nErrorCode);
-
-
+            // Mark all Variables as being Binary Integer	
+            //Console.WriteLine("LindoVarType.ToString()={0}\t\nVarType={1}",LindoVarType,VarType);
+         //   nErrorCode = lindo.LSloadVarType(pModel, varType);
+         //   APIErrorCheck(pEnv, nErrorCode);
+            /*
             nErrorCode = lindo.LSloadNameData(pModel, "MyTitle", "MyObj", null, null,
             null, connames, varnames, null);
             APIErrorCheck(pEnv, nErrorCode);
-
+            */
             /* >>> Step 4 <<< Perform the optimization */
             nErrorCode = lindo.LSoptimize(pModel, lindo.LS_METHOD_PSIMPLEX, ref nSolStatus);
             APIErrorCheck(pEnv, nErrorCode);
 
                 /* >>> Step 5 <<< Retrieve the solution */
                 double[] adX = new double[nVars];
-
+                double[] adY = new double[nCons];
+                double[] dSlack = new double[nVars];
                 /* Get the variable values */
                 nErrorCode = lindo.LSgetPrimalSolution(pModel, adX);
                 APIErrorCheck(pEnv, nErrorCode);
-                double maxSpan = 0;
-                Hashtable varsValues = new Hashtable();
-                for (int i = 0; i < nVars; i++)
+
+                for (int v = 0; v < nVars; v++ )
                 {
-                    varsValues.Add(varnames[i], adX[i]);
-                    Console.WriteLine(varnames[i] + " = " + adX[i]);
-                    if (maxSpan < adX[i])
-                        maxSpan = adX[i];
+                    LindoContainer.Instance.Variables[varnames[v]].FinalValue = adX[v];
                 }
-              //  solution.VariablesResultValues = varsValues;
-                Console.WriteLine("results: {0}", maxSpan);
+                
+                Console.WriteLine("results: {0}", adX[nVars -1]);
 
 
             /* >>> Step 6 <<< Delete the LINDO environment */
             nErrorCode = lindo.LSdeleteModel(ref pModel);
 
             nErrorCode = lindo.LSdeleteEnv(ref pEnv);
-                return maxSpan;
+            return adX[nVars -1];
         }
        }
 }

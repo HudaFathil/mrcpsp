@@ -95,11 +95,15 @@
     <Compile Include="Gui\StatisticsViewer\StatisticsMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Lindo\Constrain\ConstrainNo1.cs" />
-    <Compile Include="Lindo\Constrain\ConstrainNo10.cs" />
-    <Compile Include="Lindo\Constrain\ConstrainNo2.cs" />
-    <Compile Include="Lindo\Constrain\ConstrainNo3.cs" />
-    <Compile Include="Lindo\Constrain\IConstrain.cs" />
+    <Compile Include="Lindo\Constrains\ConstrainNo1.cs" />
+    <Compile Include="Lindo\Constrains\ConstrainNo11A.cs" />
+    <Compile Include="Lindo\Constrains\ConstrainNo11B.cs" />
+    <Compile Include="Lindo\Constrains\ConstrainNo14.cs" />
+    <Compile Include="Lindo\Constrains\ConstrainNo10.cs" />
+    <Compile Include="Lindo\Constrains\ConstrainNo17.cs" />
+    <Compile Include="Lindo\Constrains\ConstrainNo2.cs" />
+    <Compile Include="Lindo\Constrains\ConstrainNo3.cs" />
+    <Compile Include="Lindo\Constrains\IConstrain.cs" />
     <Compile Include="Lindo\LindoContainer.cs" />
     <Compile Include="Lindo\MrcpspVariable.cs" />
     <Compile Include="Lindo\lindo.cs">
@@ -161,6 +165,7 @@
     <Compile Include="Gui\ProblemSolver\ProblemSolverMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Lindo\ResultParameter.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Logger\LoggerFactory.cs" />
@@ -175,6 +180,7 @@
     <Compile Include="Util\CommonFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Gui\pics\bulb.bmp" />
     <None Include="Gui\pics\dna800x600.jpg" />
     <None Include="Gui\pics\arrow_left.GIF" />

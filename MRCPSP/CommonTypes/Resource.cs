@@ -48,6 +48,11 @@ namespace MRCPSP.CommonTypes
             set { m_resource_name = value; }
         }
 
+        public override bool Equals(object obj)
+        {
+            return ((Resource)obj).Id == m_id;
+        }
+
         public override string ToString()
         {
             return m_resource_name;

@@ -41,6 +41,7 @@ namespace MRCPSP.Algorithm.Fitness
             
             LindoAPIHandler l1 = new LindoAPIHandler();
             double results = l1.getResults();
+            solution.scoreFromLindo = results;
             /*
             LindoSolution lindoSolution = new LindoSolution(solution,problem);
             double results = l1.getResults(lindoSolution);

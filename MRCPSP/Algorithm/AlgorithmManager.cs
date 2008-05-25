@@ -68,7 +68,7 @@ namespace MRCPSP.Algorithm
                 for (int j = 0; j < population_size; j++)
                 {
                     m_fitness_function.evalFitness(m_solutions[j], ApplicManager.Instance.CurrentProblem);
-                    forDebugging += m_solutions[j].resultFromLindo+" , ";
+                    forDebugging += m_solutions[j].scoreFromLindo+" , ";
                 }
 
                 List<Solution> childSolutions = m_crossOverFunction.doCrossOver(m_solutions);

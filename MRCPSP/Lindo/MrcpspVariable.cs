@@ -12,13 +12,20 @@ namespace MRCPSP.Lindo
         private String m_type;
         private List<double> m_coefficient;
         private List<int> m_equationLevel;
+        private double m_finalValue;
 
         public MrcpspVariable(String name)
         {
             m_name = name;
-            m_type = "A";
+            m_type = "";
             m_equationLevel = new List<int>();
             m_coefficient = new List<double>();
+        }
+
+        public double FinalValue
+        {
+            get { return m_finalValue; }
+            set { m_finalValue = value; }
         }
 
         public String Type
