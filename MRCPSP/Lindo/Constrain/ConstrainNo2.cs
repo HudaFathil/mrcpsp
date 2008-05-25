@@ -18,7 +18,6 @@ namespace MRCPSP.Lindo.Constrains
 
         public override void createConstrain(Solution sol , Problem prob)
         {
-            int task = 0;
             for (int f = 0; f < prob.Products.Count; f++)
             {
                 for (int j = 0; j < prob.Products[f].Size; j++)
@@ -31,23 +30,27 @@ namespace MRCPSP.Lindo.Constrains
                             if (!LindoContainer.Instance.Variables.ContainsKey("Y" + j + "" + f + "" + s.Id + "" + m.name))
                                 continue;
                             LindoContainer.Instance.Variables["Y" + j + "" + f + "" + s.Id + "" + m.name].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1);
-                            
+                            Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") Y" + j + "" + f + "" + s.Id + "" + m.name);
                             
 
                             for (int r = 0; r <prob.Resources.Count; r++)
                             {
-
-                                if (!LindoContainer.Instance.Variables.ContainsKey("X" + j + "" + f + "" + s.Id + "" + m.name+""+r+""+task))
-                                    continue;
-                                LindoContainer.Instance.Variables["X" + j + "" + f + "" + s.Id + "" + m.name + "" + r + "" + task].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1);
+                                List<int> taskList = LindoContainer.Instance.getTaskListForResource(prob.Resources[r]);
+                                foreach (int task in taskList)
+                                {
+                                    if (!LindoContainer.Instance.Variables.ContainsKey("X" + j + "" + f + "" + s.Id + "" + m.name + "" + r + "" + task))
+                                        continue;
+                                    Console.Write(" - X" + j + "" + f + "" + s.Id + "" + m.name + "" + r + "" + task);
+                                    LindoContainer.Instance.Variables["X" + j + "" + f + "" + s.Id + "" + m.name + "" + r + "" + task].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
+                                }
                             
                             }
+                            Console.WriteLine(" = 0");
                             LindoContainer.Instance.RightHandSideValues.Add(0.0);
                             LindoContainer.Instance.ConstraintsSenses.Add("E");
                             LindoContainer.Instance.ConstrainsCounter++;
 
                         }
-                        task++;
                     }
                 }
             }					

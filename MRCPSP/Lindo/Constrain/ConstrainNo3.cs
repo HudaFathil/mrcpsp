@@ -17,7 +17,6 @@ namespace MRCPSP.Lindo.Constrains
 
         public override void createConstrain(Solution sol, Problem prob)
         {
-            int task = 0;
             for (int f = 0; f < prob.Products.Count; f++)
             {
                 for (int j = 0; j < prob.Products[f].Size; j++)
@@ -30,16 +29,35 @@ namespace MRCPSP.Lindo.Constrains
 
                             for (int r = 0; r < prob.Resources.Count; r++)
                             {
-                                if (!LindoContainer.Instance.Variables.ContainsKey("Y" + s.Id + "" + m.name + "" + r + "" + task))
-                                    continue;
-                                LindoContainer.Instance.Variables["Y" + s.Id + "" + m.name + "" + r + "" + task].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1);
-                                LindoContainer.Instance.RightHandSideValues.Add(1.0);
-                                LindoContainer.Instance.ConstraintsSenses.Add("L");
-                                LindoContainer.Instance.ConstrainsCounter++;
+                                
+                                List<int> taskList = LindoContainer.Instance.getTaskListForResource(prob.Resources[r]);
+                                if (LindoContainer.Instance.Variables.ContainsKey("Y" + s.Id + "" + m.name + "" + r + "" + taskList[0]))
+                                {
+                                    LindoContainer.Instance.Variables["Y" + s.Id + "" + m.name + "" + r + "" + taskList[0]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1);
+                                    LindoContainer.Instance.RightHandSideValues.Add(1.0);
+                                    LindoContainer.Instance.ConstraintsSenses.Add("L");
+                                    LindoContainer.Instance.ConstrainsCounter++;
+                                    Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") Y" + s.Id + "" + m.name + "" + r + "" + taskList[0] + " <= 1");
+                                }
+                                for (int t = 1; t < taskList.Count; t++ ) 
+                                {
+                                        if (!LindoContainer.Instance.Variables.ContainsKey("Y" + s.Id + "" + m.name + "" + r + "" + taskList[t]))
+                                            continue;
+                                        if (!LindoContainer.Instance.Variables.ContainsKey("Y" + s.Id + "" + m.name + "" + r + "" + taskList[t-1]))
+                                            continue;
+                                        LindoContainer.Instance.Variables["Y" + s.Id + "" + m.name + "" + r + "" + taskList[t]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1);
+                                        LindoContainer.Instance.Variables["Y" + s.Id + "" + m.name + "" + r + "" + taskList[t-1]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1);
+                                        Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") Y" + s.Id + "" + m.name + "" + r + "" + taskList[t] + "-Y" + s.Id + "" + m.name + "" + r + "" + taskList[t]+ " <= 0");
+                                        LindoContainer.Instance.RightHandSideValues.Add(0.0);
+                                        LindoContainer.Instance.ConstraintsSenses.Add("L");
+                                        LindoContainer.Instance.ConstrainsCounter++;
+                                }
+                                
+                                        
+                                
                             }
 
                         }
-                        task++;
                     }
                 }
             }

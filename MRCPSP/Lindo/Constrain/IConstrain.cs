@@ -26,6 +26,10 @@ namespace MRCPSP.Lindo.Constrains
             m_constarinList.Add(new ConstrainNo2());
             m_constarinList.Add(new ConstrainNo3());
             m_constarinList.Add(new ConstrainNo10());
+            m_constarinList.Add(new ConstrainNo11A());
+           // m_constarinList.Add(new ConstrainNo11B());
+            m_constarinList.Add(new ConstrainNo14());
+            m_constarinList.Add(new ConstrainNo17());
         }
 
         public static void createAllConstrains () 

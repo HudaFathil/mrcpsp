@@ -25,17 +25,18 @@ namespace MRCPSP.Lindo.Constrains
                 {
                     foreach (Step s in prob.Steps) 
                     {
-                        
+                        Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") ");
                         foreach (Mode m in prob.ModesInStep[s])
                         {
                             if (! LindoContainer.Instance.Variables.ContainsKey("Y" + j + "" + f + "" + s.Id + "" + m.name))
                                 continue;
-                            LindoContainer.Instance.Variables["Y" + f + "" + j + "" + s.Id + "" + m.name].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                            LindoContainer.Instance.RightHandSideValues.Add(1.0);
-                            LindoContainer.Instance.ConstraintsSenses.Add("E");
-                            LindoContainer.Instance.ConstrainsCounter++;
-
+                            Console.Write("+ Y" + j + "" + f + "" + s.Id + "" + m.name);
+                            LindoContainer.Instance.Variables["Y" + j + "" + f + "" + s.Id + "" + m.name].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                         }
+                        Console.WriteLine(" = 1");
+                        LindoContainer.Instance.RightHandSideValues.Add(1.0);
+                        LindoContainer.Instance.ConstraintsSenses.Add("E");
+                        LindoContainer.Instance.ConstrainsCounter++;
                     }
                 }
             }
