@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.Drawing;
-
 using System.Collections;
+using System.Drawing.Imaging;
 
 using ZedGraph;
 
@@ -64,5 +63,9 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             set { m_graph_pane.Title.Text = value; }
         }
 
+        public void saveImage(string filename)
+        {
+            m_graph_pane.GetImage().Save(filename,ImageFormat.Png);
+        }
     }
 }

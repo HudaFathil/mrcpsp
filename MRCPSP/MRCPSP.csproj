@@ -31,6 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="nunit.framework, Version=2.4.7.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
@@ -80,6 +82,7 @@
     <Compile Include="Gui\ProblemCreator\ResourceTimeConstraint.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Gui\StatisticsViewer\ExcelParser.cs" />
     <Compile Include="Gui\StatisticsViewer\Graph\GanttChart.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -177,6 +180,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Tests\OnePointCrossOverTest.cs" />
+    <Compile Include="Tests\ProblemFactory.cs" />
     <Compile Include="Util\CommonFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +199,7 @@
     <None Include="Gui\pics\graphs.bmp" />
     <None Include="Gui\pics\neurons.jpg" />
     <None Include="Gui\pics\neurons_color.jpg" />
+    <None Include="Gui\pics\excel_icon.bmp" />
     <Content Include="Gui\pics\new_arrow_pic.bmp" />
     <Content Include="Gui\pics\new_problem.bmp" />
     <Content Include="Gui\pics\new_step_pic.bmp" />
@@ -263,6 +269,24 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

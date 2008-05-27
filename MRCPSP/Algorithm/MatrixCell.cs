@@ -54,5 +54,12 @@ namespace MRCPSP.Algorithm
             jobId = toCopy.jobId;
             step = toCopy.step;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() != typeof(MatrixCell))
+                return false;
+            return ((this.jobId == ((MatrixCell)obj).jobId) && (this.step.Id == ((MatrixCell)obj).step.Id) && (this.product.Id == ((MatrixCell)obj).product.Id));
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace MRCPSP.Algorithm.CrossOver
         private Random m_random;
         private int m_last_index_found_child1;
         private int m_last_index_found_child2;
+        private int m_crossPoint;
 
         public OnePointCrossOver()
         {
@@ -24,6 +25,7 @@ namespace MRCPSP.Algorithm.CrossOver
         {
             List<KeyValuePair<Solution, Solution>> listOfPairs = createPairsForCrossOver(solutions);
             List<Solution> childrensAfterCrossover = new List<Solution>();
+            m_crossPoint = m_random.Next(ApplicManager.Instance.CurrentProblem.getTotalDistributionSize()-1) + 1;
             foreach (KeyValuePair<Solution, Solution> p in listOfPairs)
             {
                 KeyValuePair<Solution, Solution> a = performBiCrossing(p.Key, p.Value);
@@ -36,11 +38,10 @@ namespace MRCPSP.Algorithm.CrossOver
         private KeyValuePair<Solution, Solution> performBiCrossing(Solution sol1, Solution sol2) {
             Solution child1 = new Solution();
             Solution child2 = new Solution();
-            ApplicManager.Instance.CurrentProblem.getTotalDistributionSize();           
-            int crossPoint = m_random.Next(ApplicManager.Instance.CurrentProblem.getTotalDistributionSize()-1) + 1;
+            ApplicManager.Instance.CurrentProblem.getTotalDistributionSize();                   
             m_last_index_found_child1 = 0;
             m_last_index_found_child2 = 0;
-            for (int i = 0; i < crossPoint; i++)
+            for (int i = 0; i < m_crossPoint; i++)
             {
                 child1.SelectedModeList[i] = sol1.SelectedModeList[i];
                 child2.SelectedModeList[i] = sol2.SelectedModeList[i];
@@ -50,7 +51,7 @@ namespace MRCPSP.Algorithm.CrossOver
                     child2.DistributionMatrix[j, i] = new MatrixCell(sol2.DistributionMatrix[j, i]);
                 }
             }
-            for (int i = crossPoint; i < ApplicManager.Instance.CurrentProblem.getTotalDistributionSize(); i++)
+            for (int i = m_crossPoint; i < ApplicManager.Instance.CurrentProblem.getTotalDistributionSize(); i++)
             {
                 child2.SelectedModeList[i] = sol1.SelectedModeList[i];
                 child1.SelectedModeList[i] = sol2.SelectedModeList[i];
@@ -87,6 +88,12 @@ namespace MRCPSP.Algorithm.CrossOver
             }
             
             return null;
+        }
+
+        public int CrossPoint
+        {
+            get { return m_crossPoint; }
+            set { m_crossPoint = value; }
         }
         /*
         private int getNextValueForChild(MatrixCell[] currentArray, int valueInParentMatrix)

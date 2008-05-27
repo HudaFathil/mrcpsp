@@ -137,6 +137,13 @@ namespace MRCPSP.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap excel_icon {
+            get {
+                object obj = ResourceManager.GetObject("excel_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap graphs {
             get {
                 object obj = ResourceManager.GetObject("graphs", resourceCulture);

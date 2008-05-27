@@ -116,7 +116,6 @@ namespace MRCPSP.Gui.ProblemCreator
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.m_center_panel = new System.Windows.Forms.Panel();
-            this.m_canvas_pic = new MRCPSP.Gui.ProblemCreator.CanvasEditor();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.m_controls_strip = new System.Windows.Forms.ToolStrip();
@@ -124,6 +123,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_new_constraint_button = new System.Windows.Forms.ToolStripButton();
             this.m_eraser_button = new System.Windows.Forms.ToolStripButton();
             this.m_pointer_button = new System.Windows.Forms.ToolStripButton();
+            this.m_canvas_pic = new MRCPSP.Gui.ProblemCreator.CanvasEditor();
             this.panel1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -142,10 +142,10 @@ namespace MRCPSP.Gui.ProblemCreator
             ((System.ComponentModel.ISupportInitialize)(this.m_new_product_size_sb)).BeginInit();
             this.panel3.SuspendLayout();
             this.m_center_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
             this.panel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.m_controls_strip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
             this.SuspendLayout();
             // 
             // m_machine_list
@@ -159,6 +159,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Controls.Add(this.m_resource_time_constraint_button);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -170,6 +171,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(5, 5);
             this.splitContainer1.Name = "splitContainer1";
@@ -177,6 +179,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
             // 
             // splitContainer1.Panel2
@@ -256,6 +259,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.groupBox8);
             this.panel2.Controls.Add(this.groupBox7);
             this.panel2.Controls.Add(this.groupBox6);
@@ -538,6 +542,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.label2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
@@ -547,6 +552,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // label2
             // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
@@ -560,6 +566,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             // m_center_panel
             // 
+            this.m_center_panel.BackColor = System.Drawing.Color.Transparent;
             this.m_center_panel.Controls.Add(this.m_canvas_pic);
             this.m_center_panel.Controls.Add(this.panel5);
             this.m_center_panel.Controls.Add(this.panel1);
@@ -569,20 +576,9 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_center_panel.Size = new System.Drawing.Size(851, 283);
             this.m_center_panel.TabIndex = 4;
             // 
-            // m_canvas_pic
-            // 
-            this.m_canvas_pic.BackColor = System.Drawing.Color.White;
-            this.m_canvas_pic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.m_canvas_pic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.m_canvas_pic.Location = new System.Drawing.Point(85, 0);
-            this.m_canvas_pic.monitor_id = 0;
-            this.m_canvas_pic.Name = "m_canvas_pic";
-            this.m_canvas_pic.Size = new System.Drawing.Size(611, 283);
-            this.m_canvas_pic.TabIndex = 5;
-            this.m_canvas_pic.TabStop = false;
-            // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.Color.Transparent;
             this.panel5.Controls.Add(this.groupBox1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 0);
@@ -671,6 +667,18 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_pointer_button.ToolTipText = "Select";
             this.m_pointer_button.Click += new System.EventHandler(this.m_pointer_button_Click);
             // 
+            // m_canvas_pic
+            // 
+            this.m_canvas_pic.BackColor = System.Drawing.Color.White;
+            this.m_canvas_pic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.m_canvas_pic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_canvas_pic.Location = new System.Drawing.Point(85, 0);
+            this.m_canvas_pic.monitor_id = 0;
+            this.m_canvas_pic.Name = "m_canvas_pic";
+            this.m_canvas_pic.Size = new System.Drawing.Size(611, 283);
+            this.m_canvas_pic.TabIndex = 5;
+            this.m_canvas_pic.TabStop = false;
+            // 
             // ProblemCreatorMonitor
             // 
             this.ClientSize = new System.Drawing.Size(851, 471);
@@ -701,12 +709,12 @@ namespace MRCPSP.Gui.ProblemCreator
             ((System.ComponentModel.ISupportInitialize)(this.m_new_product_size_sb)).EndInit();
             this.panel3.ResumeLayout(false);
             this.m_center_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
             this.panel5.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.m_controls_strip.ResumeLayout(false);
             this.m_controls_strip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -34,14 +34,12 @@ namespace MRCPSP.Gui.StatisticsViewer
         private ToolStripButton bindingNavigatorMoveNextItem;
         private ToolStripButton bindingNavigatorMoveLastItem;
         private ToolStripSeparator bindingNavigatorSeparator2;
-        private MRCPSP.Gui.StatisticsViewer.Graph.XYGraph m_generation_over_time_graph;
         private System.Windows.Forms.Label label1;
         private GroupBox groupBox1;
         private System.Windows.Forms.Label m_problem_title_lbl;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label m_first_gen_lbl;
         private System.Windows.Forms.Label label3;
-        private Panel panel1;
         private System.Windows.Forms.Label m_selection_lbl;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label m_crossover_lbl;
@@ -52,12 +50,16 @@ namespace MRCPSP.Gui.StatisticsViewer
         private TabPage tabPage2;
         private TabPage tabPage3;
         private TabPage tabPage4;
-        private MRCPSP.Gui.StatisticsViewer.Graph.PieGraph m_resources_pie_chart;
-        private ToolStrip toolStrip1;
-        private ToolStripButton m_export_to_excel_button;
         private SaveFileDialog saveFileDialog1;
 
+        private ResultSummary m_current_summary;
+
         private MRCPSP.Gui.StatisticsViewer.Graph.GanttChart m_resources_gantt;
+        private MRCPSP.Gui.StatisticsViewer.Graph.PieGraph m_resources_pie_chart;
+        private Panel panel1;
+        private Panel panel2;
+        private Button m_export_to_excel_button;
+        private MRCPSP.Gui.StatisticsViewer.Graph.XYGraph m_generation_over_time_graph;
 
         public StatisticsMonitor()
         {
@@ -99,28 +101,28 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_problem_title_lbl = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.m_gantt_panel = new System.Windows.Forms.Panel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.m_export_to_excel_button = new System.Windows.Forms.Button();
             this.m_generation_over_time_graph = new MRCPSP.Gui.StatisticsViewer.Graph.XYGraph();
             this.m_resources_pie_chart = new MRCPSP.Gui.StatisticsViewer.Graph.PieGraph();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.m_export_to_excel_button = new System.Windows.Forms.ToolStripButton();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.m_bind_navigator)).BeginInit();
             this.m_bind_navigator.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_bind_navigator
@@ -351,26 +353,17 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.label2.TabIndex = 0;
             this.label2.Text = "Problem Title:";
             // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(923, 426);
-            this.panel1.TabIndex = 6;
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(12, 18);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(868, 344);
+            this.tabControl1.Size = new System.Drawing.Size(923, 426);
             this.tabControl1.TabIndex = 9;
             // 
             // tabPage1
@@ -381,7 +374,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(860, 318);
+            this.tabPage1.Size = new System.Drawing.Size(915, 400);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             // 
@@ -391,7 +384,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(860, 318);
+            this.tabPage2.Size = new System.Drawing.Size(915, 400);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -409,7 +402,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(860, 318);
+            this.tabPage3.Size = new System.Drawing.Size(915, 400);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -420,10 +413,43 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(860, 318);
+            this.tabPage4.Size = new System.Drawing.Size(915, 400);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.tabControl1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(923, 426);
+            this.panel1.TabIndex = 6;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.m_export_to_excel_button);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 368);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(923, 83);
+            this.panel2.TabIndex = 10;
+            // 
+            // m_export_to_excel_button
+            // 
+            this.m_export_to_excel_button.FlatAppearance.BorderSize = 3;
+            this.m_export_to_excel_button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.m_export_to_excel_button.Image = global::MRCPSP.Properties.Resources.excel_icon;
+            this.m_export_to_excel_button.Location = new System.Drawing.Point(22, 14);
+            this.m_export_to_excel_button.Name = "m_export_to_excel_button";
+            this.m_export_to_excel_button.Size = new System.Drawing.Size(75, 56);
+            this.m_export_to_excel_button.TabIndex = 0;
+            this.m_export_to_excel_button.UseVisualStyleBackColor = true;
+            this.m_export_to_excel_button.Click += new System.EventHandler(this.m_expor_to_excel_button_Click);
             // 
             // m_generation_over_time_graph
             // 
@@ -443,31 +469,10 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_resources_pie_chart.TabIndex = 7;
             this.m_resources_pie_chart.Title = "";
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.m_export_to_excel_button});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 426);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(923, 25);
-            this.toolStrip1.TabIndex = 7;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // m_export_to_excel_button
-            // 
-            this.m_export_to_excel_button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_export_to_excel_button.Image = ((System.Drawing.Image)(resources.GetObject("m_export_to_excel_button.Image")));
-            this.m_export_to_excel_button.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.m_export_to_excel_button.Name = "m_export_to_excel_button";
-            this.m_export_to_excel_button.Size = new System.Drawing.Size(23, 22);
-            this.m_export_to_excel_button.Text = "toolStripButton1";
-            this.m_export_to_excel_button.Click += new System.EventHandler(this.m_export_to_excel_button_Click);
-            // 
             // StatisticsMonitor
             // 
             this.ClientSize = new System.Drawing.Size(923, 451);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.m_bind_navigator);
             this.Name = "StatisticsMonitor";
@@ -477,15 +482,14 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_bind_navigator.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -531,8 +535,8 @@ namespace MRCPSP.Gui.StatisticsViewer
             try
             {
                 int report_index = Convert.ToInt32(bindingNavigatorPositionItem.Text);
-                ResultSummary summary = ApplicManager.Instance.SavedResults[report_index - 1];
-                updateReport(summary);
+                m_current_summary = ApplicManager.Instance.SavedResults[report_index - 1];
+                updateReport();
             }
             catch (Exception)
             {
@@ -540,20 +544,20 @@ namespace MRCPSP.Gui.StatisticsViewer
             }
         }
 
-        private void updateGeneralParams(ResultSummary summary)
+        private void updateGeneralParams()
         {
-            m_problem_title_lbl.Text = summary.Title;
-            m_first_gen_lbl.Text = summary.GeneratePopulationType;
-            m_selection_lbl.Text = summary.SelectionType;
-            m_crossover_lbl.Text = summary.CrossoverType;
+            m_problem_title_lbl.Text = m_current_summary.Title;
+            m_first_gen_lbl.Text = m_current_summary.GeneratePopulationType;
+            m_selection_lbl.Text = m_current_summary.SelectionType;
+            m_crossover_lbl.Text = m_current_summary.CrossoverType;
         }
 
-        private void updateGenerationOverTime(ResultSummary summary)
+        private void updateGenerationOverTime()
         {
             PointPairList list = new PointPairList();
-            for (int i = 0; i < summary.BestSolutions.Count; i++)
+            for (int i = 0; i < m_current_summary.BestSolutions.Count; i++)
             {
-                list.Add(i, summary.BestSolutions[i].scoreFromLindo);
+                list.Add(i, m_current_summary.BestSolutions[i].scoreFromLindo);
             }
             m_generation_over_time_graph.setGraphData(list, "solution");
             m_generation_over_time_graph.XAxis = "Generation Number";
@@ -562,14 +566,14 @@ namespace MRCPSP.Gui.StatisticsViewer
             m_generation_over_time_graph.Refresh();
         }
 
-        private void updateResourcesInPie(ResultSummary summary)
+        private void updateResourcesInPie()
         {
          
-            m_resources_pie_chart.setPieData(summary);
+            m_resources_pie_chart.setPieData(m_current_summary);
             m_resources_pie_chart.Refresh();
         }
 
-        private void updateResourcesInGantt(ResultSummary summary)
+        private void updateResourcesInGantt()
         {
             if (m_resources_gantt != null)
                 m_resources_gantt.Dispose();
@@ -581,7 +585,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_resources_gantt.Title = "";
             this.m_gantt_panel.Controls.Add(this.m_resources_gantt);
           
-            m_resources_gantt.setGanttData(summary);
+            m_resources_gantt.setGanttData(m_current_summary);
             /*
             m_resources_gantt.Refresh();
             m_resources_gantt.setGanttData2(summary);*/
@@ -589,12 +593,12 @@ namespace MRCPSP.Gui.StatisticsViewer
             m_resources_gantt.Refresh();
         }
 
-        private void updateReport(ResultSummary summary)
+        private void updateReport()
         {
-            updateGeneralParams(summary);
-            updateGenerationOverTime(summary);
-            updateResourcesInPie(summary);
-            updateResourcesInGantt(summary);
+            updateGeneralParams();
+            updateGenerationOverTime();
+            updateResourcesInPie();
+            updateResourcesInGantt();
         }
 
         private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
@@ -655,7 +659,8 @@ namespace MRCPSP.Gui.StatisticsViewer
             }
         }
 
-        private void m_export_to_excel_button_Click(object sender, EventArgs e)
+   
+        private void m_expor_to_excel_button_Click(object sender, EventArgs e)
         {
             saveFileDialog1.Filter = "Excel Files (*.xls) |*.xls";
             saveFileDialog1.OverwritePrompt = true;
@@ -664,9 +669,15 @@ namespace MRCPSP.Gui.StatisticsViewer
             if (!(saveFileDialog1.ShowDialog() == DialogResult.OK))
             {
                 return;
-           
+
             }
-            Console.Out.WriteLine(saveFileDialog1.FileName);
+            /*
+            if (! saveFileDialog1.FileName.EndsWith(".xlsx"))
+                saveFileDialog1.FileName = saveFileDialog1.FileName + ".xlsx";
+             * */
+            ExcelParser excel = new ExcelParser(saveFileDialog1.FileName, m_current_summary);
+            //m_resources_gantt.saveImage(Application.StartupPath + "gantt.png");   
+
         }
 
         
