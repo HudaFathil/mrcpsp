@@ -32,9 +32,9 @@ namespace MRCPSP.Lindo.Constrains
                         LindoContainer.Instance.Variables["T" + j + "" + f + "" + s.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                         foreach (Mode m in prob.ModesInStep[s])
                         {
-                            if (!LindoContainer.Instance.Variables.ContainsKey("Y" + j + "" + f + "" + s.Id + "" + m.name))
+                            if (!LindoContainer.Instance.Variables.ContainsKey("Y" + j + "" + f + "" + s.Id + "" + m.name+LindoContainer.YjfimType))
                                 continue;
-                            LindoContainer.Instance.Variables["Y" + j + "" + f + "" + s.Id + "" + m.name].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, m.getTotalProcessTime());
+                            LindoContainer.Instance.Variables["Y" + j + "" + f + "" + s.Id + "" + m.name+LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, m.getTotalProcessTime());
                         }
 
                     }

@@ -178,7 +178,7 @@ namespace MRCPSP.Lindo
             APIErrorCheck(pEnv, nErrorCode);
             */
             /* >>> Step 4 <<< Perform the optimization */
-            nErrorCode = lindo.LSoptimize(pModel, lindo.LS_METHOD_PSIMPLEX, ref nSolStatus);
+            nErrorCode = lindo.LSoptimize(pModel, lindo.LS_METHOD_FREE, ref nSolStatus);
             APIErrorCheck(pEnv, nErrorCode);
 
                 /* >>> Step 5 <<< Retrieve the solution */

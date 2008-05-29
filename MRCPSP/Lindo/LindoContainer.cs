@@ -17,9 +17,11 @@ namespace MRCPSP.Lindo
         private static LindoContainer m_instance;
         List<String> m_constraintsSenses;
         private List<double> m_rightHandSideValues;
-        private Dictionary<Resource,List<int>> m_taskList;
         private int constrainsCounter = 0;
         private Dictionary<int, List<Step>> m_finishSteps;
+        public static String YjfimType = "A";
+        public static String YimrlType = "B";
+        public int N = 100000;
 
         private LindoContainer()
         {
@@ -29,7 +31,6 @@ namespace MRCPSP.Lindo
         {
             Problem prob = ApplicManager.Instance.CurrentProblem;
             Solution sol = ApplicManager.Instance.CurrentSolution;
-            m_taskList = new Dictionary<Resource, List<int>>();
             m_variables = new Dictionary<String, MrcpspVariable>();
             m_rightHandSideValues = new List<double>();
             m_constraintsSenses = new List<String>();
@@ -43,7 +44,7 @@ namespace MRCPSP.Lindo
                     bool finishFlag = true;
                     foreach (Step s2 in prob.StepsInProduct[prob.Products[f]])
                     {
-                        if (!s1.Equals(s2) && prob.isStepSubsequentToStep(prob.Products[f],s1,s2))
+                        if (!s1.Equals(s2) && prob.isStepSubsequentToStep(prob.Products[f], s1, s2))
                             finishFlag = false;
                     }
                     if (finishFlag)
@@ -52,56 +53,70 @@ namespace MRCPSP.Lindo
             }
 
             constrainsCounter = 0;
-            int counter = 0;
-             for (int f = 0; f < prob.Products.Count; f++)
+
+            foreach (Step s in prob.Steps)
             {
-                for (int j = 0; j < prob.Products[f].Size; j++)
+
+                for (int f = 0; f < prob.Products.Count; f++)
                 {
-                    foreach (Step s in prob.StepsInProduct[prob.Products[f]]) 
+                    for (int j = 0; j < prob.Products[f].Size; j++)
                     {
                         foreach (Mode m in prob.ModesInStep[s])
                         {
-                            if (sol.SelectedModeList[counter] == m.name)
+                            MrcpspVariable Yjfim = new MrcpspVariable("Y" + j + "" + f + "" + s.Id + "" + m.name + YjfimType);
+                            Yjfim.Type = "B";
+                            m_variables.Add(Yjfim.Name, Yjfim);
+                            for (int r = 0; r < prob.getNumberOfResources(); r++)
                             {
-                                MrcpspVariable Yjfim = new MrcpspVariable("Y" + j + "" + f + "" + s.Id + "" + m.name);
-                                Yjfim.Type = "B";
-                                m_variables.Add(Yjfim.Name, Yjfim);
-                               
-                                for (int r = 0 ; r<prob.getNumberOfResources(); r++) {
-                                    if (!m_taskList.ContainsKey(prob.Resources[r]))
-                                        m_taskList.Add(prob.Resources[r], new List<int>());
-                                    m_taskList[prob.Resources[r]].Add(counter);
-                                    MrcpspVariable Xjfimrl = new MrcpspVariable("X" + j + "" + f + "" + s.Id + "" + m.name+""+r+""+counter);
+                                foreach (int task in sol.getTaskListForResource(r, prob.Resources[r]))
+                                {
+                                    MrcpspVariable Xjfimrl = new MrcpspVariable("X" + j + "" + f + "" + s.Id + "" + m.name + "" + r + "" + task);
                                     Xjfimrl.Type = "B";
                                     m_variables.Add(Xjfimrl.Name, Xjfimrl);
-                                    MrcpspVariable Yimrl = new MrcpspVariable("Y" +s.Id + "" + m.name+""+r+""+counter);
-                                    Yimrl.Type = "B";
-                                    m_variables.Add(Yimrl.Name, Yimrl);
-                                    MrcpspVariable Trl = new MrcpspVariable("T" + r + "" + counter);
-                                    Trl.Type = "C";
-                                    m_variables.Add(Trl.Name, Trl);
-                                   /* MrcpspVariable Zrl = new MrcpspVariable("Z" + r + "" + counter);
-                                    m_variables.Add(Zrl.Name, Zrl);
-                                    MrcpspVariable Vrl = new MrcpspVariable("V" + r + "" + counter);
-                                    m_variables.Add(Vrl.Name, Vrl);
-                                    */
+
                                 }
-                                MrcpspVariable Tjfi = new MrcpspVariable("T" + j+""+f + "" + s.Id);
-                                Tjfi.Type = "C";
-                                m_variables.Add(Tjfi.Name, Tjfi);
-                                
                             }
-                            
                         }
-                        counter++;
+                        MrcpspVariable Tjfi = new MrcpspVariable("T" + j + "" + f + "" + s.Id);
+                        Tjfi.Type = "C";
+                        m_variables.Add(Tjfi.Name, Tjfi);
                     }
                 }
-             }
-             MrcpspVariable F = new MrcpspVariable("F");
-             F.Type = "C";
-             m_variables.Add(F.Name, F);
-          
+                for (int r = 0; r < prob.getNumberOfResources(); r++)
+                {
+                    foreach (Mode m in prob.ModesInStep[s])
+                    {
+                        foreach (int task in sol.getTaskListForResource(r, prob.Resources[r]))
+                        {
+                            MrcpspVariable Yimrl = new MrcpspVariable("Y" + s.Id + "" + m.name + "" + r + "" + task + YimrlType);
+                            Yimrl.Type = "B";
+                            m_variables.Add(Yimrl.Name, Yimrl);
+                        }
+                    }
+                }
+            }
+            for (int r = 0; r < prob.getNumberOfResources(); r++)
+            {
+
+                foreach (int task in sol.getTaskListForResource(r, prob.Resources[r]))
+                {
+                    MrcpspVariable Trl = new MrcpspVariable("T" + r + "" + task);
+                    Trl.Type = "C";
+                    m_variables.Add(Trl.Name, Trl);
+                    /* MrcpspVariable Zrl = new MrcpspVariable("Z" + r + "" + counter);
+                     m_variables.Add(Zrl.Name, Zrl);
+                     MrcpspVariable Vrl = new MrcpspVariable("V" + r + "" + counter);
+                     m_variables.Add(Vrl.Name, Vrl);
+                     */
+                }
+            }
             
+            
+            MrcpspVariable F = new MrcpspVariable("F");
+            F.Type = "C";
+            m_variables.Add(F.Name, F);
+
+
         }
 
         public List<Step> getFinishSteps(int familiy)
@@ -109,21 +124,29 @@ namespace MRCPSP.Lindo
             return m_finishSteps[familiy];
         }
 
-        public int getPreviousTask(Resource resource , int task)
-        {
-            if (task ==0)
-                return -1;
-            return m_taskList[resource][task - 1];
-        }
-
-        public List<int> getTaskListForResource(Resource r)
-        {
-            return m_taskList[r];
-        }
+      
 
         public List<double> RightHandSideValues
         {
             get { return m_rightHandSideValues; }
+        }
+
+        public List<Resource> getResourceNeededInAllStepModes(Step s)
+        {
+            List<Resource> rList = new List<Resource>();
+            List<Mode> mList = ApplicManager.Instance.CurrentProblem.ModesInStep[s];
+            foreach (Resource r in ApplicManager.Instance.CurrentProblem.Resources)
+            {
+                bool toAdd = true;
+                foreach (Mode m in mList)
+                {
+                    if (!m.isResourceUsed(r))
+                        toAdd = false;
+                }
+                if (toAdd)
+                    rList.Add(r);
+            }
+            return rList;
         }
 
         public List<String> ConstraintsSenses

@@ -60,6 +60,88 @@ namespace MRCPSP.Algorithm
             }
         }
 
+        public int getSelectedMode(Product f, Step s, int j)
+        {
+            for (int r = 0; r < m_distribution_matrix.GetLength(0); r++)
+            {
+                for (int t = 0; t < m_distribution_matrix.GetLength(1); t++)
+                {
+                    if (m_distribution_matrix[r, t].jobId == j && m_distribution_matrix[r, t].product.Equals(f) &&
+                        m_distribution_matrix[r, t].step.Equals(s))
+                        return m_selected_mode_list[t];
+                }
+            }
+            return -1;
+        }
+
+        public List<int> getTaskListForResource(int rIndex, Resource r) 
+        {
+            List<int> taskList = new List<int>();
+
+            for (int c = 0; c < m_distribution_matrix.GetLength(1); c++ )
+            {
+                MatrixCell cell = m_distribution_matrix[rIndex ,  c];
+                bool addTask = false;
+                foreach (Mode m in ApplicManager.Instance.CurrentProblem.ModesInStep[cell.step])
+                {
+                    if (m.isResourceUsed(r))
+                        addTask = true;
+                }
+                if (addTask)
+                    taskList.Add(c);
+            }
+            return taskList;
+
+        }
+
+        public int getTaskNumber(int rIndex , Resource r , Step s, Product p, int j)
+        {
+            for (int c = 0; c < m_distribution_matrix.GetLength(1); c++)
+            {
+                MatrixCell cell = m_distribution_matrix[rIndex, c];
+                bool addTask = false;
+                foreach (Mode m in ApplicManager.Instance.CurrentProblem.ModesInStep[cell.step])
+                {
+                    if (m.isResourceUsed(r) && cell.step.Equals(s) && cell.product.Equals(p) && cell.jobId == j)
+                        return c;
+                }
+            }
+            return -1;
+        }
+
+        public int getTaskNumber(int rIndex, Resource r, Step s)
+        {
+            for (int c = 0; c < m_distribution_matrix.GetLength(1); c++)
+            {
+                MatrixCell cell = m_distribution_matrix[rIndex, c];
+                bool addTask = false;
+                foreach (Mode m in ApplicManager.Instance.CurrentProblem.ModesInStep[cell.step])
+                {
+                    if (m.isResourceUsed(r) && cell.step.Equals(s))
+                        return c;
+                }
+            }
+            return -1;
+        }
+
+
+        public List<Step> getStepsInResource(int rIndex, Resource r)
+        {
+            List<Step> sList = new List<Step>();
+            for (int c = 0; c < m_distribution_matrix.GetLength(1); c++)
+            {
+                MatrixCell cell = m_distribution_matrix[rIndex, c];
+                foreach (Mode m in ApplicManager.Instance.CurrentProblem.ModesInStep[cell.step]) 
+                {
+                    if (m.isResourceUsed(r) && !sList.Contains(cell.step))
+                        sList.Add(cell.step);
+                }
+            }
+            return sList;
+        }
+
+
+
         public Dictionary<Resource, List<KeyValuePair<LindoParameter, LindoParameter>>> resultFromLindo
         {
             get { return m_results; }

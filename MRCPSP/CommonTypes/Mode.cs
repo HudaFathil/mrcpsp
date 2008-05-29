@@ -11,6 +11,7 @@ namespace MRCPSP.CommonTypes
         private static int id_counter = 1;
         private int m_id;
         private int m_name;
+        private Step m_step;
 
         public Mode()
         {
@@ -33,6 +34,12 @@ namespace MRCPSP.CommonTypes
         public int Id
         {
             get { return m_id; }
+        }
+
+        public Step BelongToStep
+        {
+            get { return m_step; }
+            set { m_step = value; }
         }
 
         public int name
@@ -99,6 +106,28 @@ namespace MRCPSP.CommonTypes
 
             }
             return max - min;
+        }
+
+        public bool isResourceUsed(Resource r)
+        {
+            foreach (Operation op in m_operations_list)
+            {
+                if (op.Rseource.Equals(r))
+                    return true;
+            }
+            return false;
+        }
+
+
+        public double startUsingResourceTime(Resource r)
+        {
+            int startTime = -1;
+            foreach (Operation op in m_operations_list)
+            {
+                if (op.Rseource.Equals(r) && (startTime == -1 || startTime > op.StartTime)) 
+                    startTime = op.StartTime;
+            }
+            return startTime;
         }
 
         public override bool Equals(object obj)

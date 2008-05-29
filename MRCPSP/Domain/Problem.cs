@@ -29,6 +29,13 @@ namespace MRCPSP.Domain
         {
             m_resource_list = resource_list;
             m_modes_in_step = modes_in_step;
+            foreach (Step s in modes_in_step.Keys)
+            {
+                foreach (Mode m in modes_in_step[s])
+                {
+                    m.BelongToStep = s;
+                }
+            }
             m_step_list = step_list;
             m_all_constraints = all_constraints;
             m_products_list = products_list;
@@ -241,6 +248,20 @@ namespace MRCPSP.Domain
                     return true;
             }
             return false;
+        }
+
+        public List<Step> getStepInResource(Resource r)
+        {
+            List<Step> sList = new List<Step>();
+            foreach (Step s in m_step_list) {
+                foreach (Mode m in ModesInStep[s])
+                {
+                    if (m.isResourceUsed(r) && !sList.Contains(s))
+                        sList.Add(s);
+                        
+                }
+            }
+            return sList;
         }
 
         public String Title

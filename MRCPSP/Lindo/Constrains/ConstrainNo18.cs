@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using MRCPSP.Domain;
+using MRCPSP.Algorithm;
+using MRCPSP.CommonTypes;
+
+namespace MRCPSP.Lindo.Constrains
+{
+    class ConstrainNo18 : IConstrain
+    {
+          public ConstrainNo18()
+            : base()
+        {
+        } 
+
+        public override void createConstrain(Solution sol, Problem prob)
+        {
+           
+            for (int f = 0; f < prob.Products.Count; f++)
+            {
+               // int j = prob.Products[f].Size - 1;
+                for (int j = 0; j < prob.Products[f].Size ; j++) {
+                    foreach (Step s in LindoContainer.Instance.getFinishSteps(f))
+                    {
+                        LindoContainer.Instance.Variables["F"].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                        Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") F");
+                        if (!LindoContainer.Instance.Variables.ContainsKey("T" + j + "" + f + "" + s.Id))
+                            continue;
+                        Console.Write(" -T" + j + "" + f + "" + s.Id);
+                        LindoContainer.Instance.Variables["T" + j + "" + f + "" + s.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
+                        foreach (Mode m in prob.ModesInStep[s])
+                        {
+                            if (!LindoContainer.Instance.Variables.ContainsKey("Y" + j + "" + f + "" + s.Id + "" + m.name + LindoContainer.YjfimType))
+                                continue;
+                            Console.Write(" " + -1 * m.getTotalProcessTime() + "Y" + j + "" + f + "" + s.Id + "" + m.name + LindoContainer.YjfimType);
+                            LindoContainer.Instance.Variables["Y" + j + "" + f + "" + s.Id + "" + m.name + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1 * m.getTotalProcessTime());
+                        }
+                        Console.WriteLine(" >= 0");
+                        LindoContainer.Instance.RightHandSideValues.Add(0.0);
+                        LindoContainer.Instance.ConstraintsSenses.Add("G");
+                        LindoContainer.Instance.ConstrainsCounter++;
+                    }
+                }
+            }
+          
+        }
+
+    }
+}
+

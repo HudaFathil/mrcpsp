@@ -35,13 +35,13 @@ namespace MRCPSP.Lindo.Constrains
                             
                             LindoContainer.Instance.Variables["T" + j + "" + f + "" + s2.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                             LindoContainer.Instance.Variables["T" + j + "" + f + "" + s1.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
-                            Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + j + "" + f + "" + s1.Id + " - T" + j + "" + f + "" + s2.Id);
+                            Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + j + "" + f + "" + s2.Id + " - T" + j + "" + f + "" + s1.Id);
                             foreach (Mode m in prob.ModesInStep[s1])
                             {
-                                if (!LindoContainer.Instance.Variables.ContainsKey("Y" + j + "" + f + "" + s1.Id + "" + m.name))
+                                if (!LindoContainer.Instance.Variables.ContainsKey("Y" + j + "" + f + "" + s1.Id + "" + m.name+LindoContainer.YjfimType))
                                     continue;
-                                LindoContainer.Instance.Variables["Y" + j + "" + f + "" + s1.Id + "" + m.name].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1* m.getTotalProcessTime());
-                                Console.Write(" "+-1* m.getTotalProcessTime()+"Y" + j + "" + f + "" + s1.Id + "" + m.name);
+                                LindoContainer.Instance.Variables["Y" + j + "" + f + "" + s1.Id + "" + m.name + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1 * m.getTotalProcessTime());
+                                Console.Write(" " + -1 * m.getTotalProcessTime() + "Y" + j + "" + f + "" + s1.Id + "" + m.name + LindoContainer.YjfimType);
                             }
                             Console.WriteLine(" >= 0");
                             LindoContainer.Instance.RightHandSideValues.Add(0); // should be defined later as MINLfi1i2

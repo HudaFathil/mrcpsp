@@ -25,14 +25,19 @@ namespace MRCPSP.Lindo.Constrains
                 {
                     foreach (Step s in prob.Steps) 
                     {
-                        Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") ");
-                        foreach (Mode m in prob.ModesInStep[s])
+                        int selecteMode = sol.getSelectedMode(prob.Products[f], s, j);
+                        if (selecteMode == -1)
                         {
-                            if (! LindoContainer.Instance.Variables.ContainsKey("Y" + j + "" + f + "" + s.Id + "" + m.name))
-                                continue;
-                            Console.Write("+ Y" + j + "" + f + "" + s.Id + "" + m.name);
-                            LindoContainer.Instance.Variables["Y" + j + "" + f + "" + s.Id + "" + m.name].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                            Console.WriteLine("ERROR - Probably bad solution");
+                            continue;
                         }
+                        Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") ");
+
+                        if (!LindoContainer.Instance.Variables.ContainsKey("Y" + j + "" + f + "" + s.Id + "" + selecteMode + LindoContainer.YjfimType))
+                                continue;
+                        Console.Write("+ Y" + j + "" + f + "" + s.Id + "" + selecteMode + LindoContainer.YjfimType);
+                        LindoContainer.Instance.Variables["Y" + j + "" + f + "" + s.Id + "" + selecteMode + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                        
                         Console.WriteLine(" = 1");
                         LindoContainer.Instance.RightHandSideValues.Add(1.0);
                         LindoContainer.Instance.ConstraintsSenses.Add("E");
