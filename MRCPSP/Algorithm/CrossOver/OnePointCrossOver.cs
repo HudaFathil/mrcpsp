@@ -11,8 +11,6 @@ namespace MRCPSP.Algorithm.CrossOver
     {
 
         private Random m_random;
-        private int m_last_index_found_child1;
-        private int m_last_index_found_child2;
         private int m_crossPoint;
 
         public OnePointCrossOver()
@@ -39,8 +37,6 @@ namespace MRCPSP.Algorithm.CrossOver
             Solution child1 = new Solution();
             Solution child2 = new Solution();
             ApplicManager.Instance.CurrentProblem.getTotalDistributionSize();                   
-            m_last_index_found_child1 = 0;
-            m_last_index_found_child2 = 0;
             for (int i = 0; i < m_crossPoint; i++)
             {
                 child1.SelectedModeList[i] = sol1.SelectedModeList[i];
@@ -57,8 +53,8 @@ namespace MRCPSP.Algorithm.CrossOver
                 child1.SelectedModeList[i] = sol2.SelectedModeList[i];
                 for (int j = 0; j < ApplicManager.Instance.CurrentProblem.getNumberOfResources(); j++)
                 {
-                    getNextValueForChild(child2, j,i, sol1, ref m_last_index_found_child2);
-                    getNextValueForChild(child1, j,i, sol2, ref m_last_index_found_child1);
+                    getNextValueForChild(child2, j,i, sol1);
+                    getNextValueForChild(child1, j,i, sol2);
                 }
             }
 
@@ -69,14 +65,14 @@ namespace MRCPSP.Algorithm.CrossOver
          * return the valueInParentMatrix if it doesn't exists in currentArray
          * else returns the minimum available value
          */
-        private MatrixCell getNextValueForChild(Solution child, int row, int col, Solution parent, ref int last_index)
+        private void getNextValueForChild(Solution child, int row, int col, Solution parent)
         {
-            for (last_index=0; last_index < parent.DistributionMatrix.GetLength(1); last_index++) 
+            for (int i =0; i < parent.DistributionMatrix.GetLength(1); i++) 
             {
-                MatrixCell parent_val = parent.DistributionMatrix[row,last_index];
+                MatrixCell parent_val = parent.DistributionMatrix[row,i];
                 bool exists = false;
                 for (int j=0; j < col; j++) {
-                    if (child.DistributionMatrix[row, j] == parent_val)
+                    if (child.DistributionMatrix[row, j].Equals(parent_val))
                     {
                         exists = true;
                         break;
@@ -85,9 +81,8 @@ namespace MRCPSP.Algorithm.CrossOver
                 if (exists)
                     continue;
                 child.DistributionMatrix[row, col] = new MatrixCell(parent_val);
+                return;
             }
-            
-            return null;
         }
 
         public int CrossPoint

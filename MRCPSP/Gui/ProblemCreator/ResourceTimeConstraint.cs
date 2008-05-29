@@ -225,11 +225,13 @@ namespace MRCPSP.Gui.ProblemCreator
 
         private void m_add_delay_button_Click(object sender, EventArgs e)
         {
+            if (m_resource_cb.SelectedIndex < 0)
+                return;
             if (m_operation_from_list.SelectedIndex < 0)
                 return;
             if (m_operation_to_list.SelectedIndex < 0)
                 return;
-            Object[] val = {m_operation_from_list.SelectedItem, m_operation_to_list.SelectedItem, m_delay_time_sb.Value};
+            Object[] val = {m_resource_cb.SelectedItem, m_operation_from_list.SelectedItem, m_operation_to_list.SelectedItem, m_delay_time_sb.Value};
             m_data_grid_table.Rows.Add(val);    
         }
 

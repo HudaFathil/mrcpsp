@@ -494,6 +494,11 @@ namespace MRCPSP.Gui.ProblemSolver
 
         private void m_start_test_button_Click(object sender, EventArgs e)
         {
+            if (ApplicManager.Instance.CurrentProblem == null)
+            {
+                MessageBox.Show("please load problem first", "notify");
+                return;
+            }
             ApplicManager.Instance.loadAdvancedParams((int)m_loops_sb.Value);
             int[] alg_params = new int[3];
             alg_params[0] = Convert.ToInt32(m_population_size_le.Text);

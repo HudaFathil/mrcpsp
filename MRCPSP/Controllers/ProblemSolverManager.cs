@@ -62,8 +62,7 @@ namespace MRCPSP.Controllers
         */
         void m_background_worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            int[] alg_params = (int[])e.Argument;
-           
+            int[] alg_params = (int[])e.Argument;          
             e.Result = run(alg_params[0], alg_params[1], alg_params[2],e);   
         } 
     }

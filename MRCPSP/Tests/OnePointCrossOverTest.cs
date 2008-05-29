@@ -57,6 +57,7 @@ namespace MRCPSP.Tests
                 Assert.AreEqual(children[0].SelectedModeList[i], m_sol2.SelectedModeList[i]);
                 // need to check rest
             }
+         
         }
 
     }

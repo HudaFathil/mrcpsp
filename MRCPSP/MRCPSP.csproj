@@ -182,6 +182,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Tests\MatrixCellTest.cs" />
     <Compile Include="Tests\OnePointCrossOverTest.cs" />
     <Compile Include="Tests\ProblemFactory.cs" />
     <Compile Include="Util\CommonFunctions.cs" />
