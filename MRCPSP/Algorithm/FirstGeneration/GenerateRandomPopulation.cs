@@ -41,11 +41,32 @@ namespace MRCPSP.Algorithm.FirstGeneration
                 {
                     items_to_sort.Add(cells[permutation[j] - 1]);
                 }
+                MatrixCellComparer<MatrixCell> compare =  new MatrixCellComparer<MatrixCell>();
+                for (int m = 0; m < ApplicManager.Instance.CurrentProblem.getTotalDistributionSize() - 1; m++)
+                {
+                    MatrixCell toCheckFirst = items_to_sort[m];
+                    for (int n = m + 1; n < ApplicManager.Instance.CurrentProblem.getTotalDistributionSize(); n++)
+                    {
+                        MatrixCell toCheckSecond = items_to_sort[n];
+                        if (compare.Compare(toCheckFirst,toCheckSecond) > 0)
+                        {
+                            MatrixCell temp = toCheckFirst;
+                            items_to_sort[m] = toCheckSecond;
+                            items_to_sort[n] = temp;
+                            m--;
+                            break;
+                        }
+                    }
+                }
+                    
+                /*
                 items_to_sort.Sort(new MatrixCellComparer<MatrixCell>());
+                */
                 for (int j = 0; j < distribution_count; j++)
                 {
                     solution.DistributionMatrix[i, j] = items_to_sort[j];
                 }
+         
             }
 
            
