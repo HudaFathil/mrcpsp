@@ -21,7 +21,8 @@ namespace MRCPSP.Lindo.Constrains
 
             for (int r = 0; r < sol.DistributionMatrix.GetLength(0); r++)
             {
-                for (int t = 0; t < sol.DistributionMatrix.GetLength(1); t++)
+                List<int> taskList = sol.getTaskListForResource(r, prob.Resources[r]);
+                foreach (int t in taskList)
                 {
                     MatrixCell cell = sol.DistributionMatrix[r, t];
                     Mode m = sol.getSelectedMode(cell, t);
@@ -32,7 +33,7 @@ namespace MRCPSP.Lindo.Constrains
                     if (!LindoContainer.Instance.Variables.ContainsKey("T" + r + "" + t))
                         throw new ConstrainException("ConstrainNo17", "Can't find parameter" + "T" + r+""+t);
                     if (!LindoContainer.Instance.Variables.ContainsKey("X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t))
-                            throw new ConstrainException("ConstrainNo17", "Can't find parameter" + "X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t);
+                        throw new ConstrainException("ConstrainNo17", "Can't find parameter" + "X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t);
                     LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                     LindoContainer.Instance.Variables["T" + r + "" + t].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
                     

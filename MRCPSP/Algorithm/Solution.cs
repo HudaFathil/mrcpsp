@@ -76,7 +76,7 @@ namespace MRCPSP.Algorithm
                         m_distribution_matrix[r, t].step.Equals(s))
                         return m_selected_mode_list[t];
                 }
-            }
+            } 
             return -1;
         }
 
