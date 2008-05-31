@@ -5,6 +5,7 @@ using System.Text;
 using MRCPSP.CommonTypes;
 using MRCPSP.Domain;
 using MRCPSP.Algorithm;
+using MRCPSP.Exceptions;
 
 namespace MRCPSP.Lindo.Constrains
 {
@@ -18,6 +19,25 @@ namespace MRCPSP.Lindo.Constrains
 
         public override void createConstrain(Solution sol , Problem prob)
         {
+
+            for (int r = 0; r < sol.DistributionMatrix.GetLength(0); r++)
+            {
+                for (int t = 0; t < sol.DistributionMatrix.GetLength(1); t++)
+                {
+                    MatrixCell cell = sol.DistributionMatrix[r, t];
+                    int mode = sol.SelectedModeList[t];
+                    if (!LindoContainer.Instance.Variables.ContainsKey("X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t))
+                        throw new ConstrainException("ConstrainNo1", "Can't find parameter " + "X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t);
+                    
+                    Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t + " = 1");
+                    LindoContainer.Instance.Variables["X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                    LindoContainer.Instance.RightHandSideValues.Add(1.0);
+                    LindoContainer.Instance.ConstraintsSenses.Add("E");
+                    LindoContainer.Instance.ConstrainsCounter++;
+
+                }
+            }
+            /*
             for (int r = 0; r < prob.Resources.Count; r++)
             {
            
@@ -32,13 +52,13 @@ namespace MRCPSP.Lindo.Constrains
                                 {
                                     int task = sol.getTaskNumber(r, prob.Resources[r], s, prob.Products[f], j);
                                     if (task == -1)
-                                        continue;
+                                        throw new ConstrainException("ConstrainNo2", "can't get task number for parameter X" + j + "" + f + "" + s.Id + "" + m.name + "" + r + "" + task);
                                     Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") X" + j + "" + f + "" + s.Id + "" + m.name + "" + r + "" + task + " = 1");
                                     LindoContainer.Instance.Variables["X" + j + "" + f + "" + s.Id + "" + m.name + "" + r + "" + task].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                                     LindoContainer.Instance.RightHandSideValues.Add(1.0);
                                     LindoContainer.Instance.ConstraintsSenses.Add("E");
                                     LindoContainer.Instance.ConstrainsCounter++;
-                                    /*
+                                    
                                     if (!LindoContainer.Instance.Variables.ContainsKey("Y" + j + "" + f + "" + s.Id + "" + m.name+LindoContainer.YjfimType))
                                         continue;
                                     int task = sol.getTaskNumber(r,prob.Resources[r],s,prob.Products[f],j);
@@ -52,7 +72,7 @@ namespace MRCPSP.Lindo.Constrains
                                     LindoContainer.Instance.RightHandSideValues.Add(0.0);
                                     LindoContainer.Instance.ConstraintsSenses.Add("E");
                                     LindoContainer.Instance.ConstrainsCounter++;
-                                     */
+                                     
                             
                             }
                             
@@ -60,7 +80,8 @@ namespace MRCPSP.Lindo.Constrains
                         }
                     }
                 }
-            }					
+            }	
+			*/	
         }
     }
 }

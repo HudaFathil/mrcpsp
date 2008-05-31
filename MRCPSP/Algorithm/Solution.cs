@@ -60,6 +60,12 @@ namespace MRCPSP.Algorithm
             }
         }
 
+        public Mode getSelectedMode(MatrixCell cell, int t)
+        {
+            Problem prob = ApplicManager.Instance.CurrentProblem;
+            return prob.ModesInStep[cell.step][m_selected_mode_list[t] - 1];
+        }
+
         public int getSelectedMode(Product f, Step s, int j)
         {
             for (int r = 0; r < m_distribution_matrix.GetLength(0); r++)

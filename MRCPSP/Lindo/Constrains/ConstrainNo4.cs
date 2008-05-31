@@ -5,6 +5,7 @@ using System.Text;
 using MRCPSP.Algorithm;
 using MRCPSP.CommonTypes;
 using MRCPSP.Domain;
+using MRCPSP.Exceptions;
 
 namespace MRCPSP.Lindo.Constrains
 {
@@ -17,6 +18,45 @@ namespace MRCPSP.Lindo.Constrains
 
         public override void createConstrain(Solution sol, Problem prob)
         {
+
+            for (int r = 0; r < sol.DistributionMatrix.GetLength(0); r++)
+            {
+                for (int t = 0; t < sol.DistributionMatrix.GetLength(1); t++)
+                {
+                    MatrixCell cell = sol.DistributionMatrix[r, t];
+                    int mode = sol.SelectedModeList[t];
+                    if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.step.Id + "" + mode + "" + r + "" + t + LindoContainer.YimrlType))
+                        throw new ConstrainException("ConstrainNo4", "Can't find parameter " + "Y" + cell.step.Id + "" + mode + "" + r + "" + t + LindoContainer.YimrlType);
+
+                    LindoContainer.Instance.Variables["Y" + cell.step.Id + "" + mode + "" + r + "" + t + LindoContainer.YimrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
+                    Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") Y" + cell.step.Id + "" + mode + "" + r + "" + t + LindoContainer.YimrlType);
+                    if (!LindoContainer.Instance.Variables.ContainsKey("X" + cell.step.Id + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t))
+                        throw new ConstrainException("ConstrainNo4", "Can't find parameter " + "X" + cell.step.Id + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t);
+                    Console.Write(" + " + cell.product.Size + "*X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t);
+                    LindoContainer.Instance.Variables["X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, cell.product.Size * 1); // instead of *1 should be added later * Krf
+                    
+                    Console.WriteLine(" >= 0");
+                    LindoContainer.Instance.RightHandSideValues.Add(0);
+                    LindoContainer.Instance.ConstraintsSenses.Add("G");
+                    LindoContainer.Instance.ConstrainsCounter++;
+
+
+                    LindoContainer.Instance.Variables["Y" + cell.step.Id + "" + mode + "" + r + "" + t + LindoContainer.YimrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
+                    Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") Y" + cell.step.Id + "" + mode + "" + r + "" + t + LindoContainer.YimrlType);
+                    if (!LindoContainer.Instance.Variables.ContainsKey("X" + cell.step.Id + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t))
+                        throw new ConstrainException("ConstrainNo4", "Can't find parameter " + "X" + cell.step.Id + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t);
+                    Console.Write(" + " + cell.product.Size + "*X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t);
+                    LindoContainer.Instance.Variables["X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, cell.product.Size * 1); // instead of *1 should be added later * Krf
+
+                    Console.WriteLine(" <= 1");
+                    LindoContainer.Instance.RightHandSideValues.Add(1);
+                    LindoContainer.Instance.ConstraintsSenses.Add("L");
+                    LindoContainer.Instance.ConstrainsCounter++;
+
+                }
+            }
+
+            /*
                 
             for (int r = 0; r < prob.Resources.Count; r++) 
             {
@@ -76,7 +116,7 @@ namespace MRCPSP.Lindo.Constrains
                 }
                 
             }
-                            
+              */              
           
         }
     }

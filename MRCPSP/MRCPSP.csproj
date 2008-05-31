@@ -76,6 +76,7 @@
     <Compile Include="Algorithm\SolutionComparer.cs" />
     <Compile Include="CommonTypes\Job.cs" />
     <Compile Include="Domain\ResultSummary.cs" />
+    <Compile Include="Exceptions\ConstrainException.cs" />
     <Compile Include="Gui\ProblemCreator\ConstraintProperties.cs">
       <SubType>Form</SubType>
     </Compile>

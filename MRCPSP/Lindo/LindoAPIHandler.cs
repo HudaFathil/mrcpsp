@@ -107,7 +107,7 @@ namespace MRCPSP.Lindo
 
             double[] adC = new double[LindoContainer.Instance.Variables.Count]; //new double[] { 20.0, 30.0 , 10.0};
             for (int i = 0; i < LindoContainer.Instance.Variables.Count - 1; i++)
-                adC[i] = 1.0;
+                adC[i] = 0.0;
             adC[LindoContainer.Instance.Variables.Count - 1] = 1.0;
             /* The right-hand sides of the constraints */
             double[] adB = LindoContainer.Instance.RightHandSideValues.ToArray<double>();//new double[] { 120.0, 60.0, 50.0 ,10.0};

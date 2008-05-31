@@ -91,6 +91,7 @@ namespace MRCPSP.Domain
             throw new IndexOutOfRangeException();
         }
 
+
         public int getNumberOfStepsPerProduct(Product product)
         {
             if (! m_steps_in_product.ContainsKey(product))

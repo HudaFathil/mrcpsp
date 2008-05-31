@@ -38,7 +38,7 @@ namespace MRCPSP.Lindo
 
             for (int f = 0; f < prob.Products.Count; f++)
             {
-                m_finishSteps.Add(f, new List<Step>());
+                m_finishSteps.Add(prob.Products[f].Id, new List<Step>());
                 foreach (Step s1 in prob.StepsInProduct[prob.Products[f]])
                 {
                     bool finishFlag = true;
@@ -48,69 +48,51 @@ namespace MRCPSP.Lindo
                             finishFlag = false;
                     }
                     if (finishFlag)
-                        m_finishSteps[f].Add(s1);
+                        m_finishSteps[prob.Products[f].Id].Add(s1);
                 }
             }
 
             constrainsCounter = 0;
 
-            foreach (Step s in prob.Steps)
+            for (int r = 0; r < sol.DistributionMatrix.GetLength(0); r++)
             {
-
-                for (int f = 0; f < prob.Products.Count; f++)
+                for (int t = 0; t < sol.DistributionMatrix.GetLength(1); t++)
                 {
-                    for (int j = 0; j < prob.Products[f].Size; j++)
-                    {
-                        foreach (Mode m in prob.ModesInStep[s])
-                        {
-                            MrcpspVariable Yjfim = new MrcpspVariable("Y" + j + "" + f + "" + s.Id + "" + m.name + YjfimType);
-                            Yjfim.Type = "B";
-                            m_variables.Add(Yjfim.Name, Yjfim);
-                            for (int r = 0; r < prob.getNumberOfResources(); r++)
-                            {
-                                foreach (int task in sol.getTaskListForResource(r, prob.Resources[r]))
-                                {
-                                    MrcpspVariable Xjfimrl = new MrcpspVariable("X" + j + "" + f + "" + s.Id + "" + m.name + "" + r + "" + task);
-                                    Xjfimrl.Type = "B";
-                                    m_variables.Add(Xjfimrl.Name, Xjfimrl);
-
-                                }
-                            }
-                        }
-                        MrcpspVariable Tjfi = new MrcpspVariable("T" + j + "" + f + "" + s.Id);
-                        Tjfi.Type = "C";
-                        m_variables.Add(Tjfi.Name, Tjfi);
-                    }
-                }
-                for (int r = 0; r < prob.getNumberOfResources(); r++)
-                {
-                    foreach (Mode m in prob.ModesInStep[s])
-                    {
-                        foreach (int task in sol.getTaskListForResource(r, prob.Resources[r]))
-                        {
-                            MrcpspVariable Yimrl = new MrcpspVariable("Y" + s.Id + "" + m.name + "" + r + "" + task + YimrlType);
-                            Yimrl.Type = "B";
-                            m_variables.Add(Yimrl.Name, Yimrl);
-                        }
-                    }
-                }
-            }
-            for (int r = 0; r < prob.getNumberOfResources(); r++)
-            {
-
-                foreach (int task in sol.getTaskListForResource(r, prob.Resources[r]))
-                {
-                    MrcpspVariable Trl = new MrcpspVariable("T" + r + "" + task);
+                    MatrixCell cell = sol.DistributionMatrix[r, t];
+                    // creating Trl
+                    MrcpspVariable Trl = new MrcpspVariable("T" + r + "" + t);
                     Trl.Type = "C";
                     m_variables.Add(Trl.Name, Trl);
-                    /* MrcpspVariable Zrl = new MrcpspVariable("Z" + r + "" + counter);
-                     m_variables.Add(Zrl.Name, Zrl);
-                     MrcpspVariable Vrl = new MrcpspVariable("V" + r + "" + counter);
-                     m_variables.Add(Vrl.Name, Vrl);
-                     */
+                    // creating Zrl
+                    MrcpspVariable Zrl = new MrcpspVariable("Z" + r + "" + t);
+                    m_variables.Add(Zrl.Name, Zrl);
+                    // creating Vrl
+                    MrcpspVariable Vrl = new MrcpspVariable("V" + r + "" + t);
+                    m_variables.Add(Vrl.Name, Vrl);
+                    int mode = sol.SelectedModeList[t];
+                    // creating Yjfim
+                    MrcpspVariable Yjfim = new MrcpspVariable("Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + YjfimType);
+                    Yjfim.Type = "B";
+                    if (!m_variables.ContainsKey(Yjfim.Name))
+                        m_variables.Add(Yjfim.Name, Yjfim);
+                    // creating Xjfimrl
+                    MrcpspVariable Xjfimrl = new MrcpspVariable("X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t);
+                    Xjfimrl.Type = "B";
+                    if (!m_variables.ContainsKey(Xjfimrl.Name))
+                        m_variables.Add(Xjfimrl.Name, Xjfimrl);
+                    // creating Tjfi
+                    MrcpspVariable Tjfi = new MrcpspVariable("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id);
+                    Tjfi.Type = "C";
+                    if (!m_variables.ContainsKey(Tjfi.Name))
+                        m_variables.Add(Tjfi.Name, Tjfi);
+                    // creating Yimrl
+                    MrcpspVariable Yimrl = new MrcpspVariable("Y" + cell.step.Id + "" + mode + "" + r + "" + t + YimrlType);
+                    Yimrl.Type = "B";
+                    if (!m_variables.ContainsKey(Yimrl.Name))
+                        m_variables.Add(Yimrl.Name, Yimrl);
                 }
+
             }
-            
             
             MrcpspVariable F = new MrcpspVariable("F");
             F.Type = "C";
