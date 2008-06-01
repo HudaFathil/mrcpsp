@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MRCPSP.Algorithm;
 
+
 using MRCPSP.CommonTypes;
 
 namespace MRCPSP.Domain

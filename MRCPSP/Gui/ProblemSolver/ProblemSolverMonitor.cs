@@ -499,6 +499,8 @@ namespace MRCPSP.Gui.ProblemSolver
                 MessageBox.Show("please load problem first", "notify");
                 return;
             }
+            if (m_background_worker.IsBusy)
+                return;
             ApplicManager.Instance.loadAdvancedParams((int)m_loops_sb.Value);
             int[] alg_params = new int[3];
             alg_params[0] = Convert.ToInt32(m_population_size_le.Text);

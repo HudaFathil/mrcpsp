@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MRCPSP.CommonTypes;
 
-namespace MRCPSP.Lindo
+namespace MRCPSP.CommonTypes
 {
     struct ResultParameter
     {
@@ -12,5 +11,6 @@ namespace MRCPSP.Lindo
         public Step step;
         public Product product;
         public double startTime;
+        public double finishTime;
     }
 }

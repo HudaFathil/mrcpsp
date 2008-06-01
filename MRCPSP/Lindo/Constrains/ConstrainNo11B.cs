@@ -23,8 +23,8 @@ namespace MRCPSP.Lindo.Constrains
                 for (int t = 0; t < sol.DistributionMatrix.GetLength(1); t++)
                 {
                     MatrixCell cell = sol.DistributionMatrix[r, t];
-                    Mode m = sol.getSelectedMode(cell, t);
-                    int mode = sol.SelectedModeList[t];
+                    Mode mode = sol.getSelectedModeByCell(cell);
+                   
                     Step s1 = cell.step;
                     if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "" + cell.product.Id + "" + s1.Id))
                         throw new ConstrainException("ConstrainNo11A", "Can't find parameter T" + cell.jobId + "" + cell.product.Id + "" + s1.Id);
@@ -32,7 +32,7 @@ namespace MRCPSP.Lindo.Constrains
                     {
                         if (s1.Equals(s2) || !prob.isStepSubsequentToStep(cell.product, s1, s2))
                             continue;
-                        if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.jobId + "" + cell.product.Id + "" + s1.Id + "" + mode + LindoContainer.YjfimType))
+                        if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.jobId + "" + cell.product.Id + "" + s1.Id + "" + mode.name + LindoContainer.YjfimType))
                             continue;
                         if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "" + cell.product.Id + "" + s2.Id))
                             throw new ConstrainException("ConstrainNo11A", "Can't find parameter T" + cell.jobId + "" + cell.product.Id + "" + s2.Id);
@@ -40,8 +40,8 @@ namespace MRCPSP.Lindo.Constrains
                         LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + s2.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                         LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + s1.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
                         Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "" + cell.product.Id + "" + s2.Id + " - T" + cell.jobId + "" + cell.product.Id + "" + s1.Id);
-                        LindoContainer.Instance.Variables["Y" + cell.jobId + "" + cell.product.Id + "" + s1.Id + "" + mode + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1 * m.getTotalProcessTime());
-                        Console.Write(" " + -1 * m.getTotalProcessTime() + "Y" + cell.jobId + "" + cell.product.Id + "" + s1.Id + "" + mode + LindoContainer.YjfimType);
+                        LindoContainer.Instance.Variables["Y" + cell.jobId + "" + cell.product.Id + "" + s1.Id + "" + mode.name + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1 * mode.getTotalProcessTime());
+                        Console.Write(" " + -1 * mode.getTotalProcessTime() + "Y" + cell.jobId + "" + cell.product.Id + "" + s1.Id + "" + mode.name + LindoContainer.YjfimType);
 
                         //List<Job> jobs = prob.JobsInProduct[cell.product];
                         Console.WriteLine(" <= " + LindoContainer.Instance.N);

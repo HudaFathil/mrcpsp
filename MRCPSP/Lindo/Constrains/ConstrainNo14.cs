@@ -36,14 +36,13 @@ namespace MRCPSP.Lindo.Constrains
                 for (int t = 1; t < taskList.Count; t++)
                 {
                     MatrixCell cell = sol.DistributionMatrix[r, taskList[t - 1]];
-                    Mode m = sol.getSelectedMode(cell, taskList[t - 1]);
-                    int mode = sol.SelectedModeList[taskList[t - 1]];
+                    Mode mode = sol.getSelectedModeByCell(cell);
 
                     if (!LindoContainer.Instance.Variables.ContainsKey("T" + r + "" + taskList[t]))
                         continue;
                     if (!LindoContainer.Instance.Variables.ContainsKey("T" + r + "" + taskList[t - 1]))
                         continue;
-                    if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.step.Id + "" + mode + "" + r + "" + taskList[t - 1] + LindoContainer.YimrlType))
+                    if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.step.Id + "" + mode.name + "" + r + "" + taskList[t - 1] + LindoContainer.YimrlType))
                         continue;
                     LindoContainer.Instance.Variables["T" + r + "" + taskList[t]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                     LindoContainer.Instance.Variables["T" + r + "" + taskList[t - 1]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
@@ -51,8 +50,8 @@ namespace MRCPSP.Lindo.Constrains
 
 
                     //throw new ConstrainException("ConstrainNo14", "Can't find parameter" + "Y" + cell.step.Id + "" + mode + "" + r + "" + taskList[t - 1] + LindoContainer.YimrlType);
-                    Console.Write(-1 * m.getTotalProcessTime(prob.Resources[r]) + "*Y" + cell.step.Id + "" + mode + "" + r + "" + taskList[t - 1] + LindoContainer.YimrlType);
-                    LindoContainer.Instance.Variables["Y" + cell.step.Id + "" + mode + "" + r + "" + taskList[t - 1] + LindoContainer.YimrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1 * m.getTotalProcessTime(prob.Resources[r]));
+                    Console.Write(-1 * mode.getTotalProcessTime(prob.Resources[r]) + "*Y" + cell.step.Id + "" + mode.name + "" + r + "" + taskList[t - 1] + LindoContainer.YimrlType);
+                    LindoContainer.Instance.Variables["Y" + cell.step.Id + "" + mode.name + "" + r + "" + taskList[t - 1] + LindoContainer.YimrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1 * mode.getTotalProcessTime(prob.Resources[r]));
                     Console.WriteLine(" >= 0");
                     // should add here Zrl , Vrl
                     LindoContainer.Instance.RightHandSideValues.Add(0.0);

@@ -118,8 +118,6 @@
     <Compile Include="Lindo\LindoAPIHandler.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Lindo\LindoParameter.cs" />
-    <Compile Include="Lindo\LindoSolution.cs" />
     <Compile Include="Algorithm\Fitness\MinimumMakeSpanPolicy.cs" />
     <Compile Include="Algorithm\Solution.cs" />
     <Compile Include="CommonTypes\Constraint.cs" />
@@ -171,7 +169,7 @@
     <Compile Include="Gui\ProblemSolver\ProblemSolverMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Lindo\ResultParameter.cs" />
+    <Compile Include="CommonTypes\ResultParameter.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Logger\LoggerFactory.cs" />

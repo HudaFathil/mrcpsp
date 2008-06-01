@@ -23,6 +23,9 @@ namespace MRCPSP.Algorithm
             {
                 return 0;
             }
+            if ((!isStepPrecedenceToNewStep(x.product, x.step, y.step)) && (!isStepPrecedenceToNewStep(x.product, y.step, x.step)))
+                return 0;
+
             if (isStepPrecedenceToNewStep(x.product, x.step, y.step))
                 return -1;
             else

@@ -5,6 +5,7 @@ using MRCPSP.CommonTypes;
 using MRCPSP.Controllers;
 using MRCPSP.Domain;
 using MRCPSP.Algorithm;
+using MRCPSP.Exceptions;
 using System.Linq;
 using System.Text;
 
@@ -69,14 +70,14 @@ namespace MRCPSP.Lindo
                     // creating Vrl
                     MrcpspVariable Vrl = new MrcpspVariable("V" + r + "" + t);
                     m_variables.Add(Vrl.Name, Vrl);
-                    int mode = sol.SelectedModeList[t];
+                    Mode mode = sol.getSelectedModeByCell(cell);// sol.SelectedModeList[t];
                     // creating Yjfim
-                    MrcpspVariable Yjfim = new MrcpspVariable("Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + YjfimType);
+                    MrcpspVariable Yjfim = new MrcpspVariable("Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + YjfimType);
                     Yjfim.Type = "B";
                     if (!m_variables.ContainsKey(Yjfim.Name))
                         m_variables.Add(Yjfim.Name, Yjfim);
                     // creating Xjfimrl
-                    MrcpspVariable Xjfimrl = new MrcpspVariable("X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t);
+                    MrcpspVariable Xjfimrl = new MrcpspVariable("X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t);
                     Xjfimrl.Type = "B";
                     if (!m_variables.ContainsKey(Xjfimrl.Name))
                         m_variables.Add(Xjfimrl.Name, Xjfimrl);
@@ -86,7 +87,7 @@ namespace MRCPSP.Lindo
                     if (!m_variables.ContainsKey(Tjfi.Name))
                         m_variables.Add(Tjfi.Name, Tjfi);
                     // creating Yimrl
-                    MrcpspVariable Yimrl = new MrcpspVariable("Y" + cell.step.Id + "" + mode + "" + r + "" + t + YimrlType);
+                    MrcpspVariable Yimrl = new MrcpspVariable("Y" + cell.step.Id + "" + mode.name + "" + r + "" + t + YimrlType);
                     Yimrl.Type = "B";
                     if (!m_variables.ContainsKey(Yimrl.Name))
                         m_variables.Add(Yimrl.Name, Yimrl);
@@ -160,30 +161,39 @@ namespace MRCPSP.Lindo
         }
 
         /**
-         * returns a hashtable containing the results as follows <resource name , ArrayList of integers> 
+         * returns a hashtable containing the results as follows <resource name , List of ResultParameter> 
          */
         public Dictionary<Resource, List<ResultParameter>> getResults()
         {
             Problem prob = ApplicManager.Instance.CurrentProblem;
-            for (int f = 0; f < prob.Products.Count ; f++ )
+            Solution sol = ApplicManager.Instance.CurrentSolution;
+
+            Dictionary<Resource, List<ResultParameter>> toReturn = new Dictionary<Resource, List<ResultParameter>>();
+
+            for (int r = 0; r < sol.DistributionMatrix.GetLength(0); r++)
             {
-                for (int j = 0; j < prob.Products[f].Size; j++)
+                List<int> taskList = sol.getTaskListForResource(r, prob.Resources[r]);
+                if (!toReturn.ContainsKey(prob.Resources[r]))
+                    toReturn.Add(prob.Resources[r], new List<ResultParameter>());
+                if (taskList.Count == 0)
+                    continue;
+                for (int t = 0; t < taskList.Count ; t++)
                 {
-                    foreach (Step s in prob.StepsInProduct[prob.Products[f]])
-                    {
-                        if (!m_variables.ContainsKey("T" + j + "" + f + "" + s.Id))
-                            continue;
-                        ResultParameter result = new ResultParameter();
-                        MrcpspVariable mrcpsp = m_variables["T"+j+""+f+""+s.Id];
-                        result.startTime = mrcpsp.FinalValue;
-                        result.jobID = j;
-                        result.product = prob.Products[f];
-                        result.step = s;
-                    }
+                    if (!m_variables.ContainsKey("T" + r + "" + taskList[t]))
+                        throw new ConstrainException("LindoContainer", "Can't find parameter T" + r + "" + taskList[t]);
+                    
+                    ResultParameter result = new ResultParameter();
+                    result.startTime = m_variables["T" + r + "" + taskList[t]].FinalValue;
+                    MatrixCell cell = sol.DistributionMatrix[r,taskList[t]]; 
+                    result.jobID = cell.jobId;
+                    result.product = cell.product;
+                    result.step = cell.step;
+                    Mode mode = sol.getSelectedModeByCell(cell);
+                    result.finishTime = result.startTime + mode.getTotalProcessTime(prob.Resources[r]);
+                    toReturn[prob.Resources[r]].Add(result);
                 }
             }
-
-            return null;
+            return toReturn;
         }
 
     }

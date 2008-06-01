@@ -25,12 +25,12 @@ namespace MRCPSP.Lindo.Constrains
                 for (int t = 0; t < sol.DistributionMatrix.GetLength(1); t++)
                 {
                     MatrixCell cell = sol.DistributionMatrix[r, t];
-                    int mode = sol.SelectedModeList[t];
-                    if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.step.Id + "" + mode + "" + r + "" + t + LindoContainer.YimrlType))
-                        throw new ConstrainException("ConstrainNo1", "Can't find parameter " + "Y" + cell.step.Id + "" + mode + "" + r + "" + t + LindoContainer.YimrlType);
+                    Mode mode = sol.getSelectedModeByCell(cell);
+                    if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.step.Id + "" + mode.name + "" + r + "" + t + LindoContainer.YimrlType))
+                        throw new ConstrainException("ConstrainNo1", "Can't find parameter " + "Y" + cell.step.Id + "" + mode.name + "" + r + "" + t + LindoContainer.YimrlType);
 
-                    Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") Y" + cell.step.Id + "" + mode + "" + r + "" + t + LindoContainer.YimrlType + " = 1");
-                    LindoContainer.Instance.Variables["Y" + cell.step.Id + "" + mode + "" + r + "" + t + LindoContainer.YimrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1);
+                    Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") Y" + cell.step.Id + "" + mode.name + "" + r + "" + t + LindoContainer.YimrlType + " = 1");
+                    LindoContainer.Instance.Variables["Y" + cell.step.Id + "" + mode.name + "" + r + "" + t + LindoContainer.YimrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1);
                     LindoContainer.Instance.RightHandSideValues.Add(1.0);
                     LindoContainer.Instance.ConstraintsSenses.Add("E");
                     LindoContainer.Instance.ConstrainsCounter++;

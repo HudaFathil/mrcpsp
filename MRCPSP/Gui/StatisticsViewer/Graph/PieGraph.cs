@@ -44,12 +44,13 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             foreach (Resource r in best_solution.resultFromLindo.Keys)
             {
                 names[resource_counter] = r.Name;
-                List<KeyValuePair<LindoParameter, LindoParameter>> resource_operations_done = best_solution.resultFromLindo[r];
-                for (int i = 0; i < resource_operations_done.Count; i++)
+                List<ResultParameter> tasks_for_resource =  best_solution.resultFromLindo[r];         
+                for (int i = 0; i < tasks_for_resource.Count; i++)
                 {
-                    values[resource_counter] += (resource_operations_done[i].Value.Value - resource_operations_done[i].Key.Value);                    
+                    values[resource_counter] += (tasks_for_resource[i].finishTime - tasks_for_resource[i].startTime);                    
                 }
                 resource_counter++;
+               
             }
             m_graph_pane.AddPieSlices(values, names);
 

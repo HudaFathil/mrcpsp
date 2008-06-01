@@ -585,10 +585,9 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_resources_gantt.Title = "";
             this.m_gantt_panel.Controls.Add(this.m_resources_gantt);
           
-            m_resources_gantt.setGanttData(m_current_summary);
-            /*
+            m_resources_gantt.setGanttData(m_current_summary);            
             m_resources_gantt.Refresh();
-            m_resources_gantt.setGanttData2(summary);*/
+            m_resources_gantt.setGanttData2(m_current_summary);
             m_resources_gantt.Title = "Best Result in Generation";
             m_resources_gantt.Refresh();
         }

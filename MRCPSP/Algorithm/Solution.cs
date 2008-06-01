@@ -15,7 +15,7 @@ namespace MRCPSP.Algorithm
         private int[] m_selected_mode_list;
         private MatrixCell[,] m_distribution_matrix;
         private double m_scoreFromLindo;
-        private Dictionary<Resource, List<KeyValuePair<LindoParameter, LindoParameter>>> m_results;
+        private Dictionary<Resource, List<ResultParameter>> m_results;
 
         public Solution()
         {
@@ -60,12 +60,15 @@ namespace MRCPSP.Algorithm
             }
         }
 
+        /*
         public Mode getSelectedMode(MatrixCell cell, int t)
         {
             Problem prob = ApplicManager.Instance.CurrentProblem;
             return prob.ModesInStep[cell.step][m_selected_mode_list[t] - 1];
         }
+        */
 
+        /*
         public int getSelectedMode(Product f, Step s, int j)
         {
             for (int r = 0; r < m_distribution_matrix.GetLength(0); r++)
@@ -79,7 +82,7 @@ namespace MRCPSP.Algorithm
             } 
             return -1;
         }
-
+        */
         public List<int> getTaskListForResource(int rIndex, Resource r) 
         {
             List<int> taskList = new List<int>();
@@ -87,13 +90,7 @@ namespace MRCPSP.Algorithm
             for (int c = 0; c < m_distribution_matrix.GetLength(1); c++ )
             {
                 MatrixCell cell = m_distribution_matrix[rIndex ,  c];
-                bool addTask = false;
-                foreach (Mode m in ApplicManager.Instance.CurrentProblem.ModesInStep[cell.step])
-                {
-                    if (m.isResourceUsed(r))
-                        addTask = true;
-                }
-                if (addTask)
+                if (getSelectedModeByCell(cell).isResourceUsed(r))
                     taskList.Add(c);
             }
             return taskList;
@@ -147,8 +144,10 @@ namespace MRCPSP.Algorithm
         }
 
 
+        
 
-        public Dictionary<Resource, List<KeyValuePair<LindoParameter, LindoParameter>>> resultFromLindo
+
+        public Dictionary<Resource, List<ResultParameter>> resultFromLindo
         {
             get { return m_results; }
             set
@@ -170,6 +169,30 @@ namespace MRCPSP.Algorithm
             return toReturn;
         }
         */
-      
+
+        public Mode getSelectedModeByCell(MatrixCell cell)
+        {
+            Product p = cell.product;
+            int pos_in_list = 0;
+            for (int i = 0; i < ApplicManager.Instance.CurrentProblem.Products.Count; i++)
+            {
+                Product currentProblem = ApplicManager.Instance.CurrentProblem.Products[i];
+                int step_count = ApplicManager.Instance.CurrentProblem.StepsInProduct[currentProblem].Count;
+                int job_size = currentProblem.Size;
+
+                if (cell.product.Equals(currentProblem))
+                {
+                    int step_id = ApplicManager.Instance.CurrentProblem.StepsInProduct[cell.product].IndexOf(cell.step);
+                    int mode_id = m_selected_mode_list[pos_in_list + (cell.jobId * step_count) + step_id];
+                    return ApplicManager.Instance.CurrentProblem.getSelectedModeByStepAndModeId(cell.step, mode_id);
+                }
+                else
+                {
+                    pos_in_list += job_size * step_count;
+                }
+            }
+            throw new Exception("oops where is the mode, shay screw us");
+        }
+
     }
 }

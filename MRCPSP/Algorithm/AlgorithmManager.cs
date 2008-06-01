@@ -39,7 +39,6 @@ namespace MRCPSP.Algorithm
 
         public bool run(int population_size, int num_of_generation, double mutate_percent)
         {
-            LindoParameter.init();
             createNewResultSummary(population_size, num_of_generation, mutate_percent);
 
             LoggerFactory.getSimpleLogger().info("AlgorithmManager::run() activated");

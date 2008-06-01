@@ -22,11 +22,10 @@ namespace MRCPSP.Lindo.Constrains
                 for (int t = 0; t < sol.DistributionMatrix.GetLength(1); t++)
                 {
                     MatrixCell cell = sol.DistributionMatrix[r, t];
-                    int mode = sol.SelectedModeList[t];
-                    Mode m = sol.getSelectedMode(cell, t);
+                    Mode mode = sol.getSelectedModeByCell(cell);
                     if (LindoContainer.Instance.getFinishSteps(cell.product.Id).Contains(cell.step))
                     {
-                        if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + LindoContainer.YjfimType))
+                        if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType))
                             continue;
                         if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id))
                             continue;
@@ -36,8 +35,8 @@ namespace MRCPSP.Lindo.Constrains
                         Console.Write(" -T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id);
                         LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
                         
-                        Console.Write(" " + -1 * m.getTotalProcessTime() + "Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + LindoContainer.YjfimType);
-                        LindoContainer.Instance.Variables["Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1 * m.getTotalProcessTime());
+                        Console.Write(" " + -1 * mode.getTotalProcessTime() + "Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType);
+                        LindoContainer.Instance.Variables["Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1 * mode.getTotalProcessTime());
                         Console.WriteLine(" >= 0");
                         LindoContainer.Instance.RightHandSideValues.Add(0.0);
                         LindoContainer.Instance.ConstraintsSenses.Add("G");

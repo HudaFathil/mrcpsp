@@ -25,12 +25,12 @@ namespace MRCPSP.Lindo.Constrains
                 for (int t = 0; t < sol.DistributionMatrix.GetLength(1); t++)
                 {
                     MatrixCell cell = sol.DistributionMatrix[r, t];
-                    int mode = sol.SelectedModeList[t];
-                    if (!LindoContainer.Instance.Variables.ContainsKey("X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t))
-                        throw new ConstrainException("ConstrainNo1", "Can't find parameter " + "X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t);
+                    Mode mode = sol.getSelectedModeByCell(cell);
+                    if (!LindoContainer.Instance.Variables.ContainsKey("X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t))
+                        throw new ConstrainException("ConstrainNo1", "Can't find parameter " + "X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t);
                     
-                    Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t + " = 1");
-                    LindoContainer.Instance.Variables["X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode + "" + r + "" + t].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                    Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t + " = 1");
+                    LindoContainer.Instance.Variables["X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                     LindoContainer.Instance.RightHandSideValues.Add(1.0);
                     LindoContainer.Instance.ConstraintsSenses.Add("E");
                     LindoContainer.Instance.ConstrainsCounter++;

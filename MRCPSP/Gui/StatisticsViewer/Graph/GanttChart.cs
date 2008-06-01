@@ -50,7 +50,7 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
                 labels[i] = resources[i].Name;
             return labels;
         }
-        /*
+        
         public PointPairList getGanttListByType(Step step, int JobNum) {
             // need to add family
             if (!m_list_of_charts_by_type.Contains(step))
@@ -60,7 +60,7 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
                 map_after_step.Add(JobNum, new PointPairList());
             return (PointPairList)map_after_step[JobNum];
         }
-        */
+        /*
         public void setGanttData(ResultSummary summary)
         {
             Solution best_solution = summary.getBestSolution();
@@ -98,8 +98,8 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             m_graph_control.Size = new Size(this.ClientRectangle.Width - 20, this.ClientRectangle.Height - 20);
          
         }
-
-        /*
+        */
+        
         public void setGanttData(ResultSummary summary)
         {
             Solution best_solution = summary.getBestSolution();
@@ -109,12 +109,12 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             int resource_counter = 1;
             foreach (Resource r in best_solution.resultFromLindo.Keys)
             {
-                List<KeyValuePair<LindoParameter, LindoParameter>> resource_operations_done = best_solution.resultFromLindo[r];
+                List<ResultParameter> resource_operations_done = best_solution.resultFromLindo[r];
                 for (int i = 0; i < resource_operations_done.Count; i++)
                 {
-                    PointPairList list = getGanttListByType(resource_operations_done[i].Key.Step, resource_operations_done[i].Key.JobNum);
-                    list.Add(resource_operations_done[i].Key.Value, resource_counter, resource_operations_done[i].Value.Value);
-                    Console.Out.WriteLine("resource: " + r.Name + " start at " + resource_operations_done[i].Key.Value.ToString() + " ends at " + resource_operations_done[i].Value.Value.ToString() + " job id start: " + resource_operations_done[i].Key.JobNum.ToString() + " job id end " + resource_operations_done[i].Value.JobNum.ToString());
+                    PointPairList list = getGanttListByType(resource_operations_done[i].step, resource_operations_done[i].jobID);
+                    list.Add(resource_operations_done[i].startTime, resource_counter, resource_operations_done[i].finishTime);
+                    Console.Out.WriteLine("resource: " + r.Name + " start at " + resource_operations_done[i].startTime.ToString() + " ends at " + resource_operations_done[i].finishTime.ToString() + " job id start: " + resource_operations_done[i].jobID.ToString() + " job id end " + resource_operations_done[i].jobID.ToString());
                 }
                 resource_counter++;
             }
@@ -167,7 +167,7 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             m_graph_control.Size = new Size(this.ClientRectangle.Width - 20, this.ClientRectangle.Height - 20);
        
         }
-        */
+        
         private void InitializeComponent()
         {
             this.SuspendLayout();

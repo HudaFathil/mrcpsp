@@ -92,6 +92,32 @@ namespace MRCPSP.Domain
         }
 
 
+        public Mode getSelectedModeByListIdAndTask(int matrix_id, int mode_id)
+        {
+            for (int i = 0; i < m_products_list.Count(); i++)
+            {
+                Product p = m_products_list[i];
+                int num_steps = m_steps_in_product[p].Count;
+                if (matrix_id < 0)
+                    throw new IndexOutOfRangeException();
+                int size_of_current_family_block = (p.Size * num_steps);
+                if (matrix_id < size_of_current_family_block)
+                {
+                    int pos_in_step_list = (matrix_id % num_steps);
+                    Step s = m_steps_in_product[p][pos_in_step_list];
+                    return m_modes_in_step[s][mode_id - 1];
+                }
+                matrix_id -= (p.Size * m_steps_in_product[p].Count);
+            }
+            throw new IndexOutOfRangeException();
+        }
+
+        public Mode getSelectedModeByStepAndModeId(Step s, int mode)
+        {  
+            return m_modes_in_step[s][mode - 1];
+        }
+
+
         public int getNumberOfStepsPerProduct(Product product)
         {
             if (! m_steps_in_product.ContainsKey(product))
