@@ -37,6 +37,11 @@ namespace MRCPSP.CommonTypes
             set { m_id = value; }
         }
 
+        public string Name
+        {
+            get { return m_name; }
+            set { m_name = value; }
+        }
 
         public override bool Equals(object obj)
         {

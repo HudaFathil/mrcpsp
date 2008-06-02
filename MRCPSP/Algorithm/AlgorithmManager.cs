@@ -158,5 +158,11 @@ namespace MRCPSP.Algorithm
                 return;
             sol.SelectedModeList[mutate_idx] = ((sol.SelectedModeList[mutate_idx] + 1) % modes_count) + 1;
         }
+
+        public GeneratePolicyBase CurrentGeneratePolicy
+        {
+            get { return m_generate_method_policy; }
+            set { m_generate_method_policy = value; }
+        }
     }
 }

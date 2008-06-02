@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Threading;
 using MRCPSP.Algorithm;
+using MRCPSP.Algorithm.FirstGeneration;
 using MRCPSP.Logger;
 
 namespace MRCPSP.Controllers
@@ -64,6 +65,13 @@ namespace MRCPSP.Controllers
         {
             int[] alg_params = (int[])e.Argument;          
             e.Result = run(alg_params[0], alg_params[1], alg_params[2],e);   
-        } 
+        }
+
+        public GeneratePolicyBase CurrentGeneratePolicy
+        {
+            get { return m_algorithm_manager.CurrentGeneratePolicy; }
+            set { m_algorithm_manager.CurrentGeneratePolicy = value; }
+        }
+
     }
 }

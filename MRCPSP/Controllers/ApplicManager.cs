@@ -7,6 +7,8 @@ using MRCPSP.Domain;
 using MRCPSP.CommonTypes;
 using MRCPSP.Logger;
 using MRCPSP.Algorithm;
+using MRCPSP.Algorithm.FirstGeneration;
+
 
 namespace MRCPSP.Controllers
 {
@@ -83,6 +85,12 @@ namespace MRCPSP.Controllers
         public void signBackgroundWorker(System.ComponentModel.BackgroundWorker backgroundWorker1)
         {
             m_problem_solver_manager.signBackgroundWorker(backgroundWorker1);
+        }
+
+        public GeneratePolicyBase CurrentGeneratePolicy
+        {
+            get { return m_problem_solver_manager.CurrentGeneratePolicy; }
+            set { m_problem_solver_manager.CurrentGeneratePolicy = value; }
         }
     }
 }

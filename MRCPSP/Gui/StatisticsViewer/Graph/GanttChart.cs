@@ -51,6 +51,7 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             return labels;
         }
         
+        /*
         public PointPairList getGanttListByType(Step step, int JobNum) {
             // need to add family
             if (!m_list_of_charts_by_type.Contains(step))
@@ -60,8 +61,8 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
                 map_after_step.Add(JobNum, new PointPairList());
             return (PointPairList)map_after_step[JobNum];
         }
-        /*
-        public void setGanttData(ResultSummary summary)
+        */
+        public void setGanttDataByResource(ResultSummary summary, DataGridView gantt_table)
         {
             Solution best_solution = summary.getBestSolution();
             m_graph_pane.CurveList.Clear();
@@ -69,14 +70,16 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             List<Color> color_list = initColorList();        
             int color_counter = 0;
             int resource_counter = 1;
+         
             foreach (Resource r in best_solution.resultFromLindo.Keys)
             {
-                List<KeyValuePair<LindoParameter, LindoParameter>> resource_operations_done = best_solution.resultFromLindo[r];
-                PointPairList list = new PointPairList();
+                List<ResultParameter> resource_operations_done = best_solution.resultFromLindo[r];
+                PointPairList list = new PointPairList();       
                 for (int i = 0; i < resource_operations_done.Count; i++)
-                {              
-                    list.Add(resource_operations_done[i].Key.Value, resource_counter, resource_operations_done[i].Value.Value);
-                    Console.Out.WriteLine("resource: " + r.Name + " start at " + resource_operations_done[i].Key.Value.ToString() + " ends at " + resource_operations_done[i].Value.Value.ToString() + " job id start: " + resource_operations_done[i].Key.JobNum.ToString() + " job id end " + resource_operations_done[i].Value.JobNum.ToString());          
+                {                                     
+                    list.Add(resource_operations_done[i].startTime, resource_counter, resource_operations_done[i].finishTime);
+                    Object[] val = { r.Name, resource_operations_done[i].product.Name, resource_operations_done[i].jobID.ToString(), resource_operations_done[i].step.Name, resource_operations_done[i].startTime.ToString(), resource_operations_done[i].finishTime.ToString()};
+                    gantt_table.Rows.Add(val);    
                 }
                 HiLowBarItem myCurve = m_graph_pane.AddHiLowBar(r.Name, list, color_list[color_counter % color_list.Count]);
                 myCurve.Bar.Fill = new Fill(color_list[color_counter % color_list.Count], Color.White, color_list[color_counter % color_list.Count], 90);
@@ -90,16 +93,16 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             m_graph_pane.Legend.IsHStack = false;
        
             m_graph_pane.BarSettings.Base = BarBase.Y;       
-            m_graph_pane.BarSettings.ClusterScaleWidth = 13;  
-
+            m_graph_pane.YAxis.IsVisible = false;
+           
             m_graph_pane.Fill = new Fill(Color.White, Color.FromArgb(255, 255, 166), 90F);
             m_graph_control.AxisChange();
             m_graph_control.Location = new Point(10, 10);
             m_graph_control.Size = new Size(this.ClientRectangle.Width - 20, this.ClientRectangle.Height - 20);
          
         }
-        */
         
+        /*
         public void setGanttData(ResultSummary summary)
         {
             Solution best_solution = summary.getBestSolution();
@@ -167,7 +170,7 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             m_graph_control.Size = new Size(this.ClientRectangle.Width - 20, this.ClientRectangle.Height - 20);
        
         }
-        
+        */
         private void InitializeComponent()
         {
             this.SuspendLayout();

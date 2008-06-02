@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Algorithm\CrossOver\CorssOverBase.cs" />
     <Compile Include="Algorithm\CrossOver\OnePointCrossOver.cs" />
+    <Compile Include="Algorithm\FirstGeneration\GenerateByOperation.cs" />
     <Compile Include="Algorithm\Fitness\FitnessFunctionBase.cs">
       <SubType>Code</SubType>
     </Compile>

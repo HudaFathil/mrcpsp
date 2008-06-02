@@ -7,6 +7,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using MRCPSP.Controllers;
+using MRCPSP.Algorithm;
+using MRCPSP.Algorithm.FirstGeneration;
 
 namespace MRCPSP.Gui.ProblemSolver
 {
@@ -44,6 +46,10 @@ namespace MRCPSP.Gui.ProblemSolver
         private GroupBox groupBox3;
         private Panel m_list_panel;
         private RadioButton m_increase_gen_rb;
+        private GroupBox groupBox4;
+        private RadioButton radioButton3;
+        private RadioButton m_pop_by_operation_rb;
+        private RadioButton m_first_pop_random_rb;
 
         private BackgroundWorker m_background_worker;
 
@@ -86,6 +92,10 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_use_table_rb = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.m_list_panel = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.m_pop_by_operation_rb = new System.Windows.Forms.RadioButton();
+            this.m_first_pop_random_rb = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -95,6 +105,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.m_list_panel.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -461,11 +472,58 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_list_panel.Size = new System.Drawing.Size(324, 242);
             this.m_list_panel.TabIndex = 14;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.radioButton3);
+            this.groupBox4.Controls.Add(this.m_pop_by_operation_rb);
+            this.groupBox4.Controls.Add(this.m_first_pop_random_rb);
+            this.groupBox4.Location = new System.Drawing.Point(302, 341);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(142, 94);
+            this.groupBox4.TabIndex = 15;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Create First Population";
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(5, 65);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(85, 17);
+            this.radioButton3.TabIndex = 2;
+            this.radioButton3.Text = "radioButton3";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // m_pop_by_operation_rb
+            // 
+            this.m_pop_by_operation_rb.AutoSize = true;
+            this.m_pop_by_operation_rb.Location = new System.Drawing.Point(5, 42);
+            this.m_pop_by_operation_rb.Name = "m_pop_by_operation_rb";
+            this.m_pop_by_operation_rb.Size = new System.Drawing.Size(85, 17);
+            this.m_pop_by_operation_rb.TabIndex = 1;
+            this.m_pop_by_operation_rb.Text = "by Operation";
+            this.m_pop_by_operation_rb.UseVisualStyleBackColor = true;
+            this.m_pop_by_operation_rb.CheckedChanged += new System.EventHandler(this.m_pop_by_operation_rb_CheckedChanged);
+            // 
+            // m_first_pop_random_rb
+            // 
+            this.m_first_pop_random_rb.AutoSize = true;
+            this.m_first_pop_random_rb.Checked = true;
+            this.m_first_pop_random_rb.Location = new System.Drawing.Point(5, 19);
+            this.m_first_pop_random_rb.Name = "m_first_pop_random_rb";
+            this.m_first_pop_random_rb.Size = new System.Drawing.Size(65, 17);
+            this.m_first_pop_random_rb.TabIndex = 0;
+            this.m_first_pop_random_rb.TabStop = true;
+            this.m_first_pop_random_rb.Text = "Random";
+            this.m_first_pop_random_rb.UseVisualStyleBackColor = true;
+            this.m_first_pop_random_rb.CheckedChanged += new System.EventHandler(this.m_first_pop_random_rb_CheckedChanged);
+            // 
             // ProblemSolverMonitor
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(687, 447);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.m_stop_btn);
@@ -488,6 +546,8 @@ namespace MRCPSP.Gui.ProblemSolver
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.m_list_panel.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -535,6 +595,16 @@ namespace MRCPSP.Gui.ProblemSolver
         {
             m_list_panel.Enabled = ! m_solve_current_rb.Checked;
 
+        }
+
+        private void m_first_pop_random_rb_CheckedChanged(object sender, EventArgs e)
+        {
+            ApplicManager.Instance.CurrentGeneratePolicy = new GenerateRandomPopulation();
+        }
+
+        private void m_pop_by_operation_rb_CheckedChanged(object sender, EventArgs e)
+        {
+            ApplicManager.Instance.CurrentGeneratePolicy = new GenerateByOperation();
         }
 
     }

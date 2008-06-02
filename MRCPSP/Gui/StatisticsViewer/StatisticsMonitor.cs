@@ -56,9 +56,18 @@ namespace MRCPSP.Gui.StatisticsViewer
 
         private MRCPSP.Gui.StatisticsViewer.Graph.GanttChart m_resources_gantt;
         private MRCPSP.Gui.StatisticsViewer.Graph.PieGraph m_resources_pie_chart;
-        private Panel panel1;
         private Panel panel2;
         private Button m_export_to_excel_button;
+        private SplitContainer splitContainer1;
+        private Panel m_gantt_table_panel;
+        private DataGridView m_data_gantt_table;
+        private DataGridViewTextBoxColumn Resource;
+        private DataGridViewTextBoxColumn Product;
+        private DataGridViewTextBoxColumn JobID;
+        private DataGridViewTextBoxColumn Step;
+        private DataGridViewTextBoxColumn StartTime;
+        private DataGridViewTextBoxColumn FinishTime;
+        private Panel panel1;
         private MRCPSP.Gui.StatisticsViewer.Graph.XYGraph m_generation_over_time_graph;
 
         public StatisticsMonitor()
@@ -104,13 +113,22 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.m_gantt_panel = new System.Windows.Forms.Panel();
+            this.m_gantt_table_panel = new System.Windows.Forms.Panel();
+            this.m_data_gantt_table = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.m_export_to_excel_button = new System.Windows.Forms.Button();
+            this.Resource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Step = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FinishTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.m_generation_over_time_graph = new MRCPSP.Gui.StatisticsViewer.Graph.XYGraph();
             this.m_resources_pie_chart = new MRCPSP.Gui.StatisticsViewer.Graph.PieGraph();
             ((System.ComponentModel.ISupportInitialize)(this.m_bind_navigator)).BeginInit();
@@ -119,10 +137,15 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.m_gantt_table_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_data_gantt_table)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_bind_navigator
@@ -363,7 +386,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(923, 426);
+            this.tabControl1.Size = new System.Drawing.Size(923, 332);
             this.tabControl1.TabIndex = 9;
             // 
             // tabPage1
@@ -374,27 +397,71 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(915, 400);
+            this.tabPage1.Size = new System.Drawing.Size(915, 306);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.m_gantt_panel);
+            this.tabPage2.Controls.Add(this.splitContainer1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(915, 400);
+            this.tabPage2.Size = new System.Drawing.Size(915, 306);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.m_gantt_panel);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.m_gantt_table_panel);
+            this.splitContainer1.Size = new System.Drawing.Size(909, 300);
+            this.splitContainer1.SplitterDistance = 150;
+            this.splitContainer1.TabIndex = 8;
+            // 
             // m_gantt_panel
             // 
-            this.m_gantt_panel.Location = new System.Drawing.Point(16, 6);
+            this.m_gantt_panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_gantt_panel.Location = new System.Drawing.Point(0, 0);
             this.m_gantt_panel.Name = "m_gantt_panel";
-            this.m_gantt_panel.Size = new System.Drawing.Size(820, 279);
+            this.m_gantt_panel.Size = new System.Drawing.Size(909, 150);
             this.m_gantt_panel.TabIndex = 7;
+            // 
+            // m_gantt_table_panel
+            // 
+            this.m_gantt_table_panel.Controls.Add(this.m_data_gantt_table);
+            this.m_gantt_table_panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_gantt_table_panel.Location = new System.Drawing.Point(0, 0);
+            this.m_gantt_table_panel.Name = "m_gantt_table_panel";
+            this.m_gantt_table_panel.Size = new System.Drawing.Size(909, 146);
+            this.m_gantt_table_panel.TabIndex = 0;
+            // 
+            // m_data_gantt_table
+            // 
+            this.m_data_gantt_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.m_data_gantt_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Resource,
+            this.Product,
+            this.JobID,
+            this.Step,
+            this.StartTime,
+            this.FinishTime});
+            this.m_data_gantt_table.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_data_gantt_table.Location = new System.Drawing.Point(0, 0);
+            this.m_data_gantt_table.Name = "m_data_gantt_table";
+            this.m_data_gantt_table.Size = new System.Drawing.Size(909, 146);
+            this.m_data_gantt_table.TabIndex = 5;
             // 
             // tabPage3
             // 
@@ -402,7 +469,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(915, 400);
+            this.tabPage3.Size = new System.Drawing.Size(915, 306);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -413,30 +480,19 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(915, 400);
+            this.tabPage4.Size = new System.Drawing.Size(915, 306);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(923, 426);
-            this.panel1.TabIndex = 6;
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.m_export_to_excel_button);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 368);
+            this.panel2.Location = new System.Drawing.Point(0, 357);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(923, 83);
+            this.panel2.Size = new System.Drawing.Size(923, 94);
             this.panel2.TabIndex = 10;
             // 
             // m_export_to_excel_button
@@ -450,6 +506,51 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_export_to_excel_button.TabIndex = 0;
             this.m_export_to_excel_button.UseVisualStyleBackColor = true;
             this.m_export_to_excel_button.Click += new System.EventHandler(this.m_expor_to_excel_button_Click);
+            // 
+            // Resource
+            // 
+            this.Resource.HeaderText = "Resource";
+            this.Resource.Name = "Resource";
+            this.Resource.ReadOnly = true;
+            // 
+            // Product
+            // 
+            this.Product.HeaderText = "Product";
+            this.Product.Name = "Product";
+            this.Product.ReadOnly = true;
+            // 
+            // JobID
+            // 
+            this.JobID.HeaderText = "Job ID";
+            this.JobID.Name = "JobID";
+            this.JobID.ReadOnly = true;
+            // 
+            // Step
+            // 
+            this.Step.HeaderText = "Step";
+            this.Step.Name = "Step";
+            this.Step.ReadOnly = true;
+            // 
+            // StartTime
+            // 
+            this.StartTime.HeaderText = "Start Time";
+            this.StartTime.Name = "StartTime";
+            this.StartTime.ReadOnly = true;
+            // 
+            // FinishTime
+            // 
+            this.FinishTime.HeaderText = "Finish Time";
+            this.FinishTime.Name = "FinishTime";
+            this.FinishTime.ReadOnly = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tabControl1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(923, 332);
+            this.panel1.TabIndex = 11;
             // 
             // m_generation_over_time_graph
             // 
@@ -472,8 +573,8 @@ namespace MRCPSP.Gui.StatisticsViewer
             // StatisticsMonitor
             // 
             this.ClientSize = new System.Drawing.Size(923, 451);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.m_bind_navigator);
             this.Name = "StatisticsMonitor";
             this.Text = "Statistics Monitor";
@@ -486,10 +587,15 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
+            this.m_gantt_table_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.m_data_gantt_table)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -584,10 +690,13 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_resources_gantt.TabIndex = 7;
             this.m_resources_gantt.Title = "";
             this.m_gantt_panel.Controls.Add(this.m_resources_gantt);
-          
+          /*
             m_resources_gantt.setGanttData(m_current_summary);            
             m_resources_gantt.Refresh();
             m_resources_gantt.setGanttData2(m_current_summary);
+           */
+            m_data_gantt_table.Rows.Clear();
+            m_resources_gantt.setGanttDataByResource(m_current_summary, m_data_gantt_table);
             m_resources_gantt.Title = "Best Result in Generation";
             m_resources_gantt.Refresh();
         }
@@ -598,6 +707,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             updateGenerationOverTime();
             updateResourcesInPie();
             updateResourcesInGantt();
+           
         }
 
         private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)

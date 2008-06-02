@@ -11,6 +11,8 @@ namespace MRCPSP.Domain
 
     class Problem
     {
+        private enum STEP_COLOR {WHITE, GREY, BLACK};
+
         private List<Resource> m_resource_list;
         private Dictionary< Step, List < Mode > > m_modes_in_step;     
         private List<Step> m_step_list;
@@ -297,6 +299,15 @@ namespace MRCPSP.Domain
             set { m_title = value; }
         }
 
-         
+     /*    
+        public LinkedList<Step> topologicalSortStepsForProduct(Product p) 
+        {
+            LinkedList<Step> list = new LinkedList<Step>();
+ 
+        }
+        */
+
+
+
     }
 }
