@@ -19,12 +19,14 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
 {
     class GanttChart : GraphPanel
     {
-        private Hashtable m_list_of_charts_by_type;
+        private Dictionary<Product, Hashtable>  m_list_of_charts_by_type;
+        private Dictionary<KeyValuePair<int, int>, string> m_list_of_labels_by_pos;
 
 
         public GanttChart() : base()
         {
-            m_list_of_charts_by_type = new Hashtable();  
+            m_list_of_charts_by_type = new Dictionary<Product, Hashtable>();
+            m_list_of_labels_by_pos = new Dictionary<KeyValuePair<int, int>, string>();
         }
 
         // Initiatialize color list with dark color's
@@ -33,13 +35,12 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             List<Color> colorList = new List<Color>();
 
             foreach (string colorName in Enum.GetNames(typeof(System.Drawing.KnownColor)))
-            {
-                //Check if color is dark
+            {           
                 if (colorName.StartsWith("D") == true)
                 {
                     colorList.Add(System.Drawing.Color.FromName(colorName));
                 }
-            }
+            }      
             return colorList;
         }
          
@@ -51,17 +52,25 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             return labels;
         }
         
-        /*
-        public PointPairList getGanttListByType(Step step, int JobNum) {
+        
+        public PointPairList getGanttListByType(Product p, Step step, int JobNum) {
             // need to add family
-            if (!m_list_of_charts_by_type.Contains(step))
-                m_list_of_charts_by_type.Add(step, new Hashtable());
-            Hashtable map_after_step = (Hashtable)m_list_of_charts_by_type[step];
+            if (!m_list_of_charts_by_type.ContainsKey(p))
+                m_list_of_charts_by_type.Add(p, new Hashtable());
+            if (!m_list_of_charts_by_type[p].Contains(step))
+                m_list_of_charts_by_type[p].Add(step, new Hashtable());
+            Hashtable map_after_step = (Hashtable)m_list_of_charts_by_type[p][step];
             if (!map_after_step.Contains(JobNum))
-                map_after_step.Add(JobNum, new PointPairList());
+            {
+                PointPairList ppl = new PointPairList();
+                map_after_step.Add(JobNum, ppl);
+                for (int i = 1; i <= ApplicManager.Instance.CurrentProblem.Products[0].Size; i++)
+                    ppl.Add(0, i, 0);
+            }
             return (PointPairList)map_after_step[JobNum];
         }
-        */
+      
+        /*
         public void setGanttDataByResource(ResultSummary summary, DataGridView gantt_table)
         {
             Solution best_solution = summary.getBestSolution();
@@ -101,8 +110,8 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             m_graph_control.Size = new Size(this.ClientRectangle.Width - 20, this.ClientRectangle.Height - 20);
          
         }
+        */
         
-        /*
         public void setGanttData(ResultSummary summary)
         {
             Solution best_solution = summary.getBestSolution();
@@ -115,9 +124,18 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
                 List<ResultParameter> resource_operations_done = best_solution.resultFromLindo[r];
                 for (int i = 0; i < resource_operations_done.Count; i++)
                 {
-                    PointPairList list = getGanttListByType(resource_operations_done[i].step, resource_operations_done[i].jobID);
-                    list.Add(resource_operations_done[i].startTime, resource_counter, resource_operations_done[i].finishTime);
-                    Console.Out.WriteLine("resource: " + r.Name + " start at " + resource_operations_done[i].startTime.ToString() + " ends at " + resource_operations_done[i].finishTime.ToString() + " job id start: " + resource_operations_done[i].jobID.ToString() + " job id end " + resource_operations_done[i].jobID.ToString());
+                    PointPairList list = getGanttListByType(resource_operations_done[i].product, resource_operations_done[i].step, resource_operations_done[i].jobID);
+                    for (int j = 0; j < list.Count; j++)
+                    {
+                        if ((int)list[j].Y == resource_counter && resource_operations_done[i].startTime != 0 && resource_operations_done[i].finishTime != 0)
+                        {
+                            String title = resource_operations_done[i].product.Name+  " job: " + resource_operations_done[i].jobID + " " + resource_operations_done[i].step.Name;
+                            list[j].X = resource_operations_done[i].startTime;
+                            list[j].Z = resource_operations_done[i].finishTime;
+                            m_list_of_labels_by_pos.Add(new KeyValuePair<int,int>((int)list[j].X, resource_counter), title);
+                        }
+                    }  
+             
                 }
                 resource_counter++;
             }
@@ -127,50 +145,62 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             List<Color> color_list = initColorList();
             Solution best_solution = summary.getBestSolution();
             int color_counter = 0;
-            foreach (Step step in m_list_of_charts_by_type.Keys)
+            foreach (Product p in m_list_of_charts_by_type.Keys)
             {
-                Hashtable list_after_step = (Hashtable)m_list_of_charts_by_type[step];
-              
-                for (int job_num = 0; job_num < list_after_step.Keys.Count; job_num++)
+                foreach (Step step in m_list_of_charts_by_type[p].Keys)
                 {
-                    PointPairList list = (PointPairList)list_after_step[job_num];
-                    String title = "job: " + job_num.ToString() + " step: " + step.Id.ToString();
-                    HiLowBarItem myCurve = m_graph_pane.AddHiLowBar(title, list, color_list[color_counter % color_list.Count]);
-                    myCurve.Bar.Fill = new Fill(color_list[color_counter % color_list.Count], Color.White, color_list[color_counter % color_list.Count], 90);         
-                    color_counter++;
-                    Console.Out.WriteLine("step: " + step.Id.ToString() + " job_num " + job_num.ToString());
-                    for (int i = 0; i < list.Count; i++)
+                    Hashtable list_after_step = (Hashtable)m_list_of_charts_by_type[p][step];
+
+                    for (int job_num = 0; job_num < list_after_step.Keys.Count; job_num++)
                     {
-                        Console.Out.WriteLine(list[i].X.ToString() + " " + list[i].Y.ToString() + " " +list[i].Z.ToString());
+                        PointPairList list = (PointPairList)list_after_step[job_num];
+                        String title = "job: " + job_num.ToString() + " step: " + step.Id.ToString();
+                        HiLowBarItem myCurve = m_graph_pane.AddHiLowBar(title, list, color_list[color_counter % color_list.Count]);
+                        myCurve.Bar.Fill = new Fill(color_list[color_counter % color_list.Count], Color.White, color_list[color_counter % color_list.Count], 90);
+                        color_counter++;
+                        Console.Out.WriteLine("step: " + step.Id.ToString() + " job_num " + job_num.ToString());
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            Console.Out.WriteLine(list[i].X.ToString() + " " + list[i].Y.ToString() + " " + list[i].Z.ToString());
+                        }
                     }
                 }
-
             }
-            m_graph_pane.Legend.FontSpec.Size = 13;
+            m_graph_pane.Legend.IsVisible = false;
             m_graph_pane.BarSettings.Base = BarBase.Y;
             m_graph_pane.BarSettings.ClusterScaleWidth = 15;
-          
-   
             
-       //m_graph_pane.BarSettings.Type = BarType.Stack;
+            //m_graph_pane.BarSettings.Type = BarType.Stack;
             string[] labels = getSummaryLabels(best_solution.resultFromLindo.Keys.ToArray<Resource>());
             // Set the YAxis labels
             m_graph_pane.YAxis.Scale.TextLabels = labels;
             // Set the YAxis to Text type
             m_graph_pane.YAxis.Type = AxisType.Text;
-            m_graph_pane.YAxis.MajorTic.IsBetweenLabels = true;  
-           
+            m_graph_pane.YAxis.MajorTic.IsBetweenLabels = true;         
             // Fill the axis background with a color gradient
             m_graph_pane.Fill = new Fill( Color.White, Color.FromArgb( 255, 255, 166 ), 90F );
-            //BarItem.CreateBarLabels(m_graph_pane, true,"", "david", 13,Color.Black,false,false,false);
-            //m_graphpane.XAxis.Scale.Max += m_graph_pane.XAxis.Scale.MajorStep;
-
+            
+            setTitlesToGraph();
             m_graph_control.AxisChange();
             m_graph_control.Location = new Point(10, 10);
             m_graph_control.Size = new Size(this.ClientRectangle.Width - 20, this.ClientRectangle.Height - 20);
        
         }
-        */
+
+        private void setTitlesToGraph()
+        {
+            foreach (KeyValuePair<int, int> key in m_list_of_labels_by_pos.Keys)
+            {
+                TextObj text = new TextObj( m_list_of_labels_by_pos[key], (float)( key.Key ), (float)( key.Value) - 0.5);
+                text.Location.CoordinateFrame = CoordType.AxisXYScale;
+                text.Location.AlignH = AlignH.Left;
+                text.Location.AlignV = AlignV.Center;
+                text.FontSpec.Border.IsVisible = false;
+                text.FontSpec.Fill.IsVisible = false;
+                m_graph_pane.GraphObjList.Add( text );
+            }
+        }
+
         private void InitializeComponent()
         {
             this.SuspendLayout();

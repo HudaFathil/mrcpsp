@@ -91,6 +91,9 @@
     <Compile Include="Gui\StatisticsViewer\Graph\GraphPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Gui\StatisticsViewer\Graph\MinMaxGraph.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Gui\StatisticsViewer\Graph\PieGraph.cs">
       <SubType>Component</SubType>
     </Compile>

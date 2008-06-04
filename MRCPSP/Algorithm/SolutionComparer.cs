@@ -11,6 +11,8 @@ namespace MRCPSP.Algorithm
         public SolutionComparer() : base() { }
         public int Compare(T x, T y) 
         {
+            if (x.scoreFromLindo == 0 && y.scoreFromLindo == 0)
+                return 0;
             if (x.scoreFromLindo == 0) 
                 return 1;
             if (y.scoreFromLindo == 0)

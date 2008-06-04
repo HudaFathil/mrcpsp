@@ -63,6 +63,11 @@ namespace MRCPSP.Algorithm
                 m_generate_method_policy.GenerateSolution(sol);
                 m_solutions.Add(sol);
             }
+            for (int j = 0; j < population_size; j++)
+            {
+                m_fitness_function.evalFitness(m_solutions[j], ApplicManager.Instance.CurrentProblem);
+            }
+            m_result_summary.MinMaxPerGeneration.Add(getMinMaxForGeneration(m_solutions));
         }
 
         private void performingGrowingLoop(int population_size, int num_of_generation, double mutate_percent)
@@ -70,27 +75,14 @@ namespace MRCPSP.Algorithm
             String forDebugging = "Fitness summery:\n";
             for (int i = 0; i < num_of_generation; i++)
             {
-                forDebugging += "Generation Number "+i+ " ";
-                for (int j = 0; j < population_size; j++)
-                {
-                    m_fitness_function.evalFitness(m_solutions[j], ApplicManager.Instance.CurrentProblem);
-                    forDebugging += m_solutions[j].scoreFromLindo+" , ";
-                }
-
-                List<Solution> childSolutions = m_crossOverFunction.doCrossOver(m_solutions);
-                               
-
+                forDebugging += "Generation Number "+i+ " ";    
+                List<Solution> childSolutions = m_crossOverFunction.doCrossOver(m_solutions);                             
                 for (int j = 0; j < population_size; j++)
                 {
                     m_fitness_function.evalFitness(childSolutions[j], ApplicManager.Instance.CurrentProblem);
-                    
+                    forDebugging += childSolutions[j].resultFromLindo + " , ";
                 }
-
-                foreach (Solution s in childSolutions)
-                {
-                    forDebugging += s.resultFromLindo + " , ";
-                }
-
+                m_result_summary.MinMaxPerGeneration.Add(getMinMaxForGeneration(childSolutions));
                 forDebugging += "\n";
                 m_solutions =  m_selection_policy.keepOnlySuitedSolutions(m_solutions, childSolutions, population_size);
                 
@@ -102,6 +94,23 @@ namespace MRCPSP.Algorithm
             Logger.LoggerFactory.getSimpleLogger().debug(forDebugging);
 
             ApplicManager.Instance.SavedResults.Add(m_result_summary);
+        }
+
+        private KeyValuePair<double, double> getMinMaxForGeneration(List<Solution> sol_list)
+        {
+            double min = double.MaxValue; 
+            double max = double.MinValue;
+            for (int i = 0; i < sol_list.Count; i++)
+            {
+                if (sol_list[i].scoreFromLindo < min && sol_list[i].scoreFromLindo != 0)
+                    min = sol_list[i].scoreFromLindo;
+                if (sol_list[i].scoreFromLindo > max && sol_list[i].scoreFromLindo != 0)
+                    max = sol_list[i].scoreFromLindo;
+            }
+            if (min ==double.MaxValue && max == double.MinValue)
+                return new KeyValuePair<double, double>(0, 0);
+            else
+                return new KeyValuePair<double, double>(min, max);
         }
 
         private void createNewResultSummary(int pop_size, int num_of_gen, double mutate_percent)

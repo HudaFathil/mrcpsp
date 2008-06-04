@@ -16,10 +16,12 @@ namespace MRCPSP.Domain
         private String m_selection_type;
         private String m_crossover_type;
         private String m_generate_population_type;
+        private List<KeyValuePair<double, double>> m_min_max_per_generation;
 
         public ResultSummary()
         {      
             m_best_solutions_in_generation = new List<Solution>();
+            m_min_max_per_generation = new List<KeyValuePair<double, double>>();
         }
 
         public List<Solution> BestSolutions
@@ -28,6 +30,15 @@ namespace MRCPSP.Domain
             set
             {
                 m_best_solutions_in_generation = value;
+            }
+        }
+
+        public List<KeyValuePair<double,double>> MinMaxPerGeneration
+        {
+            get { return m_min_max_per_generation; }
+            set
+            {
+                m_min_max_per_generation = value;
             }
         }
 
