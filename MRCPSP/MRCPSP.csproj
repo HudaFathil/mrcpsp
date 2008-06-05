@@ -72,7 +72,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Algorithm\MatrixCell.cs" />
+    <Compile Include="Algorithm\SelectionPolicy\ElitismPolicy.cs" />
     <Compile Include="Algorithm\SelectionPolicy\RankSelectionPolicy.cs" />
+    <Compile Include="Algorithm\SelectionPolicy\ScoreSelectionPolicy.cs" />
     <Compile Include="Algorithm\SelectionPolicy\SelectionPolicyBase.cs" />
     <Compile Include="Algorithm\SolutionComparer.cs" />
     <Compile Include="CommonTypes\Job.cs" />
@@ -82,6 +84,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gui\ProblemCreator\ResourceTimeConstraint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\ProcessingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gui\StatisticsViewer\ExcelParser.cs" />
@@ -201,6 +206,7 @@
     <None Include="Gui\pics\dna_alfa.jpg" />
     <None Include="Gui\pics\DNA_Overview.png" />
     <None Include="Gui\pics\DNAComp.gif" />
+    <None Include="Gui\pics\DNA_animated.gif" />
     <Content Include="Gui\pics\eraser_pic.bmp" />
     <None Include="Gui\pics\graphs.bmp" />
     <None Include="Gui\pics\neurons.jpg" />
@@ -228,6 +234,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\ProblemCreator\ResourceTimeConstraint.resx">
       <DependentUpon>ResourceTimeConstraint.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProcessingForm.resx">
+      <DependentUpon>ProcessingForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\StatisticsViewer\Graph\GraphPanel.resx">

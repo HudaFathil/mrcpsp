@@ -127,7 +127,7 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
                     PointPairList list = getGanttListByType(resource_operations_done[i].product, resource_operations_done[i].step, resource_operations_done[i].jobID);
                     for (int j = 0; j < list.Count; j++)
                     {
-                        if ((int)list[j].Y == resource_counter && resource_operations_done[i].startTime != 0 && resource_operations_done[i].finishTime != 0)
+                        if ((int)list[j].Y == resource_counter && resource_operations_done[i].finishTime != 0)
                         {
                             String title = resource_operations_done[i].product.Name+  " job: " + resource_operations_done[i].jobID + " " + resource_operations_done[i].step.Name;
                             list[j].X = resource_operations_done[i].startTime;

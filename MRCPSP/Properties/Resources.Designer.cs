@@ -102,6 +102,13 @@ namespace MRCPSP.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap DNA_animated {
+            get {
+                object obj = ResourceManager.GetObject("DNA_animated", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap DNA_Overview {
             get {
                 object obj = ResourceManager.GetObject("DNA_Overview", resourceCulture);

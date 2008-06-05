@@ -24,7 +24,7 @@ namespace MRCPSP.Gui {
         private ProblemSolverMonitor m_problem_solver_monitor;
         private StatisticsMonitor m_statistics_monitor;
         private ProgressBar m_progress_bar;
-        private IContainer components;
+        private ProcessingForm m_processing_form;
         private Label label1;
         public BackgroundWorker backgroundWorker1;
         MainMenu MyMenu; 
@@ -71,6 +71,8 @@ namespace MRCPSP.Gui {
 
         void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            m_processing_form.Dispose();
+            m_processing_form = null;
             // First, handle the case where an exception was thrown.
             if (e.Error != null)
             {
@@ -88,6 +90,13 @@ namespace MRCPSP.Gui {
 
         void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            if (m_processing_form == null)
+            {
+                m_processing_form = new ProcessingForm();
+                m_processing_form.StartPosition = FormStartPosition.CenterScreen;
+                m_processing_form.Show();
+                m_processing_form.TopLevel = true;
+            }
             m_progress_bar.Value = e.ProgressPercentage;
         }
 

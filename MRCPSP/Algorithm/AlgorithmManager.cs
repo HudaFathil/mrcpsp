@@ -37,7 +37,7 @@ namespace MRCPSP.Algorithm
             m_selection_policy = new RankSelectionPolicy();
         }
 
-        public bool run(int population_size, int num_of_generation, double mutate_percent)
+        public ResultSummary run(int population_size, int num_of_generation, double mutate_percent)
         {
             createNewResultSummary(population_size, num_of_generation, mutate_percent);
 
@@ -50,8 +50,8 @@ namespace MRCPSP.Algorithm
             createFirstPopulation(population_size);
 
             performingGrowingLoop(population_size, num_of_generation, mutate_percent);
-            
-            return true;
+
+            return m_result_summary;
         }
 
         private void createFirstPopulation(int population_size)
@@ -67,7 +67,7 @@ namespace MRCPSP.Algorithm
             {
                 m_fitness_function.evalFitness(m_solutions[j], ApplicManager.Instance.CurrentProblem);
             }
-            m_result_summary.MinMaxPerGeneration.Add(getMinMaxForGeneration(m_solutions));
+            //m_result_summary.MinMaxPerGeneration.Add(getMinMaxForGeneration(m_solutions));
         }
 
         private void performingGrowingLoop(int population_size, int num_of_generation, double mutate_percent)
@@ -82,13 +82,13 @@ namespace MRCPSP.Algorithm
                     m_fitness_function.evalFitness(childSolutions[j], ApplicManager.Instance.CurrentProblem);
                     forDebugging += childSolutions[j].resultFromLindo + " , ";
                 }
-                m_result_summary.MinMaxPerGeneration.Add(getMinMaxForGeneration(childSolutions));
+                
                 forDebugging += "\n";
                 m_solutions =  m_selection_policy.keepOnlySuitedSolutions(m_solutions, childSolutions, population_size);
-                
+                m_solutions.Sort(new SolutionComparer<Solution>());
                 // mutation
                 performMutation(mutate_percent);
-
+                m_result_summary.MinMaxPerGeneration.Add(getMinMaxForGeneration(m_solutions));
                 m_result_summary.BestSolutions.Add(m_solutions[0]);
             }
             Logger.LoggerFactory.getSimpleLogger().debug(forDebugging);
@@ -172,6 +172,18 @@ namespace MRCPSP.Algorithm
         {
             get { return m_generate_method_policy; }
             set { m_generate_method_policy = value; }
+        }
+
+        public CorssOverBase CurrentCrossOverPolicy
+        {
+            get { return m_crossOverFunction; }
+            set { m_crossOverFunction = value; }
+        }
+
+        public SelectionPolicyBase CurrentSelectionPolicy
+        {
+            get { return m_selection_policy; }
+            set { m_selection_policy = value; }
         }
     }
 }

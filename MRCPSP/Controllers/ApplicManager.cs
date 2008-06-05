@@ -8,6 +8,8 @@ using MRCPSP.CommonTypes;
 using MRCPSP.Logger;
 using MRCPSP.Algorithm;
 using MRCPSP.Algorithm.FirstGeneration;
+using MRCPSP.Algorithm.CrossOver;
+using MRCPSP.Algorithm.SelectionPolicy;
 
 
 namespace MRCPSP.Controllers
@@ -77,9 +79,9 @@ namespace MRCPSP.Controllers
             set { m_saved_results = value; }
         }
 
-        public void loadAdvancedParams(int loops)
+        public void loadParams(int loops,GeneratePolicyBase gpb, CorssOverBase cob, SelectionPolicyBase spb )
         {
-            m_problem_solver_manager.loadAdvancedParams(loops);
+            m_problem_solver_manager.loadParams(loops, gpb, cob, spb);
         }
 
         public void signBackgroundWorker(System.ComponentModel.BackgroundWorker backgroundWorker1)
@@ -87,10 +89,5 @@ namespace MRCPSP.Controllers
             m_problem_solver_manager.signBackgroundWorker(backgroundWorker1);
         }
 
-        public GeneratePolicyBase CurrentGeneratePolicy
-        {
-            get { return m_problem_solver_manager.CurrentGeneratePolicy; }
-            set { m_problem_solver_manager.CurrentGeneratePolicy = value; }
-        }
     }
 }

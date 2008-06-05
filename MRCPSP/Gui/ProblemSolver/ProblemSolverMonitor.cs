@@ -9,6 +9,8 @@ using System.Drawing;
 using MRCPSP.Controllers;
 using MRCPSP.Algorithm;
 using MRCPSP.Algorithm.FirstGeneration;
+using MRCPSP.Algorithm.SelectionPolicy;
+using MRCPSP.Algorithm.CrossOver;
 
 namespace MRCPSP.Gui.ProblemSolver
 {
@@ -50,6 +52,10 @@ namespace MRCPSP.Gui.ProblemSolver
         private RadioButton radioButton3;
         private RadioButton m_pop_by_operation_rb;
         private RadioButton m_first_pop_random_rb;
+        private GroupBox groupBox5;
+        private RadioButton m_elitism_rb;
+        private RadioButton m_rank_rb;
+        private RadioButton m_score_rb;
 
         private BackgroundWorker m_background_worker;
 
@@ -70,8 +76,6 @@ namespace MRCPSP.Gui.ProblemSolver
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.m_remove_problem_button = new System.Windows.Forms.Button();
-            this.m_add_problem_button = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.m_loops_sb = new System.Windows.Forms.NumericUpDown();
@@ -86,8 +90,6 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_increase_mutate_rb = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.m_increase_gen_rb = new System.Windows.Forms.RadioButton();
-            this.m_stop_btn = new System.Windows.Forms.Button();
-            this.m_start_test_button = new System.Windows.Forms.Button();
             this.m_solve_current_rb = new System.Windows.Forms.RadioButton();
             this.m_use_table_rb = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -96,6 +98,14 @@ namespace MRCPSP.Gui.ProblemSolver
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.m_pop_by_operation_rb = new System.Windows.Forms.RadioButton();
             this.m_first_pop_random_rb = new System.Windows.Forms.RadioButton();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.m_elitism_rb = new System.Windows.Forms.RadioButton();
+            this.m_rank_rb = new System.Windows.Forms.RadioButton();
+            this.m_remove_problem_button = new System.Windows.Forms.Button();
+            this.m_add_problem_button = new System.Windows.Forms.Button();
+            this.m_stop_btn = new System.Windows.Forms.Button();
+            this.m_start_test_button = new System.Windows.Forms.Button();
+            this.m_score_rb = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -106,6 +116,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.groupBox3.SuspendLayout();
             this.m_list_panel.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -216,24 +227,6 @@ namespace MRCPSP.Gui.ProblemSolver
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(64, 231);
             this.panel3.TabIndex = 10;
-            // 
-            // m_remove_problem_button
-            // 
-            this.m_remove_problem_button.Image = global::MRCPSP.Properties.Resources.arrow_left;
-            this.m_remove_problem_button.Location = new System.Drawing.Point(3, 98);
-            this.m_remove_problem_button.Name = "m_remove_problem_button";
-            this.m_remove_problem_button.Size = new System.Drawing.Size(58, 41);
-            this.m_remove_problem_button.TabIndex = 13;
-            this.m_remove_problem_button.UseVisualStyleBackColor = true;
-            // 
-            // m_add_problem_button
-            // 
-            this.m_add_problem_button.Image = global::MRCPSP.Properties.Resources.arrow_right;
-            this.m_add_problem_button.Location = new System.Drawing.Point(3, 53);
-            this.m_add_problem_button.Name = "m_add_problem_button";
-            this.m_add_problem_button.Size = new System.Drawing.Size(58, 39);
-            this.m_add_problem_button.TabIndex = 12;
-            this.m_add_problem_button.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -401,28 +394,6 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_increase_gen_rb.Text = "Increase Generation Size";
             this.m_increase_gen_rb.UseVisualStyleBackColor = true;
             // 
-            // m_stop_btn
-            // 
-            this.m_stop_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.m_stop_btn.Image = global::MRCPSP.Properties.Resources.stop;
-            this.m_stop_btn.Location = new System.Drawing.Point(458, 351);
-            this.m_stop_btn.Name = "m_stop_btn";
-            this.m_stop_btn.Size = new System.Drawing.Size(87, 84);
-            this.m_stop_btn.TabIndex = 11;
-            this.m_stop_btn.UseVisualStyleBackColor = true;
-            this.m_stop_btn.Click += new System.EventHandler(this.m_stop_btn_Click);
-            // 
-            // m_start_test_button
-            // 
-            this.m_start_test_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.m_start_test_button.Image = global::MRCPSP.Properties.Resources.play;
-            this.m_start_test_button.Location = new System.Drawing.Point(551, 351);
-            this.m_start_test_button.Name = "m_start_test_button";
-            this.m_start_test_button.Size = new System.Drawing.Size(87, 84);
-            this.m_start_test_button.TabIndex = 3;
-            this.m_start_test_button.UseVisualStyleBackColor = true;
-            this.m_start_test_button.Click += new System.EventHandler(this.m_start_test_button_Click);
-            // 
             // m_solve_current_rb
             // 
             this.m_solve_current_rb.AutoSize = true;
@@ -497,32 +468,116 @@ namespace MRCPSP.Gui.ProblemSolver
             // m_pop_by_operation_rb
             // 
             this.m_pop_by_operation_rb.AutoSize = true;
+            this.m_pop_by_operation_rb.Checked = true;
             this.m_pop_by_operation_rb.Location = new System.Drawing.Point(5, 42);
             this.m_pop_by_operation_rb.Name = "m_pop_by_operation_rb";
             this.m_pop_by_operation_rb.Size = new System.Drawing.Size(85, 17);
             this.m_pop_by_operation_rb.TabIndex = 1;
+            this.m_pop_by_operation_rb.TabStop = true;
             this.m_pop_by_operation_rb.Text = "by Operation";
             this.m_pop_by_operation_rb.UseVisualStyleBackColor = true;
-            this.m_pop_by_operation_rb.CheckedChanged += new System.EventHandler(this.m_pop_by_operation_rb_CheckedChanged);
             // 
             // m_first_pop_random_rb
             // 
             this.m_first_pop_random_rb.AutoSize = true;
-            this.m_first_pop_random_rb.Checked = true;
             this.m_first_pop_random_rb.Location = new System.Drawing.Point(5, 19);
             this.m_first_pop_random_rb.Name = "m_first_pop_random_rb";
             this.m_first_pop_random_rb.Size = new System.Drawing.Size(65, 17);
             this.m_first_pop_random_rb.TabIndex = 0;
-            this.m_first_pop_random_rb.TabStop = true;
             this.m_first_pop_random_rb.Text = "Random";
             this.m_first_pop_random_rb.UseVisualStyleBackColor = true;
-            this.m_first_pop_random_rb.CheckedChanged += new System.EventHandler(this.m_first_pop_random_rb_CheckedChanged);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.m_score_rb);
+            this.groupBox5.Controls.Add(this.m_elitism_rb);
+            this.groupBox5.Controls.Add(this.m_rank_rb);
+            this.groupBox5.Location = new System.Drawing.Point(141, 341);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(155, 94);
+            this.groupBox5.TabIndex = 16;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Selection Policy";
+            // 
+            // m_elitism_rb
+            // 
+            this.m_elitism_rb.AutoSize = true;
+            this.m_elitism_rb.Checked = true;
+            this.m_elitism_rb.Location = new System.Drawing.Point(6, 42);
+            this.m_elitism_rb.Name = "m_elitism_rb";
+            this.m_elitism_rb.Size = new System.Drawing.Size(54, 17);
+            this.m_elitism_rb.TabIndex = 1;
+            this.m_elitism_rb.TabStop = true;
+            this.m_elitism_rb.Text = "Elitism";
+            this.m_elitism_rb.UseVisualStyleBackColor = true;
+            // 
+            // m_rank_rb
+            // 
+            this.m_rank_rb.AutoSize = true;
+            this.m_rank_rb.Location = new System.Drawing.Point(6, 19);
+            this.m_rank_rb.Name = "m_rank_rb";
+            this.m_rank_rb.Size = new System.Drawing.Size(51, 17);
+            this.m_rank_rb.TabIndex = 0;
+            this.m_rank_rb.Text = "Rank";
+            this.m_rank_rb.UseVisualStyleBackColor = true;
+            // 
+            // m_remove_problem_button
+            // 
+            this.m_remove_problem_button.Image = global::MRCPSP.Properties.Resources.arrow_left;
+            this.m_remove_problem_button.Location = new System.Drawing.Point(3, 98);
+            this.m_remove_problem_button.Name = "m_remove_problem_button";
+            this.m_remove_problem_button.Size = new System.Drawing.Size(58, 41);
+            this.m_remove_problem_button.TabIndex = 13;
+            this.m_remove_problem_button.UseVisualStyleBackColor = true;
+            // 
+            // m_add_problem_button
+            // 
+            this.m_add_problem_button.Image = global::MRCPSP.Properties.Resources.arrow_right;
+            this.m_add_problem_button.Location = new System.Drawing.Point(3, 53);
+            this.m_add_problem_button.Name = "m_add_problem_button";
+            this.m_add_problem_button.Size = new System.Drawing.Size(58, 39);
+            this.m_add_problem_button.TabIndex = 12;
+            this.m_add_problem_button.UseVisualStyleBackColor = true;
+            // 
+            // m_stop_btn
+            // 
+            this.m_stop_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.m_stop_btn.Image = global::MRCPSP.Properties.Resources.stop;
+            this.m_stop_btn.Location = new System.Drawing.Point(458, 351);
+            this.m_stop_btn.Name = "m_stop_btn";
+            this.m_stop_btn.Size = new System.Drawing.Size(87, 84);
+            this.m_stop_btn.TabIndex = 11;
+            this.m_stop_btn.UseVisualStyleBackColor = true;
+            this.m_stop_btn.Click += new System.EventHandler(this.m_stop_btn_Click);
+            // 
+            // m_start_test_button
+            // 
+            this.m_start_test_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.m_start_test_button.Image = global::MRCPSP.Properties.Resources.play;
+            this.m_start_test_button.Location = new System.Drawing.Point(551, 351);
+            this.m_start_test_button.Name = "m_start_test_button";
+            this.m_start_test_button.Size = new System.Drawing.Size(87, 84);
+            this.m_start_test_button.TabIndex = 3;
+            this.m_start_test_button.UseVisualStyleBackColor = true;
+            this.m_start_test_button.Click += new System.EventHandler(this.m_start_test_button_Click);
+            // 
+            // m_score_rb
+            // 
+            this.m_score_rb.AutoSize = true;
+            this.m_score_rb.Location = new System.Drawing.Point(6, 65);
+            this.m_score_rb.Name = "m_score_rb";
+            this.m_score_rb.Size = new System.Drawing.Size(53, 17);
+            this.m_score_rb.TabIndex = 2;
+            this.m_score_rb.TabStop = true;
+            this.m_score_rb.Text = "Score";
+            this.m_score_rb.UseVisualStyleBackColor = true;
             // 
             // ProblemSolverMonitor
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(687, 447);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -548,6 +603,8 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_list_panel.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -561,7 +618,12 @@ namespace MRCPSP.Gui.ProblemSolver
             }
             if (m_background_worker.IsBusy)
                 return;
-            ApplicManager.Instance.loadAdvancedParams((int)m_loops_sb.Value);
+            
+            SelectionPolicyBase selection = getSelectionPolicy();
+            CorssOverBase crossover = getCrossOverPolicy();
+            GeneratePolicyBase first = getFirstPopulationPolicy();
+
+            ApplicManager.Instance.loadParams((int)m_loops_sb.Value, first, crossover, selection);
             int[] alg_params = new int[3];
             alg_params[0] = Convert.ToInt32(m_population_size_le.Text);
             alg_params[1] = Convert.ToInt32(m_num_of_gen_le.Text);
@@ -569,6 +631,31 @@ namespace MRCPSP.Gui.ProblemSolver
             m_background_worker.RunWorkerAsync(alg_params);
                                         
         }
+
+        private SelectionPolicyBase getSelectionPolicy()
+        {
+            if (m_rank_rb.Checked)
+                return new RankSelectionPolicy();
+            else if (m_elitism_rb.Checked)
+                return new ElitismPolicy();
+            else
+                return new ScoreSelectionPolicy();
+        }
+
+
+        private CorssOverBase getCrossOverPolicy()
+        {
+            return new OnePointCrossOver();
+        }
+
+        private GeneratePolicyBase getFirstPopulationPolicy()
+        {
+            if (m_pop_by_operation_rb.Checked)
+                return new GenerateByOperation();
+            else
+                return new GenerateRandomPopulation();
+        }
+
 
         private void m_stop_btn_Click(object sender, EventArgs e)
         {
@@ -595,16 +682,6 @@ namespace MRCPSP.Gui.ProblemSolver
         {
             m_list_panel.Enabled = ! m_solve_current_rb.Checked;
 
-        }
-
-        private void m_first_pop_random_rb_CheckedChanged(object sender, EventArgs e)
-        {
-            ApplicManager.Instance.CurrentGeneratePolicy = new GenerateRandomPopulation();
-        }
-
-        private void m_pop_by_operation_rb_CheckedChanged(object sender, EventArgs e)
-        {
-            ApplicManager.Instance.CurrentGeneratePolicy = new GenerateByOperation();
         }
 
     }
