@@ -828,7 +828,7 @@ namespace MRCPSP.Gui.ProblemCreator
 
         private void m_load_problem_button_Click(object sender, EventArgs e)
         {
-            ProblemCreatorState.Instance(monitor_id).loadCurrentProblem();
+            ProblemCreatorState.Instance(monitor_id).loadCurrentProblem(m_problem_title_le.Text);
         }
 
         private void m_add_product_button_Click(object sender, EventArgs e)

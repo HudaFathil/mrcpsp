@@ -79,6 +79,10 @@
     <Compile Include="Algorithm\SolutionComparer.cs" />
     <Compile Include="CommonTypes\Job.cs" />
     <Compile Include="CommonTypes\ResourceConstraint.cs" />
+    <Compile Include="Database\DBHandler.cs" />
+    <Compile Include="Database\ProblemLoader.cs" />
+    <Compile Include="Database\ProblemSaver.cs" />
+    <Compile Include="Database\SchemaCreator.cs" />
     <Compile Include="Domain\ResultSummary.cs" />
     <Compile Include="Exceptions\ConstrainException.cs" />
     <Compile Include="Gui\ProblemCreator\ConstraintProperties.cs">
@@ -166,8 +170,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gui\ProblemCreator\ProblemCreatorState.cs" />
-    <Compile Include="Gui\ProblemCreator\ProductItem.cs">
-    </Compile>
+    <Compile Include="Gui\ProblemCreator\ProductItem.cs" />
     <Compile Include="Gui\ProblemCreator\ResourceBase.cs">
     </Compile>
     <Compile Include="Gui\ProblemCreator\StateBase.cs">
@@ -210,7 +213,6 @@
     <None Include="Gui\pics\DNA_Overview.png" />
     <None Include="Gui\pics\DNAComp.gif" />
     <None Include="Gui\pics\DNA_animated.gif" />
-    <None Include="Gui\pics\circle_cromosom.GIF" />
     <Content Include="Gui\pics\eraser_pic.bmp" />
     <None Include="Gui\pics\graphs.bmp" />
     <None Include="Gui\pics\neurons.jpg" />

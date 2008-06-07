@@ -10,7 +10,7 @@ using MRCPSP.Algorithm;
 using MRCPSP.Algorithm.FirstGeneration;
 using MRCPSP.Algorithm.CrossOver;
 using MRCPSP.Algorithm.SelectionPolicy;
-
+using MRCPSP.Database;
 
 namespace MRCPSP.Controllers
 {
@@ -43,17 +43,34 @@ namespace MRCPSP.Controllers
                         List<Constraint> all_constraints,
                         List<Product> products_list,
                         Dictionary<Product, List<Job>> jobs_in_product,
-                        List<ResourceConstraint> resource_time_constraints)                                                         
+                        List<ResourceConstraint> resource_time_constraints,
+                        String title)                                                         
         {
-            m_current_problem = new Problem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product, resource_time_constraints);
+            m_current_problem = new Problem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product, resource_time_constraints,title);
+            ProblemSaver.saveProblem(m_current_problem);
+
             
         }
 
-
-        public  void loadProblemFromDataBase(string title)
+        public void loadProblemFromDataBase(string title)
         {
+            m_current_problem = ProblemLoader.queryProblem(title);
             LoggerFactory.getSimpleLogger().info("ApplicManager::lodProblemFromDataBase, title: " + title);
-        }   
+        }
+
+        /*
+        public void run(int pop_size, int num_of_gen, double mutation_percentage)
+        {
+            m_problem_solver_manager.run(pop_size, num_of_gen, mutation_percentage);
+        }
+        */
+
+        public List<String> getProblemListFromDB()
+        {
+            return ProblemLoader.getProblemList();
+        }
+ 
+
 
         /*
         public void run(int pop_size, int num_of_gen, double mutation_percentage)

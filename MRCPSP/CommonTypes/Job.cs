@@ -10,11 +10,21 @@ namespace MRCPSP.CommonTypes
      
         private double m_arrive_time;
         private double m_latest_tern_time;
+        private static int id_counter = 0;
+        private int m_id;
 
         public Job(double arrive, double latest)
         {
             m_arrive_time = arrive;
             m_latest_tern_time = latest;
+            m_id = id_counter;
+            id_counter++;
+        }
+        public Job(int id , double arrive, double latest)
+        {
+            m_arrive_time = arrive;
+            m_latest_tern_time = latest;
+            m_id = id;
         }
 
         public double ArriveTime
@@ -34,5 +44,15 @@ namespace MRCPSP.CommonTypes
                 m_latest_tern_time = value;
             }
         }
+
+        public int Id
+        {
+            get { return m_id; }
+            set
+            {
+                m_id = value;
+            }
+        }
+
     }
 }

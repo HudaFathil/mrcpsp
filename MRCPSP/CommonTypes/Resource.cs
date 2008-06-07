@@ -28,6 +28,14 @@ namespace MRCPSP.CommonTypes
             m_id_counter++;
         }
 
+        public Resource(int id , string name)
+        {
+            m_resource_name = name;
+            m_is_batch = false;
+            m_id = id;
+        }
+
+
         public Resource(string name, bool batch)
         {
             m_resource_name = name;

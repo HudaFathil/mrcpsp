@@ -10,7 +10,7 @@ namespace MRCPSP.CommonTypes
         private System.Collections.ArrayList m_operations_list;
         private static int id_counter = 1;
         private int m_id;
-        private int m_name;
+        private String m_name;
         private Step m_step;
 
         public Mode()
@@ -18,6 +18,13 @@ namespace MRCPSP.CommonTypes
             m_operations_list = new System.Collections.ArrayList();
             m_id = id_counter;
             id_counter++;
+        }
+
+        public Mode(int id , String name)
+        {
+            m_id = id;
+            m_name = name;
+            m_operations_list = new System.Collections.ArrayList();
         }
 
         public System.Collections.ArrayList operations
@@ -42,7 +49,7 @@ namespace MRCPSP.CommonTypes
             set { m_step = value; }
         }
 
-        public int name
+        public String name
         {
             get { return m_name; }
             set 

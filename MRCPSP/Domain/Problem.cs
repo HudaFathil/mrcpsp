@@ -29,8 +29,10 @@ namespace MRCPSP.Domain
                         List<Constraint> all_constraints,
                         List<Product> products_list,
                         Dictionary<Product, List<Job>> jobs_in_product,
-                        List<ResourceConstraint> resource_time_constraints)
+                        List<ResourceConstraint> resource_time_constraints,
+                        String title)
         {
+            m_title = title;
             m_resource_list = resource_list;
             m_modes_in_step = modes_in_step;
             m_resource_time_constraints = resource_time_constraints;

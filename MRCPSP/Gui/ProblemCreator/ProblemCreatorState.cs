@@ -42,7 +42,6 @@ namespace MRCPSP.Gui.ProblemCreator
            private System.Collections.Hashtable m_constraint_map;
            private System.Collections.ArrayList m_step_list;
            private System.Collections.ArrayList m_product_list;
-           private DataGridView m_resource_constraints;
            private ProductItem m_current_product;
 
            private int m_next_step_id;
@@ -61,32 +60,17 @@ namespace MRCPSP.Gui.ProblemCreator
                
            }
 
-           public DataGridView ResourceConstraints
-           {
-               get { return m_resource_constraints; }
-               set { m_resource_constraints = value; }
-           }
-
            internal void addWorker(Worker w)
            {
                m_worker_list.Add(w);
            }
 
+          
+
            internal void addMachine(Machine m)
            {
              
               m_machine_list.Add(m);
-           }
-
-           internal void removeWorker(Worker w)
-           {
-               m_worker_list.Remove(w);
-           }
-
-           internal void removeMachine(Machine m)
-           {
-
-               m_machine_list.Remove(m);
            }
 
            internal void addStep(StepItem s)
@@ -117,12 +101,6 @@ namespace MRCPSP.Gui.ProblemCreator
            {
                m_product_list.Add(p);
                m_constraint_map.Add(p, new System.Collections.ArrayList());             
-           }
-
-           internal void removeProduct(ProductItem p)
-           {
-               m_product_list.Remove(p);
-               m_constraint_map.Remove(p);
            }
 
            internal System.Collections.ArrayList getConstraints(ProductItem p)
@@ -173,7 +151,7 @@ namespace MRCPSP.Gui.ProblemCreator
                return m_next_step_id;
            }
 
-           internal void loadCurrentProblem()
+           internal void loadCurrentProblem(String title)
            {       
                Dictionary< Step, List < Mode > > modes_in_step = new Dictionary<Step,List<Mode>>();           
                System.Collections.Hashtable all_resources = new System.Collections.Hashtable();
@@ -191,16 +169,14 @@ namespace MRCPSP.Gui.ProblemCreator
                    }
                }
 
-               Dictionary<KeyValuePair<StepItem, int>, Mode> map_resource_constraints = new Dictionary<KeyValuePair<StepItem, int>, Mode>();
                foreach (StepItem s in m_step_list)
                {
                    Step new_step = new Step(s.getID(), s.Text);
                    modes_in_step.Add(new_step, new List<Mode>());
                    all_steps[s] = new_step;
                    int modes_id = 1;
-                   foreach (int key in s.getModesDictionary().Keys)
+                   foreach (DataGridView data in s.getModesDictionary().Values)
                    {
-                       DataGridView data = s.getModesDictionary()[key];
                        if (data.RowCount == 1)
                            continue;
                       
@@ -220,28 +196,13 @@ namespace MRCPSP.Gui.ProblemCreator
                        }
                        if (new_mode.operations.Count > 0)
                        {
-                           new_mode.name = modes_id;
+                           new_mode.name = modes_id+"";
                            modes_id++;
                            modes_in_step[new_step].Add(new_mode);
                        }
-                       map_resource_constraints.Add(new KeyValuePair<StepItem, int>(s, key), new_mode);
                     }
                }
-
-               List<ResourceConstraint> resource_constraints = new List<ResourceConstraint>();
-               for (int i = 0; i < m_resource_constraints.RowCount; i++)
-               {
-                   if (m_resource_constraints[0, i] == null || m_resource_constraints[0,i].Value == null)
-                       break;
-                   Resource r = (Resource)all_resources[m_resource_constraints[0, i].Value.ToString()]; 
-                   StepModeItem from = (StepModeItem)m_resource_constraints[1, i].Value;
-                   StepModeItem to = (StepModeItem)m_resource_constraints[2, i].Value;
-                   int delay = (int)m_resource_constraints[3, i].Value;
-                   ResourceConstraint rc = new ResourceConstraint(r, map_resource_constraints[new KeyValuePair<StepItem, int>(from.myStep, from.myModeIndex)],
-                                                                    map_resource_constraints[new KeyValuePair<StepItem, int>(to.myStep, to.myModeIndex)],delay);
-                   resource_constraints.Add(rc);
-               }
-
+              
                foreach (ProductItem p in m_constraint_map.Keys)
                {
                    foreach (ConstraintItem c in (System.Collections.ArrayList)m_constraint_map[p])
@@ -266,8 +227,9 @@ namespace MRCPSP.Gui.ProblemCreator
                {
                    step_list.Add(s);
                }
+            //   step_list.Sort(new StepComparer());
                
-               ApplicManager.Instance.loadProblem(resource_list, modes_in_step,step_list, all_constraints, products_list, jobs_in_product, resource_constraints);        
+               ApplicManager.Instance.loadProblem(resource_list, modes_in_step,step_list, all_constraints, products_list, jobs_in_product ,title);        
            }
 
            internal bool isStepPrecedenceToNewStep(StepItem from_step, StepItem s)
@@ -285,6 +247,5 @@ namespace MRCPSP.Gui.ProblemCreator
                }
                return false;
            }
-
        }
 }

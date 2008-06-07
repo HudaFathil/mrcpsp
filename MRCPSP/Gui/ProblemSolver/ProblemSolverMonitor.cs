@@ -148,6 +148,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_refresh_list_button.TabIndex = 7;
             this.m_refresh_list_button.Text = "refresh";
             this.m_refresh_list_button.UseVisualStyleBackColor = true;
+            this.m_refresh_list_button.Click += new System.EventHandler(this.m_refresh_list_button_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -236,6 +237,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_remove_problem_button.Size = new System.Drawing.Size(58, 41);
             this.m_remove_problem_button.TabIndex = 13;
             this.m_remove_problem_button.UseVisualStyleBackColor = true;
+            this.m_remove_problem_button.Click += new System.EventHandler(this.m_remove_problem_button_Click);
             // 
             // m_add_problem_button
             // 
@@ -245,6 +247,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_add_problem_button.Size = new System.Drawing.Size(58, 39);
             this.m_add_problem_button.TabIndex = 12;
             this.m_add_problem_button.UseVisualStyleBackColor = true;
+            this.m_add_problem_button.Click += new System.EventHandler(this.m_add_problem_button_Click);
             // 
             // groupBox1
             // 
@@ -611,24 +614,30 @@ namespace MRCPSP.Gui.ProblemSolver
 
         private void m_start_test_button_Click(object sender, EventArgs e)
         {
-            if (ApplicManager.Instance.CurrentProblem == null)
+            if (this.m_selected_problems_lst.Items.Count == 0)
             {
-                MessageBox.Show("please load problem first", "notify");
+                MessageBox.Show("please select problem first", "notify");
                 return;
             }
+
             if (m_background_worker.IsBusy)
                 return;
-            
+
             SelectionPolicyBase selection = getSelectionPolicy();
             CorssOverBase crossover = getCrossOverPolicy();
             GeneratePolicyBase first = getFirstPopulationPolicy();
+
 
             ApplicManager.Instance.loadParams((int)m_loops_sb.Value, first, crossover, selection);
             int[] alg_params = new int[3];
             alg_params[0] = Convert.ToInt32(m_population_size_le.Text);
             alg_params[1] = Convert.ToInt32(m_num_of_gen_le.Text);
             alg_params[2] = Convert.ToInt32(m_mutation_percent_le.Text);
-            m_background_worker.RunWorkerAsync(alg_params);
+            foreach (String prName in this.m_selected_problems_lst.Items)
+            {
+                ApplicManager.Instance.loadProblemFromDataBase(prName);
+                m_background_worker.RunWorkerAsync(alg_params);
+            }
                                         
         }
 
@@ -682,6 +691,38 @@ namespace MRCPSP.Gui.ProblemSolver
         {
             m_list_panel.Enabled = ! m_solve_current_rb.Checked;
 
+        }
+
+        private void m_add_problem_button_Click(object sender, EventArgs e)
+        {
+            String selected = (String)m_all_problems_lst.SelectedItem;
+            //if (! this.m_selected_problems_lst.Items.Contains(selected)) 
+            //   this.m_selected_problems_lst.Items.Add(selected);
+            this.m_selected_problems_lst.Items.Add(selected);
+            this.m_all_problems_lst.Items.Remove(selected);
+        }
+
+        private void m_remove_problem_button_Click(object sender, EventArgs e)
+        {
+            String selected = (String)m_selected_problems_lst.SelectedItem;
+            //if (! this.m_selected_problems_lst.Items.Contains(selected)) 
+            //   this.m_selected_problems_lst.Items.Add(selected);
+            this.m_all_problems_lst.Items.Add(selected);
+            this.m_selected_problems_lst.Items.Remove(selected);
+        }
+
+        private void m_refresh_list_button_Click(object sender, EventArgs e)
+        {
+            updateProblemList();
+        }
+
+        private void updateProblemList()
+        {
+            List<String> prNameList = ApplicManager.Instance.getProblemListFromDB();
+            foreach (String name in prNameList)
+            {
+                this.m_all_problems_lst.Items.Add(name);
+            }
         }
 
     }
