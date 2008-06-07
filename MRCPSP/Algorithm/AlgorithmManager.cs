@@ -92,8 +92,6 @@ namespace MRCPSP.Algorithm
                 m_result_summary.BestSolutions.Add(m_solutions[0]);
             }
             Logger.LoggerFactory.getSimpleLogger().debug(forDebugging);
-
-            ApplicManager.Instance.SavedResults.Add(m_result_summary);
         }
 
         private KeyValuePair<double, double> getMinMaxForGeneration(List<Solution> sol_list)

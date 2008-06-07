@@ -137,3 +137,4 @@ C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP\M
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP\MRCPSP\bin\Debug\nunit.framework.xml
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP\MRCPSP\bin\Debug\office.xml
 C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP\MRCPSP\bin\Debug\ZedGraph.xml
+C:\Documents and Settings\shay\My Documents\Visual Studio 2008\Projects\MRCPSP\MRCPSP\obj\Debug\MRCPSP.Gui.ProcessingForm.resources

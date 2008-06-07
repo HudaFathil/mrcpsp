@@ -16,6 +16,9 @@ namespace MRCPSP.Domain
         private String m_selection_type;
         private String m_crossover_type;
         private String m_generate_population_type;
+        private String m_start_time;
+        private String m_finish_time;
+        private int m_number_of_iteration;
         private List<KeyValuePair<double, double>> m_min_max_per_generation;
 
         public ResultSummary()
@@ -89,6 +92,38 @@ namespace MRCPSP.Domain
             {
                 m_generate_population_type = value;
             }
+        }
+
+        public String StartTime          
+        {
+            get { return m_start_time; }
+            set
+            {
+                m_start_time = value;
+            }
+        }
+
+        public String FinishTime
+        {
+            get { return m_finish_time; }
+            set
+            {
+                m_finish_time = value;
+            }
+        }
+
+        public int NumberOfIterations
+        {
+            get { return m_number_of_iteration; }
+            set
+            {
+                m_number_of_iteration = value;
+            }
+        }
+
+        public double BestResult
+        {
+            get { return getBestSolution().scoreFromLindo; }
         }
     }
 }

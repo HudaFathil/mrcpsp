@@ -251,8 +251,7 @@ namespace MRCPSP.Gui {
             ProblemCreatorMonitor pcm = new ProblemCreatorMonitor(m_problem_monitor_id);
             pcm.MdiParent = this;
             m_problem_monitor_id++;
-            pcm.Show();
-           
+            pcm.Show();          
             Console.WriteLine("create new monitor");
         }
 

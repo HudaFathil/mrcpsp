@@ -20,17 +20,20 @@ namespace MRCPSP.Domain
         private List<Product> m_products_list;
         private Dictionary<Product, List<Step>> m_steps_in_product;
         private Dictionary<Product, List<Job>> m_jobs_in_product;
-        private String m_title = "not implemented";
+        private List<ResourceConstraint> m_resource_time_constraints;
+        private String m_title = "N/A";
 
         public Problem( List<Resource> resource_list,
                         Dictionary< Step, List < Mode > > modes_in_step,
                         List<Step> step_list,       
                         List<Constraint> all_constraints,
                         List<Product> products_list,
-                        Dictionary<Product, List<Job>> jobs_in_product)
+                        Dictionary<Product, List<Job>> jobs_in_product,
+                        List<ResourceConstraint> resource_time_constraints)
         {
             m_resource_list = resource_list;
             m_modes_in_step = modes_in_step;
+            m_resource_time_constraints = resource_time_constraints;
             foreach (Step s in modes_in_step.Keys)
             {
                 foreach (Mode m in modes_in_step[s])

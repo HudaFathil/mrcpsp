@@ -35,8 +35,7 @@ namespace MRCPSP.Gui.ProblemCreator
                 m_requested_job_start_end_time[0, i].Value = i + 1;
                 m_requested_job_start_end_time[1, i].Value = 0;
                 m_requested_job_start_end_time[2, i].Value = Double.PositiveInfinity;
-            }
-         // m_requested_job_start_end_time.Columns[0]           
+            } 
         }
 
         public void deleteMe() {

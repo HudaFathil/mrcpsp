@@ -76,6 +76,8 @@ namespace MRCPSP.Gui.ProblemSolver
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.m_remove_problem_button = new System.Windows.Forms.Button();
+            this.m_add_problem_button = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.m_loops_sb = new System.Windows.Forms.NumericUpDown();
@@ -99,13 +101,11 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_pop_by_operation_rb = new System.Windows.Forms.RadioButton();
             this.m_first_pop_random_rb = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.m_score_rb = new System.Windows.Forms.RadioButton();
             this.m_elitism_rb = new System.Windows.Forms.RadioButton();
             this.m_rank_rb = new System.Windows.Forms.RadioButton();
-            this.m_remove_problem_button = new System.Windows.Forms.Button();
-            this.m_add_problem_button = new System.Windows.Forms.Button();
             this.m_stop_btn = new System.Windows.Forms.Button();
             this.m_start_test_button = new System.Windows.Forms.Button();
-            this.m_score_rb = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -227,6 +227,24 @@ namespace MRCPSP.Gui.ProblemSolver
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(64, 231);
             this.panel3.TabIndex = 10;
+            // 
+            // m_remove_problem_button
+            // 
+            this.m_remove_problem_button.Image = global::MRCPSP.Properties.Resources.arrow_left;
+            this.m_remove_problem_button.Location = new System.Drawing.Point(3, 98);
+            this.m_remove_problem_button.Name = "m_remove_problem_button";
+            this.m_remove_problem_button.Size = new System.Drawing.Size(58, 41);
+            this.m_remove_problem_button.TabIndex = 13;
+            this.m_remove_problem_button.UseVisualStyleBackColor = true;
+            // 
+            // m_add_problem_button
+            // 
+            this.m_add_problem_button.Image = global::MRCPSP.Properties.Resources.arrow_right;
+            this.m_add_problem_button.Location = new System.Drawing.Point(3, 53);
+            this.m_add_problem_button.Name = "m_add_problem_button";
+            this.m_add_problem_button.Size = new System.Drawing.Size(58, 39);
+            this.m_add_problem_button.TabIndex = 12;
+            this.m_add_problem_button.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -499,6 +517,17 @@ namespace MRCPSP.Gui.ProblemSolver
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Selection Policy";
             // 
+            // m_score_rb
+            // 
+            this.m_score_rb.AutoSize = true;
+            this.m_score_rb.Location = new System.Drawing.Point(6, 65);
+            this.m_score_rb.Name = "m_score_rb";
+            this.m_score_rb.Size = new System.Drawing.Size(53, 17);
+            this.m_score_rb.TabIndex = 2;
+            this.m_score_rb.TabStop = true;
+            this.m_score_rb.Text = "Score";
+            this.m_score_rb.UseVisualStyleBackColor = true;
+            // 
             // m_elitism_rb
             // 
             this.m_elitism_rb.AutoSize = true;
@@ -521,24 +550,6 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_rank_rb.Text = "Rank";
             this.m_rank_rb.UseVisualStyleBackColor = true;
             // 
-            // m_remove_problem_button
-            // 
-            this.m_remove_problem_button.Image = global::MRCPSP.Properties.Resources.arrow_left;
-            this.m_remove_problem_button.Location = new System.Drawing.Point(3, 98);
-            this.m_remove_problem_button.Name = "m_remove_problem_button";
-            this.m_remove_problem_button.Size = new System.Drawing.Size(58, 41);
-            this.m_remove_problem_button.TabIndex = 13;
-            this.m_remove_problem_button.UseVisualStyleBackColor = true;
-            // 
-            // m_add_problem_button
-            // 
-            this.m_add_problem_button.Image = global::MRCPSP.Properties.Resources.arrow_right;
-            this.m_add_problem_button.Location = new System.Drawing.Point(3, 53);
-            this.m_add_problem_button.Name = "m_add_problem_button";
-            this.m_add_problem_button.Size = new System.Drawing.Size(58, 39);
-            this.m_add_problem_button.TabIndex = 12;
-            this.m_add_problem_button.UseVisualStyleBackColor = true;
-            // 
             // m_stop_btn
             // 
             this.m_stop_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
@@ -560,17 +571,6 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_start_test_button.TabIndex = 3;
             this.m_start_test_button.UseVisualStyleBackColor = true;
             this.m_start_test_button.Click += new System.EventHandler(this.m_start_test_button_Click);
-            // 
-            // m_score_rb
-            // 
-            this.m_score_rb.AutoSize = true;
-            this.m_score_rb.Location = new System.Drawing.Point(6, 65);
-            this.m_score_rb.Name = "m_score_rb";
-            this.m_score_rb.Size = new System.Drawing.Size(53, 17);
-            this.m_score_rb.TabIndex = 2;
-            this.m_score_rb.TabStop = true;
-            this.m_score_rb.Text = "Score";
-            this.m_score_rb.UseVisualStyleBackColor = true;
             // 
             // ProblemSolverMonitor
             // 

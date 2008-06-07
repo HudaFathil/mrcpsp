@@ -132,7 +132,10 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
                             String title = resource_operations_done[i].product.Name+  " job: " + resource_operations_done[i].jobID + " " + resource_operations_done[i].step.Name;
                             list[j].X = resource_operations_done[i].startTime;
                             list[j].Z = resource_operations_done[i].finishTime;
-                            m_list_of_labels_by_pos.Add(new KeyValuePair<int,int>((int)list[j].X, resource_counter), title);
+                            if (m_list_of_labels_by_pos.ContainsKey(new KeyValuePair<int,int>((int)list[j].X, resource_counter))) 
+                                m_list_of_labels_by_pos[new KeyValuePair<int,int>((int)list[j].X, resource_counter)]+= "\n" + title;
+                            else
+                                m_list_of_labels_by_pos.Add(new KeyValuePair<int,int>((int)list[j].X, resource_counter), title);
                         }
                     }  
              

@@ -55,8 +55,8 @@ namespace MRCPSP.Gui.ProblemCreator
         private NumericUpDown m_machine_batch_size_sb;
         private Label label6;
         private Button m_remove_selected_product_button;
-        private Button button2;
-        private Button button1;
+        private Button m_remove_machine_btn;
+        private Button m_remove_worker_btn;
         private NumericUpDown m_worker_available_at_sb;
         private Label label7;
         private NumericUpDown m_machine_available_at_sb;
@@ -73,6 +73,7 @@ namespace MRCPSP.Gui.ProblemCreator
             InitializeComponent();
             m_canvas_pic.monitor_id = monitor_id;
             m_resource_time_constraints = new ResourceTimeConstraint(m_monitor_id);
+            ProblemCreatorState.Instance(monitor_id).ResourceConstraints = m_resource_time_constraints.ResourceConstraints; ;
         }
 
         private void InitializeComponent()
@@ -90,7 +91,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.m_machine_available_at_sb = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.m_remove_machine_btn = new System.Windows.Forms.Button();
             this.m_machine_batch_size_sb = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -101,7 +102,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.m_worker_available_at_sb = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.m_remove_worker_btn = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.m_job_properties_button = new System.Windows.Forms.Button();
             this.m_product_cb = new System.Windows.Forms.ComboBox();
@@ -116,6 +117,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.m_center_panel = new System.Windows.Forms.Panel();
+            this.m_canvas_pic = new MRCPSP.Gui.ProblemCreator.CanvasEditor();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.m_controls_strip = new System.Windows.Forms.ToolStrip();
@@ -123,7 +125,6 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_new_constraint_button = new System.Windows.Forms.ToolStripButton();
             this.m_eraser_button = new System.Windows.Forms.ToolStripButton();
             this.m_pointer_button = new System.Windows.Forms.ToolStripButton();
-            this.m_canvas_pic = new MRCPSP.Gui.ProblemCreator.CanvasEditor();
             this.panel1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -142,10 +143,10 @@ namespace MRCPSP.Gui.ProblemCreator
             ((System.ComponentModel.ISupportInitialize)(this.m_new_product_size_sb)).BeginInit();
             this.panel3.SuspendLayout();
             this.m_center_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
             this.panel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.m_controls_strip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
             this.SuspendLayout();
             // 
             // m_machine_list
@@ -275,7 +276,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             this.groupBox8.Controls.Add(this.m_machine_available_at_sb);
             this.groupBox8.Controls.Add(this.label8);
-            this.groupBox8.Controls.Add(this.button2);
+            this.groupBox8.Controls.Add(this.m_remove_machine_btn);
             this.groupBox8.Controls.Add(this.m_machine_batch_size_sb);
             this.groupBox8.Controls.Add(this.label6);
             this.groupBox8.Controls.Add(this.m_add_machine_button);
@@ -302,14 +303,15 @@ namespace MRCPSP.Gui.ProblemCreator
             this.label8.TabIndex = 7;
             this.label8.Text = "Available at:";
             // 
-            // button2
+            // m_remove_machine_btn
             // 
-            this.button2.Location = new System.Drawing.Point(9, 96);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(101, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Remove Machine";
-            this.button2.UseVisualStyleBackColor = true;
+            this.m_remove_machine_btn.Location = new System.Drawing.Point(6, 96);
+            this.m_remove_machine_btn.Name = "m_remove_machine_btn";
+            this.m_remove_machine_btn.Size = new System.Drawing.Size(101, 23);
+            this.m_remove_machine_btn.TabIndex = 4;
+            this.m_remove_machine_btn.Text = "Remove Machine";
+            this.m_remove_machine_btn.UseVisualStyleBackColor = true;
+            this.m_remove_machine_btn.Click += new System.EventHandler(this.m_remove_machine_btn_Click);
             // 
             // m_machine_batch_size_sb
             // 
@@ -389,7 +391,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             this.groupBox6.Controls.Add(this.m_worker_available_at_sb);
             this.groupBox6.Controls.Add(this.label7);
-            this.groupBox6.Controls.Add(this.button1);
+            this.groupBox6.Controls.Add(this.m_remove_worker_btn);
             this.groupBox6.Controls.Add(this.m_add_worker_button);
             this.groupBox6.Location = new System.Drawing.Point(366, 6);
             this.groupBox6.Name = "groupBox6";
@@ -414,14 +416,15 @@ namespace MRCPSP.Gui.ProblemCreator
             this.label7.TabIndex = 5;
             this.label7.Text = "Available at:";
             // 
-            // button1
+            // m_remove_worker_btn
             // 
-            this.button1.Location = new System.Drawing.Point(6, 96);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(103, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Remove Worker";
-            this.button1.UseVisualStyleBackColor = true;
+            this.m_remove_worker_btn.Location = new System.Drawing.Point(6, 96);
+            this.m_remove_worker_btn.Name = "m_remove_worker_btn";
+            this.m_remove_worker_btn.Size = new System.Drawing.Size(103, 23);
+            this.m_remove_worker_btn.TabIndex = 4;
+            this.m_remove_worker_btn.Text = "Remove Worker";
+            this.m_remove_worker_btn.UseVisualStyleBackColor = true;
+            this.m_remove_worker_btn.Click += new System.EventHandler(this.m_remove_worker_btn_Click);
             // 
             // groupBox5
             // 
@@ -486,6 +489,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_remove_selected_product_button.TabIndex = 14;
             this.m_remove_selected_product_button.Text = "Remove Product";
             this.m_remove_selected_product_button.UseVisualStyleBackColor = true;
+            this.m_remove_selected_product_button.Click += new System.EventHandler(this.m_remove_selected_product_button_Click);
             // 
             // label5
             // 
@@ -575,6 +579,18 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_center_panel.Name = "m_center_panel";
             this.m_center_panel.Size = new System.Drawing.Size(851, 283);
             this.m_center_panel.TabIndex = 4;
+            // 
+            // m_canvas_pic
+            // 
+            this.m_canvas_pic.BackColor = System.Drawing.Color.White;
+            this.m_canvas_pic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.m_canvas_pic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_canvas_pic.Location = new System.Drawing.Point(85, 0);
+            this.m_canvas_pic.monitor_id = 0;
+            this.m_canvas_pic.Name = "m_canvas_pic";
+            this.m_canvas_pic.Size = new System.Drawing.Size(611, 283);
+            this.m_canvas_pic.TabIndex = 5;
+            this.m_canvas_pic.TabStop = false;
             // 
             // panel5
             // 
@@ -667,18 +683,6 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_pointer_button.ToolTipText = "Select";
             this.m_pointer_button.Click += new System.EventHandler(this.m_pointer_button_Click);
             // 
-            // m_canvas_pic
-            // 
-            this.m_canvas_pic.BackColor = System.Drawing.Color.White;
-            this.m_canvas_pic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.m_canvas_pic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.m_canvas_pic.Location = new System.Drawing.Point(85, 0);
-            this.m_canvas_pic.monitor_id = 0;
-            this.m_canvas_pic.Name = "m_canvas_pic";
-            this.m_canvas_pic.Size = new System.Drawing.Size(611, 283);
-            this.m_canvas_pic.TabIndex = 5;
-            this.m_canvas_pic.TabStop = false;
-            // 
             // ProblemCreatorMonitor
             // 
             this.ClientSize = new System.Drawing.Size(851, 471);
@@ -709,12 +713,12 @@ namespace MRCPSP.Gui.ProblemCreator
             ((System.ComponentModel.ISupportInitialize)(this.m_new_product_size_sb)).EndInit();
             this.panel3.ResumeLayout(false);
             this.m_center_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
             this.panel5.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.m_controls_strip.ResumeLayout(false);
             this.m_controls_strip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -817,6 +821,11 @@ namespace MRCPSP.Gui.ProblemCreator
             }
         }
 
+        public DataGridView ResourceTimeConstraints
+        {
+            get { return m_resource_time_constraints.ResourceConstraints; }
+        }
+
         private void m_load_problem_button_Click(object sender, EventArgs e)
         {
             ProblemCreatorState.Instance(monitor_id).loadCurrentProblem();
@@ -846,7 +855,8 @@ namespace MRCPSP.Gui.ProblemCreator
             if (m_product_cb.SelectedIndex < 0)
                 return;
             ProductItem p = ProblemCreatorState.Instance(monitor_id).CurrentProduct;
-            Form f = new Form();            
+            Form f = new Form();
+            f.Text = p.Name + ", Jobs data:";
             f.Controls.Add(p.JobsData);
             p.JobsData.Dock = DockStyle.Fill;
             f.ShowDialog(new Form());  
@@ -857,6 +867,60 @@ namespace MRCPSP.Gui.ProblemCreator
             m_resource_time_constraints.updateResources();
             m_resource_time_constraints.ShowDialog(new Form());
         }
+
+        private void m_remove_worker_btn_Click(object sender, EventArgs e)
+        {
+            if (m_worker_list.SelectedIndex < 0)
+                return;
+            DialogResult result = MessageBox.Show("This operation will remove all modes and constraints using this resource, continue?",
+                               "Delete Resource",
+                                MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+                return;
+            removeResource((Worker)m_worker_list.SelectedItem);
+            ProblemCreatorState.Instance(monitor_id).removeWorker((Worker)m_worker_list.SelectedItem);
+            m_worker_list.Items.Remove((Worker)m_worker_list.SelectedItem);
+        }
+
+        private void removeResource(ResourceBase r)
+        {
+            r.notifyOnDeleteMe();            
+        }
+
+        private void m_remove_machine_btn_Click(object sender, EventArgs e)
+        {
+            if (m_machine_list.SelectedIndex < 0)
+                return;
+            DialogResult result = MessageBox.Show("This operation will remove all modes and constraints using this resource, continue?",
+                               "Delete Resource",
+                                MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+                return;
+            removeResource((Machine)m_machine_list.SelectedItem);
+            ProblemCreatorState.Instance(monitor_id).removeMachine((Machine)m_machine_list.SelectedItem);
+            m_machine_list.Items.Remove((Machine)m_machine_list.SelectedItem);
+        }
+
+        private void m_remove_selected_product_button_Click(object sender, EventArgs e)
+        {
+            if (m_product_cb.Items.Count == 1)
+            {
+                MessageBox.Show("Product's list cann't be empty", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            if (m_product_cb.SelectedIndex < 0)
+                return;
+            ProductItem p = (ProductItem)m_product_cb.SelectedItem;
+            ProblemCreatorState.Instance(monitor_id).removeProduct(p);
+
+            m_product_cb.Items.Remove(p);
+            if (m_product_cb.Items.Count >0 )
+                m_product_cb.SelectedIndex = 0;
+            else
+                ProblemCreatorState.Instance(monitor_id).CurrentProduct = null;           
+        }
+      
+
     }
 
   

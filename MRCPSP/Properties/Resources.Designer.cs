@@ -88,6 +88,13 @@ namespace MRCPSP.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap circle_cromosom {
+            get {
+                object obj = ResourceManager.GetObject("circle_cromosom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap dna {
             get {
                 object obj = ResourceManager.GetObject("dna", resourceCulture);

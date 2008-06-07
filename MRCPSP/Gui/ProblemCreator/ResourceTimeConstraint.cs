@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace MRCPSP.Gui.ProblemCreator
 {
-    class ResourceTimeConstraint : Form
+    class ResourceTimeConstraint : Form , ResourceObserver
     {
         private Label label1;
         private ComboBox m_resource_cb;
@@ -231,8 +231,9 @@ namespace MRCPSP.Gui.ProblemCreator
                 return;
             if (m_operation_to_list.SelectedIndex < 0)
                 return;
-            Object[] val = {m_resource_cb.SelectedItem, m_operation_from_list.SelectedItem, m_operation_to_list.SelectedItem, m_delay_time_sb.Value};
-            m_data_grid_table.Rows.Add(val);    
+            Object[] val = {m_resource_cb.SelectedItem, m_operation_from_list.SelectedItem, m_operation_to_list.SelectedItem, (int)m_delay_time_sb.Value};
+            m_data_grid_table.Rows.Add(val);
+            ((ResourceBase)m_resource_cb.SelectedItem).sign(this);
         }
 
         public void updateResources()
@@ -266,6 +267,20 @@ namespace MRCPSP.Gui.ProblemCreator
                     }
                 }
             }
+        }
+
+        public void resourceDeleteNotify(ResourceBase r)
+        {
+            for (int i = m_data_grid_table.RowCount - 1; i >= 0; i--)
+            {
+                if (r == (ResourceBase)m_data_grid_table[0, i].Value)
+                    m_data_grid_table.Rows.RemoveAt(i);
+            }
+        }
+
+        public DataGridView ResourceConstraints
+        {
+            get { return m_data_grid_table; }
         }
     }
 

@@ -32,20 +32,41 @@ namespace MRCPSP.Controllers
             LoggerFactory.getSimpleLogger().info("ProblemSolverManager::run() activated");
             m_background_worker.ReportProgress(0);
             List<ResultSummary> results_for_problem = new List<ResultSummary>();
+            string start_time = DateTime.Now.ToString();
             for (int i = 0; i < m_num_of_loops; i++)
             {             
                 if (m_background_worker.CancellationPending)
                 {
                     e.Cancel = true;
                     return -1;
-                }
+                }               
                 results_for_problem.Add(m_algorithm_manager.run(population_size, num_of_generation, mutation_percentage));
                 double percent =  (i+1) * 100.0 / (double)m_num_of_loops;
                 m_background_worker.ReportProgress( (int)percent);
             }
-  
+            ResultSummary best_result = getBestResult(results_for_problem);
+            ApplicManager.Instance.SavedResults.Add(best_result);
+            best_result.StartTime = start_time;
+            string finish_time = DateTime.Now.ToString();
+            best_result.FinishTime = finish_time;
+            best_result.NumberOfIterations = m_num_of_loops;
             LoggerFactory.getSimpleLogger().info("ProblemSolverManager::run() finished");
             return 1;
+        }
+
+        private ResultSummary getBestResult(List<ResultSummary> results)
+        {
+            double val = double.MaxValue;
+            int best_idx =0;
+            for (int i = 0; i < results.Count; i++)
+            {
+                if (results[i].getBestSolution().scoreFromLindo != 0 && results[i].getBestSolution().scoreFromLindo < val)
+                {
+                    val = results[i].getBestSolution().scoreFromLindo;
+                    best_idx = i;
+                }
+            }
+            return results[best_idx];
         }
 
         public void loadParams(int loops, GeneratePolicyBase gen_policy, CorssOverBase crossover, SelectionPolicyBase selection)
