@@ -64,7 +64,7 @@ namespace MRCPSP.Gui.StatisticsViewer.Graph
             {
                 PointPairList ppl = new PointPairList();
                 map_after_step.Add(JobNum, ppl);
-                for (int i = 1; i <= ApplicManager.Instance.CurrentProblem.Products[0].Size; i++)
+                for (int i = 1; i <= ApplicManager.Instance.CurrentProblem.Resources.Count; i++)
                     ppl.Add(0, i, 0);
             }
             return (PointPairList)map_after_step[JobNum];

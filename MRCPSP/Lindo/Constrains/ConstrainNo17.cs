@@ -27,16 +27,16 @@ namespace MRCPSP.Lindo.Constrains
                     MatrixCell cell = sol.DistributionMatrix[r, t];
                     Mode mode = sol.getSelectedModeByCell(cell);
 
-                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id))
-                        throw new ConstrainException("ConstrainNo17", "Can't find parameter" + "T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id);
-                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + r + "" + t))
-                        throw new ConstrainException("ConstrainNo17", "Can't find parameter" + "T" + r+""+t);
+                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id+LindoContainer.TjfiType))
+                        throw new ConstrainException("ConstrainNo17", "Can't find parameter" + "T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + LindoContainer.TjfiType);
+                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + r + "" + t+LindoContainer.TrlType))
+                        throw new ConstrainException("ConstrainNo17", "Can't find parameter" + "T" + r+""+t+LindoContainer.TrlType);
                     if (!LindoContainer.Instance.Variables.ContainsKey("X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t))
                         throw new ConstrainException("ConstrainNo17", "Can't find parameter" + "X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t);
-                    LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                    LindoContainer.Instance.Variables["T" + r + "" + t].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
+                    LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                    LindoContainer.Instance.Variables["T" + r + "" + t+LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
                     
-                    String toPrint = "Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + " -T" + r + "" + t;
+                    String toPrint = "Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + " -T" + r + "" + t+LindoContainer.TrlType;
                     double startUsingResource = mode.startUsingResourceTime(prob.Resources[r]);
                     toPrint += " +" + startUsingResource + "*X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t;
                     LindoContainer.Instance.Variables["X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, startUsingResource - LindoContainer.Instance.N);
@@ -47,8 +47,8 @@ namespace MRCPSP.Lindo.Constrains
                     LindoContainer.Instance.ConstraintsSenses.Add("G");
                     LindoContainer.Instance.ConstrainsCounter++;
 
-                    LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                    LindoContainer.Instance.Variables["T" + r + "" + t].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
+                    LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                    LindoContainer.Instance.Variables["T" + r + "" + t+LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
 
                     toPrint = "Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + " -T" + r + "" + t;
                     startUsingResource = mode.startUsingResourceTime(prob.Resources[r]);

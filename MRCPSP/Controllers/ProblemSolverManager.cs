@@ -19,7 +19,8 @@ namespace MRCPSP.Controllers
         private int m_num_of_loops;  
         private AlgorithmManager m_algorithm_manager;
         private BackgroundWorker m_background_worker;
-
+        private bool m_solvingFromList;
+        private List<String> m_problems_names;
 
         public ProblemSolverManager()
         {
@@ -30,26 +31,34 @@ namespace MRCPSP.Controllers
         public long run(int population_size, int num_of_generation, double mutation_percentage, DoWorkEventArgs e)
         {
             LoggerFactory.getSimpleLogger().info("ProblemSolverManager::run() activated");
+            int number_of_problems = 1;
+            if (m_solvingFromList)
+                number_of_problems = m_problems_names.Count();
             m_background_worker.ReportProgress(0);
-            List<ResultSummary> results_for_problem = new List<ResultSummary>();
-            string start_time = DateTime.Now.ToString();
-            for (int i = 0; i < m_num_of_loops; i++)
-            {             
-                if (m_background_worker.CancellationPending)
+
+            for (int j = 0; j < m_problems_names.Count; j++)
+            {
+                ApplicManager.Instance.loadProblemFromDataBase(m_problems_names[j]);
+                List<ResultSummary> results_for_problem = new List<ResultSummary>();
+                string start_time = DateTime.Now.ToString();
+                for (int i = 0; i < m_num_of_loops; i++)
                 {
-                    e.Cancel = true;
-                    return -1;
-                }               
-                results_for_problem.Add(m_algorithm_manager.run(population_size, num_of_generation, mutation_percentage));
-                double percent =  (i+1) * 100.0 / (double)m_num_of_loops;
-                m_background_worker.ReportProgress( (int)percent);
+                    if (m_background_worker.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        return -1;
+                    }
+                    results_for_problem.Add(m_algorithm_manager.run(population_size, num_of_generation, mutation_percentage));
+                    double percent = ((j * m_num_of_loops) + (i + 1)) * 100.0 / ((double)m_num_of_loops * (double)number_of_problems);
+                    m_background_worker.ReportProgress((int)percent);
+                }
+                ResultSummary best_result = getBestResult(results_for_problem);
+                ApplicManager.Instance.SavedResults.Add(best_result);
+                best_result.StartTime = start_time;
+                string finish_time = DateTime.Now.ToString();
+                best_result.FinishTime = finish_time;
+                best_result.NumberOfIterations = m_num_of_loops;
             }
-            ResultSummary best_result = getBestResult(results_for_problem);
-            ApplicManager.Instance.SavedResults.Add(best_result);
-            best_result.StartTime = start_time;
-            string finish_time = DateTime.Now.ToString();
-            best_result.FinishTime = finish_time;
-            best_result.NumberOfIterations = m_num_of_loops;
             LoggerFactory.getSimpleLogger().info("ProblemSolverManager::run() finished");
             return 1;
         }
@@ -89,5 +98,15 @@ namespace MRCPSP.Controllers
             e.Result = run(alg_params[0], alg_params[1], alg_params[2],e);   
         }
 
+        public bool SolvingFromList
+        {
+            get { return m_solvingFromList; }
+            set { m_solvingFromList = value; }
+        }
+
+        public void loadProblemNames(List<String> problem_names)
+        {
+            m_problems_names = problem_names;
+        }
     }
 }

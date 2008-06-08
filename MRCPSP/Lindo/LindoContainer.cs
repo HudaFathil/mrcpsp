@@ -22,6 +22,10 @@ namespace MRCPSP.Lindo
         private Dictionary<int, List<Step>> m_finishSteps;
         public static String YjfimType = "A";
         public static String YimrlType = "B";
+
+        public static String TrlType = "A";
+        public static String TjfiType = "B";
+
         public int N = 100000;
 
         private LindoContainer()
@@ -61,7 +65,7 @@ namespace MRCPSP.Lindo
                 {
                     MatrixCell cell = sol.DistributionMatrix[r, t];
                     // creating Trl
-                    MrcpspVariable Trl = new MrcpspVariable("T" + r + "" + t);
+                    MrcpspVariable Trl = new MrcpspVariable("T" + r + "" + t + TrlType);
                     Trl.Type = "C";
                     m_variables.Add(Trl.Name, Trl);
                     // creating Zrl
@@ -82,7 +86,7 @@ namespace MRCPSP.Lindo
                     if (!m_variables.ContainsKey(Xjfimrl.Name))
                         m_variables.Add(Xjfimrl.Name, Xjfimrl);
                     // creating Tjfi
-                    MrcpspVariable Tjfi = new MrcpspVariable("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id);
+                    MrcpspVariable Tjfi = new MrcpspVariable("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id+TjfiType);
                     Tjfi.Type = "C";
                     if (!m_variables.ContainsKey(Tjfi.Name))
                         m_variables.Add(Tjfi.Name, Tjfi);
@@ -179,11 +183,11 @@ namespace MRCPSP.Lindo
                     continue;
                 for (int t = 0; t < taskList.Count ; t++)
                 {
-                    if (!m_variables.ContainsKey("T" + r + "" + taskList[t]))
-                        throw new ConstrainException("LindoContainer", "Can't find parameter T" + r + "" + taskList[t]);
+                    if (!m_variables.ContainsKey("T" + r + "" + taskList[t]+LindoContainer.TrlType))
+                        throw new ConstrainException("LindoContainer", "Can't find parameter T" + r + "" + taskList[t] + LindoContainer.TrlType);
                     
                     ResultParameter result = new ResultParameter();
-                    result.startTime = m_variables["T" + r + "" + taskList[t]].FinalValue;
+                    result.startTime = m_variables["T" + r + "" + taskList[t] + LindoContainer.TrlType].FinalValue;
                     MatrixCell cell = sol.DistributionMatrix[r,taskList[t]]; 
                     result.jobID = cell.jobId;
                     result.product = cell.product;

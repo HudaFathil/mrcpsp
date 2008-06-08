@@ -26,8 +26,8 @@ namespace MRCPSP.Lindo.Constrains
                 if (taskList.Count == 0)
                     continue;
 
-                LindoContainer.Instance.Variables["T" + r + "" + taskList[0]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + r + "" + taskList[0] + " >= 0");
+                LindoContainer.Instance.Variables["T" + r + "" + taskList[0]+LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + r + "" + taskList[0] +LindoContainer.TrlType+ " >= 0");
                 // should add here Zr0 , Vr0
                 LindoContainer.Instance.RightHandSideValues.Add(0.0);
                 LindoContainer.Instance.ConstraintsSenses.Add("G");
@@ -38,15 +38,15 @@ namespace MRCPSP.Lindo.Constrains
                     MatrixCell cell = sol.DistributionMatrix[r, taskList[t - 1]];
                     Mode mode = sol.getSelectedModeByCell(cell);
 
-                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + r + "" + taskList[t]))
+                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + r + "" + taskList[t] + LindoContainer.TrlType))
                         continue;
-                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + r + "" + taskList[t - 1]))
+                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + r + "" + taskList[t - 1] + LindoContainer.TrlType))
                         continue;
                     if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.step.Id + "" + mode.name + "" + r + "" + taskList[t - 1] + LindoContainer.YimrlType))
                         continue;
-                    LindoContainer.Instance.Variables["T" + r + "" + taskList[t]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                    LindoContainer.Instance.Variables["T" + r + "" + taskList[t - 1]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
-                    Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + r + "" + taskList[t] + " -T" + r + "" + taskList[t - 1]);
+                    LindoContainer.Instance.Variables["T" + r + "" + taskList[t] + LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                    LindoContainer.Instance.Variables["T" + r + "" + taskList[t - 1] + LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
+                    Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + r + "" + taskList[t] + LindoContainer.TrlType + " -T" + r + "" + taskList[t - 1] + LindoContainer.TrlType);
 
 
                     //throw new ConstrainException("ConstrainNo14", "Can't find parameter" + "Y" + cell.step.Id + "" + mode + "" + r + "" + taskList[t - 1] + LindoContainer.YimrlType);

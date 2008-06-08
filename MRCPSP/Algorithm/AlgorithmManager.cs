@@ -80,7 +80,7 @@ namespace MRCPSP.Algorithm
                 for (int j = 0; j < population_size; j++)
                 {
                     m_fitness_function.evalFitness(childSolutions[j], ApplicManager.Instance.CurrentProblem);
-                    forDebugging += childSolutions[j].resultFromLindo + " , ";
+                    forDebugging += childSolutions[j].scoreFromLindo + " , ";
                 }
                 
                 forDebugging += "\n";

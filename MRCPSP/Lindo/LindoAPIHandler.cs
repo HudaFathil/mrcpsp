@@ -73,17 +73,18 @@ namespace MRCPSP.Lindo
 
             int nSolStatus = lindo.LS_STATUS_UNKNOWN;
 
-            StringBuilder LicenseKey = new StringBuilder(lindo.LS_MAX_ERROR_MESSAGE_LENGTH);
+           StringBuilder LicenseKey = new StringBuilder(lindo.LS_MAX_ERROR_MESSAGE_LENGTH);
 
             /* >>> Step 1 <<< Create a LINDO environment. Note:
             MY_LICENSE_KEY must be defined to be the license key
             shipped with your software. */
 
             nErrorCode = lindo.LSloadLicenseString("C:\\Lindoapi\\license\\lndapi50.lic", LicenseKey);
-            APIErrorCheck(pEnv, nErrorCode);
+           // nErrorCode = lindo.LSloadLicenseString("C:\\Lidfdfddfdcense.BAS", LicenseKey);
+          //  APIErrorCheck(pEnv, nErrorCode);
 
 
-            pEnv = lindo.LScreateEnv(ref nErrorCode, LicenseKey.ToString());
+            pEnv = lindo.LScreateEnv(ref nErrorCode, "\"2Fh*-9dXg-AEL8-dZdG-AAb4-DPf&-SuXa-$&ET-P8X5-?e2c-NwM2\"");
             if (nErrorCode == lindo.LSERR_NO_VALID_LICENSE)
             {
                 Console.WriteLine("Invalid License Key!\n");

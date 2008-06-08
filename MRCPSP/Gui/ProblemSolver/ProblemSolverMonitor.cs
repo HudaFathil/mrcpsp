@@ -136,7 +136,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_all_problems_lst.ItemHeight = 16;
             this.m_all_problems_lst.Location = new System.Drawing.Point(0, 17);
             this.m_all_problems_lst.Name = "m_all_problems_lst";
-            this.m_all_problems_lst.Size = new System.Drawing.Size(121, 196);
+            this.m_all_problems_lst.Size = new System.Drawing.Size(169, 196);
             this.m_all_problems_lst.TabIndex = 4;
             // 
             // m_refresh_list_button
@@ -144,7 +144,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_refresh_list_button.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.m_refresh_list_button.Location = new System.Drawing.Point(0, 213);
             this.m_refresh_list_button.Name = "m_refresh_list_button";
-            this.m_refresh_list_button.Size = new System.Drawing.Size(121, 23);
+            this.m_refresh_list_button.Size = new System.Drawing.Size(169, 23);
             this.m_refresh_list_button.TabIndex = 7;
             this.m_refresh_list_button.Text = "refresh";
             this.m_refresh_list_button.UseVisualStyleBackColor = true;
@@ -165,7 +165,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(324, 242);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(420, 242);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
             // panel2
@@ -174,9 +174,9 @@ namespace MRCPSP.Gui.ProblemSolver
             this.panel2.Controls.Add(this.m_clear_selected_button);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(200, 3);
+            this.panel2.Location = new System.Drawing.Point(248, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(121, 236);
+            this.panel2.Size = new System.Drawing.Size(169, 236);
             this.panel2.TabIndex = 9;
             // 
             // m_selected_problems_lst
@@ -186,7 +186,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_selected_problems_lst.ItemHeight = 16;
             this.m_selected_problems_lst.Location = new System.Drawing.Point(0, 17);
             this.m_selected_problems_lst.Name = "m_selected_problems_lst";
-            this.m_selected_problems_lst.Size = new System.Drawing.Size(121, 196);
+            this.m_selected_problems_lst.Size = new System.Drawing.Size(169, 196);
             this.m_selected_problems_lst.TabIndex = 10;
             // 
             // m_clear_selected_button
@@ -194,7 +194,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_clear_selected_button.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.m_clear_selected_button.Location = new System.Drawing.Point(0, 213);
             this.m_clear_selected_button.Name = "m_clear_selected_button";
-            this.m_clear_selected_button.Size = new System.Drawing.Size(121, 23);
+            this.m_clear_selected_button.Size = new System.Drawing.Size(169, 23);
             this.m_clear_selected_button.TabIndex = 9;
             this.m_clear_selected_button.Text = "clear";
             this.m_clear_selected_button.UseVisualStyleBackColor = true;
@@ -217,14 +217,14 @@ namespace MRCPSP.Gui.ProblemSolver
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(121, 236);
+            this.panel1.Size = new System.Drawing.Size(169, 236);
             this.panel1.TabIndex = 9;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.m_remove_problem_button);
             this.panel3.Controls.Add(this.m_add_problem_button);
-            this.panel3.Location = new System.Drawing.Point(130, 3);
+            this.panel3.Location = new System.Drawing.Point(178, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(64, 231);
             this.panel3.TabIndex = 10;
@@ -261,7 +261,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.groupBox1.Location = new System.Drawing.Point(378, 12);
+            this.groupBox1.Location = new System.Drawing.Point(458, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(283, 140);
             this.groupBox1.TabIndex = 9;
@@ -397,7 +397,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.groupBox2.Controls.Add(this.m_none_rb);
             this.groupBox2.Controls.Add(this.m_increase_pop_rb);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.groupBox2.Location = new System.Drawing.Point(378, 158);
+            this.groupBox2.Location = new System.Drawing.Point(458, 158);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(283, 144);
             this.groupBox2.TabIndex = 10;
@@ -451,7 +451,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.groupBox3.Location = new System.Drawing.Point(12, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(336, 290);
+            this.groupBox3.Size = new System.Drawing.Size(432, 290);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Problems Source";
@@ -461,7 +461,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_list_panel.Controls.Add(this.tableLayoutPanel1);
             this.m_list_panel.Location = new System.Drawing.Point(6, 42);
             this.m_list_panel.Name = "m_list_panel";
-            this.m_list_panel.Size = new System.Drawing.Size(324, 242);
+            this.m_list_panel.Size = new System.Drawing.Size(420, 242);
             this.m_list_panel.TabIndex = 14;
             // 
             // groupBox4
@@ -469,7 +469,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.groupBox4.Controls.Add(this.radioButton3);
             this.groupBox4.Controls.Add(this.m_pop_by_operation_rb);
             this.groupBox4.Controls.Add(this.m_first_pop_random_rb);
-            this.groupBox4.Location = new System.Drawing.Point(302, 341);
+            this.groupBox4.Location = new System.Drawing.Point(405, 341);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(142, 94);
             this.groupBox4.TabIndex = 15;
@@ -513,7 +513,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.groupBox5.Controls.Add(this.m_score_rb);
             this.groupBox5.Controls.Add(this.m_elitism_rb);
             this.groupBox5.Controls.Add(this.m_rank_rb);
-            this.groupBox5.Location = new System.Drawing.Point(141, 341);
+            this.groupBox5.Location = new System.Drawing.Point(244, 341);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(155, 94);
             this.groupBox5.TabIndex = 16;
@@ -557,7 +557,7 @@ namespace MRCPSP.Gui.ProblemSolver
             // 
             this.m_stop_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_stop_btn.Image = global::MRCPSP.Properties.Resources.stop;
-            this.m_stop_btn.Location = new System.Drawing.Point(458, 351);
+            this.m_stop_btn.Location = new System.Drawing.Point(561, 351);
             this.m_stop_btn.Name = "m_stop_btn";
             this.m_stop_btn.Size = new System.Drawing.Size(87, 84);
             this.m_stop_btn.TabIndex = 11;
@@ -568,7 +568,7 @@ namespace MRCPSP.Gui.ProblemSolver
             // 
             this.m_start_test_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_start_test_button.Image = global::MRCPSP.Properties.Resources.play;
-            this.m_start_test_button.Location = new System.Drawing.Point(551, 351);
+            this.m_start_test_button.Location = new System.Drawing.Point(654, 351);
             this.m_start_test_button.Name = "m_start_test_button";
             this.m_start_test_button.Size = new System.Drawing.Size(87, 84);
             this.m_start_test_button.TabIndex = 3;
@@ -579,7 +579,7 @@ namespace MRCPSP.Gui.ProblemSolver
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(687, 447);
+            this.ClientSize = new System.Drawing.Size(762, 447);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -627,18 +627,18 @@ namespace MRCPSP.Gui.ProblemSolver
             CorssOverBase crossover = getCrossOverPolicy();
             GeneratePolicyBase first = getFirstPopulationPolicy();
 
-
+            ApplicManager.Instance.SolvingFromList = m_use_table_rb.Checked;
             ApplicManager.Instance.loadParams((int)m_loops_sb.Value, first, crossover, selection);
+
+            if (m_solve_current_rb.Checked == false)                
+                ApplicManager.Instance.loadProblemNames(m_selected_problems_lst.Items.Cast<String>().ToList<String>());
+           
             int[] alg_params = new int[3];
             alg_params[0] = Convert.ToInt32(m_population_size_le.Text);
             alg_params[1] = Convert.ToInt32(m_num_of_gen_le.Text);
             alg_params[2] = Convert.ToInt32(m_mutation_percent_le.Text);
-            foreach (String prName in this.m_selected_problems_lst.Items)
-            {
-                ApplicManager.Instance.loadProblemFromDataBase(prName);
-                m_background_worker.RunWorkerAsync(alg_params);
-            }
-                                        
+            m_background_worker.RunWorkerAsync(alg_params);
+                                                   
         }
 
         private SelectionPolicyBase getSelectionPolicy()
@@ -679,7 +679,7 @@ namespace MRCPSP.Gui.ProblemSolver
 
         private void m_solve_current_rb_CheckedChanged(object sender, EventArgs e)
         {
-            m_list_panel.Enabled = false;
+            m_list_panel.Enabled = false;  
         }
 
         private void m_use_table_rb_CheckedChanged(object sender, EventArgs e)
@@ -695,19 +695,19 @@ namespace MRCPSP.Gui.ProblemSolver
 
         private void m_add_problem_button_Click(object sender, EventArgs e)
         {
+            if (m_all_problems_lst.SelectedIndex < 0)
+                return;
             String selected = (String)m_all_problems_lst.SelectedItem;
-            //if (! this.m_selected_problems_lst.Items.Contains(selected)) 
-            //   this.m_selected_problems_lst.Items.Add(selected);
-            this.m_selected_problems_lst.Items.Add(selected);
-            this.m_all_problems_lst.Items.Remove(selected);
+            if (! this.m_selected_problems_lst.Items.Contains(selected)) 
+               this.m_selected_problems_lst.Items.Add(selected);
+            //this.m_all_problems_lst.Items.Remove(selected);
         }
 
         private void m_remove_problem_button_Click(object sender, EventArgs e)
         {
+            if (m_selected_problems_lst.SelectedIndex < 0)
+                return;
             String selected = (String)m_selected_problems_lst.SelectedItem;
-            //if (! this.m_selected_problems_lst.Items.Contains(selected)) 
-            //   this.m_selected_problems_lst.Items.Add(selected);
-            this.m_all_problems_lst.Items.Add(selected);
             this.m_selected_problems_lst.Items.Remove(selected);
         }
 
@@ -718,6 +718,7 @@ namespace MRCPSP.Gui.ProblemSolver
 
         private void updateProblemList()
         {
+            m_all_problems_lst.Items.Clear();
             List<String> prNameList = ApplicManager.Instance.getProblemListFromDB();
             foreach (String name in prNameList)
             {

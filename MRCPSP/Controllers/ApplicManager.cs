@@ -107,5 +107,16 @@ namespace MRCPSP.Controllers
             m_problem_solver_manager.signBackgroundWorker(backgroundWorker1);
         }
 
+        public bool SolvingFromList
+        {
+            get { return m_problem_solver_manager.SolvingFromList; }
+            set { m_problem_solver_manager.SolvingFromList = value; }
+        }
+
+        public void loadProblemNames(List<String> problem_names)
+        {
+            m_problem_solver_manager.loadProblemNames(problem_names);
+        }
+
     }
 }

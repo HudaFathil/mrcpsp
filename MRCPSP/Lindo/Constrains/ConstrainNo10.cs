@@ -29,9 +29,9 @@ namespace MRCPSP.Lindo.Constrains
                     Mode mode = sol.getSelectedModeByCell(cell);
                     
                     List<Job> jobs = prob.JobsInProduct[cell.product];   
-                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id))
-                        throw new ConstrainException("ConstrainNo10", "Can't find parameter " + "T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id);
-                    LindoContainer.Instance.Variables["T" + cell.jobId+ "" + cell.product.Id + "" + cell.step.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id+LindoContainer.TjfiType))
+                        throw new ConstrainException("ConstrainNo10", "Can't find parameter " + "T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + LindoContainer.TjfiType);
+                    LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                     
                     
 
