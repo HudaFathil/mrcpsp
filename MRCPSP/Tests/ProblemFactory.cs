@@ -59,7 +59,7 @@ namespace MRCPSP.Tests
             }
             jobs_in_product[p] = jobs;
             List<ResourceConstraint> resource_time_constraints = new List<ResourceConstraint>();
-            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, resource_time_constraints);
+            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, resource_time_constraints,"");
         }
 
         public static Problem getIntermediateProblem()
@@ -126,7 +126,7 @@ namespace MRCPSP.Tests
             }
             jobs_in_product[p] = jobs;
             List<ResourceConstraint> resource_time_constraints = new List<ResourceConstraint>();
-            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, resource_time_constraints);
+            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, resource_time_constraints,"");
         }
 
 
