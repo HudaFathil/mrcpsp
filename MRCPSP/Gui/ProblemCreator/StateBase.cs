@@ -13,9 +13,11 @@ namespace MRCPSP.Gui.ProblemCreator
     public abstract class StateBase
     {
         private int m_monitor_id;
+        private ConstraintItem m_last_entered_item;
 
         public StateBase(int id)
         {
+            m_last_entered_item = null;
             m_monitor_id = id;
         }
         public int monitor_id
@@ -52,6 +54,24 @@ namespace MRCPSP.Gui.ProblemCreator
                 }
             }
             return null;
+        }
+
+        public void repaintConstraintsIfNeeded(CanvasEditor canvas, MouseEventArgs e)
+        {
+            ConstraintItem c = findConstraintnearPos(e.X, e.Y);
+            if (c == null)
+            {
+                if (m_last_entered_item != null)
+                {
+                    m_last_entered_item.mouseExit();
+                    m_last_entered_item = null;
+                    canvas.Refresh();
+                }
+                return;
+            }
+            c.mouseEnter();
+            m_last_entered_item = c;
+            canvas.Refresh();
         }
     }
 }

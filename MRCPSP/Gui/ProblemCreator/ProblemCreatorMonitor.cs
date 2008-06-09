@@ -63,7 +63,7 @@ namespace MRCPSP.Gui.ProblemCreator
         private Label label8;
         private Button m_resource_time_constraint_button;
 
-        private Color[] colors_array = { Color.Red, Color.Blue, Color.Purple, Color.Pink, Color.Silver, Color.Yellow };
+        private Color[] colors_array = { Color.Red, Color.Blue, Color.Purple, Color.Pink, Color.Silver, Color.Green, Color.Gray};
         private ResourceTimeConstraint m_resource_time_constraints;
 
         public ProblemCreatorMonitor(int monitor_id)

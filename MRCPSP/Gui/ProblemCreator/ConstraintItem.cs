@@ -124,8 +124,18 @@ namespace MRCPSP.Gui.ProblemCreator
         }
 
         public Point getToPoint()
-        {
+        {           
             return m_point_to;
         }
+
+        public void mouseEnter()
+        {
+            m_pen.Color = Color.Yellow;        
+        }
+
+        public void mouseExit()
+        {
+            m_pen.Color = ProblemCreatorState.Instance(m_from_step.monitor_id).CurrentProduct.ConstraintsColor;         
+        }   
     }
 }

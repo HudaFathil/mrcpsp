@@ -791,7 +791,7 @@ namespace MRCPSP.Gui.StatisticsViewer
         private void m_expor_to_excel_button_Click(object sender, EventArgs e)
         {
             
-            saveFileDialog1.Filter = "Excel Files (*.xls) |*.xls";
+            saveFileDialog1.Filter = "Excel Files (*.xlsx) |*.xlsx";
             saveFileDialog1.OverwritePrompt = true;
             saveFileDialog1.InitialDirectory = Application.StartupPath;
 

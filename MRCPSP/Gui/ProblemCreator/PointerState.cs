@@ -33,7 +33,7 @@ namespace MRCPSP.Gui.ProblemCreator
 
             public override void onCanvasMoved(CanvasEditor canvas, MouseEventArgs e)
             {
-                // do nothing
+                this.repaintConstraintsIfNeeded(canvas, e);
             }
 
             public override void onStepDoubleClicked(StepItem s) {

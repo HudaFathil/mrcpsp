@@ -469,7 +469,8 @@ namespace MRCPSP.Gui.ProblemSolver
             this.groupBox4.Controls.Add(this.radioButton3);
             this.groupBox4.Controls.Add(this.m_pop_by_operation_rb);
             this.groupBox4.Controls.Add(this.m_first_pop_random_rb);
-            this.groupBox4.Location = new System.Drawing.Point(405, 341);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.groupBox4.Location = new System.Drawing.Point(407, 341);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(142, 94);
             this.groupBox4.TabIndex = 15;
@@ -481,7 +482,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.radioButton3.AutoSize = true;
             this.radioButton3.Location = new System.Drawing.Point(5, 65);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(85, 17);
+            this.radioButton3.Size = new System.Drawing.Size(107, 21);
             this.radioButton3.TabIndex = 2;
             this.radioButton3.Text = "radioButton3";
             this.radioButton3.UseVisualStyleBackColor = true;
@@ -492,7 +493,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_pop_by_operation_rb.Checked = true;
             this.m_pop_by_operation_rb.Location = new System.Drawing.Point(5, 42);
             this.m_pop_by_operation_rb.Name = "m_pop_by_operation_rb";
-            this.m_pop_by_operation_rb.Size = new System.Drawing.Size(85, 17);
+            this.m_pop_by_operation_rb.Size = new System.Drawing.Size(108, 21);
             this.m_pop_by_operation_rb.TabIndex = 1;
             this.m_pop_by_operation_rb.TabStop = true;
             this.m_pop_by_operation_rb.Text = "by Operation";
@@ -503,7 +504,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_first_pop_random_rb.AutoSize = true;
             this.m_first_pop_random_rb.Location = new System.Drawing.Point(5, 19);
             this.m_first_pop_random_rb.Name = "m_first_pop_random_rb";
-            this.m_first_pop_random_rb.Size = new System.Drawing.Size(65, 17);
+            this.m_first_pop_random_rb.Size = new System.Drawing.Size(79, 21);
             this.m_first_pop_random_rb.TabIndex = 0;
             this.m_first_pop_random_rb.Text = "Random";
             this.m_first_pop_random_rb.UseVisualStyleBackColor = true;
@@ -513,7 +514,8 @@ namespace MRCPSP.Gui.ProblemSolver
             this.groupBox5.Controls.Add(this.m_score_rb);
             this.groupBox5.Controls.Add(this.m_elitism_rb);
             this.groupBox5.Controls.Add(this.m_rank_rb);
-            this.groupBox5.Location = new System.Drawing.Point(244, 341);
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.groupBox5.Location = new System.Drawing.Point(246, 341);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(155, 94);
             this.groupBox5.TabIndex = 16;
@@ -525,7 +527,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_score_rb.AutoSize = true;
             this.m_score_rb.Location = new System.Drawing.Point(6, 65);
             this.m_score_rb.Name = "m_score_rb";
-            this.m_score_rb.Size = new System.Drawing.Size(53, 17);
+            this.m_score_rb.Size = new System.Drawing.Size(63, 21);
             this.m_score_rb.TabIndex = 2;
             this.m_score_rb.TabStop = true;
             this.m_score_rb.Text = "Score";
@@ -537,7 +539,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_elitism_rb.Checked = true;
             this.m_elitism_rb.Location = new System.Drawing.Point(6, 42);
             this.m_elitism_rb.Name = "m_elitism_rb";
-            this.m_elitism_rb.Size = new System.Drawing.Size(54, 17);
+            this.m_elitism_rb.Size = new System.Drawing.Size(66, 21);
             this.m_elitism_rb.TabIndex = 1;
             this.m_elitism_rb.TabStop = true;
             this.m_elitism_rb.Text = "Elitism";
@@ -548,7 +550,7 @@ namespace MRCPSP.Gui.ProblemSolver
             this.m_rank_rb.AutoSize = true;
             this.m_rank_rb.Location = new System.Drawing.Point(6, 19);
             this.m_rank_rb.Name = "m_rank_rb";
-            this.m_rank_rb.Size = new System.Drawing.Size(51, 17);
+            this.m_rank_rb.Size = new System.Drawing.Size(59, 21);
             this.m_rank_rb.TabIndex = 0;
             this.m_rank_rb.Text = "Rank";
             this.m_rank_rb.UseVisualStyleBackColor = true;
