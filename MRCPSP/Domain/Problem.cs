@@ -304,6 +304,30 @@ namespace MRCPSP.Domain
             set { m_title = value; }
         }
 
+        public List<ResourceConstraint> ResourceConstraints
+        {
+            get { return m_resource_time_constraints; }
+            set { m_resource_time_constraints = value; }
+        }
+
+
+        public ResourceConstraint getResourceConstraint(Resource r, Mode from, Mode to)
+        {
+            foreach (ResourceConstraint rc in m_resource_time_constraints)
+                if (rc.CurrentResource.Equals(r) && rc.FromMode.Equals(from) && rc.ToMode.Equals(to))
+                    return rc;
+            return null;
+        }
+
+        public Constraint getConatraintBySteps(Step from, Step to , Product p)
+        {
+            foreach (Constraint c in m_all_constraints)
+            {
+                if (c.Product.Equals(p) && c.StepFrom.Equals(from) && c.StepTo.Equals(to))
+                    return c;
+            }
+            return null;
+        }
      /*    
         public LinkedList<Step> topologicalSortStepsForProduct(Product p) 
         {

@@ -83,7 +83,7 @@ namespace MRCPSP.Database
             return opList;
         }
 
-        // Constrains
+        // Constraint
         private static Constraint queryPrecedence(int problemID, Product p, Step from, Step to)
         {
             String cmd = "SELECT * FROM Precedence WHERE Problem_ID = " + problemID + " AND Family_ID = " + p.Id + " AND Previous_Operation_ID = " + from.Id + " AND Subsequent_Operation_ID = " + to.Id;
@@ -107,6 +107,16 @@ namespace MRCPSP.Database
             return jList;
         }
 
+        // Resource Constraint
+        private static ResourceConstraint queryResourceConstraint(int problemID, Mode from, Mode to , Resource r)
+        {
+            String cmd = "SELECT * FROM ConstantDelays WHERE Problem_ID = " + problemID + " AND Mode1_ID = " + from.Id + " AND Mode2_ID = " + to.Id + " AND Resource_ID = " + r.Id;
+            OdbcDataReader data = DBHandler.Instance.queryForElement(cmd);
+            if (data.Read())
+                return new ResourceConstraint(r,from,to,data.GetInt32(6));
+            return null;
+        }
+
 
 
         // Problem 
@@ -118,6 +128,7 @@ namespace MRCPSP.Database
             List<Step> sList = new List<Step>();
             Dictionary<Product, List<Job>> pjDic = new Dictionary<Product, List<Job>>();
             List<Constraint> cList = new List<Constraint>();
+            List<ResourceConstraint> rcList = new List<ResourceConstraint>();
             foreach (Product f in pList)
             {
                 pjDic.Add(f, queryJobsForProblemAndFamiliy(problemID, f));
@@ -136,10 +147,6 @@ namespace MRCPSP.Database
             }
             Dictionary<Step, List<Mode>> modesInStep = new Dictionary<Step, List<Mode>>();
 
-            foreach (Resource r in rList)
-            {
-                Console.WriteLine("Got resource '" + r.Name + "' from database");
-            }
             foreach (Step s in sList)
             {
 
@@ -156,7 +163,26 @@ namespace MRCPSP.Database
                 Console.WriteLine("Got Step  'Step " + s.Id + "' from database");
             }
 
-            Problem p = new Problem(rList, modesInStep, sList, cList, pList, pjDic,new List<ResourceConstraint>() , problemTitle);
+            foreach (Resource r in rList)
+            {
+                foreach (Step s1 in sList)
+                {
+                    foreach (Mode m1 in modesInStep[s1])
+                    {
+                        foreach (Step s2 in sList)
+                        {
+                            foreach (Mode m2 in modesInStep[s2])
+                            {
+                                ResourceConstraint rc = queryResourceConstraint(problemID, m1, m2, r);
+                                if (rc != null)
+                                    rcList.Add(rc);
+                            }
+                        }
+                    }
+                }
+            }
+
+            Problem p = new Problem(rList, modesInStep, sList, cList, pList, pjDic, rcList , problemTitle);
             return p;
         }
 

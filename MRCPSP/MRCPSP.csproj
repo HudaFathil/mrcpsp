@@ -124,6 +124,7 @@
     <Compile Include="Lindo\Constrains\ConstrainNo2.cs" />
     <Compile Include="Lindo\Constrains\ConstrainNo3.cs" />
     <Compile Include="Lindo\Constrains\ConstrainNo4.cs" />
+    <Compile Include="Lindo\Constrains\ConstraintNo12.cs" />
     <Compile Include="Lindo\Constrains\IConstrain.cs" />
     <Compile Include="Lindo\LindoContainer.cs" />
     <Compile Include="Lindo\MrcpspVariable.cs" />

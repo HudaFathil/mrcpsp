@@ -25,7 +25,7 @@ namespace MRCPSP.Lindo.Constrains
                     Mode mode = sol.getSelectedModeByCell(cell);
                     if (LindoContainer.Instance.getFinishSteps(cell.product.Id).Contains(cell.step))
                     {
-                        if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType))
+                        if (!LindoContainer.Instance.BooleanVariables.ContainsKey("Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType))
                             continue;
                         if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id+LindoContainer.TjfiType))
                             continue;
@@ -34,11 +34,8 @@ namespace MRCPSP.Lindo.Constrains
                         
                         Console.Write(" -T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id+LindoContainer.TjfiType);
                         LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id+LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
-                        
-                        Console.Write(" " + -1 * mode.getTotalProcessTime() + "Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType);
-                        LindoContainer.Instance.Variables["Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1 * mode.getTotalProcessTime());
-                        Console.WriteLine(" >= 0");
-                        LindoContainer.Instance.RightHandSideValues.Add(0.0);
+                        Console.WriteLine(" >= " + mode.getTotalProcessTime());
+                        LindoContainer.Instance.RightHandSideValues.Add(mode.getTotalProcessTime());
                         LindoContainer.Instance.ConstraintsSenses.Add("G");
                         LindoContainer.Instance.ConstrainsCounter++;
 

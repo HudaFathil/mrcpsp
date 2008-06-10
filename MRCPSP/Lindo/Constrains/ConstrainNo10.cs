@@ -32,14 +32,8 @@ namespace MRCPSP.Lindo.Constrains
                     if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id+LindoContainer.TjfiType))
                         throw new ConstrainException("ConstrainNo10", "Can't find parameter " + "T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + LindoContainer.TjfiType);
                     LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                    
-                    
-
-                    if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType))
-                        throw new ConstrainException("ConstrainNo10", "Can't find parameter " + "Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType);
-                    LindoContainer.Instance.Variables["Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, mode.getTotalProcessTime());
-                    Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ")T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + " - " + mode.getTotalProcessTime() + "*Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType + " <= " + jobs[cell.jobId].LatestTermTime);
-                    LindoContainer.Instance.RightHandSideValues.Add(jobs[cell.jobId].LatestTermTime);
+                    Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ")T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + " <= " + jobs[cell.jobId].LatestTermTime+" + "+mode.getTotalProcessTime());
+                    LindoContainer.Instance.RightHandSideValues.Add(jobs[cell.jobId].LatestTermTime+mode.getTotalProcessTime());
                     LindoContainer.Instance.ConstraintsSenses.Add("L");
                     LindoContainer.Instance.ConstrainsCounter++;
                     
@@ -47,32 +41,7 @@ namespace MRCPSP.Lindo.Constrains
                 }
             }
             
-            /*
-            for (int f = 0; f < prob.Products.Count; f++)
-            {
-                List<Job> jobs = prob.JobsInProduct[prob.Products[f]];
-                for (int j = 0; j < prob.Products[f].Size; j++)
-                {
-                    foreach (Step s in prob.Steps)
-                    {
-                        if (!LindoContainer.Instance.Variables.ContainsKey("T" + j + "" + f + "" + s.Id))
-                            continue;
-                        LindoContainer.Instance.Variables["T" + j + "" + f + "" + s.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                        foreach (Mode m in prob.ModesInStep[s])
-                        {
-                            if (!LindoContainer.Instance.Variables.ContainsKey("Y" + j + "" + f + "" + s.Id + "" + m.name+LindoContainer.YjfimType))
-                                continue;
-                            LindoContainer.Instance.Variables["Y" + j + "" + f + "" + s.Id + "" + m.name+LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, m.getTotalProcessTime());
-                        }
-
-                    }
-
-                    LindoContainer.Instance.RightHandSideValues.Add(jobs[j].LatestTermTime);
-                    LindoContainer.Instance.ConstraintsSenses.Add("L");
-                    LindoContainer.Instance.ConstrainsCounter++;
-                }
-            }
-             */
+   
         }
     }
 }

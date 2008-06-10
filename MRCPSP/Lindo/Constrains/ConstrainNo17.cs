@@ -27,40 +27,34 @@ namespace MRCPSP.Lindo.Constrains
                     MatrixCell cell = sol.DistributionMatrix[r, t];
                     Mode mode = sol.getSelectedModeByCell(cell);
 
-                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id+LindoContainer.TjfiType))
+                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + LindoContainer.TjfiType))
                         throw new ConstrainException("ConstrainNo17", "Can't find parameter" + "T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + LindoContainer.TjfiType);
-                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + r + "" + t+LindoContainer.TrlType))
-                        throw new ConstrainException("ConstrainNo17", "Can't find parameter" + "T" + r+""+t+LindoContainer.TrlType);
-                    if (!LindoContainer.Instance.Variables.ContainsKey("X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t))
+                    if (!LindoContainer.Instance.Variables.ContainsKey("T" + r + "" + t + LindoContainer.TrlType))
+                        throw new ConstrainException("ConstrainNo17", "Can't find parameter" + "T" + r + "" + t + LindoContainer.TrlType);
+                    if (!LindoContainer.Instance.BooleanVariables.ContainsKey("X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t))
                         throw new ConstrainException("ConstrainNo17", "Can't find parameter" + "X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t);
                     LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                    LindoContainer.Instance.Variables["T" + r + "" + t+LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
-                    
-                    String toPrint = "Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + " -T" + r + "" + t+LindoContainer.TrlType;
-                    double startUsingResource = mode.startUsingResourceTime(prob.Resources[r]);
-                    toPrint += " +" + startUsingResource + "*X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t;
-                    LindoContainer.Instance.Variables["X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, startUsingResource - LindoContainer.Instance.N);
-                    toPrint += -1 * LindoContainer.Instance.N + "*X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t;
-                    
-                    Console.WriteLine(toPrint + " >= " + -1 * LindoContainer.Instance.N + "");
-                    LindoContainer.Instance.RightHandSideValues.Add(-1 * LindoContainer.Instance.N);
-                    LindoContainer.Instance.ConstraintsSenses.Add("G");
-                    LindoContainer.Instance.ConstrainsCounter++;
+                    LindoContainer.Instance.Variables["T" + r + "" + t + LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
 
+                    String toPrint = "Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + LindoContainer.TjfiType+" -T" + r + "" + t + LindoContainer.TrlType;
+                    double startUsingResource = mode.startUsingResourceTime(prob.Resources[r]);
+
+                    Console.WriteLine(toPrint + " = " + -1*startUsingResource);
+                    LindoContainer.Instance.RightHandSideValues.Add(-1 * startUsingResource);
+                    LindoContainer.Instance.ConstraintsSenses.Add("E");
+                    LindoContainer.Instance.ConstrainsCounter++;
+                    /*
                     LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                    LindoContainer.Instance.Variables["T" + r + "" + t+LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
+                    LindoContainer.Instance.Variables["T" + r + "" + t + LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
 
                     toPrint = "Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + " -T" + r + "" + t;
                     startUsingResource = mode.startUsingResourceTime(prob.Resources[r]);
-                    toPrint += " +" + startUsingResource + "*X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t;
-                    LindoContainer.Instance.Variables["X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, startUsingResource + LindoContainer.Instance.N);
-                    toPrint += -1 * LindoContainer.Instance.N + "*X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t;
 
-                    Console.WriteLine(toPrint + " >= " +  LindoContainer.Instance.N );
-                    LindoContainer.Instance.RightHandSideValues.Add(LindoContainer.Instance.N);
+                    Console.WriteLine(toPrint + " <= " + LindoContainer.Instance.N + "* ( 1 - " + startUsingResource+ " )");
+                    LindoContainer.Instance.RightHandSideValues.Add(LindoContainer.Instance.N - startUsingResource);
                     LindoContainer.Instance.ConstraintsSenses.Add("L");
                     LindoContainer.Instance.ConstrainsCounter++;
-
+                    */
 
 
                 }

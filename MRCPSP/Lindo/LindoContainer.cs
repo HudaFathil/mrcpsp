@@ -15,6 +15,7 @@ namespace MRCPSP.Lindo
     {
 
         private Dictionary<String,MrcpspVariable> m_variables;
+        private Dictionary<String, MrcpspVariable> m_boolVariables;
         private static LindoContainer m_instance;
         List<String> m_constraintsSenses;
         private List<double> m_rightHandSideValues;
@@ -37,6 +38,7 @@ namespace MRCPSP.Lindo
             Problem prob = ApplicManager.Instance.CurrentProblem;
             Solution sol = ApplicManager.Instance.CurrentSolution;
             m_variables = new Dictionary<String, MrcpspVariable>();
+            m_boolVariables = new Dictionary<String, MrcpspVariable>();
             m_rightHandSideValues = new List<double>();
             m_constraintsSenses = new List<String>();
             m_finishSteps = new Dictionary<int, List<Step>>();
@@ -61,7 +63,8 @@ namespace MRCPSP.Lindo
 
             for (int r = 0; r < sol.DistributionMatrix.GetLength(0); r++)
             {
-                for (int t = 0; t < sol.DistributionMatrix.GetLength(1); t++)
+                List<int> taskList = sol.getTaskListForResource(r, prob.Resources[r]);
+                foreach (int t in taskList)
                 {
                     MatrixCell cell = sol.DistributionMatrix[r, t];
                     // creating Trl
@@ -78,13 +81,13 @@ namespace MRCPSP.Lindo
                     // creating Yjfim
                     MrcpspVariable Yjfim = new MrcpspVariable("Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + YjfimType);
                     Yjfim.Type = "B";
-                    if (!m_variables.ContainsKey(Yjfim.Name))
-                        m_variables.Add(Yjfim.Name, Yjfim);
+                    if (!m_boolVariables.ContainsKey(Yjfim.Name))
+                        m_boolVariables.Add(Yjfim.Name, Yjfim);
                     // creating Xjfimrl
                     MrcpspVariable Xjfimrl = new MrcpspVariable("X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t);
                     Xjfimrl.Type = "B";
-                    if (!m_variables.ContainsKey(Xjfimrl.Name))
-                        m_variables.Add(Xjfimrl.Name, Xjfimrl);
+                    if (!m_boolVariables.ContainsKey(Xjfimrl.Name))
+                        m_boolVariables.Add(Xjfimrl.Name, Xjfimrl);
                     // creating Tjfi
                     MrcpspVariable Tjfi = new MrcpspVariable("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id+TjfiType);
                     Tjfi.Type = "C";
@@ -93,8 +96,8 @@ namespace MRCPSP.Lindo
                     // creating Yimrl
                     MrcpspVariable Yimrl = new MrcpspVariable("Y" + cell.step.Id + "" + mode.name + "" + r + "" + t + YimrlType);
                     Yimrl.Type = "B";
-                    if (!m_variables.ContainsKey(Yimrl.Name))
-                        m_variables.Add(Yimrl.Name, Yimrl);
+                    if (!m_boolVariables.ContainsKey(Yimrl.Name))
+                        m_boolVariables.Add(Yimrl.Name, Yimrl);
                 }
 
             }
@@ -162,6 +165,11 @@ namespace MRCPSP.Lindo
         public Dictionary<String,MrcpspVariable> Variables
         {
             get { return m_variables; }
+        }
+
+        public Dictionary<String, MrcpspVariable> BooleanVariables
+        {
+            get { return m_boolVariables; }
         }
 
         /**

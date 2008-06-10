@@ -48,7 +48,7 @@ namespace MRCPSP.Database
             DBHandler.Instance.executeQuery(cmdStr);
         }
 
-        // Constrains
+        // Constraint
         private static void saveConstraint(int problemID, Constraint c)
         {
             String cmdStr = "INSERT INTO Precedence VALUES(" + problemID + "," + c.Product.Id + "," + c.StepFrom.Id + "," + c.StepTo.Id + "," + c.MinQueueTime + "," + c.MaxQueueTime + ")";
@@ -61,6 +61,15 @@ namespace MRCPSP.Database
             String cmdStr = "INSERT INTO Jobs VALUES(" + problemID + "," + p.Id + "," + j.Id + "," + j.ArriveTime + "," + 9999 + ",1)";
             DBHandler.Instance.executeQuery(cmdStr);
         }
+
+        //Resource Constraint
+        private static void saveResourceConstraint(int problemID, ResourceConstraint rc)
+        {
+            String cmdStr = "INSERT INTO ConstantDelays VALUES(" + problemID + "," + rc.FromMode.BelongToStep.Id + "," + rc.FromMode.Id + "," + rc.ToMode.BelongToStep.Id + "," + rc.ToMode.Id +","+rc.CurrentResource.Id+","+rc.DelayTime+")";
+            DBHandler.Instance.executeQuery(cmdStr);
+        }
+
+
 
         // Problem 
         public static void saveProblem(Problem pr)
@@ -88,6 +97,8 @@ namespace MRCPSP.Database
                     saveJob(problemID, f, j);
                 }
             }
+            foreach (ResourceConstraint rc in pr.ResourceConstraints)
+                saveResourceConstraint(problemID,rc);
             foreach (Constraint c in pr.Constraints)
                 saveConstraint(problemID,c);
             String cmdStr = "INSERT INTO Problems VALUES(" + problemID + ",'" + pr.Title + "')";

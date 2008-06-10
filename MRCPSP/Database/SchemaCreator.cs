@@ -39,6 +39,8 @@ namespace MRCPSP.Database
             DBHandler.Instance.executeQuery("DROP TABLE IF EXISTS Problems");
             DBHandler.Instance.executeQuery("CREATE TABLE Problems(Problem_ID INT NOT NULL PRIMARY KEY, Title varchar(20))");
 
+            DBHandler.Instance.executeQuery("DROP TABLE IF EXISTS ConstantDelays");
+            DBHandler.Instance.executeQuery("CREATE TABLE ConstantDelays(Problem_ID INT NOT NULL, Operation1_ID INT NOT NULL , Mode1_ID INT NOT NULL, Operation2_ID INT NOT NULL, Mode2_ID INT NOT NULL, Resource_ID INT NOT NULL, PRIMARY KEY(Problem_ID,Operation1_ID, Mode1_ID , Operation2_ID , Mode2_ID , Resource_ID) , Delay_Time int)");
             
 
         }
