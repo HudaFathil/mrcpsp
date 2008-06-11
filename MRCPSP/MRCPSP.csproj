@@ -85,6 +85,9 @@
     <Compile Include="Database\SchemaCreator.cs" />
     <Compile Include="Domain\ResultSummary.cs" />
     <Compile Include="Exceptions\ConstrainException.cs" />
+    <Compile Include="Gui\DBManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Gui\ProblemCreator\ConstraintProperties.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +225,7 @@
     <Content Include="Gui\pics\new_arrow_pic.bmp" />
     <Content Include="Gui\pics\new_problem.bmp" />
     <Content Include="Gui\pics\new_step_pic.bmp" />
+    <Content Include="nunit.framework.dll" />
     <None Include="Gui\pics\play.bmp" />
     <None Include="Gui\pics\stop.bmp" />
     <None Include="Gui\pics\selectarrow.bmp" />
@@ -229,6 +233,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Gui\ApplicationFrame.resx">
       <DependentUpon>ApplicationFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\DBManagement.resx">
+      <DependentUpon>DBManagement.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\Logger\LoggerFrame.resx">

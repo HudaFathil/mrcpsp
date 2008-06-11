@@ -20,7 +20,7 @@ namespace MRCPSP.Database
 
             while (dataReader.Read())
             {
-                pList.Add(new Product(dataReader.GetInt32(1), dataReader.GetString(3), dataReader.GetInt32(2)));
+                pList.Add(new Product(dataReader.GetInt32(1), dataReader.GetString(2)));
             }
 
             return pList;
@@ -102,7 +102,7 @@ namespace MRCPSP.Database
             List<Job> jList = new List<Job>();
             while (data.Read())
             {
-                jList.Add(new Job(data.GetInt32(2), data.GetDouble(3), data.GetDouble(4)));
+                jList.Add(new Job(data.GetInt32(2), data.GetInt32(4), data.GetInt32(6)));
             }
             return jList;
         }
@@ -112,7 +112,7 @@ namespace MRCPSP.Database
         {
             String cmd = "SELECT * FROM ConstantDelays WHERE Problem_ID = " + problemID + " AND Mode1_ID = " + from.Id + " AND Mode2_ID = " + to.Id + " AND Resource_ID = " + r.Id;
             OdbcDataReader data = DBHandler.Instance.queryForElement(cmd);
-            if (data.Read())
+            if (data.Read()) 
                 return new ResourceConstraint(r,from,to,data.GetInt32(6));
             return null;
         }
@@ -131,7 +131,9 @@ namespace MRCPSP.Database
             List<ResourceConstraint> rcList = new List<ResourceConstraint>();
             foreach (Product f in pList)
             {
-                pjDic.Add(f, queryJobsForProblemAndFamiliy(problemID, f));
+                List<Job> jobs = queryJobsForProblemAndFamiliy(problemID, f);
+                f.Size = jobs.Count;
+                pjDic.Add(f, jobs);
                 List<Step> stepForProcuct = queryStepsForProblemAndFamiliy(problemID, f.Id);
                 foreach (Step from in stepForProcuct)
                 {

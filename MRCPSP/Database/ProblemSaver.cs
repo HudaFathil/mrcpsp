@@ -13,7 +13,7 @@ namespace MRCPSP.Database
         // Families
         private static void saveFamiliy(int problemID,Product p)
         {
-            String cmdStr = "INSERT INTO Families VALUES(" + problemID + "," + p.Id + "," + p.Size + ",'" + p.Name + "','')";
+            String cmdStr = "INSERT INTO Families VALUES(" + problemID + "," + p.Id + ",'" + p.Name + "','')";
 
             DBHandler.Instance.executeQuery(cmdStr);
         }
@@ -21,7 +21,7 @@ namespace MRCPSP.Database
         // Resource  
         private static void saveResource(int problemID, Resource res)
         {
-            String cmdStr = "INSERT INTO Resources VALUES(" + problemID + "," + res.Id + ",'" + res.Name + "'," + 1 + "," + 1 + ")";
+            String cmdStr = "INSERT INTO Resources VALUES(" + problemID + "," + res.Id + ",'" + res.Name + "'," + 1 + "," + 1  + ")";
             DBHandler.Instance.executeQuery(cmdStr);
         }
 
@@ -37,7 +37,7 @@ namespace MRCPSP.Database
         // Modes
         private static void saveMode(int problemID, Mode m)
         {
-            String cmdStr = "INSERT INTO Modes VALUES(" + problemID + "," + m.BelongToStep.Id + "," + m.Id + ",'" + m.name + "',1,1)";
+            String cmdStr = "INSERT INTO Modes VALUES(" + problemID + "," + m.BelongToStep.Id + "," + m.Id + ",'" + m.name + "','')";
             DBHandler.Instance.executeQuery(cmdStr);
         }
 
@@ -58,7 +58,7 @@ namespace MRCPSP.Database
         // Jobs
         private static void saveJob(int problemID, Product p, Job j)
         {
-            String cmdStr = "INSERT INTO Jobs VALUES(" + problemID + "," + p.Id + "," + j.Id + "," + j.ArriveTime + "," + 9999 + ",1)";
+            String cmdStr = "INSERT INTO Jobs VALUES(" + problemID + "," + p.Id + "," + j.Id + "," + 1 + "," + j.ArriveTime + "," + Convert.ToByte(j.ArriveTime) +"," + j.LatestTermTime + ",1)";
             DBHandler.Instance.executeQuery(cmdStr);
         }
 
@@ -101,7 +101,7 @@ namespace MRCPSP.Database
                 saveResourceConstraint(problemID,rc);
             foreach (Constraint c in pr.Constraints)
                 saveConstraint(problemID,c);
-            String cmdStr = "INSERT INTO Problems VALUES(" + problemID + ",'" + pr.Title + "')";
+            String cmdStr = "INSERT INTO Problems VALUES(" + problemID + ",'" + pr.Title + "',0,0,0,0,0,0,0,0,0,0,0,0,0,0)";
             DBHandler.Instance.executeQuery(cmdStr);
         }
 

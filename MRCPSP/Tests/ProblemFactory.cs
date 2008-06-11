@@ -55,7 +55,7 @@ namespace MRCPSP.Tests
             Dictionary<Product, List<Job>> jobs_in_product = new Dictionary<Product,List<Job>>();
             List<Job> jobs = new List<Job>();
             for (int i=0; i < product_size; i++) {
-                jobs.Add(new Job(0, double.PositiveInfinity));
+                jobs.Add(new Job(0, Int32.MaxValue));
             }
             jobs_in_product[p] = jobs;
             List<ResourceConstraint> resource_time_constraints = new List<ResourceConstraint>();
@@ -122,7 +122,7 @@ namespace MRCPSP.Tests
             List<Job> jobs = new List<Job>();
             for (int i = 0; i < product_size; i++)
             {
-                jobs.Add(new Job(0, double.PositiveInfinity));
+                jobs.Add(new Job(0, Int32.MaxValue));
             }
             jobs_in_product[p] = jobs;
             List<ResourceConstraint> resource_time_constraints = new List<ResourceConstraint>();

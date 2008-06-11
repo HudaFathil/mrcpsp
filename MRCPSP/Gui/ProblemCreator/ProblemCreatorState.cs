@@ -190,7 +190,7 @@ namespace MRCPSP.Gui.ProblemCreator
                 jobs_in_product.Add((Product)all_products[p], new List<Job>());
                 for (int i = 0; i < p.Size; i++)
                 {
-                    jobs_in_product[(Product)all_products[p]].Add(new Job(Convert.ToDouble(p.JobsData[1, i].Value), Convert.ToDouble(p.JobsData[2, i].Value)));
+                    jobs_in_product[(Product)all_products[p]].Add(new Job(Convert.ToInt32(p.JobsData[1, i].Value), Convert.ToInt32(p.JobsData[2, i].Value)));
                 }
             }
 

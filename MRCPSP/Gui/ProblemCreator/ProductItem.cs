@@ -34,7 +34,7 @@ namespace MRCPSP.Gui.ProblemCreator
             for (int i=0; i < m_product_size; i++) {
                 m_requested_job_start_end_time[0, i].Value = i + 1;
                 m_requested_job_start_end_time[1, i].Value = 0;
-                m_requested_job_start_end_time[2, i].Value = Double.PositiveInfinity;
+                m_requested_job_start_end_time[2, i].Value = Int32.MaxValue;// Double.MaxValue;// Double.PositiveInfinity;
             } 
         }
 

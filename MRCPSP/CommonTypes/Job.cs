@@ -8,26 +8,26 @@ namespace MRCPSP.CommonTypes
     class Job
     {
      
-        private double m_arrive_time;
-        private double m_latest_tern_time;
+        private int m_arrive_time;
+        private int m_latest_tern_time;
         private static int id_counter = 0;
         private int m_id;
 
-        public Job(double arrive, double latest)
+        public Job(int arrive, int latest)
         {
             m_arrive_time = arrive;
             m_latest_tern_time = latest;
             m_id = id_counter;
             id_counter++;
         }
-        public Job(int id , double arrive, double latest)
+        public Job(int id , int arrive, int latest)
         {
             m_arrive_time = arrive;
             m_latest_tern_time = latest;
             m_id = id;
         }
 
-        public double ArriveTime
+        public int ArriveTime
         {
             get { return m_arrive_time; }
             set
@@ -36,7 +36,7 @@ namespace MRCPSP.CommonTypes
             }
         }
 
-        public double LatestTermTime
+        public int LatestTermTime
         {
             get { return m_latest_tern_time; }
             set

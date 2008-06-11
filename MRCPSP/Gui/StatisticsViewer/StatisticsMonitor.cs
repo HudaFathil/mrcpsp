@@ -804,7 +804,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             if (! saveFileDialog1.FileName.EndsWith(".xlsx"))
                 saveFileDialog1.FileName = saveFileDialog1.FileName + ".xlsx";
               */
-            ExcelParser excel = new ExcelParser(saveFileDialog1.FileName, m_current_summary);
+           // ExcelParser excel = new ExcelParser(saveFileDialog1.FileName, m_current_summary);
            // ExcelParser excel = new ExcelParser( m_current_summary);
             //m_resources_gantt.saveImage(Application.StartupPath + "gantt.png");   
 

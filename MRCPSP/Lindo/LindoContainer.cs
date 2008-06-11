@@ -120,25 +120,7 @@ namespace MRCPSP.Lindo
         {
             get { return m_rightHandSideValues; }
         }
-
-        public List<Resource> getResourceNeededInAllStepModes(Step s)
-        {
-            List<Resource> rList = new List<Resource>();
-            List<Mode> mList = ApplicManager.Instance.CurrentProblem.ModesInStep[s];
-            foreach (Resource r in ApplicManager.Instance.CurrentProblem.Resources)
-            {
-                bool toAdd = true;
-                foreach (Mode m in mList)
-                {
-                    if (!m.isResourceUsed(r))
-                        toAdd = false;
-                }
-                if (toAdd)
-                    rList.Add(r);
-            }
-            return rList;
-        }
-
+       
         public List<String> ConstraintsSenses
         {
             get { return m_constraintsSenses; }

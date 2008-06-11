@@ -18,6 +18,12 @@ namespace MRCPSP.CommonTypes
             m_product_size = size;
         }
 
+        public Product(int id, string name)
+        {
+            m_product_id = id;
+            m_product_name = name;
+        }
+
         public int Size
         {
             get { return m_product_size; }
