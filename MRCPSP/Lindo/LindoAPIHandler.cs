@@ -18,7 +18,7 @@ namespace MRCPSP.Lindo
                 if (nErr > 0)
                 {
                     StringBuilder cMessage = new StringBuilder(lindo.LS_MAX_ERROR_MESSAGE_LENGTH);
-                    lindo.LSgetErrorMessage(pEnv, nErr, cMessage);
+                    lindo.LSgetErrorMessage((int)pEnv, nErr, cMessage);
                 }
             }
 
@@ -65,10 +65,10 @@ namespace MRCPSP.Lindo
             int nVars = LindoContainer.Instance.Variables.Count;
 
             /* declare an instance of the LINDO environment object */
-            IntPtr pEnv = (IntPtr)0;
+            int pEnv = 0;
 
             /* declare an instance of the LINDO model object */
-            IntPtr pModel = (IntPtr)0;
+            int pModel = 0;
 
 
             int nSolStatus = lindo.LS_STATUS_UNKNOWN;
@@ -79,22 +79,19 @@ namespace MRCPSP.Lindo
             MY_LICENSE_KEY must be defined to be the license key
             shipped with your software. */
 
-            nErrorCode = lindo.LSloadLicenseString("C:\\Lindoapi\\license\\lndapi50.lic", LicenseKey);
-           // nErrorCode = lindo.LSloadLicenseString("C:\\Lidfdfddfdcense.BAS", LicenseKey);
-          //  APIErrorCheck(pEnv, nErrorCode);
-
-
-            pEnv = lindo.LScreateEnv(ref nErrorCode, "\"2Fh*-9dXg-AEL8-dZdG-AAb4-DPf&-SuXa-$&ET-P8X5-?e2c-NwM2\"");
+            nErrorCode = lindo.LSloadLicenseString("C:\\Lindoapi\\license\\lndapi40.lic", LicenseKey);
+            
+           APIErrorCheck((System.IntPtr)pEnv, nErrorCode);
+           pEnv = lindo.LScreateEnv(ref nErrorCode, LicenseKey.ToString());
             if (nErrorCode == lindo.LSERR_NO_VALID_LICENSE)
             {
-                Console.WriteLine("Invalid License Key!\n");
-               
+                Console.WriteLine("Invalid License Key!\n");              
             }
-            APIErrorCheck(pEnv, nErrorCode);
+            APIErrorCheck((System.IntPtr)pEnv, nErrorCode);
 
             /* >>> Step 2 <<< Create a model in the environment. */
             pModel = lindo.LScreateModel(pEnv, ref nErrorCode);
-            APIErrorCheck(pEnv, nErrorCode);
+            APIErrorCheck((System.IntPtr)pEnv, nErrorCode);
 
             /* >>> Step 3 <<< Specify the model.
 
@@ -168,7 +165,7 @@ namespace MRCPSP.Lindo
                 nErrorCode = lindo.LSloadLPData(pModel, nCons, nVars, nDir,
                     dObjConst, adC, adB, acConTypes, nNZ, anBegCol,
                     pnLenCol, adA, anRowX, pdLower, pdUpper);
-            APIErrorCheck(pEnv, nErrorCode);
+                APIErrorCheck((System.IntPtr)pEnv, nErrorCode);
             // Mark all Variables as being Binary Integer	
             //Console.WriteLine("LindoVarType.ToString()={0}\t\nVarType={1}",LindoVarType,VarType);
          //   nErrorCode = lindo.LSloadVarType(pModel, varType);
@@ -180,7 +177,7 @@ namespace MRCPSP.Lindo
             */
             /* >>> Step 4 <<< Perform the optimization */
             nErrorCode = lindo.LSoptimize(pModel, lindo.LS_METHOD_FREE, ref nSolStatus);
-            APIErrorCheck(pEnv, nErrorCode);
+            APIErrorCheck((System.IntPtr)pEnv, nErrorCode);
 
                 /* >>> Step 5 <<< Retrieve the solution */
                 double[] adX = new double[nVars];
@@ -188,7 +185,7 @@ namespace MRCPSP.Lindo
                 double[] dSlack = new double[nVars];
                 /* Get the variable values */
                 nErrorCode = lindo.LSgetPrimalSolution(pModel, adX);
-                APIErrorCheck(pEnv, nErrorCode);
+                APIErrorCheck((System.IntPtr)pEnv, nErrorCode);
 
                 for (int v = 0; v < nVars; v++ )
                 {

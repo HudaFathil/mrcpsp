@@ -45,10 +45,13 @@ namespace MRCPSP.Lindo.Constrains
 
                         //List<Job> jobs = prob.JobsInProduct[cell.product];
                         Constraint cons = prob.getConatraintBySteps(s1, s2, cell.product);
-                        Console.WriteLine(" <= " + mode.getTotalProcessTime() + " + 9999" + cons.MaxQueueTime);
-                        LindoContainer.Instance.RightHandSideValues.Add(mode.getTotalProcessTime() + 9999);//+ cons.MaxQueueTime);
-                        LindoContainer.Instance.ConstraintsSenses.Add("L");
-                        LindoContainer.Instance.ConstrainsCounter++;
+                        if (cons != null)
+                        {
+                            Console.WriteLine(" <= " + mode.getTotalProcessTime() + " + 9999" + cons.MaxQueueTime);
+                            LindoContainer.Instance.RightHandSideValues.Add(mode.getTotalProcessTime() + 9999);//+ cons.MaxQueueTime);
+                            LindoContainer.Instance.ConstraintsSenses.Add("L");
+                            LindoContainer.Instance.ConstrainsCounter++;
+                        }
                     }
 
                 }
