@@ -33,26 +33,24 @@ namespace MRCPSP.Lindo.Constrains
                     {
                         if (s1.Equals(s2) || !prob.isStepSubsequentToStep(cell.product, s1, s2))
                             continue;
+                        Constraint cons = prob.getConatraintBySteps(s1, s2, cell.product);
+                        if (cons == null)
+                            continue;
                         if (!LindoContainer.Instance.BooleanVariables.ContainsKey("Y" + cell.jobId + "" + cell.product.Id + "" + s1.Id + "" + mode.name + LindoContainer.YjfimType))
                             continue;
                         if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "" + cell.product.Id + "" + s2.Id + LindoContainer.TjfiType))
                             throw new ConstrainException("ConstrainNo11A", "Can't find parameter T" + cell.jobId + "" + cell.product.Id + "" + s2.Id + LindoContainer.TjfiType);
-                        
-                        LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + s2.Id+LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+
+                        LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + s2.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                         LindoContainer.Instance.Variables["T" + cell.jobId + "" + cell.product.Id + "" + s1.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
 
                         Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "" + cell.product.Id + "" + s2.Id + LindoContainer.TjfiType + " - T" + cell.jobId + "" + cell.product.Id + "" + s1.Id + LindoContainer.TjfiType);
-                        
 
-                        //List<Job> jobs = prob.JobsInProduct[cell.product];
-                        Constraint cons = prob.getConatraintBySteps(s1, s2, cell.product);
-                        if (cons != null)
-                        {
-                            Console.WriteLine(" >= " + mode.getTotalProcessTime() + " + " + cons.MinQueueTime);
-                            LindoContainer.Instance.RightHandSideValues.Add(mode.getTotalProcessTime() + cons.MinQueueTime);
-                            LindoContainer.Instance.ConstraintsSenses.Add("G");
-                            LindoContainer.Instance.ConstrainsCounter++;
-                        }
+                        Console.WriteLine(" >= " + mode.getTotalProcessTime() + " + " + cons.MinQueueTime);
+                        LindoContainer.Instance.RightHandSideValues.Add(mode.getTotalProcessTime() + cons.MinQueueTime);
+                        LindoContainer.Instance.ConstraintsSenses.Add("G");
+                        LindoContainer.Instance.ConstrainsCounter++;
+
                     }
                     
                 }

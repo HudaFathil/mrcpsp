@@ -129,11 +129,11 @@
     <Compile Include="Lindo\Constrains\ConstrainNo4.cs" />
     <Compile Include="Lindo\Constrains\ConstraintNo12.cs" />
     <Compile Include="Lindo\Constrains\IConstrain.cs" />
-    <Compile Include="Lindo\LindoContainer.cs" />
-    <Compile Include="Lindo\MrcpspVariable.cs" />
     <Compile Include="Lindo\lindo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Lindo\LindoContainer.cs" />
+    <Compile Include="Lindo\MrcpspVariable.cs" />
     <Compile Include="Lindo\LindoAPIHandler.cs">
       <SubType>Code</SubType>
     </Compile>
