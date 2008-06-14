@@ -69,6 +69,8 @@ namespace MRCPSP.Gui.StatisticsViewer
         private System.Windows.Forms.Label m_result_lbl;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label m_mutation_lbl;
+        private System.Windows.Forms.Label label12;
         private MRCPSP.Gui.StatisticsViewer.Graph.XYGraph m_generation_over_time_graph;
 
         public StatisticsMonitor()
@@ -91,9 +93,14 @@ namespace MRCPSP.Gui.StatisticsViewer
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StatisticsMonitor));
             this.m_bind_navigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -115,24 +122,21 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.m_gantt_panel = new System.Windows.Forms.Panel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.m_generation_over_time_graph = new MRCPSP.Gui.StatisticsViewer.Graph.XYGraph();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.m_resources_pie_chart = new MRCPSP.Gui.StatisticsViewer.Graph.PieGraph();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.m_min_max_graph = new MRCPSP.Gui.StatisticsViewer.Graph.MinMaxGraph();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.m_export_to_excel_button = new System.Windows.Forms.Button();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.m_generation_over_time_graph = new MRCPSP.Gui.StatisticsViewer.Graph.XYGraph();
-            this.m_resources_pie_chart = new MRCPSP.Gui.StatisticsViewer.Graph.PieGraph();
-            this.m_min_max_graph = new MRCPSP.Gui.StatisticsViewer.Graph.MinMaxGraph();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.m_mutation_lbl = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.m_bind_navigator)).BeginInit();
             this.m_bind_navigator.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -180,6 +184,36 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
+            // 
+            // bindingNavigatorMoveFirstItem
+            // 
+            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
+            // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
@@ -198,6 +232,26 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
+            // 
+            // bindingNavigatorMoveLastItem
+            // 
+            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
             // 
             // bindingNavigatorSeparator2
             // 
@@ -218,6 +272,8 @@ namespace MRCPSP.Gui.StatisticsViewer
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.m_mutation_lbl);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.m_result_lbl);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.m_iteration_lbl);
@@ -236,7 +292,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(34, 77);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(501, 228);
+            this.groupBox1.Size = new System.Drawing.Size(501, 255);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
@@ -245,7 +301,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_result_lbl.AutoSize = true;
             this.m_result_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_result_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_result_lbl.Location = new System.Drawing.Point(149, 192);
+            this.m_result_lbl.Location = new System.Drawing.Point(149, 216);
             this.m_result_lbl.Name = "m_result_lbl";
             this.m_result_lbl.Size = new System.Drawing.Size(0, 20);
             this.m_result_lbl.TabIndex = 17;
@@ -254,7 +310,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label8.Location = new System.Drawing.Point(7, 192);
+            this.label8.Location = new System.Drawing.Point(7, 216);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 20);
             this.label8.TabIndex = 16;
@@ -265,7 +321,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_iteration_lbl.AutoSize = true;
             this.m_iteration_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_iteration_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_iteration_lbl.Location = new System.Drawing.Point(149, 111);
+            this.m_iteration_lbl.Location = new System.Drawing.Point(149, 135);
             this.m_iteration_lbl.Name = "m_iteration_lbl";
             this.m_iteration_lbl.Size = new System.Drawing.Size(0, 20);
             this.m_iteration_lbl.TabIndex = 15;
@@ -274,7 +330,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label11.Location = new System.Drawing.Point(7, 111);
+            this.label11.Location = new System.Drawing.Point(7, 135);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(80, 20);
             this.label11.TabIndex = 14;
@@ -285,7 +341,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_finish_time_lbl.AutoSize = true;
             this.m_finish_time_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_finish_time_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_finish_time_lbl.Location = new System.Drawing.Point(149, 157);
+            this.m_finish_time_lbl.Location = new System.Drawing.Point(149, 181);
             this.m_finish_time_lbl.Name = "m_finish_time_lbl";
             this.m_finish_time_lbl.Size = new System.Drawing.Size(0, 20);
             this.m_finish_time_lbl.TabIndex = 13;
@@ -294,7 +350,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label9.Location = new System.Drawing.Point(7, 157);
+            this.label9.Location = new System.Drawing.Point(7, 181);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(97, 20);
             this.label9.TabIndex = 12;
@@ -305,7 +361,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_start_time_lbl.AutoSize = true;
             this.m_start_time_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_start_time_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_start_time_lbl.Location = new System.Drawing.Point(149, 134);
+            this.m_start_time_lbl.Location = new System.Drawing.Point(149, 158);
             this.m_start_time_lbl.Name = "m_start_time_lbl";
             this.m_start_time_lbl.Size = new System.Drawing.Size(0, 20);
             this.m_start_time_lbl.TabIndex = 11;
@@ -314,7 +370,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label6.Location = new System.Drawing.Point(7, 134);
+            this.label6.Location = new System.Drawing.Point(7, 158);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 20);
             this.label6.TabIndex = 10;
@@ -429,6 +485,17 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage1.Text = "Overview";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoEllipsis = true;
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label4.Image = global::MRCPSP.Properties.Resources.circle_cromosom;
+            this.label4.Location = new System.Drawing.Point(553, 43);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(327, 321);
+            this.label4.TabIndex = 6;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.m_gantt_panel);
@@ -459,6 +526,17 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage3.Text = "Results Over Generation";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // m_generation_over_time_graph
+            // 
+            this.m_generation_over_time_graph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_generation_over_time_graph.Location = new System.Drawing.Point(3, 3);
+            this.m_generation_over_time_graph.Name = "m_generation_over_time_graph";
+            this.m_generation_over_time_graph.Size = new System.Drawing.Size(909, 300);
+            this.m_generation_over_time_graph.TabIndex = 3;
+            this.m_generation_over_time_graph.Title = "";
+            this.m_generation_over_time_graph.XAxis = "";
+            this.m_generation_over_time_graph.YAxis = "";
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.m_resources_pie_chart);
@@ -469,6 +547,15 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Resources Workload";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // m_resources_pie_chart
+            // 
+            this.m_resources_pie_chart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_resources_pie_chart.Location = new System.Drawing.Point(3, 3);
+            this.m_resources_pie_chart.Name = "m_resources_pie_chart";
+            this.m_resources_pie_chart.Size = new System.Drawing.Size(909, 300);
+            this.m_resources_pie_chart.TabIndex = 7;
+            this.m_resources_pie_chart.Title = "";
             // 
             // tabPage5
             // 
@@ -481,6 +568,17 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage5.Text = "Solutions Range in Generations";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // m_min_max_graph
+            // 
+            this.m_min_max_graph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_min_max_graph.Location = new System.Drawing.Point(3, 3);
+            this.m_min_max_graph.Name = "m_min_max_graph";
+            this.m_min_max_graph.Size = new System.Drawing.Size(909, 300);
+            this.m_min_max_graph.TabIndex = 0;
+            this.m_min_max_graph.Title = "";
+            this.m_min_max_graph.XAxis = "";
+            this.m_min_max_graph.YAxis = "";
+            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -490,15 +588,6 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(923, 94);
             this.panel2.TabIndex = 10;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(923, 332);
-            this.panel1.TabIndex = 11;
             // 
             // m_export_to_excel_button
             // 
@@ -512,97 +601,34 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_export_to_excel_button.UseVisualStyleBackColor = true;
             this.m_export_to_excel_button.Click += new System.EventHandler(this.m_expor_to_excel_button_Click);
             // 
-            // bindingNavigatorDeleteItem
+            // panel1
             // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
+            this.panel1.Controls.Add(this.tabControl1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(923, 332);
+            this.panel1.TabIndex = 11;
             // 
-            // bindingNavigatorMoveFirstItem
+            // m_mutation_lbl
             // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
+            this.m_mutation_lbl.AutoSize = true;
+            this.m_mutation_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.m_mutation_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.m_mutation_lbl.Location = new System.Drawing.Point(150, 111);
+            this.m_mutation_lbl.Name = "m_mutation_lbl";
+            this.m_mutation_lbl.Size = new System.Drawing.Size(0, 20);
+            this.m_mutation_lbl.TabIndex = 19;
             // 
-            // bindingNavigatorMovePreviousItem
+            // label12
             // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoEllipsis = true;
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label4.Image = global::MRCPSP.Properties.Resources.circle_cromosom;
-            this.label4.Location = new System.Drawing.Point(553, 43);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(327, 321);
-            this.label4.TabIndex = 6;
-            // 
-            // m_generation_over_time_graph
-            // 
-            this.m_generation_over_time_graph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.m_generation_over_time_graph.Location = new System.Drawing.Point(3, 3);
-            this.m_generation_over_time_graph.Name = "m_generation_over_time_graph";
-            this.m_generation_over_time_graph.Size = new System.Drawing.Size(909, 300);
-            this.m_generation_over_time_graph.TabIndex = 3;
-            this.m_generation_over_time_graph.Title = "";
-            this.m_generation_over_time_graph.XAxis = "";
-            this.m_generation_over_time_graph.YAxis = "";
-            // 
-            // m_resources_pie_chart
-            // 
-            this.m_resources_pie_chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.m_resources_pie_chart.Location = new System.Drawing.Point(3, 3);
-            this.m_resources_pie_chart.Name = "m_resources_pie_chart";
-            this.m_resources_pie_chart.Size = new System.Drawing.Size(909, 300);
-            this.m_resources_pie_chart.TabIndex = 7;
-            this.m_resources_pie_chart.Title = "";
-            // 
-            // m_min_max_graph
-            // 
-            this.m_min_max_graph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.m_min_max_graph.Location = new System.Drawing.Point(3, 3);
-            this.m_min_max_graph.Name = "m_min_max_graph";
-            this.m_min_max_graph.Size = new System.Drawing.Size(909, 300);
-            this.m_min_max_graph.TabIndex = 0;
-            this.m_min_max_graph.Title = "";
-            this.m_min_max_graph.XAxis = "";
-            this.m_min_max_graph.YAxis = "";
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label12.Location = new System.Drawing.Point(7, 111);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(134, 20);
+            this.label12.TabIndex = 18;
+            this.label12.Text = "Mutation Percent:";
             // 
             // StatisticsMonitor
             // 
@@ -667,6 +693,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             m_iteration_lbl.Text = m_current_summary.NumberOfIterations.ToString();
             m_start_time_lbl.Text = m_current_summary.StartTime;
             m_finish_time_lbl.Text = m_current_summary.FinishTime;
+            m_mutation_lbl.Text = m_current_summary.MutationPercent;
             m_result_lbl.Text = m_current_summary.BestResult.ToString();
         }
 
@@ -804,7 +831,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             if (! saveFileDialog1.FileName.EndsWith(".xlsx"))
                 saveFileDialog1.FileName = saveFileDialog1.FileName + ".xlsx";
               */
-           // ExcelParser excel = new ExcelParser(saveFileDialog1.FileName, m_current_summary);
+            ExcelParser excel = new ExcelParser(saveFileDialog1.FileName, m_current_summary);
            // ExcelParser excel = new ExcelParser( m_current_summary);
             //m_resources_gantt.saveImage(Application.StartupPath + "gantt.png");   
 
@@ -820,9 +847,6 @@ namespace MRCPSP.Gui.StatisticsViewer
           
         }
 
-        
-
-
-
+       
     }
 }

@@ -110,8 +110,7 @@ namespace MRCPSP.Gui {
         }
   // Handler for main menu Open selection. 
         protected void MMNewClick(object who, EventArgs e) {
-            MessageBox.Show("Inactive", "Inactive",
-                            MessageBoxButtons.OK);
+            startNewProblemMonitor();
         }
  
   // Handler for main menu Exit selection. 
@@ -246,10 +245,15 @@ namespace MRCPSP.Gui {
         }
 
         private void onStartNewProblem(object who, EventArgs e) {
+            startNewProblemMonitor();   
+        }
+
+        private void startNewProblemMonitor()
+        {
             ProblemCreatorMonitor pcm = new ProblemCreatorMonitor(m_problem_monitor_id);
             pcm.MdiParent = this;
             m_problem_monitor_id++;
-            pcm.Show();          
+            pcm.Show();
             Console.WriteLine("create new monitor");
         }
 

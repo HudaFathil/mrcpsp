@@ -18,6 +18,7 @@ namespace MRCPSP.Domain
         private String m_generate_population_type;
         private String m_start_time;
         private String m_finish_time;
+        private String m_mutation_percent;
         private int m_number_of_iteration;
         private List<KeyValuePair<double, double>> m_min_max_per_generation;
 
@@ -109,6 +110,15 @@ namespace MRCPSP.Domain
             set
             {
                 m_finish_time = value;
+            }
+        }
+
+        public String MutationPercent
+        {
+            get { return m_mutation_percent; }
+            set
+            {
+                m_mutation_percent = value;
             }
         }
 

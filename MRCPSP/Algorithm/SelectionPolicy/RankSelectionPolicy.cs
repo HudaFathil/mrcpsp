@@ -9,10 +9,9 @@ namespace MRCPSP.Algorithm.SelectionPolicy
     class RankSelectionPolicy : SelectionPolicyBase
     {
 
-        private Random m_rand;
+
         public RankSelectionPolicy() : base()
         {
-            m_rand = new Random();
         }
 
         public override List<Solution> keepOnlySuitedSolutions(List<Solution> parent_solutions,
@@ -34,25 +33,7 @@ namespace MRCPSP.Algorithm.SelectionPolicy
                 size_of_block++;
             }
 
-            List<Solution> return_list = new List<Solution>();
-            int found_indexes = 0;
-            while (found_indexes < populationSize)
-            {
-                int indx = m_rand.Next(all_blocks_sizes);
-                foreach (KeyValuePair<int, int> key in mapping.Keys)
-                {
-                    if (key.Key <= indx && indx <= key.Value)
-                    {
-                        if (!return_list.Contains(mapping[key]))
-                        {
-                            return_list.Add(mapping[key]);
-                            found_indexes++;
-                        }
-                        break;
-                    }
-                }
-            }
-            return return_list;
+            return getListFromMapping(mapping, all_blocks_sizes, populationSize);
         }
 
         public override string ToString()

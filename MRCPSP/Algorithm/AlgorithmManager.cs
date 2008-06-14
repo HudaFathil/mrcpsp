@@ -128,12 +128,18 @@ namespace MRCPSP.Algorithm
                 return;
             }
 
-            if (m_random.Next(100) > 50)
+            int rand_val = m_random.Next(100);
+            if (rand_val < 34)
             {
                 performMutateInModeList(m_solutions[m_random.Next(m_solutions.Count)]);
             }
+            else if (rand_val < 67)
+            {
+                performMutateInMatrix(m_solutions[m_random.Next(m_solutions.Count)]);
+            }
             else
             {
+                performMutateInModeList(m_solutions[m_random.Next(m_solutions.Count)]);
                 performMutateInMatrix(m_solutions[m_random.Next(m_solutions.Count)]);
             }
         }

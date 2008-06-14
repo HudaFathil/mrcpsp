@@ -9,8 +9,10 @@ namespace MRCPSP.Algorithm.SelectionPolicy
     {
 
         private double m_percent_to_keep = 0.1;
-        public ElitismPolicy() : base()
+
+        public ElitismPolicy(int percent) : base()
         {
+            m_percent_to_keep = (double)percent / 100.0;
         }
 
         public override List<Solution> keepOnlySuitedSolutions(List<Solution> parent_solutions,

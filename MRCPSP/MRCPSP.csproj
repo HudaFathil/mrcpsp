@@ -74,6 +74,7 @@
     <Compile Include="Algorithm\MatrixCell.cs" />
     <Compile Include="Algorithm\SelectionPolicy\ElitismPolicy.cs" />
     <Compile Include="Algorithm\SelectionPolicy\RankSelectionPolicy.cs" />
+    <Compile Include="Algorithm\SelectionPolicy\RouletteWhellPolicy.cs" />
     <Compile Include="Algorithm\SelectionPolicy\ScoreSelectionPolicy.cs" />
     <Compile Include="Algorithm\SelectionPolicy\SelectionPolicyBase.cs" />
     <Compile Include="Algorithm\SolutionComparer.cs" />
