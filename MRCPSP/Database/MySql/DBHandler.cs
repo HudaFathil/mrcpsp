@@ -8,7 +8,7 @@ using MRCPSP.CommonTypes;
 using MRCPSP.Domain;
 using MRCPSP.Algorithm;
 
-namespace MRCPSP.Database
+namespace MRCPSP.Database.MySql
 {
     class DBHandler
     {

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data.Odbc;
-using MRCPSP.Database;
+using MRCPSP.Database.MsSqlServer;
 
 namespace MRCPSP.Gui
 {
@@ -133,24 +133,24 @@ namespace MRCPSP.Gui
 
         private void DBManagement_Load(object sender, EventArgs e)
         {
-            OdbcDataReader data =  DBHandler.Instance.queryForElement("show databases");
-            while (data.Read())
-            {
-                m_available_db_list.Items.Add(data.GetString(0));
-            }
-            updateProblemList();
+           // OdbcDataReader data =  DBHandler.Instance.queryForElement("show databases");
+            //while (data.Read())
+            //{
+             //   m_available_db_list.Items.Add(data.GetString(0));
+            //}
+            //updateProblemList();
         }
 
         private void m_db_switch_button_Click(object sender, EventArgs e)
         {
-            DBHandler.Instance.reconnectToDB((String)m_available_db_list.SelectedItem);
-            updateProblemList();
+         //   DBHandler.Instance.reconnectToDB((String)m_available_db_list.SelectedItem);
+          //  updateProblemList();
 
         }
 
         private void m_create_new_db_schema_button_Click(object sender, EventArgs e)
         {
-            SchemaCreator.createSchema();
+           // SchemaCreator.createSchema();
             MessageBox.Show("New Schema was created", "notify");
 
         }
@@ -158,7 +158,7 @@ namespace MRCPSP.Gui
         private void updateProblemList()
         {
             m_available_problems_in_db_list.Items.Clear();
-            foreach (String problemName in ProblemLoader.getProblemList())
+            foreach (String problemName in DBHandler.Instance.getProblemNameList())
                 m_available_problems_in_db_list.Items.Add(problemName);
         }
 

@@ -6,7 +6,7 @@ using System.Data.Odbc;
 using MRCPSP.CommonTypes;
 using MRCPSP.Domain;
 
-namespace MRCPSP.Database
+namespace MRCPSP.Database.MySql
 {
     class ProblemSaver
     {

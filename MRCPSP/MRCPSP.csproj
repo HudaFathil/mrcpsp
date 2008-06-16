@@ -80,10 +80,18 @@
     <Compile Include="Algorithm\SolutionComparer.cs" />
     <Compile Include="CommonTypes\Job.cs" />
     <Compile Include="CommonTypes\ResourceConstraint.cs" />
-    <Compile Include="Database\DBHandler.cs" />
-    <Compile Include="Database\ProblemLoader.cs" />
-    <Compile Include="Database\ProblemSaver.cs" />
-    <Compile Include="Database\SchemaCreator.cs" />
+    <Compile Include="Database\MsSqlServer\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Database\MsSqlServer\ProblemSaver.cs" />
+    <Compile Include="Database\MySql\DBHandler.cs" />
+    <Compile Include="Database\MsSqlServer\DBHandler.cs" />
+    <Compile Include="Database\MsSqlServer\ProblemLoader.cs" />
+    <Compile Include="Database\MySql\ProblemLoader.cs" />
+    <Compile Include="Database\MySql\ProblemSaver.cs" />
+    <Compile Include="Database\MySql\SchemaCreator.cs" />
     <Compile Include="Domain\ResultSummary.cs" />
     <Compile Include="Exceptions\ConstrainException.cs" />
     <Compile Include="Gui\DBManagement.cs">
@@ -208,6 +216,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="Database\MsSqlServer\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Database\MsSqlServer\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Database\MsSqlServer\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Gui\pics\bulb.bmp" />
     <None Include="Gui\pics\dna800x600.jpg" />
     <None Include="Gui\pics\arrow_left.GIF" />
@@ -218,6 +237,12 @@
     <None Include="Gui\pics\DNA_Overview.png" />
     <None Include="Gui\pics\DNAComp.gif" />
     <None Include="Gui\pics\DNA_animated.gif" />
+    <None Include="Gui\pics\eraser_animated-w.gif" />
+    <None Include="Gui\pics\eraser_not_animated.jpg" />
+    <None Include="Gui\pics\cursor.gif" />
+    <None Include="Gui\pics\cursor_animated.gif" />
+    <None Include="Gui\pics\cursor_not_animated.gif" />
+    <None Include="Gui\pics\cursor_not_animated.jpg" />
     <Content Include="Gui\pics\eraser_pic.bmp" />
     <None Include="Gui\pics\graphs.bmp" />
     <None Include="Gui\pics\neurons.jpg" />
@@ -226,6 +251,8 @@
     <Content Include="Gui\pics\new_arrow_pic.bmp" />
     <Content Include="Gui\pics\new_problem.bmp" />
     <Content Include="Gui\pics\new_step_pic.bmp" />
+    <None Include="Gui\pics\step_not_animated.gif" />
+    <None Include="Gui\pics\step_animated.gif" />
     <Content Include="nunit.framework.dll" />
     <None Include="Gui\pics\play.bmp" />
     <None Include="Gui\pics\stop.bmp" />

@@ -78,6 +78,7 @@ namespace MRCPSP.Gui.ProblemCreator
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProblemCreatorMonitor));
             this.m_machine_list = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -117,7 +118,6 @@ namespace MRCPSP.Gui.ProblemCreator
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.m_center_panel = new System.Windows.Forms.Panel();
-            this.m_canvas_pic = new MRCPSP.Gui.ProblemCreator.CanvasEditor();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.m_controls_strip = new System.Windows.Forms.ToolStrip();
@@ -125,6 +125,7 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_new_constraint_button = new System.Windows.Forms.ToolStripButton();
             this.m_eraser_button = new System.Windows.Forms.ToolStripButton();
             this.m_pointer_button = new System.Windows.Forms.ToolStripButton();
+            this.m_canvas_pic = new MRCPSP.Gui.ProblemCreator.CanvasEditor();
             this.panel1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -143,10 +144,10 @@ namespace MRCPSP.Gui.ProblemCreator
             ((System.ComponentModel.ISupportInitialize)(this.m_new_product_size_sb)).BeginInit();
             this.panel3.SuspendLayout();
             this.m_center_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
             this.panel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.m_controls_strip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).BeginInit();
             this.SuspendLayout();
             // 
             // m_machine_list
@@ -580,18 +581,6 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_center_panel.Size = new System.Drawing.Size(851, 283);
             this.m_center_panel.TabIndex = 4;
             // 
-            // m_canvas_pic
-            // 
-            this.m_canvas_pic.BackColor = System.Drawing.Color.White;
-            this.m_canvas_pic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.m_canvas_pic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.m_canvas_pic.Location = new System.Drawing.Point(85, 0);
-            this.m_canvas_pic.monitor_id = 0;
-            this.m_canvas_pic.Name = "m_canvas_pic";
-            this.m_canvas_pic.Size = new System.Drawing.Size(611, 283);
-            this.m_canvas_pic.TabIndex = 5;
-            this.m_canvas_pic.TabStop = false;
-            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.Transparent;
@@ -618,6 +607,7 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             this.m_controls_strip.AllowMerge = false;
             this.m_controls_strip.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_controls_strip.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.m_controls_strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_new_step_button,
             this.m_new_constraint_button,
@@ -635,10 +625,9 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             this.m_new_step_button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_new_step_button.Image = global::MRCPSP.Properties.Resources.new_step_pic1;
-            this.m_new_step_button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.m_new_step_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_new_step_button.Name = "m_new_step_button";
-            this.m_new_step_button.Size = new System.Drawing.Size(73, 76);
+            this.m_new_step_button.Size = new System.Drawing.Size(73, 44);
             this.m_new_step_button.Text = "toolStripButton1";
             this.m_new_step_button.ToolTipText = "Add Step to Canvas";
             this.m_new_step_button.MouseLeave += new System.EventHandler(this.new_step_mouseLeave);
@@ -649,10 +638,9 @@ namespace MRCPSP.Gui.ProblemCreator
             // 
             this.m_new_constraint_button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_new_constraint_button.Image = global::MRCPSP.Properties.Resources.new_arrow1;
-            this.m_new_constraint_button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.m_new_constraint_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_new_constraint_button.Name = "m_new_constraint_button";
-            this.m_new_constraint_button.Size = new System.Drawing.Size(73, 52);
+            this.m_new_constraint_button.Size = new System.Drawing.Size(73, 44);
             this.m_new_constraint_button.Text = "toolStripButton2";
             this.m_new_constraint_button.ToolTipText = "Add Scheduling Constraint";
             this.m_new_constraint_button.MouseLeave += new System.EventHandler(this.new_arrow_mouseLeave);
@@ -662,26 +650,40 @@ namespace MRCPSP.Gui.ProblemCreator
             // m_eraser_button
             // 
             this.m_eraser_button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_eraser_button.Image = global::MRCPSP.Properties.Resources.eraser_pic;
-            this.m_eraser_button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.m_eraser_button.Image = global::MRCPSP.Properties.Resources.eraser_not_animated;
             this.m_eraser_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_eraser_button.Name = "m_eraser_button";
-            this.m_eraser_button.Size = new System.Drawing.Size(73, 48);
+            this.m_eraser_button.Size = new System.Drawing.Size(73, 44);
             this.m_eraser_button.Text = "toolStripButton3";
             this.m_eraser_button.ToolTipText = "Eraser";
+            this.m_eraser_button.MouseLeave += new System.EventHandler(this.eraser_mouseLeave);
+            this.m_eraser_button.MouseEnter += new System.EventHandler(this.eraser_mouseEnter);
             this.m_eraser_button.Click += new System.EventHandler(this.m_eraser_button_Click);
             // 
             // m_pointer_button
             // 
             this.m_pointer_button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_pointer_button.Image = global::MRCPSP.Properties.Resources.selectarrow;
-            this.m_pointer_button.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.m_pointer_button.Image = ((System.Drawing.Image)(resources.GetObject("m_pointer_button.Image")));
             this.m_pointer_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_pointer_button.Name = "m_pointer_button";
-            this.m_pointer_button.Size = new System.Drawing.Size(73, 46);
+            this.m_pointer_button.Size = new System.Drawing.Size(73, 44);
             this.m_pointer_button.Text = "toolStripButton4";
             this.m_pointer_button.ToolTipText = "Select";
+            this.m_pointer_button.MouseLeave += new System.EventHandler(this.pointer_mouseLeave);
+            this.m_pointer_button.MouseEnter += new System.EventHandler(this.pointer_mouseEnter);
             this.m_pointer_button.Click += new System.EventHandler(this.m_pointer_button_Click);
+            // 
+            // m_canvas_pic
+            // 
+            this.m_canvas_pic.BackColor = System.Drawing.Color.White;
+            this.m_canvas_pic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.m_canvas_pic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_canvas_pic.Location = new System.Drawing.Point(85, 0);
+            this.m_canvas_pic.monitor_id = 0;
+            this.m_canvas_pic.Name = "m_canvas_pic";
+            this.m_canvas_pic.Size = new System.Drawing.Size(611, 283);
+            this.m_canvas_pic.TabIndex = 5;
+            this.m_canvas_pic.TabStop = false;
             // 
             // ProblemCreatorMonitor
             // 
@@ -713,12 +715,12 @@ namespace MRCPSP.Gui.ProblemCreator
             ((System.ComponentModel.ISupportInitialize)(this.m_new_product_size_sb)).EndInit();
             this.panel3.ResumeLayout(false);
             this.m_center_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
             this.panel5.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.m_controls_strip.ResumeLayout(false);
             this.m_controls_strip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_canvas_pic)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -748,6 +750,30 @@ namespace MRCPSP.Gui.ProblemCreator
             this.m_new_constraint_button.Image = global::MRCPSP.Properties.Resources.new_arrow1;
         }
 
+        private void eraser_mouseEnter(object sender, EventArgs e)
+        {
+            this.m_eraser_button.Image.Dispose();
+            this.m_eraser_button.Image = global::MRCPSP.Properties.Resources.eraser_animated_w;
+        }
+
+        private void eraser_mouseLeave(object sender, EventArgs e)
+        {
+            this.m_eraser_button.Image.Dispose();
+            this.m_eraser_button.Image = global::MRCPSP.Properties.Resources.eraser_not_animated;
+        }
+
+
+        private void pointer_mouseEnter(object sender, EventArgs e)
+        {
+            this.m_pointer_button.Image.Dispose();
+            this.m_pointer_button.Image = global::MRCPSP.Properties.Resources.cursor_animated;
+        }
+
+        private void pointer_mouseLeave(object sender, EventArgs e)
+        {
+            this.m_pointer_button.Image.Dispose();
+            this.m_pointer_button.Image = global::MRCPSP.Properties.Resources.cursor_not_animated;
+        }
 
         private void m_new_step_button_Click(object sender, EventArgs e)
         {

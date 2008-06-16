@@ -10,7 +10,7 @@ using MRCPSP.Algorithm;
 using MRCPSP.Algorithm.FirstGeneration;
 using MRCPSP.Algorithm.CrossOver;
 using MRCPSP.Algorithm.SelectionPolicy;
-using MRCPSP.Database;
+using MRCPSP.Database.MsSqlServer;
 
 namespace MRCPSP.Controllers
 {
@@ -54,7 +54,8 @@ namespace MRCPSP.Controllers
 
         public void loadProblemFromDataBase(string title)
         {
-            m_current_problem = ProblemLoader.queryProblem(title);
+            int problemID = DBHandler.Instance.queryProblemForProblemID(title);
+            m_current_problem = ProblemLoader.queryProblem(problemID);
             LoggerFactory.getSimpleLogger().info("ApplicManager::lodProblemFromDataBase, title: " + title);
         }
 
@@ -67,7 +68,7 @@ namespace MRCPSP.Controllers
 
         public List<String> getProblemListFromDB()
         {
-            return ProblemLoader.getProblemList();
+            return DBHandler.Instance.getProblemNameList();
         }
  
 

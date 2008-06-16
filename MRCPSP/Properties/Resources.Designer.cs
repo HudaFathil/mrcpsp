@@ -95,6 +95,20 @@ namespace MRCPSP.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap cursor_animated {
+            get {
+                object obj = ResourceManager.GetObject("cursor_animated", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap cursor_not_animated {
+            get {
+                object obj = ResourceManager.GetObject("cursor_not_animated", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap dna {
             get {
                 object obj = ResourceManager.GetObject("dna", resourceCulture);
@@ -144,9 +158,16 @@ namespace MRCPSP.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap eraser_pic {
+        internal static System.Drawing.Bitmap eraser_animated_w {
             get {
-                object obj = ResourceManager.GetObject("eraser_pic", resourceCulture);
+                object obj = ResourceManager.GetObject("eraser_animated-w", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap eraser_not_animated {
+            get {
+                object obj = ResourceManager.GetObject("eraser_not_animated", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,13 +207,6 @@ namespace MRCPSP.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap new_arrow_pic {
-            get {
-                object obj = ResourceManager.GetObject("new_arrow_pic", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap new_arrow1 {
             get {
                 object obj = ResourceManager.GetObject("new_arrow1", resourceCulture);
@@ -203,13 +217,6 @@ namespace MRCPSP.Properties {
         internal static System.Drawing.Bitmap new_problem {
             get {
                 object obj = ResourceManager.GetObject("new_problem", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap new_step_pic {
-            get {
-                object obj = ResourceManager.GetObject("new_step_pic", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -235,9 +242,9 @@ namespace MRCPSP.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap selectarrow {
+        internal static System.Drawing.Bitmap step_not_animated {
             get {
-                object obj = ResourceManager.GetObject("selectarrow", resourceCulture);
+                object obj = ResourceManager.GetObject("step_not_animated", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

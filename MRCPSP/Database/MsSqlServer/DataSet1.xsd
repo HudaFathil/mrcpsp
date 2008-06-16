@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ResourceUsage" msprop:Generator_UserTableName="ResourceUsage" msprop:Generator_RowDeletedName="ResourceUsageRowDeleted" msprop:Generator_TableClassName="ResourceUsageDataTable" msprop:Generator_RowChangedName="ResourceUsageRowChanged" msprop:Generator_RowClassName="ResourceUsageRow" msprop:Generator_RowChangingName="ResourceUsageRowChanging" msprop:Generator_RowEvArgName="ResourceUsageRowChangeEvent" msprop:Generator_RowEvHandlerName="ResourceUsageRowChangeEventHandler" msprop:Generator_TablePropName="ResourceUsage" msprop:Generator_TableVarName="tableResourceUsage" msprop:Generator_RowDeletingName="ResourceUsageRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Operation_ID" msprop:Generator_UserColumnName="Operation_ID" msprop:Generator_ColumnPropNameInRow="Operation_ID" msprop:Generator_ColumnVarNameInTable="columnOperation_ID" msprop:Generator_ColumnPropNameInTable="Operation_IDColumn" type="xs:int" />
+              <xs:element name="Mode_ID" msprop:Generator_UserColumnName="Mode_ID" msprop:Generator_ColumnPropNameInRow="Mode_ID" msprop:Generator_ColumnVarNameInTable="columnMode_ID" msprop:Generator_ColumnPropNameInTable="Mode_IDColumn" type="xs:int" />
+              <xs:element name="Resource_ID" msprop:Generator_UserColumnName="Resource_ID" msprop:Generator_ColumnPropNameInRow="Resource_ID" msprop:Generator_ColumnVarNameInTable="columnResource_ID" msprop:Generator_ColumnPropNameInTable="Resource_IDColumn" type="xs:int" />
+              <xs:element name="Ts" msprop:Generator_UserColumnName="Ts" msprop:Generator_ColumnPropNameInRow="Ts" msprop:Generator_ColumnVarNameInTable="columnTs" msprop:Generator_ColumnPropNameInTable="TsColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Tf" msprop:Generator_UserColumnName="Tf" msprop:Generator_ColumnPropNameInRow="Tf" msprop:Generator_ColumnVarNameInTable="columnTf" msprop:Generator_ColumnPropNameInTable="TfColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Families" msprop:Generator_UserTableName="Families" msprop:Generator_RowDeletedName="FamiliesRowDeleted" msprop:Generator_TableClassName="FamiliesDataTable" msprop:Generator_RowChangedName="FamiliesRowChanged" msprop:Generator_RowClassName="FamiliesRow" msprop:Generator_RowChangingName="FamiliesRowChanging" msprop:Generator_RowEvArgName="FamiliesRowChangeEvent" msprop:Generator_RowEvHandlerName="FamiliesRowChangeEventHandler" msprop:Generator_TablePropName="Families" msprop:Generator_TableVarName="tableFamilies" msprop:Generator_RowDeletingName="FamiliesRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Family_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="Family_ID" msprop:Generator_ColumnPropNameInRow="Family_ID" msprop:Generator_ColumnVarNameInTable="columnFamily_ID" msprop:Generator_ColumnPropNameInTable="Family_IDColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_UserColumnName="Description" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Operations" msprop:Generator_UserTableName="Operations" msprop:Generator_RowDeletedName="OperationsRowDeleted" msprop:Generator_TableClassName="OperationsDataTable" msprop:Generator_RowChangedName="OperationsRowChanged" msprop:Generator_RowClassName="OperationsRow" msprop:Generator_RowChangingName="OperationsRowChanging" msprop:Generator_RowEvArgName="OperationsRowChangeEvent" msprop:Generator_RowEvHandlerName="OperationsRowChangeEventHandler" msprop:Generator_TablePropName="Operations" msprop:Generator_TableVarName="tableOperations" msprop:Generator_RowDeletingName="OperationsRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Operation_ID" msprop:Generator_UserColumnName="Operation_ID" msprop:Generator_ColumnPropNameInRow="Operation_ID" msprop:Generator_ColumnVarNameInTable="columnOperation_ID" msprop:Generator_ColumnPropNameInTable="Operation_IDColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_UserColumnName="Description" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Problems" msprop:Generator_UserTableName="Problems" msprop:Generator_RowDeletedName="ProblemsRowDeleted" msprop:Generator_TableClassName="ProblemsDataTable" msprop:Generator_RowChangedName="ProblemsRowChanged" msprop:Generator_RowClassName="ProblemsRow" msprop:Generator_RowChangingName="ProblemsRowChanging" msprop:Generator_RowEvArgName="ProblemsRowChangeEvent" msprop:Generator_RowEvHandlerName="ProblemsRowChangeEventHandler" msprop:Generator_TablePropName="Problems" msprop:Generator_TableVarName="tableProblems" msprop:Generator_RowDeletingName="ProblemsRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Description" msprop:Generator_UserColumnName="Description" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="IF_RR" msprop:Generator_UserColumnName="IF_RR" msprop:Generator_ColumnPropNameInRow="IF_RR" msprop:Generator_ColumnVarNameInTable="columnIF_RR" msprop:Generator_ColumnPropNameInTable="IF_RRColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="IF_NP" msprop:Generator_UserColumnName="IF_NP" msprop:Generator_ColumnPropNameInRow="IF_NP" msprop:Generator_ColumnVarNameInTable="columnIF_NP" msprop:Generator_ColumnPropNameInTable="IF_NPColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="IF_NE" msprop:Generator_UserColumnName="IF_NE" msprop:Generator_ColumnPropNameInRow="IF_NE" msprop:Generator_ColumnVarNameInTable="columnIF_NE" msprop:Generator_ColumnPropNameInTable="IF_NEColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="IF_NM" msprop:Generator_UserColumnName="IF_NM" msprop:Generator_ColumnPropNameInRow="IF_NM" msprop:Generator_ColumnVarNameInTable="columnIF_NM" msprop:Generator_ColumnPropNameInTable="IF_NMColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="IF_AR" msprop:Generator_UserColumnName="IF_AR" msprop:Generator_ColumnPropNameInRow="IF_AR" msprop:Generator_ColumnVarNameInTable="columnIF_AR" msprop:Generator_ColumnPropNameInTable="IF_ARColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="IF_AOR" msprop:Generator_UserColumnName="IF_AOR" msprop:Generator_ColumnPropNameInRow="IF_AOR" msprop:Generator_ColumnVarNameInTable="columnIF_AOR" msprop:Generator_ColumnPropNameInTable="IF_AORColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="IF_ARC" msprop:Generator_UserColumnName="IF_ARC" msprop:Generator_ColumnPropNameInRow="IF_ARC" msprop:Generator_ColumnVarNameInTable="columnIF_ARC" msprop:Generator_ColumnPropNameInTable="IF_ARCColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="RF_NZV" msprop:Generator_UserColumnName="RF_NZV" msprop:Generator_ColumnPropNameInRow="RF_NZV" msprop:Generator_ColumnVarNameInTable="columnRF_NZV" msprop:Generator_ColumnPropNameInTable="RF_NZVColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="RF_NCV" msprop:Generator_UserColumnName="RF_NCV" msprop:Generator_ColumnPropNameInRow="RF_NCV" msprop:Generator_ColumnVarNameInTable="columnRF_NCV" msprop:Generator_ColumnPropNameInTable="RF_NCVColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="RF_NRW" msprop:Generator_UserColumnName="RF_NRW" msprop:Generator_ColumnPropNameInRow="RF_NRW" msprop:Generator_ColumnVarNameInTable="columnRF_NRW" msprop:Generator_ColumnPropNameInTable="RF_NRWColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="RF_TCM" msprop:Generator_UserColumnName="RF_TCM" msprop:Generator_ColumnPropNameInRow="RF_TCM" msprop:Generator_ColumnVarNameInTable="columnRF_TCM" msprop:Generator_ColumnPropNameInTable="RF_TCMColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="RF_TFC" msprop:Generator_UserColumnName="RF_TFC" msprop:Generator_ColumnPropNameInRow="RF_TFC" msprop:Generator_ColumnVarNameInTable="columnRF_TFC" msprop:Generator_ColumnPropNameInTable="RF_TFCColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="RF_MPNZ" msprop:Generator_UserColumnName="RF_MPNZ" msprop:Generator_ColumnPropNameInRow="RF_MPNZ" msprop:Generator_ColumnVarNameInTable="columnRF_MPNZ" msprop:Generator_ColumnPropNameInTable="RF_MPNZColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="RF_NBC" msprop:Generator_UserColumnName="RF_NBC" msprop:Generator_ColumnPropNameInRow="RF_NBC" msprop:Generator_ColumnVarNameInTable="columnRF_NBC" msprop:Generator_ColumnPropNameInTable="RF_NBCColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OperationsToFamilies" msprop:Generator_UserTableName="OperationsToFamilies" msprop:Generator_RowDeletedName="OperationsToFamiliesRowDeleted" msprop:Generator_TableClassName="OperationsToFamiliesDataTable" msprop:Generator_RowChangedName="OperationsToFamiliesRowChanged" msprop:Generator_RowClassName="OperationsToFamiliesRow" msprop:Generator_RowChangingName="OperationsToFamiliesRowChanging" msprop:Generator_RowEvArgName="OperationsToFamiliesRowChangeEvent" msprop:Generator_RowEvHandlerName="OperationsToFamiliesRowChangeEventHandler" msprop:Generator_TablePropName="OperationsToFamilies" msprop:Generator_TableVarName="tableOperationsToFamilies" msprop:Generator_RowDeletingName="OperationsToFamiliesRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Family_ID" msprop:Generator_UserColumnName="Family_ID" msprop:Generator_ColumnPropNameInRow="Family_ID" msprop:Generator_ColumnVarNameInTable="columnFamily_ID" msprop:Generator_ColumnPropNameInTable="Family_IDColumn" type="xs:int" />
+              <xs:element name="Operation_ID" msprop:Generator_UserColumnName="Operation_ID" msprop:Generator_ColumnPropNameInRow="Operation_ID" msprop:Generator_ColumnVarNameInTable="columnOperation_ID" msprop:Generator_ColumnPropNameInTable="Operation_IDColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Modes" msprop:Generator_UserTableName="Modes" msprop:Generator_RowDeletedName="ModesRowDeleted" msprop:Generator_TableClassName="ModesDataTable" msprop:Generator_RowChangedName="ModesRowChanged" msprop:Generator_RowClassName="ModesRow" msprop:Generator_RowChangingName="ModesRowChanging" msprop:Generator_RowEvArgName="ModesRowChangeEvent" msprop:Generator_RowEvHandlerName="ModesRowChangeEventHandler" msprop:Generator_TablePropName="Modes" msprop:Generator_TableVarName="tableModes" msprop:Generator_RowDeletingName="ModesRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Operation_ID" msprop:Generator_UserColumnName="Operation_ID" msprop:Generator_ColumnPropNameInRow="Operation_ID" msprop:Generator_ColumnVarNameInTable="columnOperation_ID" msprop:Generator_ColumnPropNameInTable="Operation_IDColumn" type="xs:int" />
+              <xs:element name="Mode_ID" msprop:Generator_UserColumnName="Mode_ID" msprop:Generator_ColumnPropNameInRow="Mode_ID" msprop:Generator_ColumnVarNameInTable="columnMode_ID" msprop:Generator_ColumnPropNameInTable="Mode_IDColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_UserColumnName="Description" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Resources" msprop:Generator_UserTableName="Resources" msprop:Generator_RowDeletedName="ResourcesRowDeleted" msprop:Generator_TableClassName="ResourcesDataTable" msprop:Generator_RowChangedName="ResourcesRowChanged" msprop:Generator_RowClassName="ResourcesRow" msprop:Generator_RowChangingName="ResourcesRowChanging" msprop:Generator_RowEvArgName="ResourcesRowChangeEvent" msprop:Generator_RowEvHandlerName="ResourcesRowChangeEventHandler" msprop:Generator_TablePropName="Resources" msprop:Generator_TableVarName="tableResources" msprop:Generator_RowDeletingName="ResourcesRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Resource_ID" msprop:Generator_UserColumnName="Resource_ID" msprop:Generator_ColumnPropNameInRow="Resource_ID" msprop:Generator_ColumnVarNameInTable="columnResource_ID" msprop:Generator_ColumnPropNameInTable="Resource_IDColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Capacity_x0020_Kr" msprop:Generator_UserColumnName="Capacity Kr" msprop:Generator_ColumnPropNameInRow="Capacity_Kr" msprop:Generator_ColumnVarNameInTable="columnCapacity_Kr" msprop:Generator_ColumnPropNameInTable="Capacity_KrColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Release_Date_x0020_tr1" msprop:Generator_UserColumnName="Release_Date tr1" msprop:Generator_ColumnPropNameInRow="Release_Date_tr1" msprop:Generator_ColumnVarNameInTable="columnRelease_Date_tr1" msprop:Generator_ColumnPropNameInTable="Release_Date_tr1Column" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FamilyCapacityOnResource" msprop:Generator_UserTableName="FamilyCapacityOnResource" msprop:Generator_RowDeletedName="FamilyCapacityOnResourceRowDeleted" msprop:Generator_TableClassName="FamilyCapacityOnResourceDataTable" msprop:Generator_RowChangedName="FamilyCapacityOnResourceRowChanged" msprop:Generator_RowClassName="FamilyCapacityOnResourceRow" msprop:Generator_RowChangingName="FamilyCapacityOnResourceRowChanging" msprop:Generator_RowEvArgName="FamilyCapacityOnResourceRowChangeEvent" msprop:Generator_RowEvHandlerName="FamilyCapacityOnResourceRowChangeEventHandler" msprop:Generator_TablePropName="FamilyCapacityOnResource" msprop:Generator_TableVarName="tableFamilyCapacityOnResource" msprop:Generator_RowDeletingName="FamilyCapacityOnResourceRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Family_ID" msprop:Generator_UserColumnName="Family_ID" msprop:Generator_ColumnPropNameInRow="Family_ID" msprop:Generator_ColumnVarNameInTable="columnFamily_ID" msprop:Generator_ColumnPropNameInTable="Family_IDColumn" type="xs:int" />
+              <xs:element name="Resource_ID" msprop:Generator_UserColumnName="Resource_ID" msprop:Generator_ColumnPropNameInRow="Resource_ID" msprop:Generator_ColumnVarNameInTable="columnResource_ID" msprop:Generator_ColumnPropNameInTable="Resource_IDColumn" type="xs:int" />
+              <xs:element name="Family_Capacity_x0020_kfr" msprop:Generator_UserColumnName="Family_Capacity kfr" msprop:Generator_ColumnPropNameInRow="Family_Capacity_kfr" msprop:Generator_ColumnVarNameInTable="columnFamily_Capacity_kfr" msprop:Generator_ColumnPropNameInTable="Family_Capacity_kfrColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Precedence" msprop:Generator_UserTableName="Precedence" msprop:Generator_RowDeletedName="PrecedenceRowDeleted" msprop:Generator_TableClassName="PrecedenceDataTable" msprop:Generator_RowChangedName="PrecedenceRowChanged" msprop:Generator_RowClassName="PrecedenceRow" msprop:Generator_RowChangingName="PrecedenceRowChanging" msprop:Generator_RowEvArgName="PrecedenceRowChangeEvent" msprop:Generator_RowEvHandlerName="PrecedenceRowChangeEventHandler" msprop:Generator_TablePropName="Precedence" msprop:Generator_TableVarName="tablePrecedence" msprop:Generator_RowDeletingName="PrecedenceRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Family_ID" msprop:Generator_UserColumnName="Family_ID" msprop:Generator_ColumnPropNameInRow="Family_ID" msprop:Generator_ColumnVarNameInTable="columnFamily_ID" msprop:Generator_ColumnPropNameInTable="Family_IDColumn" type="xs:int" />
+              <xs:element name="Previous_Operation_ID" msprop:Generator_UserColumnName="Previous_Operation_ID" msprop:Generator_ColumnPropNameInRow="Previous_Operation_ID" msprop:Generator_ColumnVarNameInTable="columnPrevious_Operation_ID" msprop:Generator_ColumnPropNameInTable="Previous_Operation_IDColumn" type="xs:int" />
+              <xs:element name="Subsequent_Operation_ID" msprop:Generator_UserColumnName="Subsequent_Operation_ID" msprop:Generator_ColumnPropNameInRow="Subsequent_Operation_ID" msprop:Generator_ColumnVarNameInTable="columnSubsequent_Operation_ID" msprop:Generator_ColumnPropNameInTable="Subsequent_Operation_IDColumn" type="xs:int" />
+              <xs:element name="MinLfi1i2" msprop:Generator_UserColumnName="MinLfi1i2" msprop:Generator_ColumnPropNameInRow="MinLfi1i2" msprop:Generator_ColumnVarNameInTable="columnMinLfi1i2" msprop:Generator_ColumnPropNameInTable="MinLfi1i2Column" type="xs:int" minOccurs="0" />
+              <xs:element name="MaxLfi1i2" msprop:Generator_UserColumnName="MaxLfi1i2" msprop:Generator_ColumnPropNameInRow="MaxLfi1i2" msprop:Generator_ColumnVarNameInTable="columnMaxLfi1i2" msprop:Generator_ColumnPropNameInTable="MaxLfi1i2Column" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Jobs" msprop:Generator_UserTableName="Jobs" msprop:Generator_RowDeletedName="JobsRowDeleted" msprop:Generator_TableClassName="JobsDataTable" msprop:Generator_RowChangedName="JobsRowChanged" msprop:Generator_RowClassName="JobsRow" msprop:Generator_RowChangingName="JobsRowChanging" msprop:Generator_RowEvArgName="JobsRowChangeEvent" msprop:Generator_RowEvHandlerName="JobsRowChangeEventHandler" msprop:Generator_TablePropName="Jobs" msprop:Generator_TableVarName="tableJobs" msprop:Generator_RowDeletingName="JobsRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Family_ID" msprop:Generator_UserColumnName="Family_ID" msprop:Generator_ColumnPropNameInRow="Family_ID" msprop:Generator_ColumnVarNameInTable="columnFamily_ID" msprop:Generator_ColumnPropNameInTable="Family_IDColumn" type="xs:int" />
+              <xs:element name="Job_ID" msprop:Generator_UserColumnName="Job_ID" msprop:Generator_ColumnPropNameInRow="Job_ID" msprop:Generator_ColumnVarNameInTable="columnJob_ID" msprop:Generator_ColumnPropNameInTable="Job_IDColumn" type="xs:int" />
+              <xs:element name="Units" msprop:Generator_UserColumnName="Units" msprop:Generator_ColumnPropNameInRow="Units" msprop:Generator_ColumnVarNameInTable="columnUnits" msprop:Generator_ColumnPropNameInTable="UnitsColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Release_Date" msprop:Generator_UserColumnName="Release_Date" msprop:Generator_ColumnPropNameInRow="Release_Date" msprop:Generator_ColumnVarNameInTable="columnRelease_Date" msprop:Generator_ColumnPropNameInTable="Release_DateColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Release_D" msprop:Generator_UserColumnName="Release_D" msprop:Generator_ColumnPropNameInRow="Release_D" msprop:Generator_ColumnVarNameInTable="columnRelease_D" msprop:Generator_ColumnPropNameInTable="Release_DColumn" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="Due_Date" msprop:Generator_UserColumnName="Due_Date" msprop:Generator_ColumnPropNameInRow="Due_Date" msprop:Generator_ColumnVarNameInTable="columnDue_Date" msprop:Generator_ColumnPropNameInTable="Due_DateColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Weight" msprop:Generator_UserColumnName="Weight" msprop:Generator_ColumnPropNameInRow="Weight" msprop:Generator_ColumnVarNameInTable="columnWeight" msprop:Generator_ColumnPropNameInTable="WeightColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LoadingTimes" msprop:Generator_UserTableName="LoadingTimes" msprop:Generator_RowDeletedName="LoadingTimesRowDeleted" msprop:Generator_TableClassName="LoadingTimesDataTable" msprop:Generator_RowChangedName="LoadingTimesRowChanged" msprop:Generator_RowClassName="LoadingTimesRow" msprop:Generator_RowChangingName="LoadingTimesRowChanging" msprop:Generator_RowEvArgName="LoadingTimesRowChangeEvent" msprop:Generator_RowEvHandlerName="LoadingTimesRowChangeEventHandler" msprop:Generator_TablePropName="LoadingTimes" msprop:Generator_TableVarName="tableLoadingTimes" msprop:Generator_RowDeletingName="LoadingTimesRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Operation_ID" msprop:Generator_UserColumnName="Operation_ID" msprop:Generator_ColumnPropNameInRow="Operation_ID" msprop:Generator_ColumnVarNameInTable="columnOperation_ID" msprop:Generator_ColumnPropNameInTable="Operation_IDColumn" type="xs:int" />
+              <xs:element name="Resource_ID" msprop:Generator_UserColumnName="Resource_ID" msprop:Generator_ColumnPropNameInRow="Resource_ID" msprop:Generator_ColumnVarNameInTable="columnResource_ID" msprop:Generator_ColumnPropNameInTable="Resource_IDColumn" type="xs:int" />
+              <xs:element name="Mode_ID" msprop:Generator_UserColumnName="Mode_ID" msprop:Generator_ColumnPropNameInRow="Mode_ID" msprop:Generator_ColumnVarNameInTable="columnMode_ID" msprop:Generator_ColumnPropNameInTable="Mode_IDColumn" type="xs:int" />
+              <xs:element name="DLimr" msprop:Generator_UserColumnName="DLimr" msprop:Generator_ColumnPropNameInRow="DLimr" msprop:Generator_ColumnVarNameInTable="columnDLimr" msprop:Generator_ColumnPropNameInTable="DLimrColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ConstantDelays" msprop:Generator_UserTableName="ConstantDelays" msprop:Generator_RowDeletedName="ConstantDelaysRowDeleted" msprop:Generator_TableClassName="ConstantDelaysDataTable" msprop:Generator_RowChangedName="ConstantDelaysRowChanged" msprop:Generator_RowClassName="ConstantDelaysRow" msprop:Generator_RowChangingName="ConstantDelaysRowChanging" msprop:Generator_RowEvArgName="ConstantDelaysRowChangeEvent" msprop:Generator_RowEvHandlerName="ConstantDelaysRowChangeEventHandler" msprop:Generator_TablePropName="ConstantDelays" msprop:Generator_TableVarName="tableConstantDelays" msprop:Generator_RowDeletingName="ConstantDelaysRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Operation1_ID" msprop:Generator_UserColumnName="Operation1_ID" msprop:Generator_ColumnPropNameInRow="Operation1_ID" msprop:Generator_ColumnVarNameInTable="columnOperation1_ID" msprop:Generator_ColumnPropNameInTable="Operation1_IDColumn" type="xs:int" />
+              <xs:element name="Mode1_ID" msprop:Generator_UserColumnName="Mode1_ID" msprop:Generator_ColumnPropNameInRow="Mode1_ID" msprop:Generator_ColumnVarNameInTable="columnMode1_ID" msprop:Generator_ColumnPropNameInTable="Mode1_IDColumn" type="xs:int" />
+              <xs:element name="Operation2_ID" msprop:Generator_UserColumnName="Operation2_ID" msprop:Generator_ColumnPropNameInRow="Operation2_ID" msprop:Generator_ColumnVarNameInTable="columnOperation2_ID" msprop:Generator_ColumnPropNameInTable="Operation2_IDColumn" type="xs:int" />
+              <xs:element name="Mode2_ID" msprop:Generator_UserColumnName="Mode2_ID" msprop:Generator_ColumnPropNameInRow="Mode2_ID" msprop:Generator_ColumnVarNameInTable="columnMode2_ID" msprop:Generator_ColumnPropNameInTable="Mode2_IDColumn" type="xs:int" />
+              <xs:element name="Resource_ID" msprop:Generator_UserColumnName="Resource_ID" msprop:Generator_ColumnPropNameInRow="Resource_ID" msprop:Generator_ColumnVarNameInTable="columnResource_ID" msprop:Generator_ColumnPropNameInTable="Resource_IDColumn" type="xs:int" />
+              <xs:element name="di1m1i2m2r" msprop:Generator_UserColumnName="di1m1i2m2r" msprop:Generator_ColumnPropNameInRow="di1m1i2m2r" msprop:Generator_ColumnVarNameInTable="columndi1m1i2m2r" msprop:Generator_ColumnPropNameInTable="di1m1i2m2rColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Exclusive_Families" msprop:Generator_UserTableName="Exclusive_Families" msprop:Generator_RowDeletedName="Exclusive_FamiliesRowDeleted" msprop:Generator_TableClassName="Exclusive_FamiliesDataTable" msprop:Generator_RowChangedName="Exclusive_FamiliesRowChanged" msprop:Generator_RowClassName="Exclusive_FamiliesRow" msprop:Generator_RowChangingName="Exclusive_FamiliesRowChanging" msprop:Generator_RowEvArgName="Exclusive_FamiliesRowChangeEvent" msprop:Generator_RowEvHandlerName="Exclusive_FamiliesRowChangeEventHandler" msprop:Generator_TablePropName="Exclusive_Families" msprop:Generator_TableVarName="tableExclusive_Families" msprop:Generator_RowDeletingName="Exclusive_FamiliesRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Operation_ID" msprop:Generator_UserColumnName="Operation_ID" msprop:Generator_ColumnPropNameInRow="Operation_ID" msprop:Generator_ColumnVarNameInTable="columnOperation_ID" msprop:Generator_ColumnPropNameInTable="Operation_IDColumn" type="xs:int" />
+              <xs:element name="Mode_ID" msprop:Generator_UserColumnName="Mode_ID" msprop:Generator_ColumnPropNameInRow="Mode_ID" msprop:Generator_ColumnVarNameInTable="columnMode_ID" msprop:Generator_ColumnPropNameInTable="Mode_IDColumn" type="xs:int" />
+              <xs:element name="Resource_ID" msprop:Generator_UserColumnName="Resource_ID" msprop:Generator_ColumnPropNameInRow="Resource_ID" msprop:Generator_ColumnVarNameInTable="columnResource_ID" msprop:Generator_ColumnPropNameInTable="Resource_IDColumn" type="xs:int" />
+              <xs:element name="Excusive_Families_ID" msprop:Generator_UserColumnName="Excusive_Families_ID" msprop:Generator_ColumnPropNameInRow="Excusive_Families_ID" msprop:Generator_ColumnVarNameInTable="columnExcusive_Families_ID" msprop:Generator_ColumnPropNameInTable="Excusive_Families_IDColumn" type="xs:int" />
+              <xs:element name="Family_ID" msprop:Generator_UserColumnName="Family_ID" msprop:Generator_ColumnPropNameInRow="Family_ID" msprop:Generator_ColumnVarNameInTable="columnFamily_ID" msprop:Generator_ColumnPropNameInTable="Family_IDColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Exclusive_Jobs" msprop:Generator_UserTableName="Exclusive_Jobs" msprop:Generator_RowDeletedName="Exclusive_JobsRowDeleted" msprop:Generator_TableClassName="Exclusive_JobsDataTable" msprop:Generator_RowChangedName="Exclusive_JobsRowChanged" msprop:Generator_RowClassName="Exclusive_JobsRow" msprop:Generator_RowChangingName="Exclusive_JobsRowChanging" msprop:Generator_RowEvArgName="Exclusive_JobsRowChangeEvent" msprop:Generator_RowEvHandlerName="Exclusive_JobsRowChangeEventHandler" msprop:Generator_TablePropName="Exclusive_Jobs" msprop:Generator_TableVarName="tableExclusive_Jobs" msprop:Generator_RowDeletingName="Exclusive_JobsRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Family_ID" msprop:Generator_UserColumnName="Family_ID" msprop:Generator_ColumnPropNameInRow="Family_ID" msprop:Generator_ColumnVarNameInTable="columnFamily_ID" msprop:Generator_ColumnPropNameInTable="Family_IDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Operation_ID" msprop:Generator_UserColumnName="Operation_ID" msprop:Generator_ColumnPropNameInRow="Operation_ID" msprop:Generator_ColumnVarNameInTable="columnOperation_ID" msprop:Generator_ColumnPropNameInTable="Operation_IDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Mode_ID" msprop:Generator_UserColumnName="Mode_ID" msprop:Generator_ColumnPropNameInRow="Mode_ID" msprop:Generator_ColumnVarNameInTable="columnMode_ID" msprop:Generator_ColumnPropNameInTable="Mode_IDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Resource_ID" msprop:Generator_UserColumnName="Resource_ID" msprop:Generator_ColumnPropNameInRow="Resource_ID" msprop:Generator_ColumnVarNameInTable="columnResource_ID" msprop:Generator_ColumnPropNameInTable="Resource_IDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Exclusive_Jobs_ID" msprop:Generator_UserColumnName="Exclusive_Jobs_ID" msprop:Generator_ColumnPropNameInRow="Exclusive_Jobs_ID" msprop:Generator_ColumnVarNameInTable="columnExclusive_Jobs_ID" msprop:Generator_ColumnPropNameInTable="Exclusive_Jobs_IDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Job_ID" msprop:Generator_UserColumnName="Job_ID" msprop:Generator_ColumnPropNameInRow="Job_ID" msprop:Generator_ColumnVarNameInTable="columnJob_ID" msprop:Generator_ColumnPropNameInTable="Job_IDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Complementaries" msprop:Generator_UserTableName="Complementaries" msprop:Generator_RowDeletedName="ComplementariesRowDeleted" msprop:Generator_TableClassName="ComplementariesDataTable" msprop:Generator_RowChangedName="ComplementariesRowChanged" msprop:Generator_RowClassName="ComplementariesRow" msprop:Generator_RowChangingName="ComplementariesRowChanging" msprop:Generator_RowEvArgName="ComplementariesRowChangeEvent" msprop:Generator_RowEvHandlerName="ComplementariesRowChangeEventHandler" msprop:Generator_TablePropName="Complementaries" msprop:Generator_TableVarName="tableComplementaries" msprop:Generator_RowDeletingName="ComplementariesRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Family_ID" msprop:Generator_UserColumnName="Family_ID" msprop:Generator_ColumnPropNameInRow="Family_ID" msprop:Generator_ColumnVarNameInTable="columnFamily_ID" msprop:Generator_ColumnPropNameInTable="Family_IDColumn" type="xs:int" />
+              <xs:element name="Operation_ID" msprop:Generator_UserColumnName="Operation_ID" msprop:Generator_ColumnPropNameInRow="Operation_ID" msprop:Generator_ColumnVarNameInTable="columnOperation_ID" msprop:Generator_ColumnPropNameInTable="Operation_IDColumn" type="xs:int" />
+              <xs:element name="Mode_ID" msprop:Generator_UserColumnName="Mode_ID" msprop:Generator_ColumnPropNameInRow="Mode_ID" msprop:Generator_ColumnVarNameInTable="columnMode_ID" msprop:Generator_ColumnPropNameInTable="Mode_IDColumn" type="xs:int" />
+              <xs:element name="Complementary_ID" msprop:Generator_UserColumnName="Complementary_ID" msprop:Generator_ColumnPropNameInRow="Complementary_ID" msprop:Generator_ColumnVarNameInTable="columnComplementary_ID" msprop:Generator_ColumnPropNameInTable="Complementary_IDColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Exclusives" msprop:Generator_UserTableName="Exclusives" msprop:Generator_RowDeletedName="ExclusivesRowDeleted" msprop:Generator_TableClassName="ExclusivesDataTable" msprop:Generator_RowChangedName="ExclusivesRowChanged" msprop:Generator_RowClassName="ExclusivesRow" msprop:Generator_RowChangingName="ExclusivesRowChanging" msprop:Generator_RowEvArgName="ExclusivesRowChangeEvent" msprop:Generator_RowEvHandlerName="ExclusivesRowChangeEventHandler" msprop:Generator_TablePropName="Exclusives" msprop:Generator_TableVarName="tableExclusives" msprop:Generator_RowDeletingName="ExclusivesRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Problem_ID" msprop:Generator_UserColumnName="Problem_ID" msprop:Generator_ColumnPropNameInRow="Problem_ID" msprop:Generator_ColumnVarNameInTable="columnProblem_ID" msprop:Generator_ColumnPropNameInTable="Problem_IDColumn" type="xs:int" />
+              <xs:element name="Operation_ID" msprop:Generator_UserColumnName="Operation_ID" msprop:Generator_ColumnPropNameInRow="Operation_ID" msprop:Generator_ColumnVarNameInTable="columnOperation_ID" msprop:Generator_ColumnPropNameInTable="Operation_IDColumn" type="xs:int" />
+              <xs:element name="Mode_ID" msprop:Generator_UserColumnName="Mode_ID" msprop:Generator_ColumnPropNameInRow="Mode_ID" msprop:Generator_ColumnVarNameInTable="columnMode_ID" msprop:Generator_ColumnPropNameInTable="Mode_IDColumn" type="xs:int" />
+              <xs:element name="Exclusive_ID" msprop:Generator_UserColumnName="Exclusive_ID" msprop:Generator_ColumnPropNameInRow="Exclusive_ID" msprop:Generator_ColumnVarNameInTable="columnExclusive_ID" msprop:Generator_ColumnPropNameInTable="Exclusive_IDColumn" type="xs:int" />
+              <xs:element name="Family_ID" msprop:Generator_UserColumnName="Family_ID" msprop:Generator_ColumnPropNameInRow="Family_ID" msprop:Generator_ColumnVarNameInTable="columnFamily_ID" msprop:Generator_ColumnPropNameInTable="Family_IDColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Dataset1Key2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ResourceUsage" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Operation_ID" />
+      <xs:field xpath="mstns:Mode_ID" />
+      <xs:field xpath="mstns:Resource_ID" />
+    </xs:unique>
+    <xs:unique name="Dataset1Key1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Families" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Family_ID" />
+    </xs:unique>
+    <xs:unique name="Dataset1Key4" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Operations" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Operation_ID" />
+    </xs:unique>
+    <xs:unique name="Dataset1Key5" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Problems" />
+      <xs:field xpath="mstns:Problem_ID" />
+    </xs:unique>
+    <xs:unique name="Dataset1Key7" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:OperationsToFamilies" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Family_ID" />
+      <xs:field xpath="mstns:Operation_ID" />
+    </xs:unique>
+    <xs:unique name="Dataset1Key8" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Modes" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Operation_ID" />
+      <xs:field xpath="mstns:Mode_ID" />
+    </xs:unique>
+    <xs:unique name="Dataset1Key3" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Resources" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Resource_ID" />
+    </xs:unique>
+    <xs:unique name="Dataset1Key9" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FamilyCapacityOnResource" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Family_ID" />
+      <xs:field xpath="mstns:Resource_ID" />
+    </xs:unique>
+    <xs:unique name="Dataset1Key10" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Precedence" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Family_ID" />
+      <xs:field xpath="mstns:Previous_Operation_ID" />
+      <xs:field xpath="mstns:Subsequent_Operation_ID" />
+    </xs:unique>
+    <xs:unique name="Dataset1Key6" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Jobs" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Family_ID" />
+      <xs:field xpath="mstns:Job_ID" />
+    </xs:unique>
+    <xs:unique name="Dataset1Key11" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:LoadingTimes" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Operation_ID" />
+      <xs:field xpath="mstns:Resource_ID" />
+      <xs:field xpath="mstns:Mode_ID" />
+    </xs:unique>
+    <xs:unique name="Dataset1Key12" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ConstantDelays" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Operation1_ID" />
+      <xs:field xpath="mstns:Mode1_ID" />
+      <xs:field xpath="mstns:Operation2_ID" />
+      <xs:field xpath="mstns:Mode2_ID" />
+      <xs:field xpath="mstns:Resource_ID" />
+    </xs:unique>
+    <xs:keyref name="ResourcesLoadingTimes" refer="Dataset1Key3" msprop:rel_Generator_UserRelationName="ResourcesLoadingTimes" msprop:rel_Generator_RelationVarName="relationResourcesLoadingTimes" msprop:rel_Generator_UserChildTable="LoadingTimes" msprop:rel_Generator_UserParentTable="Resources" msprop:rel_Generator_ParentPropName="ResourcesRowParent" msprop:rel_Generator_ChildPropName="GetLoadingTimesRows">
+      <xs:selector xpath=".//mstns:LoadingTimes" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Resource_ID" />
+    </xs:keyref>
+    <xs:keyref name="FamiliesJobs" refer="Dataset1Key1" msprop:rel_Generator_UserRelationName="FamiliesJobs" msprop:rel_Generator_RelationVarName="relationFamiliesJobs" msprop:rel_Generator_UserChildTable="Jobs" msprop:rel_Generator_UserParentTable="Families" msprop:rel_Generator_ParentPropName="FamiliesRowParent" msprop:rel_Generator_ChildPropName="GetJobsRows">
+      <xs:selector xpath=".//mstns:Jobs" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Family_ID" />
+    </xs:keyref>
+    <xs:keyref name="FamiliesPrecedence" refer="Dataset1Key1" msprop:rel_Generator_UserRelationName="FamiliesPrecedence" msprop:rel_Generator_RelationVarName="relationFamiliesPrecedence" msprop:rel_Generator_UserChildTable="Precedence" msprop:rel_Generator_UserParentTable="Families" msprop:rel_Generator_ParentPropName="FamiliesRowParent" msprop:rel_Generator_ChildPropName="GetPrecedenceRows">
+      <xs:selector xpath=".//mstns:Precedence" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Family_ID" />
+    </xs:keyref>
+    <xs:keyref name="FamiliesFamilyCapacityOnResource" refer="Dataset1Key1" msprop:rel_Generator_UserRelationName="FamiliesFamilyCapacityOnResource" msprop:rel_Generator_RelationVarName="relationFamiliesFamilyCapacityOnResource" msprop:rel_Generator_UserChildTable="FamilyCapacityOnResource" msprop:rel_Generator_UserParentTable="Families" msprop:rel_Generator_ParentPropName="FamiliesRowParent" msprop:rel_Generator_ChildPropName="GetFamilyCapacityOnResourceRows">
+      <xs:selector xpath=".//mstns:FamilyCapacityOnResource" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Family_ID" />
+    </xs:keyref>
+    <xs:keyref name="OperationsModes" refer="Dataset1Key4" msprop:rel_Generator_UserRelationName="OperationsModes" msprop:rel_Generator_RelationVarName="relationOperationsModes" msprop:rel_Generator_UserChildTable="Modes" msprop:rel_Generator_UserParentTable="Operations" msprop:rel_Generator_ParentPropName="OperationsRowParent" msprop:rel_Generator_ChildPropName="GetModesRows">
+      <xs:selector xpath=".//mstns:Modes" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Operation_ID" />
+    </xs:keyref>
+    <xs:keyref name="FamiliesOperationsToFamilies" refer="Dataset1Key1" msprop:rel_Generator_UserRelationName="FamiliesOperationsToFamilies" msprop:rel_Generator_RelationVarName="relationFamiliesOperationsToFamilies" msprop:rel_Generator_UserChildTable="OperationsToFamilies" msprop:rel_Generator_UserParentTable="Families" msprop:rel_Generator_ParentPropName="FamiliesRowParent" msprop:rel_Generator_ChildPropName="GetOperationsToFamiliesRows">
+      <xs:selector xpath=".//mstns:OperationsToFamilies" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Family_ID" />
+    </xs:keyref>
+    <xs:keyref name="OperationsOperationsToFamilies" refer="Dataset1Key4" msprop:rel_Generator_UserRelationName="OperationsOperationsToFamilies" msprop:rel_Generator_RelationVarName="relationOperationsOperationsToFamilies" msprop:rel_Generator_UserChildTable="OperationsToFamilies" msprop:rel_Generator_UserParentTable="Operations" msprop:rel_Generator_ParentPropName="OperationsRowParent" msprop:rel_Generator_ChildPropName="GetOperationsToFamiliesRows">
+      <xs:selector xpath=".//mstns:OperationsToFamilies" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Operation_ID" />
+    </xs:keyref>
+    <xs:keyref name="ResourcesResourceUsage" refer="Dataset1Key3" msprop:rel_Generator_UserRelationName="ResourcesResourceUsage" msprop:rel_Generator_RelationVarName="relationResourcesResourceUsage" msprop:rel_Generator_UserChildTable="ResourceUsage" msprop:rel_Generator_UserParentTable="Resources" msprop:rel_Generator_ParentPropName="ResourcesRowParent" msprop:rel_Generator_ChildPropName="GetResourceUsageRows">
+      <xs:selector xpath=".//mstns:ResourceUsage" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Resource_ID" />
+    </xs:keyref>
+    <xs:keyref name="ModesResourceUsage" refer="Dataset1Key8" msprop:rel_Generator_UserRelationName="ModesResourceUsage" msprop:rel_Generator_RelationVarName="relationModesResourceUsage" msprop:rel_Generator_UserChildTable="ResourceUsage" msprop:rel_Generator_UserParentTable="Modes" msprop:rel_Generator_ParentPropName="ModesRowParent" msprop:rel_Generator_ChildPropName="GetResourceUsageRows">
+      <xs:selector xpath=".//mstns:ResourceUsage" />
+      <xs:field xpath="mstns:Problem_ID" />
+      <xs:field xpath="mstns:Operation_ID" />
+      <xs:field xpath="mstns:Mode_ID" />
+    </xs:keyref>
+  </xs:element>
+</xs:schema>

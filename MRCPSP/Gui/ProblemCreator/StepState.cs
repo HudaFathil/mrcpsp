@@ -25,7 +25,7 @@ namespace MRCPSP.Gui.ProblemCreator
         public override void onCanvasClicked(CanvasEditor canvas, MouseEventArgs e)
         {
             StepItem si = new StepItem(monitor_id);
-            Image img = (Image)global::MRCPSP.Properties.Resources.new_step_pic;
+            Image img = (Image)global::MRCPSP.Properties.Resources.step_not_animated;
             si.Image = img;
             si.Location = new System.Drawing.Point(e.X + canvas.Left - img.Width ,
                       e.Y + canvas.Top - img.Height / 2);
