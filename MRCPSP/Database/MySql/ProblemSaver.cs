@@ -37,7 +37,7 @@ namespace MRCPSP.Database.MySql
         // Modes
         private static void saveMode(int problemID, Mode m)
         {
-            String cmdStr = "INSERT INTO Modes VALUES(" + problemID + "," + m.BelongToStep.Id + "," + m.Id + ",'" + m.name + "','')";
+            String cmdStr = "INSERT INTO Modes VALUES(" + problemID + "," + m.BelongToStep.Id + "," + m.IdPerStep + ",'" + m.Name+ "','')";
             DBHandler.Instance.executeQuery(cmdStr);
         }
 

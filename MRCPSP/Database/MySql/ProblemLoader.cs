@@ -129,12 +129,14 @@ namespace MRCPSP.Database.MySql
             Dictionary<Product, List<Job>> pjDic = new Dictionary<Product, List<Job>>();
             List<Constraint> cList = new List<Constraint>();
             List<ResourceConstraint> rcList = new List<ResourceConstraint>();
+            Dictionary<Product, List<Step>> stepInProduct = new Dictionary<Product,List<Step>>();
             foreach (Product f in pList)
             {
                 List<Job> jobs = queryJobsForProblemAndFamiliy(problemID, f);
                 f.Size = jobs.Count;
                 pjDic.Add(f, jobs);
                 List<Step> stepForProcuct = queryStepsForProblemAndFamiliy(problemID, f.Id);
+                stepInProduct.Add(f, stepForProcuct);
                 foreach (Step from in stepForProcuct)
                 {
                     sList.Add(from);
@@ -184,7 +186,7 @@ namespace MRCPSP.Database.MySql
                 }
             }
 
-            Problem p = new Problem(rList, modesInStep, sList, cList, pList, pjDic, rcList , problemTitle);
+            Problem p = new Problem(rList, modesInStep, sList, cList, pList, pjDic, stepInProduct ,rcList, problemTitle);
             return p;
         }
 

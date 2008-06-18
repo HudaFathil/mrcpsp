@@ -45,8 +45,8 @@ namespace MRCPSP.Database.MsSqlServer
         // Modes
         private static void saveMode(int problemID, Mode m)
         {
-            String cmdStr = "INSERT INTO Modes VALUES(" + problemID + "," + m.BelongToStep.Id + "," + m.Id + ",'" + m.name + "','')";
-            Object [] values = {problemID , m.BelongToStep.Id , m.Id , m.name , ""};
+            String cmdStr = "INSERT INTO Modes VALUES(" + problemID + "," + m.BelongToStep.Id + "," + m.IdPerStep + ",'" + m.Name + "','')";
+            Object [] values = {problemID , m.BelongToStep.Id , m.IdPerStep,m.Name , ""};
             DBHandler.Instance.DataSet.Tables["Modes"].Rows.Add(values);
             DBHandler.Instance.updateDatabase(cmdStr , "Modes");
             
@@ -55,8 +55,8 @@ namespace MRCPSP.Database.MsSqlServer
         // Mode Resource Usage
         private static void saveResourceUsage(int problemID, Mode m, Operation op)
         {
-            String cmdStr = "INSERT INTO ResourceUsage VALUES(" + problemID + "," + m.BelongToStep.Id + "," + m.Id + "," + op.Rseource.Id + "," + op.StartTime + "," + op.EndTime + ")";
-            Object [] values = {problemID , m.BelongToStep.Id , m.Id , op.Rseource.Id ,  op.StartTime,  op.EndTime};
+            String cmdStr = "INSERT INTO ResourceUsage VALUES(" + problemID + "," + m.BelongToStep.Id + "," + m.IdPerStep + "," + op.Rseource.Id + "," + op.StartTime + "," + op.EndTime + ")";
+            Object [] values = {problemID , m.BelongToStep.Id , m.IdPerStep , op.Rseource.Id ,  op.StartTime,  op.EndTime};
             DBHandler.Instance.DataSet.Tables["ResourceUsage"].Rows.Add(values);
             DBHandler.Instance.updateDatabase(cmdStr ,"ResourceUsage");
         }

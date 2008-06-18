@@ -11,18 +11,20 @@ namespace MRCPSP.CommonTypes
         private static int id_counter = 1;
         private int m_id;
         private String m_name;
+        private int m_idPerStep;
         private Step m_step;
 
         public Mode()
         {
             m_operations_list = new System.Collections.ArrayList();
             m_id = id_counter;
+            m_name = "Mode " + m_id;
             id_counter++;
         }
 
         public Mode(int id , String name)
         {
-            m_id = id;
+            m_idPerStep = id;
             m_name = name;
             m_operations_list = new System.Collections.ArrayList();
         }
@@ -49,13 +51,18 @@ namespace MRCPSP.CommonTypes
             set { m_step = value; }
         }
 
-        public String name
+        public int IdPerStep
         {
-            get { return m_name; }
+            get { return m_idPerStep; }
             set 
             {
-                m_name = value;
+                m_idPerStep = value;
             }
+        }
+
+        public String Name
+        {
+            get { return m_name; }
         }
 
         /* calculates the total process time of the mode

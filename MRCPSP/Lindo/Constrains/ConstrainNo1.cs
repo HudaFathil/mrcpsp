@@ -26,10 +26,10 @@ namespace MRCPSP.Lindo.Constrains
                 {
                     MatrixCell cell = sol.DistributionMatrix[r, t];
                     Mode mode = sol.getSelectedModeByCell(cell);
-                    if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType))
-                        throw new ConstrainException("ConstrainNo1", "Can't find parameter Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType);
-                    LindoContainer.Instance.Variables["Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                    Console.WriteLine("Constrain No "+LindoContainer.Instance.ConstrainsCounter+") Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + LindoContainer.YjfimType + " = 1");
+                    if (!LindoContainer.Instance.Variables.ContainsKey("Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.IdPerStep + LindoContainer.YjfimType))
+                        throw new ConstrainException("ConstrainNo1", "Can't find parameter Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.IdPerStep + LindoContainer.YjfimType);
+                    LindoContainer.Instance.Variables["Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.IdPerStep + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                    Console.WriteLine("Constrain No "+LindoContainer.Instance.ConstrainsCounter+") Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.IdPerStep + LindoContainer.YjfimType + " = 1");
                     LindoContainer.Instance.RightHandSideValues.Add(1.0);
                     LindoContainer.Instance.ConstraintsSenses.Add("E");
                     LindoContainer.Instance.ConstrainsCounter++;

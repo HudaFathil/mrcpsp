@@ -29,6 +29,7 @@ namespace MRCPSP.Domain
                         List<Constraint> all_constraints,
                         List<Product> products_list,
                         Dictionary<Product, List<Job>> jobs_in_product,
+                        Dictionary<Product, List<Step>> step_in_product,
                         List<ResourceConstraint> resource_time_constraints,
                         String title)
         {
@@ -47,10 +48,11 @@ namespace MRCPSP.Domain
             m_all_constraints = all_constraints;
             m_products_list = products_list;
             m_jobs_in_product = jobs_in_product;
-            m_steps_in_product = new Dictionary<Product, List<Step>>();
+            m_steps_in_product = step_in_product;
+            /*
             for (int i=0; i < m_products_list.Count(); i++)
                 m_steps_in_product.Add(m_products_list[i], new List<Step>());
-
+            
             foreach (Constraint c in m_all_constraints)
             {
                 if (! m_steps_in_product.ContainsKey(c.Product))
@@ -60,7 +62,50 @@ namespace MRCPSP.Domain
                     product_steps.Add(c.StepFrom);
                if (!product_steps.Contains(c.StepTo))
                     product_steps.Add(c.StepTo);
-            }       
+            } 
+             */
+        }
+
+        public Problem(List<Resource> resource_list,
+                        Dictionary<Step, List<Mode>> modes_in_step,
+                        List<Step> step_list,
+                        List<Constraint> all_constraints,
+                        List<Product> products_list,
+                        Dictionary<Product, List<Job>> jobs_in_product,
+                        List<ResourceConstraint> resource_time_constraints,
+                        String title)
+        {
+            m_title = title;
+            m_resource_list = resource_list;
+            m_modes_in_step = modes_in_step;
+            m_resource_time_constraints = resource_time_constraints;
+            foreach (Step s in modes_in_step.Keys)
+            {
+                foreach (Mode m in modes_in_step[s])
+                {
+                    m.BelongToStep = s;
+                }
+            }
+            m_step_list = step_list;
+            m_all_constraints = all_constraints;
+            m_products_list = products_list;
+            m_jobs_in_product = jobs_in_product;
+            m_steps_in_product = new Dictionary<Product,List<Step>>();
+            
+            for (int i=0; i < m_products_list.Count(); i++)
+                m_steps_in_product.Add(m_products_list[i], new List<Step>());
+            
+            foreach (Constraint c in m_all_constraints)
+            {
+                if (! m_steps_in_product.ContainsKey(c.Product))
+                    throw new EntryPointNotFoundException("found constraint for non existing product"); 
+               List<Step> product_steps = m_steps_in_product[c.Product];
+               if (!product_steps.Contains(c.StepFrom))
+                    product_steps.Add(c.StepFrom);
+               if (!product_steps.Contains(c.StepTo))
+                    product_steps.Add(c.StepTo);
+            } 
+             
         }
 
         public int getTotalDistributionSize()

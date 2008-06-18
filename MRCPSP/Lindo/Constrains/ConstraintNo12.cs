@@ -23,7 +23,7 @@ namespace MRCPSP.Lindo.Constrains
                 List<int> taskList = sol.getTaskListForResource(r, prob.Resources[r]);
                 for (int t = 1; t < taskList.Count; t++ )
                 {
-                    LindoContainer.Instance.Variables["Z" + r + "" + taskList[t]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                    LindoContainer.Instance.Variables["Z" + r + "," + taskList[t]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                     LindoContainer.Instance.ConstraintsSenses.Add("G");
                     Mode from = sol.getSelectedModeByCell(sol.DistributionMatrix[r,taskList[t-1]]);
                     Mode to = sol.getSelectedModeByCell(sol.DistributionMatrix[r,taskList[t]]);
@@ -31,12 +31,12 @@ namespace MRCPSP.Lindo.Constrains
                     if (rc != null)
                     {
                         LindoContainer.Instance.RightHandSideValues.Add(rc.DelayTime);
-                        Console.WriteLine("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") Z" + r + "" + taskList[t] + ">" + rc.DelayTime);
+                        Console.WriteLine("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") Z" + r + "," + taskList[t] + ">" + rc.DelayTime);
                     }
                     else
                     {
                         LindoContainer.Instance.RightHandSideValues.Add(0);
-                        Console.WriteLine("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") Z" + r + "" + taskList[t] + ">" + 0);
+                        Console.WriteLine("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") Z" + r + "," + taskList[t] + ">" + 0);
                     }
                     
                     LindoContainer.Instance.ConstrainsCounter++;

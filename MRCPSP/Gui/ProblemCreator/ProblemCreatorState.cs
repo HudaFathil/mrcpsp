@@ -223,7 +223,7 @@ namespace MRCPSP.Gui.ProblemCreator
                     }
                     if (new_mode.operations.Count > 0)
                     {
-                        new_mode.name = modes_id + "";
+                        new_mode.IdPerStep = modes_id ;
                         modes_id++;
                         modes_in_step[new_step].Add(new_mode);
                     }

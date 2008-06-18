@@ -47,6 +47,7 @@ namespace MRCPSP.Database.MsSqlServer
             fillDataSet(problemID, "Families");
             fillDataSet(problemID, "Jobs");
             fillDataSet(problemID, "Operations");
+            fillDataSet(problemID, "OperationsToFamilies");
             fillDataSet(problemID, "Modes");
             fillDataSet(problemID, "Resources");
             fillDataSet(problemID, "ResourceUsage");

@@ -68,33 +68,33 @@ namespace MRCPSP.Lindo
                 {
                     MatrixCell cell = sol.DistributionMatrix[r, t];
                     // creating Trl
-                    MrcpspVariable Trl = new MrcpspVariable("T" + r + "" + t + TrlType);
+                    MrcpspVariable Trl = new MrcpspVariable("T" + r + "," + t + TrlType);
                     Trl.Type = "C";
                     m_variables.Add(Trl.Name, Trl);
                     // creating Zrl
-                    MrcpspVariable Zrl = new MrcpspVariable("Z" + r + "" + t);
+                    MrcpspVariable Zrl = new MrcpspVariable("Z" + r + "," + t);
                     m_variables.Add(Zrl.Name, Zrl);
                     // creating Vrl
-                    MrcpspVariable Vrl = new MrcpspVariable("V" + r + "" + t);
+                    MrcpspVariable Vrl = new MrcpspVariable("V" + r + "," + t);
                     m_variables.Add(Vrl.Name, Vrl);
                     Mode mode = sol.getSelectedModeByCell(cell);// sol.SelectedModeList[t];
                     // creating Yjfim
-                    MrcpspVariable Yjfim = new MrcpspVariable("Y" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + YjfimType);
+                    MrcpspVariable Yjfim = new MrcpspVariable("Y" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id + "," + mode.IdPerStep + YjfimType);
                     Yjfim.Type = "B";
                     if (!m_boolVariables.ContainsKey(Yjfim.Name))
                         m_boolVariables.Add(Yjfim.Name, Yjfim);
                     // creating Xjfimrl
-                    MrcpspVariable Xjfimrl = new MrcpspVariable("X" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id + "" + mode.name + "" + r + "" + t);
+                    MrcpspVariable Xjfimrl = new MrcpspVariable("X" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id + "," + mode.IdPerStep + "," + r + "," + t);
                     Xjfimrl.Type = "B";
                     if (!m_boolVariables.ContainsKey(Xjfimrl.Name))
                         m_boolVariables.Add(Xjfimrl.Name, Xjfimrl);
                     // creating Tjfi
-                    MrcpspVariable Tjfi = new MrcpspVariable("T" + cell.jobId + "" + cell.product.Id + "" + cell.step.Id+TjfiType);
+                    MrcpspVariable Tjfi = new MrcpspVariable("T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id+TjfiType);
                     Tjfi.Type = "C";
                     if (!m_variables.ContainsKey(Tjfi.Name))
                         m_variables.Add(Tjfi.Name, Tjfi);
                     // creating Yimrl
-                    MrcpspVariable Yimrl = new MrcpspVariable("Y" + cell.step.Id + "" + mode.name + "" + r + "" + t + YimrlType);
+                    MrcpspVariable Yimrl = new MrcpspVariable("Y" + cell.step.Id + "," + mode.IdPerStep + "," + r + "," + t + YimrlType);
                     Yimrl.Type = "B";
                     if (!m_boolVariables.ContainsKey(Yimrl.Name))
                         m_boolVariables.Add(Yimrl.Name, Yimrl);
@@ -173,11 +173,11 @@ namespace MRCPSP.Lindo
                     continue;
                 for (int t = 0; t < taskList.Count ; t++)
                 {
-                    if (!m_variables.ContainsKey("T" + r + "" + taskList[t]+LindoContainer.TrlType))
-                        throw new ConstrainException("LindoContainer", "Can't find parameter T" + r + "" + taskList[t] + LindoContainer.TrlType);
+                    if (!m_variables.ContainsKey("T" + r + "," + taskList[t]+LindoContainer.TrlType))
+                        throw new ConstrainException("LindoContainer", "Can't find parameter T" + r + "," + taskList[t] + LindoContainer.TrlType);
                     
                     ResultParameter result = new ResultParameter();
-                    result.startTime = m_variables["T" + r + "" + taskList[t] + LindoContainer.TrlType].FinalValue;
+                    result.startTime = m_variables["T" + r + "," + taskList[t] + LindoContainer.TrlType].FinalValue;
                     MatrixCell cell = sol.DistributionMatrix[r,taskList[t]]; 
                     result.jobID = cell.jobId;
                     result.product = cell.product;

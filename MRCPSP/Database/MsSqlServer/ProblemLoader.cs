@@ -20,7 +20,11 @@ namespace MRCPSP.Database.MsSqlServer
 
             foreach (DataRow dr in DBHandler.Instance.DataSet.Tables["Families"].Rows)
             {
-                pList.Add(new Product(Convert.ToInt32(dr["Family_ID"].ToString()) , dr["Name"].ToString()));
+                int id = Convert.ToInt32(dr["Family_ID"].ToString());
+                String name = dr["Name"].ToString();
+                if (name.Equals(""))
+                    name = "Product "+id;
+                pList.Add(new Product( id,name ));
             }
 
             return pList;
@@ -33,11 +37,16 @@ namespace MRCPSP.Database.MsSqlServer
             List<Resource> rList = new List<Resource>();
             foreach (DataRow dr in DBHandler.Instance.DataSet.Tables["Resources"].Rows)
             {
-                rList.Add(new Resource(Convert.ToInt32(dr["Resource_ID"].ToString()) , dr["Name"].ToString()));
+                int id = Convert.ToInt32(dr["Resource_ID"].ToString()) ;
+                String name = dr["Name"].ToString();
+                if (name.Equals(""))
+                    name = "Resource " + id;
+                rList.Add(new Resource(id , name));
             }
 
             return rList;
         }
+
         // Step 
         private static List<Step> querySteps()
         {
@@ -45,7 +54,11 @@ namespace MRCPSP.Database.MsSqlServer
             List<Step> aList = new List<Step>();
             foreach (DataRow dr in DBHandler.Instance.DataSet.Tables["Operations"].Rows)
             {
-                aList.Add(new Step(Convert.ToInt32(dr["Operation_ID"].ToString()), dr["Name"].ToString()));
+                int id = Convert.ToInt32(dr["Operation_ID"].ToString());
+                String name = dr["Name"].ToString();
+                if (name.Equals(""))
+                    name = "Step " + id;
+                aList.Add(new Step(id , name));
             }
 
             return aList;
@@ -58,7 +71,13 @@ namespace MRCPSP.Database.MsSqlServer
             foreach (DataRow dr in DBHandler.Instance.DataSet.Tables["Modes"].Rows)
             {
                 if (Convert.ToInt32(dr["Operation_ID"].ToString()) == operationID)
-                    mList.Add(new Mode(Convert.ToInt32(dr["Mode_ID"].ToString()),dr["Name"].ToString()));
+                {
+                    int id = Convert.ToInt32(dr["Mode_ID"].ToString());
+                    String name = dr["Name"].ToString();
+                    if (name.Equals(""))
+                        name = "Mode " + id;
+                    mList.Add(new Mode(id,name));
+                }
             }
 
             return mList;
@@ -71,7 +90,7 @@ namespace MRCPSP.Database.MsSqlServer
             foreach (DataRow dr in DBHandler.Instance.DataSet.Tables["ResourceUsage"].Rows)
             {
                 if (Convert.ToInt32(dr["Operation_ID"].ToString()) == s.Id &&
-                    Convert.ToInt32(dr["Mode_ID"].ToString()) == m.Id &&
+                    Convert.ToInt32(dr["Mode_ID"].ToString()) == m.IdPerStep &&
                     Convert.ToInt32(dr["Resource_ID"].ToString()) == r.Id)
                 opList.Add(new Operation(Convert.ToInt32(dr["Ts"].ToString()), Convert.ToInt32(dr["Tf"].ToString()), r));
             }
@@ -98,8 +117,13 @@ namespace MRCPSP.Database.MsSqlServer
             List<Job> jList = new List<Job>();
             foreach (DataRow dr in DBHandler.Instance.DataSet.Tables["Jobs"].Rows)
             {
-                if (Convert.ToInt32(dr["Family_ID"].ToString()) == p.Id)
-                jList.Add(new Job(Convert.ToInt32(dr["Release_Date"].ToString()) , Convert.ToInt32(dr["Due_Date"].ToString())));
+                if (Convert.ToInt32(dr["Family_ID"].ToString()) == p.Id) {
+                    int startTime = Convert.ToInt32(dr["Release_Date"].ToString());
+                    int finishTime = Convert.ToInt32(dr["Due_Date"].ToString());
+                    if (finishTime == 0)
+                        finishTime = Int32.MaxValue;
+                    jList.Add(new Job(startTime ,finishTime ));
+                }
             }
             return jList;
         }
@@ -117,7 +141,16 @@ namespace MRCPSP.Database.MsSqlServer
             return null;
         }
 
-
+        private static bool isStepBelongToFamily(Step s  , Product p)
+        {
+            foreach (DataRow dr in DBHandler.Instance.DataSet.Tables["OperationsToFamilies"].Rows)
+            {
+                if (Convert.ToInt32(dr["Operation_ID"].ToString()) == s.Id &&
+                    Convert.ToInt32(dr["Family_ID"].ToString()) == p.Id)
+                    return true;
+            }
+            return false;
+        }
         
         // Problem 
         public static Problem queryProblem(int problemID)
@@ -130,18 +163,21 @@ namespace MRCPSP.Database.MsSqlServer
             Dictionary<Product, List<Job>> pjDic = new Dictionary<Product, List<Job>>();
             List<MRCPSP.CommonTypes.Constraint> cList = new List<MRCPSP.CommonTypes.Constraint>();
             List<ResourceConstraint> rcList = new List<ResourceConstraint>();
+            Dictionary<Product, List<Step>> stepInProduct = new Dictionary<Product, List<Step>>();
 
             foreach (Product f in pList)
             {
                 List<Job> jobs = queryJobsForProblemAndFamiliy(f);
                 f.Size = jobs.Count;
                 pjDic.Add(f, jobs);
-
-                foreach (Step from in sList)
+                stepInProduct.Add(f, new List<Step>());
+                foreach (Step s1 in sList)
                 {
-                    foreach (Step to in sList)
+                    if (isStepBelongToFamily(s1,f))
+                        stepInProduct[f].Add(s1);
+                    foreach (Step s2 in sList)
                     {
-                        MRCPSP.CommonTypes.Constraint c = queryPrecedence( f, from, to);
+                        MRCPSP.CommonTypes.Constraint c = queryPrecedence( f, s1, s2);
                         if (c != null)
                             cList.Add(c);
                     }
@@ -185,11 +221,9 @@ namespace MRCPSP.Database.MsSqlServer
                 }
             }
 
-            Problem p = new Problem(rList, modesInStep, sList, cList, pList, pjDic, rcList, DBHandler.Instance.DataSet.Tables["Problems"].Rows[0]["Description"].ToString());
-            return p;
-             
+            Problem p = new Problem(rList, modesInStep, sList, cList, pList, pjDic,stepInProduct, rcList, DBHandler.Instance.DataSet.Tables["Problems"].Rows[0]["Description"].ToString());
+            return p;    
         }
-
      
         
     }
