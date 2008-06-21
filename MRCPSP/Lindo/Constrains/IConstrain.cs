@@ -22,15 +22,14 @@ namespace MRCPSP.Lindo.Constrains
         private static void addConstrains()
         {
             m_constarinList = new List<IConstrain>();
-            //m_constarinList.Add(new ConstrainNo1());
-           // m_constarinList.Add(new ConstrainNo2());
-           // m_constarinList.Add(new ConstrainNo3());
-            //m_constarinList.Add(new ConstrainNo4());
             m_constarinList.Add(new ConstrainNo10());
             m_constarinList.Add(new ConstrainNo11A());
             m_constarinList.Add(new ConstrainNo11B());
             m_constarinList.Add(new ConstraintNo12());
+            m_constarinList.Add(new ConstraintNo13());
             m_constarinList.Add(new ConstrainNo14());
+            m_constarinList.Add(new ConstraintNo15());
+            m_constarinList.Add(new ConstraintNo16());
             m_constarinList.Add(new ConstrainNo17());
             m_constarinList.Add(new ConstrainNo18());
         }

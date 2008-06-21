@@ -41,7 +41,7 @@ namespace MRCPSP.Database.MsSqlServer
                 String name = dr["Name"].ToString();
                 if (name.Equals(""))
                     name = "Resource " + id;
-                rList.Add(new Resource(id , name));
+                rList.Add(new Resource(id , name , Convert.ToInt32(dr["Capacity Kr"].ToString()) , Convert.ToInt32(dr["Release_Date tr1"].ToString())));
             }
 
             return rList;
@@ -122,7 +122,11 @@ namespace MRCPSP.Database.MsSqlServer
                     int finishTime = Convert.ToInt32(dr["Due_Date"].ToString());
                     if (finishTime == 0)
                         finishTime = Int32.MaxValue;
-                    jList.Add(new Job(startTime ,finishTime ));
+                    int weight = 1;
+                    if (dr["Weight"].ToString() == null)
+                        weight = Convert.ToInt32(dr["Weight"].ToString());
+
+                    jList.Add(new Job(startTime ,finishTime,weight));
                 }
             }
             return jList;
@@ -137,6 +141,19 @@ namespace MRCPSP.Database.MsSqlServer
                     Convert.ToInt32(dr["Mode2_ID"].ToString()) == to.Id &&
                     Convert.ToInt32(dr["Resource_ID"].ToString()) == to.Id)
                     return new ResourceConstraint(r, from, to, Convert.ToInt32(dr["di1m1i2m2r"].ToString()));
+            }
+            return null;
+        }
+
+        // Resource Setup Time
+        private static SetupTime querySetupTime(Mode m, Resource r)
+        {
+            foreach (DataRow dr in DBHandler.Instance.DataSet.Tables["LoadingTimes"].Rows)
+            {
+                if (Convert.ToInt32(dr["Operation_ID"].ToString()) == m.BelongToStep.Id &&
+                    Convert.ToInt32(dr["Mode_ID"].ToString()) == m.Id &&
+                    Convert.ToInt32(dr["Resource_ID"].ToString()) == r.Id)
+                    return new SetupTime(m, r , Convert.ToInt32(dr["DLimr"].ToString()));
             }
             return null;
         }
@@ -164,6 +181,7 @@ namespace MRCPSP.Database.MsSqlServer
             List<MRCPSP.CommonTypes.Constraint> cList = new List<MRCPSP.CommonTypes.Constraint>();
             List<ResourceConstraint> rcList = new List<ResourceConstraint>();
             Dictionary<Product, List<Step>> stepInProduct = new Dictionary<Product, List<Step>>();
+            List<SetupTime> setupTimeList = new List<SetupTime>();
 
             foreach (Product f in pList)
             {
@@ -208,6 +226,9 @@ namespace MRCPSP.Database.MsSqlServer
                 {
                     foreach (Mode m1 in modesInStep[s1])
                     {
+                        SetupTime st = querySetupTime(m1, r);
+                        if (st != null) 
+                            setupTimeList.Add(st);
                         foreach (Step s2 in sList)
                         {
                             foreach (Mode m2 in modesInStep[s2])
@@ -221,7 +242,7 @@ namespace MRCPSP.Database.MsSqlServer
                 }
             }
 
-            Problem p = new Problem(rList, modesInStep, sList, cList, pList, pjDic,stepInProduct, rcList, DBHandler.Instance.DataSet.Tables["Problems"].Rows[0]["Description"].ToString());
+            Problem p = new Problem(rList, modesInStep, sList, cList, pList, pjDic,stepInProduct, rcList,setupTimeList, DBHandler.Instance.DataSet.Tables["Problems"].Rows[0]["Description"].ToString());
             return p;    
         }
      

@@ -48,5 +48,11 @@ namespace MRCPSP.Gui.ProblemCreator
                 m_objects_using_me[i].resourceDeleteNotify(this);
             }
         }
+
+        public int ArriveTime
+        {
+            get { return m_available_time; }
+            set { m_available_time = value; }
+        }
     }
 }

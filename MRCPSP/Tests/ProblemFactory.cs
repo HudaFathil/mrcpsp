@@ -23,8 +23,8 @@ namespace MRCPSP.Tests
         {
             int product_size = 2;
             List<Resource> resource_list = new List<Resource>();
-            Resource r1 = new Resource("r1");
-            Resource r2 = new Resource("r2");
+            Resource r1 = new Resource("r1",0);
+            Resource r2 = new Resource("r2",0);
             resource_list.Add(r1); resource_list.Add(r2);
 
             List<Product> products_list = new List<Product>();
@@ -55,7 +55,7 @@ namespace MRCPSP.Tests
             Dictionary<Product, List<Job>> jobs_in_product = new Dictionary<Product,List<Job>>();
             List<Job> jobs = new List<Job>();
             for (int i=0; i < product_size; i++) {
-                jobs.Add(new Job(0, Int32.MaxValue));
+                jobs.Add(new Job(0, Int32.MaxValue,1));
             }
             jobs_in_product[p] = jobs;
             List<ResourceConstraint> resource_time_constraints = new List<ResourceConstraint>();
@@ -65,17 +65,19 @@ namespace MRCPSP.Tests
             steps_in_product[p].Add(s1);
             steps_in_product[p].Add(s2);
 
-            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, steps_in_product, resource_time_constraints,"test1");
+            List<SetupTime> setup_time = new List<SetupTime>();
+
+            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, steps_in_product, resource_time_constraints,setup_time,"test1");
         }
 
         public static Problem getIntermediateProblem()
         {
             int product_size = 4;
             List<Resource> resource_list = new List<Resource>();
-            Resource r1 = new Resource("r1");
-            Resource r2 = new Resource("r2");
-            Resource r3 = new Resource("r3");
-            Resource r4 = new Resource("r4");
+            Resource r1 = new Resource("r1",0);
+            Resource r2 = new Resource("r2",0);
+            Resource r3 = new Resource("r3",0);
+            Resource r4 = new Resource("r4",0);
             resource_list.Add(r1); resource_list.Add(r2);
             resource_list.Add(r3); resource_list.Add(r4);
 
@@ -128,7 +130,7 @@ namespace MRCPSP.Tests
             List<Job> jobs = new List<Job>();
             for (int i = 0; i < product_size; i++)
             {
-                jobs.Add(new Job(0, Int32.MaxValue));
+                jobs.Add(new Job(0, Int32.MaxValue,1));
             }
             jobs_in_product[p] = jobs;
             List<ResourceConstraint> resource_time_constraints = new List<ResourceConstraint>();
@@ -138,7 +140,8 @@ namespace MRCPSP.Tests
             steps_in_product[p].Add(s1);
             steps_in_product[p].Add(s2);
             steps_in_product[p].Add(s3);
-            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, steps_in_product, resource_time_constraints, "test2");
+            List<SetupTime> setup_time = new List<SetupTime>();
+            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, steps_in_product, resource_time_constraints,setup_time, "test2");
         }
 
 

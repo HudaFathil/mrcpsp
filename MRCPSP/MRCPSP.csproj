@@ -80,6 +80,7 @@
     <Compile Include="Algorithm\SolutionComparer.cs" />
     <Compile Include="CommonTypes\Job.cs" />
     <Compile Include="CommonTypes\ResourceConstraint.cs" />
+    <Compile Include="CommonTypes\SetupTime.cs" />
     <Compile Include="Database\MsSqlServer\DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -126,17 +127,16 @@
     <Compile Include="Gui\StatisticsViewer\StatisticsMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Lindo\Constrains\ConstrainNo1.cs" />
     <Compile Include="Lindo\Constrains\ConstrainNo11A.cs" />
     <Compile Include="Lindo\Constrains\ConstrainNo11B.cs" />
     <Compile Include="Lindo\Constrains\ConstrainNo14.cs" />
     <Compile Include="Lindo\Constrains\ConstrainNo10.cs" />
     <Compile Include="Lindo\Constrains\ConstrainNo17.cs" />
     <Compile Include="Lindo\Constrains\ConstrainNo18.cs" />
-    <Compile Include="Lindo\Constrains\ConstrainNo2.cs" />
-    <Compile Include="Lindo\Constrains\ConstrainNo3.cs" />
-    <Compile Include="Lindo\Constrains\ConstrainNo4.cs" />
     <Compile Include="Lindo\Constrains\ConstraintNo12.cs" />
+    <Compile Include="Lindo\Constrains\ConstraintNo13.cs" />
+    <Compile Include="Lindo\Constrains\ConstraintNo15.cs" />
+    <Compile Include="Lindo\Constrains\ConstraintNo16.cs" />
     <Compile Include="Lindo\Constrains\IConstrain.cs" />
     <Compile Include="Lindo\lindo.cs">
       <SubType>Code</SubType>

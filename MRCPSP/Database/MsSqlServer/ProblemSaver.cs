@@ -11,7 +11,7 @@ namespace MRCPSP.Database.MsSqlServer
     class ProblemSaver
     {
         // Families
-        private static void saveFamiliy(int problemID,Product p)
+        private static void saveFamily(int problemID,Product p)
         {
             String cmdStr = "INSERT INTO Families VALUES(" + problemID + "," + p.Id + ",'" + p.Name + "','')";
             Object [] values = {problemID , p.Id , p.Name};
@@ -22,7 +22,7 @@ namespace MRCPSP.Database.MsSqlServer
         // Resource  
         private static void saveResource(int problemID, Resource res)
         {
-            String cmdStr = "INSERT INTO Resources VALUES(" + problemID + "," + res.Id + ",'" + res.Name + "'," + 1 + "," + 1 + ")";
+            String cmdStr = "INSERT INTO Resources VALUES(" + problemID + "," + res.Id + ",'" + res.Name + "'," + res.Capacity + "," + res.ArriveTime + ")";
             Object[] values = { problemID, res.Id, res.Name, 1, 1 };
             DBHandler.Instance.DataSet.Tables["Resources"].Rows.Add(values);
             DBHandler.Instance.updateDatabase(cmdStr, "Resources");
@@ -73,8 +73,8 @@ namespace MRCPSP.Database.MsSqlServer
         // Jobs
         private static void saveJob(int problemID, Product p, Job j)
         {
-            String cmdStr = "INSERT INTO Jobs VALUES(" + problemID + "," + p.Id + "," + j.Id + "," + 1 + "," + j.ArriveTime + "," + j.LatestTermTime + ",1)";
-            Object [] values = {problemID , p.Id , j.Id , 1 , j.ArriveTime ,  j.LatestTermTime , 1};
+            String cmdStr = "INSERT INTO Jobs VALUES(" + problemID + "," + p.Id + "," + j.Id + "," + j.Units + "," + j.ArriveTime + "," + j.LatestTermTime + ","+j.Weight+")";
+            Object [] values = {problemID , p.Id , j.Id , j.Units , j.ArriveTime ,  j.LatestTermTime , j.Weight};
             DBHandler.Instance.DataSet.Tables["Jobs"].Rows.Add(values);
             DBHandler.Instance.updateDatabase(cmdStr, "Jobs");
         }
@@ -87,6 +87,16 @@ namespace MRCPSP.Database.MsSqlServer
             DBHandler.Instance.DataSet.Tables["ConstantDelays"].Rows.Add(values);
             DBHandler.Instance.updateDatabase(cmdStr, "ConstantDelays");
         }
+
+        //Resource setup time
+        private static void saveSetupTime(int problemID, SetupTime st)
+        {
+            String cmdStr = "INSERT INTO LoadingTimes VALUES(" + problemID + "," + st.Mode.BelongToStep.Id + "," + st.Resource.Id + "," + st.Mode.Id + "," + st.ResourceSetupTime+")";
+            Object[] values = { problemID, st.Mode.BelongToStep.Id , st.Resource.Id, st.Mode.Id ,st.ResourceSetupTime };
+            DBHandler.Instance.DataSet.Tables["LoadingTimes"].Rows.Add(values);
+            DBHandler.Instance.updateDatabase(cmdStr, "LoadingTimes");
+        }
+
 
 
 
@@ -104,7 +114,7 @@ namespace MRCPSP.Database.MsSqlServer
 
             foreach (Product f in pr.Products)
             {
-                saveFamiliy(problemID, f);
+                saveFamily(problemID, f);
                 foreach (Step s in pr.StepsInProduct[f])
                 {
                     saveStep(problemID, s, f);
@@ -121,6 +131,9 @@ namespace MRCPSP.Database.MsSqlServer
                     saveJob(problemID, f, j);
                 }
             }
+
+            foreach (SetupTime st in pr.SetupTimeList)
+                saveSetupTime(problemID,st);
             foreach (ResourceConstraint rc in pr.ResourceConstraints)
                 saveResourceConstraint(problemID,rc);
             foreach (MRCPSP.CommonTypes.Constraint c in pr.Constraints)

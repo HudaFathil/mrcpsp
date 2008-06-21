@@ -40,10 +40,10 @@ namespace MRCPSP.Lindo.Constrains
                     LindoContainer.Instance.Variables["T" + r + "," + taskList[t] + LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                     LindoContainer.Instance.Variables["T" + r + "," + taskList[t - 1] + LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
                     LindoContainer.Instance.Variables["Z" + r + "," + taskList[t]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
+                    LindoContainer.Instance.Variables["V" + r + "," + taskList[t]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
                     Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + r + "" + taskList[t] + LindoContainer.TrlType + " -T" + r + "," + taskList[t - 1] + LindoContainer.TrlType+" - Z"+r+","+taskList[t]);
 
                     Console.WriteLine(" >= " + mode.getTotalProcessTime(prob.Resources[r]));
-                    // should add here  Vrl
                     LindoContainer.Instance.RightHandSideValues.Add(mode.getTotalProcessTime(prob.Resources[r]));
                     LindoContainer.Instance.ConstraintsSenses.Add("G");
                     LindoContainer.Instance.ConstrainsCounter++;

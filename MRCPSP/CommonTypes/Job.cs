@@ -12,20 +12,27 @@ namespace MRCPSP.CommonTypes
         private int m_latest_tern_time;
         private static int id_counter = 0;
         private int m_id;
+        private int m_units = 1;
+        private int m_weight;
 
-        public Job(int arrive, int latest)
+        public Job(int arrive, int latest, int weight)
         {
             m_arrive_time = arrive;
             m_latest_tern_time = latest;
             m_id = id_counter;
+            m_weight = weight;
             id_counter++;
         }
-        public Job(int id , int arrive, int latest)
+
+        public Job(int id , int arrive, int latest , int weight)
         {
             m_arrive_time = arrive;
             m_latest_tern_time = latest;
+            m_weight = weight;
             m_id = id;
         }
+
+      
 
         public int ArriveTime
         {
@@ -54,5 +61,20 @@ namespace MRCPSP.CommonTypes
             }
         }
 
+        public int Units
+        {
+            get { return m_units; }
+            set { m_units = value; }
+        }
+
+        public int Weight
+        {
+            get { return m_weight; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            return ((Job)obj).Id == m_id;
+        }
     }
 }

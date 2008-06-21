@@ -45,12 +45,16 @@ namespace MRCPSP.Controllers
                         Dictionary<Product, List<Job>> jobs_in_product,
                         Dictionary<Product, List<Step>> steps_in_product,
                         List<ResourceConstraint> resource_time_constraints,
+                        List<SetupTime> setup_time,
                         String title)                                                         
         {
-            m_current_problem = new Problem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product,steps_in_product, resource_time_constraints,title);
-            ProblemSaver.saveProblem(m_current_problem);
+            m_current_problem = new Problem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product,steps_in_product, resource_time_constraints,setup_time, title);
+           
+        }
 
-            
+        public void saveProblemToDB()
+        {
+            ProblemSaver.saveProblem(m_current_problem);
         }
 
         public void loadProblemFromDataBase(string title)

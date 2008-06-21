@@ -190,9 +190,19 @@ namespace MRCPSP.Gui.ProblemCreator
                 jobs_in_product.Add((Product)all_products[p], new List<Job>());
                 for (int i = 0; i < p.Size; i++)
                 {
-                    jobs_in_product[(Product)all_products[p]].Add(new Job(Convert.ToInt32(p.JobsData[1, i].Value), Convert.ToInt32(p.JobsData[2, i].Value)));
+                    jobs_in_product[(Product)all_products[p]].Add(new Job(Convert.ToInt32(p.JobsData[1, i].Value), Convert.ToInt32(p.JobsData[2, i].Value), Convert.ToInt32(p.JobsData[3, i].Value)));
                 }
             }
+
+            foreach (Machine m in m_machine_list)
+            {
+                all_resources[m.ToString()] = new Resource(m.ToString(), m.BatchSize, m.ArriveTime);
+            }
+            foreach (Worker w in m_worker_list)
+            {
+                all_resources[w.ToString()] = new Resource(w.ToString(), w.ArriveTime);
+            }
+
 
             Dictionary<KeyValuePair<StepItem, int>, Mode> map_resource_constraints = new Dictionary<KeyValuePair<StepItem, int>, Mode>();
             foreach (StepItem s in m_step_list)
@@ -216,7 +226,7 @@ namespace MRCPSP.Gui.ProblemCreator
                             continue;
                         string name = data["Resource", i].Value.ToString();
                         if (!all_resources.Contains(name))
-                            all_resources[name] = new Resource(name);
+                            throw new EntryPointNotFoundException("found resource entry for non existing entry");
                         new_mode.operations.Add(new Operation(Convert.ToInt32(data["StartTime", i].Value),
                                                               Convert.ToInt32(data["EndTime", i].Value),
                                                               (Resource)all_resources[name]));
@@ -283,8 +293,14 @@ namespace MRCPSP.Gui.ProblemCreator
                     product_steps.Add(c.StepFrom);
                 if (!product_steps.Contains(c.StepTo))
                     product_steps.Add(c.StepTo);
-            } 
-            ApplicManager.Instance.loadProblem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product, steps_in_product, resource_constraints, title);
+            }
+            List<SetupTime> setup_time = new List<SetupTime>();
+            ApplicManager.Instance.loadProblem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product, steps_in_product, resource_constraints, setup_time, title);
+        }
+
+        public void saveCurrentProblem()
+        {
+            ApplicManager.Instance.saveProblemToDB();
         }
 
         internal bool isStepPrecedenceToNewStep(StepItem from_step, StepItem s)

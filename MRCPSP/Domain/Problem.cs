@@ -20,8 +20,41 @@ namespace MRCPSP.Domain
         private Dictionary<Product, List<Step>> m_steps_in_product;
         private Dictionary<Product, List<Job>> m_jobs_in_product;
         private List<ResourceConstraint> m_resource_time_constraints;
+        private List<SetupTime> m_setup_times;
         private String m_title = "N/A";
 
+        public Problem(List<Resource> resource_list,
+                        Dictionary<Step, List<Mode>> modes_in_step,
+                        List<Step> step_list,
+                        List<Constraint> all_constraints,
+                        List<Product> products_list,
+                        Dictionary<Product, List<Job>> jobs_in_product,
+                        Dictionary<Product, List<Step>> step_in_product,
+                        List<ResourceConstraint> resource_time_constraints,
+                        List<SetupTime> setup_times,
+                        String title)
+        {
+            m_title = title;
+            m_resource_list = resource_list;
+            m_setup_times = setup_times;
+            m_modes_in_step = modes_in_step;
+            m_resource_time_constraints = resource_time_constraints;
+            foreach (Step s in modes_in_step.Keys)
+            {
+                foreach (Mode m in modes_in_step[s])
+                {
+                    m.BelongToStep = s;
+                }
+            }
+            m_step_list = step_list;
+            m_all_constraints = all_constraints;
+            m_products_list = products_list;
+            m_jobs_in_product = jobs_in_product;
+            m_steps_in_product = step_in_product;
+
+        }
+
+        /*
         public Problem( List<Resource> resource_list,
                         Dictionary< Step, List < Mode > > modes_in_step,
                         List<Step> step_list,       
@@ -49,6 +82,11 @@ namespace MRCPSP.Domain
             m_jobs_in_product = jobs_in_product;
             m_steps_in_product = step_in_product;
   
+        }
+        */
+        public List<SetupTime> SetupTimeList
+        {
+            get { return m_setup_times; }
         }
 
         public int getTotalDistributionSize()
