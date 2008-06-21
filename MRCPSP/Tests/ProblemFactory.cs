@@ -59,7 +59,13 @@ namespace MRCPSP.Tests
             }
             jobs_in_product[p] = jobs;
             List<ResourceConstraint> resource_time_constraints = new List<ResourceConstraint>();
-            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, resource_time_constraints,"test1");
+
+            Dictionary<Product, List<Step>> steps_in_product = new Dictionary<Product, List<Step>>();
+            steps_in_product.Add(p, new List<Step>());
+            steps_in_product[p].Add(s1);
+            steps_in_product[p].Add(s2);
+
+            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, steps_in_product, resource_time_constraints,"test1");
         }
 
         public static Problem getIntermediateProblem()
@@ -126,7 +132,13 @@ namespace MRCPSP.Tests
             }
             jobs_in_product[p] = jobs;
             List<ResourceConstraint> resource_time_constraints = new List<ResourceConstraint>();
-            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, resource_time_constraints, "test2");
+
+            Dictionary<Product, List<Step>> steps_in_product = new Dictionary<Product, List<Step>>();
+            steps_in_product.Add(p, new List<Step>());
+            steps_in_product[p].Add(s1);
+            steps_in_product[p].Add(s2);
+            steps_in_product[p].Add(s3);
+            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, steps_in_product, resource_time_constraints, "test2");
         }
 
 

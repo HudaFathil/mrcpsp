@@ -270,7 +270,21 @@ namespace MRCPSP.Gui.ProblemCreator
                 step_list.Add(s);
             }
 
-            ApplicManager.Instance.loadProblem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product, resource_constraints, title);
+            Dictionary<Product, List<Step>> steps_in_product = new Dictionary<Product, List<Step>>();
+            for (int i = 0; i < products_list.Count(); i++)
+                steps_in_product.Add(products_list[i], new List<Step>());
+
+            foreach (Constraint c in all_constraints)
+            {
+                if (!steps_in_product.ContainsKey(c.Product))
+                    throw new EntryPointNotFoundException("found constraint for non existing product");
+                List<Step> product_steps = steps_in_product[c.Product];
+                if (!product_steps.Contains(c.StepFrom))
+                    product_steps.Add(c.StepFrom);
+                if (!product_steps.Contains(c.StepTo))
+                    product_steps.Add(c.StepTo);
+            } 
+            ApplicManager.Instance.loadProblem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product, steps_in_product, resource_constraints, title);
         }
 
         internal bool isStepPrecedenceToNewStep(StepItem from_step, StepItem s)

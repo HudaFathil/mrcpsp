@@ -15,7 +15,7 @@ using MRCPSP.Logger;
 
 using ZedGraph;
 
-//using ExpertChart;
+using MRCPSP.Gui.StatisticsViewer.Graph;
 
 namespace MRCPSP.Gui.StatisticsViewer
 {
@@ -44,7 +44,7 @@ namespace MRCPSP.Gui.StatisticsViewer
         private System.Windows.Forms.Label m_crossover_lbl;
         private System.Windows.Forms.Label label7;
         private Panel m_gantt_panel;
-        private TabControl tabControl1;
+        private TabControl m_main_tab;
         private TabPage tabPage1;
         private TabPage tabPage2;
         private TabPage tabPage3;
@@ -71,6 +71,10 @@ namespace MRCPSP.Gui.StatisticsViewer
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label m_mutation_lbl;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label m_population_size_lbl;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label m_generation_size_lbl;
+        private System.Windows.Forms.Label label15;
         private MRCPSP.Gui.StatisticsViewer.Graph.XYGraph m_generation_over_time_graph;
 
         public StatisticsMonitor()
@@ -78,12 +82,13 @@ namespace MRCPSP.Gui.StatisticsViewer
             InitializeComponent();
             bindingNavigatorPositionItem.TextChanged += new EventHandler(bindingNavigatorPositionItem_TextChanged);
             this.GotFocus += new EventHandler(StatisticsMonitor_GotFocus);
-            tabControl1.BackColor = Color.FromArgb(0, 0, 0, 0);
-
+            m_main_tab.BackColor = Color.FromArgb(0, 0, 0, 0);
         }
+   
 
         void StatisticsMonitor_GotFocus(object sender, EventArgs e)
         {
+            
             refreshMonitor();
         }
 
@@ -104,6 +109,12 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.m_population_size_lbl = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.m_generation_size_lbl = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.m_mutation_lbl = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.m_result_lbl = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.m_iteration_lbl = new System.Windows.Forms.Label();
@@ -120,7 +131,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_problem_title_lbl = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.m_main_tab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -135,12 +146,10 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.panel2 = new System.Windows.Forms.Panel();
             this.m_export_to_excel_button = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.m_mutation_lbl = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.m_bind_navigator)).BeginInit();
             this.m_bind_navigator.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.m_main_tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -173,7 +182,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_bind_navigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.m_bind_navigator.Name = "m_bind_navigator";
             this.m_bind_navigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.m_bind_navigator.Size = new System.Drawing.Size(923, 25);
+            this.m_bind_navigator.Size = new System.Drawing.Size(959, 25);
             this.m_bind_navigator.TabIndex = 2;
             this.m_bind_navigator.Text = "bindingNavigator1";
             // 
@@ -272,6 +281,10 @@ namespace MRCPSP.Gui.StatisticsViewer
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.m_population_size_lbl);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.m_generation_size_lbl);
+            this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.m_mutation_lbl);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.m_result_lbl);
@@ -292,16 +305,76 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(34, 77);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(501, 255);
+            this.groupBox1.Size = new System.Drawing.Size(501, 345);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
+            // 
+            // m_population_size_lbl
+            // 
+            this.m_population_size_lbl.AutoSize = true;
+            this.m_population_size_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.m_population_size_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.m_population_size_lbl.Location = new System.Drawing.Point(185, 39);
+            this.m_population_size_lbl.Name = "m_population_size_lbl";
+            this.m_population_size_lbl.Size = new System.Drawing.Size(0, 20);
+            this.m_population_size_lbl.TabIndex = 21;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label13.Location = new System.Drawing.Point(7, 39);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(123, 20);
+            this.label13.TabIndex = 20;
+            this.label13.Text = "Population Size:";
+            // 
+            // m_generation_size_lbl
+            // 
+            this.m_generation_size_lbl.AutoSize = true;
+            this.m_generation_size_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.m_generation_size_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.m_generation_size_lbl.Location = new System.Drawing.Point(185, 62);
+            this.m_generation_size_lbl.Name = "m_generation_size_lbl";
+            this.m_generation_size_lbl.Size = new System.Drawing.Size(0, 20);
+            this.m_generation_size_lbl.TabIndex = 23;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label15.Location = new System.Drawing.Point(7, 59);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(156, 20);
+            this.label15.TabIndex = 22;
+            this.label15.Text = "Num of Generations:";
+            // 
+            // m_mutation_lbl
+            // 
+            this.m_mutation_lbl.AutoSize = true;
+            this.m_mutation_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.m_mutation_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.m_mutation_lbl.Location = new System.Drawing.Point(185, 153);
+            this.m_mutation_lbl.Name = "m_mutation_lbl";
+            this.m_mutation_lbl.Size = new System.Drawing.Size(0, 20);
+            this.m_mutation_lbl.TabIndex = 19;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label12.Location = new System.Drawing.Point(8, 153);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(134, 20);
+            this.label12.TabIndex = 18;
+            this.label12.Text = "Mutation Percent:";
             // 
             // m_result_lbl
             // 
             this.m_result_lbl.AutoSize = true;
             this.m_result_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_result_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_result_lbl.Location = new System.Drawing.Point(149, 216);
+            this.m_result_lbl.Location = new System.Drawing.Point(184, 258);
             this.m_result_lbl.Name = "m_result_lbl";
             this.m_result_lbl.Size = new System.Drawing.Size(0, 20);
             this.m_result_lbl.TabIndex = 17;
@@ -310,7 +383,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label8.Location = new System.Drawing.Point(7, 216);
+            this.label8.Location = new System.Drawing.Point(7, 258);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 20);
             this.label8.TabIndex = 16;
@@ -321,7 +394,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_iteration_lbl.AutoSize = true;
             this.m_iteration_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_iteration_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_iteration_lbl.Location = new System.Drawing.Point(149, 135);
+            this.m_iteration_lbl.Location = new System.Drawing.Point(184, 177);
             this.m_iteration_lbl.Name = "m_iteration_lbl";
             this.m_iteration_lbl.Size = new System.Drawing.Size(0, 20);
             this.m_iteration_lbl.TabIndex = 15;
@@ -330,7 +403,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label11.Location = new System.Drawing.Point(7, 135);
+            this.label11.Location = new System.Drawing.Point(7, 177);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(80, 20);
             this.label11.TabIndex = 14;
@@ -341,7 +414,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_finish_time_lbl.AutoSize = true;
             this.m_finish_time_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_finish_time_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_finish_time_lbl.Location = new System.Drawing.Point(149, 181);
+            this.m_finish_time_lbl.Location = new System.Drawing.Point(184, 223);
             this.m_finish_time_lbl.Name = "m_finish_time_lbl";
             this.m_finish_time_lbl.Size = new System.Drawing.Size(0, 20);
             this.m_finish_time_lbl.TabIndex = 13;
@@ -350,7 +423,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label9.Location = new System.Drawing.Point(7, 181);
+            this.label9.Location = new System.Drawing.Point(7, 223);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(97, 20);
             this.label9.TabIndex = 12;
@@ -361,7 +434,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_start_time_lbl.AutoSize = true;
             this.m_start_time_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_start_time_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_start_time_lbl.Location = new System.Drawing.Point(149, 158);
+            this.m_start_time_lbl.Location = new System.Drawing.Point(184, 200);
             this.m_start_time_lbl.Name = "m_start_time_lbl";
             this.m_start_time_lbl.Size = new System.Drawing.Size(0, 20);
             this.m_start_time_lbl.TabIndex = 11;
@@ -370,7 +443,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label6.Location = new System.Drawing.Point(7, 158);
+            this.label6.Location = new System.Drawing.Point(7, 200);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 20);
             this.label6.TabIndex = 10;
@@ -381,7 +454,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_selection_lbl.AutoSize = true;
             this.m_selection_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_selection_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_selection_lbl.Location = new System.Drawing.Point(149, 87);
+            this.m_selection_lbl.Location = new System.Drawing.Point(184, 129);
             this.m_selection_lbl.Name = "m_selection_lbl";
             this.m_selection_lbl.Size = new System.Drawing.Size(0, 20);
             this.m_selection_lbl.TabIndex = 9;
@@ -391,7 +464,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_first_gen_lbl.AutoSize = true;
             this.m_first_gen_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_first_gen_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_first_gen_lbl.Location = new System.Drawing.Point(149, 40);
+            this.m_first_gen_lbl.Location = new System.Drawing.Point(184, 82);
             this.m_first_gen_lbl.Name = "m_first_gen_lbl";
             this.m_first_gen_lbl.Size = new System.Drawing.Size(0, 20);
             this.m_first_gen_lbl.TabIndex = 3;
@@ -400,7 +473,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label5.Location = new System.Drawing.Point(6, 87);
+            this.label5.Location = new System.Drawing.Point(7, 129);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(137, 20);
             this.label5.TabIndex = 8;
@@ -410,7 +483,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label3.Location = new System.Drawing.Point(7, 40);
+            this.label3.Location = new System.Drawing.Point(8, 82);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(123, 20);
             this.label3.TabIndex = 2;
@@ -421,7 +494,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_crossover_lbl.AutoSize = true;
             this.m_crossover_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_crossover_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_crossover_lbl.Location = new System.Drawing.Point(149, 63);
+            this.m_crossover_lbl.Location = new System.Drawing.Point(184, 105);
             this.m_crossover_lbl.Name = "m_crossover_lbl";
             this.m_crossover_lbl.Size = new System.Drawing.Size(0, 20);
             this.m_crossover_lbl.TabIndex = 7;
@@ -431,7 +504,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_problem_title_lbl.AutoSize = true;
             this.m_problem_title_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_problem_title_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_problem_title_lbl.Location = new System.Drawing.Point(149, 16);
+            this.m_problem_title_lbl.Location = new System.Drawing.Point(184, 16);
             this.m_problem_title_lbl.Name = "m_problem_title_lbl";
             this.m_problem_title_lbl.Size = new System.Drawing.Size(0, 20);
             this.m_problem_title_lbl.TabIndex = 1;
@@ -440,7 +513,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label7.Location = new System.Drawing.Point(7, 63);
+            this.label7.Location = new System.Drawing.Point(8, 105);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(142, 20);
             this.label7.TabIndex = 6;
@@ -456,19 +529,19 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.label2.TabIndex = 0;
             this.label2.Text = "Problem Title:";
             // 
-            // tabControl1
+            // m_main_tab
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(923, 332);
-            this.tabControl1.TabIndex = 9;
+            this.m_main_tab.Controls.Add(this.tabPage1);
+            this.m_main_tab.Controls.Add(this.tabPage2);
+            this.m_main_tab.Controls.Add(this.tabPage3);
+            this.m_main_tab.Controls.Add(this.tabPage4);
+            this.m_main_tab.Controls.Add(this.tabPage5);
+            this.m_main_tab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.m_main_tab.Location = new System.Drawing.Point(0, 0);
+            this.m_main_tab.Name = "m_main_tab";
+            this.m_main_tab.SelectedIndex = 0;
+            this.m_main_tab.Size = new System.Drawing.Size(959, 454);
+            this.m_main_tab.TabIndex = 9;
             // 
             // tabPage1
             // 
@@ -480,7 +553,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(915, 306);
+            this.tabPage1.Size = new System.Drawing.Size(951, 428);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Overview";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -502,7 +575,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(915, 306);
+            this.tabPage2.Size = new System.Drawing.Size(951, 428);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Resource to Operation Usage";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -512,7 +585,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_gantt_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.m_gantt_panel.Location = new System.Drawing.Point(3, 3);
             this.m_gantt_panel.Name = "m_gantt_panel";
-            this.m_gantt_panel.Size = new System.Drawing.Size(909, 300);
+            this.m_gantt_panel.Size = new System.Drawing.Size(945, 422);
             this.m_gantt_panel.TabIndex = 7;
             // 
             // tabPage3
@@ -521,7 +594,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(915, 306);
+            this.tabPage3.Size = new System.Drawing.Size(951, 428);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Results Over Generation";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -531,7 +604,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_generation_over_time_graph.Dock = System.Windows.Forms.DockStyle.Fill;
             this.m_generation_over_time_graph.Location = new System.Drawing.Point(3, 3);
             this.m_generation_over_time_graph.Name = "m_generation_over_time_graph";
-            this.m_generation_over_time_graph.Size = new System.Drawing.Size(909, 300);
+            this.m_generation_over_time_graph.Size = new System.Drawing.Size(945, 422);
             this.m_generation_over_time_graph.TabIndex = 3;
             this.m_generation_over_time_graph.Title = "";
             this.m_generation_over_time_graph.XAxis = "";
@@ -543,7 +616,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(915, 306);
+            this.tabPage4.Size = new System.Drawing.Size(951, 428);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Resources Workload";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -553,7 +626,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_resources_pie_chart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.m_resources_pie_chart.Location = new System.Drawing.Point(3, 3);
             this.m_resources_pie_chart.Name = "m_resources_pie_chart";
-            this.m_resources_pie_chart.Size = new System.Drawing.Size(909, 300);
+            this.m_resources_pie_chart.Size = new System.Drawing.Size(945, 422);
             this.m_resources_pie_chart.TabIndex = 7;
             this.m_resources_pie_chart.Title = "";
             // 
@@ -563,7 +636,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(915, 306);
+            this.tabPage5.Size = new System.Drawing.Size(951, 428);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Solutions Range in Generations";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -573,7 +646,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_min_max_graph.Dock = System.Windows.Forms.DockStyle.Fill;
             this.m_min_max_graph.Location = new System.Drawing.Point(3, 3);
             this.m_min_max_graph.Name = "m_min_max_graph";
-            this.m_min_max_graph.Size = new System.Drawing.Size(909, 300);
+            this.m_min_max_graph.Size = new System.Drawing.Size(945, 422);
             this.m_min_max_graph.TabIndex = 0;
             this.m_min_max_graph.Title = "";
             this.m_min_max_graph.XAxis = "";
@@ -584,9 +657,9 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.m_export_to_excel_button);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 357);
+            this.panel2.Location = new System.Drawing.Point(0, 479);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(923, 94);
+            this.panel2.Size = new System.Drawing.Size(959, 94);
             this.panel2.TabIndex = 10;
             // 
             // m_export_to_excel_button
@@ -603,36 +676,16 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.tabControl1);
+            this.panel1.Controls.Add(this.m_main_tab);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(923, 332);
+            this.panel1.Size = new System.Drawing.Size(959, 454);
             this.panel1.TabIndex = 11;
-            // 
-            // m_mutation_lbl
-            // 
-            this.m_mutation_lbl.AutoSize = true;
-            this.m_mutation_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.m_mutation_lbl.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_mutation_lbl.Location = new System.Drawing.Point(150, 111);
-            this.m_mutation_lbl.Name = "m_mutation_lbl";
-            this.m_mutation_lbl.Size = new System.Drawing.Size(0, 20);
-            this.m_mutation_lbl.TabIndex = 19;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label12.Location = new System.Drawing.Point(7, 111);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(134, 20);
-            this.label12.TabIndex = 18;
-            this.label12.Text = "Mutation Percent:";
             // 
             // StatisticsMonitor
             // 
-            this.ClientSize = new System.Drawing.Size(923, 451);
+            this.ClientSize = new System.Drawing.Size(959, 573);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.m_bind_navigator);
@@ -643,7 +696,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_bind_navigator.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.m_main_tab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -687,6 +740,8 @@ namespace MRCPSP.Gui.StatisticsViewer
         private void updateGeneralParams()
         {
             m_problem_title_lbl.Text = m_current_summary.Title;
+            m_generation_size_lbl.Text = m_current_summary.NumOfGeneration;
+            m_population_size_lbl.Text = m_current_summary.SizeOfPopulation;
             m_first_gen_lbl.Text = m_current_summary.GeneratePopulationType;
             m_selection_lbl.Text = m_current_summary.SelectionType;
             m_crossover_lbl.Text = m_current_summary.CrossoverType;
@@ -738,7 +793,8 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_resources_gantt.TabIndex = 7;
             this.m_resources_gantt.Title = "";
             this.m_gantt_panel.Controls.Add(this.m_resources_gantt);
-          
+            m_resources_gantt.Dock = DockStyle.Fill;
+
             m_resources_gantt.setGanttData(m_current_summary);            
             m_resources_gantt.Refresh();
             m_resources_gantt.setGanttData2(m_current_summary);          

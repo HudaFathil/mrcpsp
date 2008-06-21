@@ -16,6 +16,8 @@ namespace MRCPSP.Domain
         private String m_selection_type;
         private String m_crossover_type;
         private String m_generate_population_type;
+        private String m_size_of_population;
+        private String m_num_of_generation;
         private String m_start_time;
         private String m_finish_time;
         private String m_mutation_percent;
@@ -94,7 +96,24 @@ namespace MRCPSP.Domain
                 m_generate_population_type = value;
             }
         }
+       
+        public String SizeOfPopulation
+        {
+            get { return m_size_of_population; }
+            set
+            {
+                m_size_of_population = value;
+            }
+        }
 
+        public String NumOfGeneration
+        {
+            get { return m_num_of_generation; }
+            set
+            {
+                m_num_of_generation = value;
+            }
+        }
         public String StartTime          
         {
             get { return m_start_time; }

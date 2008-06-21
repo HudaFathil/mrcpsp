@@ -58,6 +58,8 @@ namespace MRCPSP.Controllers
                 string finish_time = DateTime.Now.ToString();
                 best_result.FinishTime = finish_time;
                 best_result.MutationPercent = mutation_percentage.ToString() + " %";
+                best_result.SizeOfPopulation = population_size.ToString();
+                best_result.NumOfGeneration = num_of_generation.ToString();
                 best_result.NumberOfIterations = m_num_of_loops;
             }
             LoggerFactory.getSimpleLogger().info("ProblemSolverManager::run() finished");
