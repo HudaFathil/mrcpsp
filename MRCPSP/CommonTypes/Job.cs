@@ -24,6 +24,15 @@ namespace MRCPSP.CommonTypes
             id_counter++;
         }
 
+        public Job(int id, int arrive, int latest, int weight, int units)
+        {
+            m_arrive_time = arrive;
+            m_latest_tern_time = latest;
+            m_weight = weight;
+            m_id = id;
+            m_units = units;
+        }
+
         public Job(int id , int arrive, int latest , int weight)
         {
             m_arrive_time = arrive;

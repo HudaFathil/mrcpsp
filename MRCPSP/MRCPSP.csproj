@@ -98,11 +98,14 @@
     <Compile Include="Gui\DBManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gui\ProblemCreator\ConstraintProperties.cs">
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ConstraintProperties.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gui\ProblemCreator\ResourceObserver.cs" />
-    <Compile Include="Gui\ProblemCreator\ResourceTimeConstraint.cs">
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ResourceObserver.cs" />
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ResourceTimeConstraint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\SetupTimeWidget.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gui\ProcessingForm.cs">
@@ -164,35 +167,35 @@
     <Compile Include="Gui\LoggerManagment\LoggerFrame.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gui\ProblemCreator\CanvasEditor.cs">
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\CanvasEditor.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Gui\ProblemCreator\ConstraintFromState.cs" />
-    <Compile Include="Gui\ProblemCreator\ConstraintItem.cs">
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ConstraintFromState.cs" />
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ConstraintItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Gui\ProblemCreator\ConstraintToState.cs" />
-    <Compile Include="Gui\ProblemCreator\EraserState.cs" />
-    <Compile Include="Gui\ProblemCreator\Machine.cs">
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ConstraintToState.cs" />
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\EraserState.cs" />
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\Machine.cs">
     </Compile>
-    <Compile Include="Gui\ProblemCreator\ModesMonitor.cs">
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ModesMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gui\ProblemCreator\PointerState.cs" />
-    <Compile Include="Gui\ProblemCreator\ProblemCreatorMonitor.cs">
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\PointerState.cs" />
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ProblemCreatorMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gui\ProblemCreator\ProblemCreatorState.cs" />
-    <Compile Include="Gui\ProblemCreator\ProductItem.cs" />
-    <Compile Include="Gui\ProblemCreator\ResourceBase.cs">
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ProblemCreatorState.cs" />
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ProductItem.cs" />
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ResourceBase.cs">
     </Compile>
-    <Compile Include="Gui\ProblemCreator\StateBase.cs">
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\StateBase.cs">
     </Compile>
-    <Compile Include="Gui\ProblemCreator\StepItem.cs">
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\StepItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Gui\ProblemCreator\StepState.cs" />
-    <Compile Include="Gui\ProblemCreator\Worker.cs">
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\StepState.cs" />
+    <Compile Include="Gui\StatisticsViewer\ProblemCreator\Worker.cs">
     </Compile>
     <Compile Include="Gui\ProblemSolver\ProblemSolverMonitor.cs">
       <SubType>Form</SubType>
@@ -268,13 +271,16 @@
       <DependentUpon>LoggerFrame.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gui\ProblemCreator\ConstraintProperties.resx">
+    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\ConstraintProperties.resx">
       <DependentUpon>ConstraintProperties.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gui\ProblemCreator\ResourceTimeConstraint.resx">
+    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\ResourceTimeConstraint.resx">
       <DependentUpon>ResourceTimeConstraint.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\SetupTimeWidget.resx">
+      <DependentUpon>SetupTimeWidget.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\ProcessingForm.resx">
       <DependentUpon>ProcessingForm.cs</DependentUpon>
@@ -292,23 +298,23 @@
       <DependentUpon>XYGraph.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gui\ProblemCreator\CanvasEditor.resx">
+    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\CanvasEditor.resx">
       <DependentUpon>CanvasEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gui\ProblemCreator\ModesMonitor.resx">
+    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\ModesMonitor.resx">
       <DependentUpon>ModesMonitor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gui\ProblemCreator\ProblemCreatorMonitor.resx">
+    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\ProblemCreatorMonitor.resx">
       <DependentUpon>ProblemCreatorMonitor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gui\ProblemCreator\ResourceBase.resx">
+    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\ResourceBase.resx">
       <DependentUpon>ResourceBase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gui\ProblemCreator\StepItem.resx">
+    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\StepItem.resx">
       <DependentUpon>StepItem.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

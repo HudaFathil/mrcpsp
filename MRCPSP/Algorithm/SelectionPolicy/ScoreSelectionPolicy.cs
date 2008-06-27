@@ -8,7 +8,7 @@ namespace MRCPSP.Algorithm.SelectionPolicy
     class ScoreSelectionPolicy : SelectionPolicyBase
     {
 
-        public ScoreSelectionPolicy() : base()
+        public ScoreSelectionPolicy() : base(1.0)
         {
         }
 

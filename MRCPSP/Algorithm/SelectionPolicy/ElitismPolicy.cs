@@ -5,6 +5,7 @@ using System.Text;
 
 namespace MRCPSP.Algorithm.SelectionPolicy
 {
+    /*
     class ElitismPolicy : SelectionPolicyBase
     {
 
@@ -35,5 +36,5 @@ namespace MRCPSP.Algorithm.SelectionPolicy
             return "Elitism";
         }
     }
-   
+   */
 }

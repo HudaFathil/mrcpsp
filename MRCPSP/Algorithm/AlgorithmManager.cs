@@ -34,7 +34,7 @@ namespace MRCPSP.Algorithm
             m_generate_method_policy = new GenerateRandomPopulation();
             m_fitness_function = new MinimumMakeSpanPolicy();
             m_crossOverFunction = new OnePointCrossOver();
-            m_selection_policy = new RankSelectionPolicy();
+            m_selection_policy = new RankSelectionPolicy(0.1);
         }
 
         public ResultSummary run(int population_size, int num_of_generation, double mutate_percent)

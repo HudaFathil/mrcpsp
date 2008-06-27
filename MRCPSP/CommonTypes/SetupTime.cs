@@ -33,5 +33,9 @@ namespace MRCPSP.CommonTypes
             get { return m_setupTime; }
         }
 
+        public override string ToString()
+        {
+            return m_mode.BelongToStep + " " + m_mode.ToString() + " " + m_resource.ToString() + " " + m_setupTime;
+        }
     }
 }

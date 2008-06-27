@@ -36,9 +36,10 @@ namespace MRCPSP.Controllers
                 number_of_problems = m_problems_names.Count();
             m_background_worker.ReportProgress(0);
 
-            for (int j = 0; j < m_problems_names.Count; j++)
+            for (int j = 0; j < number_of_problems; j++)
             {
-                ApplicManager.Instance.loadProblemFromDataBase(m_problems_names[j]);
+                if (m_solvingFromList)
+                    ApplicManager.Instance.loadProblemFromDataBase(m_problems_names[j]);
                 List<ResultSummary> results_for_problem = new List<ResultSummary>();
                 string start_time = DateTime.Now.ToString();
                 for (int i = 0; i < m_num_of_loops; i++)

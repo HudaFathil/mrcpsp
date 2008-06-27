@@ -8,16 +8,18 @@ namespace MRCPSP.Algorithm.SelectionPolicy
     abstract class SelectionPolicyBase
     {
         protected Random m_rand;
-        public SelectionPolicyBase() {
+        protected double m_elitisem_ratio;
+
+        public SelectionPolicyBase(double elitisem) {
             m_rand = new Random();
+            m_elitisem_ratio = elitisem;
         }
 
         public abstract List<Solution> keepOnlySuitedSolutions(List<Solution> parent_solution, List<Solution> child_solutions, int populationSize);
 
-        public List<Solution> getListFromMapping(Dictionary<KeyValuePair<int, int>, Solution> mapping, int all_blocks_sizes, int populationSize)
-        {
-            List<Solution> return_list = new List<Solution>();
-            int found_indexes = 0;
+        public List<Solution> getListFromMapping(Dictionary<KeyValuePair<int, int>, Solution> mapping, int all_blocks_sizes, int populationSize,List<Solution> return_list)
+        {    
+            int found_indexes = return_list.Count;
             while (found_indexes < populationSize)
             {
                 int indx = m_rand.Next(all_blocks_sizes);

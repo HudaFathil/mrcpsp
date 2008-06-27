@@ -10,7 +10,7 @@ namespace MRCPSP.Algorithm.SelectionPolicy
 
      
 
-        public RouletteWheelPolicy(int percent) : base()
+        public RouletteWheelPolicy(double elitisem) : base(elitisem)
         {
             
         }
@@ -37,11 +37,10 @@ namespace MRCPSP.Algorithm.SelectionPolicy
                     value_of_worst = (int)parent_solutions[i].scoreFromLindo;
 
                 }
-                if (foundWorstNotZero)
+                if (foundWorstNotZero && parent_solutions[i].scoreFromLindo != 0)
                 {
-                    int block_ends = last_index + ((value_of_worst / (int)parent_solutions[i].scoreFromLindo) * sizeof_worst_block);
+                    int block_ends = last_index + (int)((double)value_of_worst / (parent_solutions[i].scoreFromLindo) * sizeof_worst_block);
                     mapping[new KeyValuePair<int, int>(last_index, block_ends)] = parent_solutions[i];
-                    all_blocks_sizes = block_ends;
                     last_index = block_ends;
                 } else 
                 {
@@ -50,8 +49,19 @@ namespace MRCPSP.Algorithm.SelectionPolicy
                 }
               
             }
-
-            return getListFromMapping(mapping, all_blocks_sizes, populationSize);
+            all_blocks_sizes = last_index;
+            List<Solution> elitisem_solutions = new List<Solution>();
+            int num_to_keep_in_parent = (int)(populationSize * m_elitisem_ratio);
+            if (num_to_keep_in_parent % 2 == 1)
+                num_to_keep_in_parent++;
+            if (num_to_keep_in_parent == 0)
+                num_to_keep_in_parent = 2;
+            for (int i = parent_solutions.Count - 1; i >= 0 && num_to_keep_in_parent > 0; i--)
+            {
+                num_to_keep_in_parent--;
+                elitisem_solutions.Add(parent_solutions[i]);
+            }
+            return getListFromMapping(mapping, all_blocks_sizes, populationSize, elitisem_solutions);
         }
     
     }
