@@ -4,21 +4,30 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace MRCPSP.Logger
+namespace MRCPSP.Log
 {
-    class Logger : ILogger
+    class Logger 
     {
 
         private static Logger m_instance;
-        private String m_logFileName;
+        private static String LOG_FILE_NAME  = "../../../mrcpsp.log";
+        private StreamWriter m_outLog;
         private static LOGGER_STATE m_state; 
 
         private Logger()
         {
             m_instance = null;
             m_state = LOGGER_STATE.DEBUG;
+            m_outLog = new StreamWriter(LOG_FILE_NAME, false);
         }
 
+        public enum LOGGER_STATE
+        {
+            DEBUG = 0,
+            INFO,
+            WARN,
+            ERROR
+        };
        
 
         public static Logger Instance
@@ -33,7 +42,7 @@ namespace MRCPSP.Logger
             }
         }
 
-        public override LOGGER_STATE State 
+        public  LOGGER_STATE State 
         { 
             get { return m_state;}
             set { 
@@ -41,49 +50,39 @@ namespace MRCPSP.Logger
             } 
         }
 
-        public override string LogFile 
-        {
-            get { return m_logFileName; }
-            set { m_logFileName = value; }
-        }
+       
 
         private void writeToLog(String message)
         {
-            StreamWriter outLog = null;
-            if (File.Exists(m_logFileName))
-            {
-                outLog = new StreamWriter(m_logFileName, true);
-            }
+            
             DateTime time = DateTime.Now;
-            if (outLog == null)
+            if (m_outLog == null)
                 Console.WriteLine("{0:G} " + message, time);
             else
             {
-                outLog.WriteLine("{0:G} " + message, time);
-                outLog.Flush();
-                outLog.Close();
+                m_outLog.WriteLine("{0:G} " + message, time);
             }
         }
 
-        public override void debug(String message)
+        public  void debug(String message)
         {
             if (m_state <= LOGGER_STATE.DEBUG)
                 writeToLog("DEBUG: " + message);
         }
 
-        public override void info(String message)
+        public  void info(String message)
         {
             if (m_state <= LOGGER_STATE.INFO)
                 writeToLog("INFO: " + message);
         }
 
-        public override void warn(String message)
+        public  void warn(String message)
         {
             if (m_state <= LOGGER_STATE.WARN)
                 writeToLog("WARNING: " + message);
         }
 
-        public override void error(String message)
+        public  void error(String message)
         {
             if (m_state <= LOGGER_STATE.ERROR)
                 writeToLog("ERROR: " + message);
