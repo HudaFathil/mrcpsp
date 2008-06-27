@@ -213,7 +213,6 @@
     <Compile Include="Util\CommonFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Database\MsSqlServer\DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
@@ -249,9 +248,9 @@
     <Content Include="Gui\pics\new_arrow_pic.bmp" />
     <Content Include="Gui\pics\new_problem.bmp" />
     <Content Include="Gui\pics\new_step_pic.bmp" />
+    <Content Include="nunit.framework.dll" />
     <None Include="Gui\pics\step_not_animated.gif" />
     <None Include="Gui\pics\step_animated.gif" />
-    <Content Include="nunit.framework.dll" />
     <None Include="Gui\pics\play.bmp" />
     <None Include="Gui\pics\stop.bmp" />
     <None Include="Gui\pics\selectarrow.bmp" />
