@@ -5,7 +5,7 @@ using System.Text;
 
 using MRCPSP.Controllers;
 using MRCPSP.CommonTypes;
-using MRCPSP.Logger;
+using MRCPSP.Log;
 using MRCPSP.Lindo;
 using MRCPSP.Algorithm.Fitness;
 using MRCPSP.Algorithm.CrossOver;
@@ -41,9 +41,9 @@ namespace MRCPSP.Algorithm
         {
             createNewResultSummary(population_size, num_of_generation, mutate_percent);
 
-            LoggerFactory.getSimpleLogger().info("AlgorithmManager::run() activated");
+            Logger.Instance.info("AlgorithmManager::run() activated");
             if (ApplicManager.Instance.CurrentProblem == null) {
-                LoggerFactory.getSimpleLogger().error("AlgorithmManager::run() problem is not loaded to the system");
+                Logger.Instance.error("AlgorithmManager::run() problem is not loaded to the system");
                throw (new NullReferenceException("Problem is not loaded to the system"));
             }
 
@@ -91,7 +91,7 @@ namespace MRCPSP.Algorithm
                 m_result_summary.MinMaxPerGeneration.Add(getMinMaxForGeneration(m_solutions));
                 m_result_summary.BestSolutions.Add(m_solutions[0]);
             }
-            Logger.LoggerFactory.getSimpleLogger().debug(forDebugging);
+            Logger.Instance.debug(forDebugging);
         }
 
         private KeyValuePair<double, double> getMinMaxForGeneration(List<Solution> sol_list)

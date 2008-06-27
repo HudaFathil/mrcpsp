@@ -217,7 +217,6 @@ namespace MRCPSP.Database.MsSqlServer
                     }
                 }
                 modesInStep.Add(s, mList);
-                Console.WriteLine("Got Step  'Step " + s.Id + "' from database");
             }
 
             foreach (Resource r in rList)

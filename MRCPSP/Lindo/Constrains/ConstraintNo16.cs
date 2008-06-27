@@ -6,6 +6,7 @@ using MRCPSP.CommonTypes;
 using MRCPSP.Algorithm;
 using MRCPSP.Domain;
 using MRCPSP.Exceptions;
+using MRCPSP.Log;
 
 namespace MRCPSP.Lindo.Constrains
 {
@@ -36,7 +37,7 @@ namespace MRCPSP.Lindo.Constrains
 
                      }
                      LindoContainer.Instance.Variables["T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1);
-                     Console.WriteLine("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id + LindoContainer.TjfiType + " > " + ajf);
+                     Logger.Instance.debug("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id + LindoContainer.TjfiType + " > " + ajf);
                      LindoContainer.Instance.RightHandSideValues.Add(ajf);
                      LindoContainer.Instance.ConstraintsSenses.Add("G");
                      LindoContainer.Instance.ConstrainsCounter++;

@@ -11,7 +11,7 @@ using System.Collections;
 using MRCPSP.CommonTypes;
 using MRCPSP.Controllers;
 using MRCPSP.Domain;
-using MRCPSP.Logger;
+using MRCPSP.Log;
 
 using ZedGraph;
 
@@ -733,7 +733,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             }
             catch (Exception)
             {
-                LoggerFactory.getSimpleLogger().error("StatisticsMonitor:: failed to generate report");
+                Logger.Instance.error("StatisticsMonitor:: failed to generate report");
             }
         }
 
@@ -823,7 +823,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             }
             catch (Exception)
             {
-                LoggerFactory.getSimpleLogger().error("StatisticsMonitor:: failed to generate report");
+                Logger.Instance.error("StatisticsMonitor:: failed to generate report");
             }
         }
 
@@ -838,7 +838,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             }
             catch (Exception)
             {
-                LoggerFactory.getSimpleLogger().error("StatisticsMonitor:: failed to generate report");
+                Logger.Instance.error("StatisticsMonitor:: failed to generate report");
             }
         }
 
@@ -852,7 +852,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             }
             catch (Exception)
             {
-                LoggerFactory.getSimpleLogger().error("StatisticsMonitor:: failed to generate report");
+                Logger.Instance.error("StatisticsMonitor:: failed to generate report");
             }
         }
 
@@ -866,7 +866,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             }
             catch (Exception)
             {
-                LoggerFactory.getSimpleLogger().error("StatisticsMonitor:: failed to generate report");
+                Logger.Instance.error("StatisticsMonitor:: failed to generate report");
             }
         }
 

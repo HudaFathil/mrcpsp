@@ -7,6 +7,7 @@ using MRCPSP.Domain;
 using MRCPSP.Algorithm;
 using MRCPSP.Controllers;
 using MRCPSP.Exceptions;
+using MRCPSP.Log;
 
 namespace MRCPSP.Lindo.Constrains
 {
@@ -27,7 +28,7 @@ namespace MRCPSP.Lindo.Constrains
                     continue;
 
                 LindoContainer.Instance.Variables["T" + r + "," + taskList[0]+LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                Console.WriteLine("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + r + "," + taskList[0] +LindoContainer.TrlType+ " >= 0");
+                Logger.Instance.debug("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + r + "," + taskList[0] +LindoContainer.TrlType+ " >= 0");
                 // should add here Zr0 , Vr0
                 LindoContainer.Instance.RightHandSideValues.Add(0.0);
                 LindoContainer.Instance.ConstraintsSenses.Add("G");
@@ -41,9 +42,7 @@ namespace MRCPSP.Lindo.Constrains
                     LindoContainer.Instance.Variables["T" + r + "," + taskList[t - 1] + LindoContainer.TrlType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
                     LindoContainer.Instance.Variables["Z" + r + "," + taskList[t]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
                     LindoContainer.Instance.Variables["V" + r + "," + taskList[t]].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
-                    Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + r + "" + taskList[t] + LindoContainer.TrlType + " -T" + r + "," + taskList[t - 1] + LindoContainer.TrlType+" - Z"+r+","+taskList[t]);
-
-                    Console.WriteLine(" >= " + mode.getTotalProcessTime(prob.Resources[r]));
+                    Logger.Instance.debug("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + r + "" + taskList[t] + LindoContainer.TrlType + " -T" + r + "," + taskList[t - 1] + LindoContainer.TrlType+" - Z"+r+","+taskList[t]+" >= " + mode.getTotalProcessTime(prob.Resources[r]));
                     LindoContainer.Instance.RightHandSideValues.Add(mode.getTotalProcessTime(prob.Resources[r]));
                     LindoContainer.Instance.ConstraintsSenses.Add("G");
                     LindoContainer.Instance.ConstrainsCounter++;

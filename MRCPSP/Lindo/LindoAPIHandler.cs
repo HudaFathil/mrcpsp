@@ -6,6 +6,7 @@ using System.Text;
 using MRCPSP.Lindo;
 using System.Runtime.InteropServices;
 using MRCPSP.Lindo.Constrains;
+using MRCPSP.Log;
 
 namespace MRCPSP.Lindo
 {
@@ -85,7 +86,7 @@ namespace MRCPSP.Lindo
            pEnv = lindo.LScreateEnv(ref nErrorCode, LicenseKey.ToString());
             if (nErrorCode == lindo.LSERR_NO_VALID_LICENSE)
             {
-                Console.WriteLine("Invalid License Key!\n");              
+                Logger.Instance.error("Invalid License Key!\n");              
             }
             APIErrorCheck((System.IntPtr)pEnv, nErrorCode);
 
@@ -192,7 +193,7 @@ namespace MRCPSP.Lindo
                     LindoContainer.Instance.Variables[varnames[v]].FinalValue = adX[v];
                 }
                 
-                Console.WriteLine("results: {0}", adX[nVars -1]);
+                Logger.Instance.info("results: "+ adX[nVars -1]);
 
 
             /* >>> Step 6 <<< Delete the LINDO environment */

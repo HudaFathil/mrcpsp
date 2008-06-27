@@ -5,6 +5,7 @@ using System.Text;
 using MRCPSP.Domain;
 using MRCPSP.CommonTypes;
 using MRCPSP.Algorithm;
+using MRCPSP.Log;
 
 namespace MRCPSP.Lindo.Constrains
 {
@@ -31,12 +32,12 @@ namespace MRCPSP.Lindo.Constrains
                     if (rc != null)
                     {
                         LindoContainer.Instance.RightHandSideValues.Add(rc.DelayTime);
-                        Console.WriteLine("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") Z" + r + "," + taskList[t] + ">" + rc.DelayTime);
+                        Logger.Instance.debug("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") Z" + r + "," + taskList[t] + ">" + rc.DelayTime);
                     }
                     else
                     {
                         LindoContainer.Instance.RightHandSideValues.Add(0);
-                        Console.WriteLine("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") Z" + r + "," + taskList[t] + ">" + 0);
+                        Logger.Instance.debug("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") Z" + r + "," + taskList[t] + ">" + 0);
                     }
                     
                     LindoContainer.Instance.ConstrainsCounter++;

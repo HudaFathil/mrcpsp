@@ -5,6 +5,7 @@ using System.Text;
 using MRCPSP.Domain;
 using MRCPSP.Algorithm;
 using MRCPSP.CommonTypes;
+using MRCPSP.Log;
 
 namespace MRCPSP.Lindo.Constrains
 {
@@ -17,6 +18,7 @@ namespace MRCPSP.Lindo.Constrains
 
         public override void createConstrain(Solution sol, Problem prob)
         {
+            /*
              for (int r = 0; r < sol.DistributionMatrix.GetLength(0); r++)
             {
                 for (int t = 0; t < sol.DistributionMatrix.GetLength(1); t++)
@@ -30,11 +32,10 @@ namespace MRCPSP.Lindo.Constrains
                         if (!LindoContainer.Instance.Variables.ContainsKey("T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id+LindoContainer.TjfiType))
                             continue;
                         LindoContainer.Instance.Variables["F"].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                        Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") F");
-                        
-                        Console.Write(" -T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id+LindoContainer.TjfiType);
-                        LindoContainer.Instance.Variables["T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id+LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
-                        Console.WriteLine(" >= " + mode.getTotalProcessTime());
+                        LindoContainer.Instance.Variables["T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
+                        Logger.Instance("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") F" +
+                            " -T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id+LindoContainer.TjfiType+
+                            " >= " + mode.getTotalProcessTime());
                         LindoContainer.Instance.RightHandSideValues.Add(mode.getTotalProcessTime());
                         LindoContainer.Instance.ConstraintsSenses.Add("G");
                         LindoContainer.Instance.ConstrainsCounter++;
@@ -44,36 +45,36 @@ namespace MRCPSP.Lindo.Constrains
                     
                 }
              }
-
+            */
            
-           /*
             for (int f = 0; f < prob.Products.Count; f++)
             {
                // int j = prob.Products[f].Size - 1;
                 for (int j = 0; j < prob.Products[f].Size ; j++) {
-                    foreach (Step s in LindoContainer.Instance.getFinishSteps(f))
+                    foreach (Step s in LindoContainer.Instance.getFinishSteps(prob.Products[f].Id))
                     {
-                        LindoContainer.Instance.Variables["F"].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
-                        Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") F");
-                        if (!LindoContainer.Instance.Variables.ContainsKey("T" + j + "" + f + "" + s.Id))
-                            continue;
-                        Console.Write(" -T" + j + "" + f + "" + s.Id);
-                        LindoContainer.Instance.Variables["T" + j + "" + f + "" + s.Id].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
                         foreach (Mode m in prob.ModesInStep[s])
                         {
-                            if (!LindoContainer.Instance.Variables.ContainsKey("Y" + j + "" + f + "" + s.Id + "" + m.name + LindoContainer.YjfimType))
+                            
+                            if (!LindoContainer.Instance.Variables.ContainsKey("T" + j + "," + prob.Products[f].Id + "," + s.Id+LindoContainer.TjfiType))
                                 continue;
-                            Console.Write(" " + -1 * m.getTotalProcessTime() + "Y" + j + "" + f + "" + s.Id + "" + m.name + LindoContainer.YjfimType);
-                            LindoContainer.Instance.Variables["Y" + j + "" + f + "" + s.Id + "" + m.name + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1 * m.getTotalProcessTime());
+                            if (!LindoContainer.Instance.BooleanVariables.ContainsKey("Y" + j + "," + prob.Products[f].Id + "," + s.Id + "," + m.IdPerStep + LindoContainer.YjfimType))
+                                continue;
+                            LindoContainer.Instance.Variables["F"].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
+                            LindoContainer.Instance.Variables["T" + j + "," + prob.Products[f].Id + "," + s.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
+                            // LindoContainer.Instance.BooleanVariables["Y" + j + "" + f + "" + s.Id + "" + m.name + LindoContainer.YjfimType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1 * m.getTotalProcessTime());
+                            Logger.Instance.debug("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") F" +
+                            " -T" + j + "," + prob.Products[f].Id + "," + s.Id + LindoContainer.TjfiType +
+                            " >= " + m.getTotalProcessTime());
+                            LindoContainer.Instance.RightHandSideValues.Add(m.getTotalProcessTime());
+                            LindoContainer.Instance.ConstraintsSenses.Add("G");
+                            LindoContainer.Instance.ConstrainsCounter++;
                         }
-                        Console.WriteLine(" >= 0");
-                        LindoContainer.Instance.RightHandSideValues.Add(0.0);
-                        LindoContainer.Instance.ConstraintsSenses.Add("G");
-                        LindoContainer.Instance.ConstrainsCounter++;
+                        
                     }
                 }
             }
-          */
+          
         }
 
     }

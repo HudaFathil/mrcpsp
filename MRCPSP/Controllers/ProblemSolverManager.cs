@@ -10,7 +10,7 @@ using MRCPSP.Algorithm.FirstGeneration;
 using MRCPSP.Algorithm.CrossOver;
 using MRCPSP.Algorithm.SelectionPolicy;
 using MRCPSP.Domain;
-using MRCPSP.Logger;
+using MRCPSP.Log;
 
 namespace MRCPSP.Controllers
 {
@@ -30,7 +30,7 @@ namespace MRCPSP.Controllers
 
         public long run(int population_size, int num_of_generation, double mutation_percentage, DoWorkEventArgs e)
         {
-            LoggerFactory.getSimpleLogger().info("ProblemSolverManager::run() activated");
+            Logger.Instance.info("ProblemSolverManager::run() activated");
             int number_of_problems = 1;
             if (m_solvingFromList)
                 number_of_problems = m_problems_names.Count();
@@ -62,7 +62,7 @@ namespace MRCPSP.Controllers
                 best_result.NumOfGeneration = num_of_generation.ToString();
                 best_result.NumberOfIterations = m_num_of_loops;
             }
-            LoggerFactory.getSimpleLogger().info("ProblemSolverManager::run() finished");
+            Logger.Instance.info("ProblemSolverManager::run() finished");
             return 1;
         }
 

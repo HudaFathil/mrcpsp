@@ -6,8 +6,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using MRCPSP.Gui.ProblemCreator;
-using MRCPSP.Gui.Logger;
-using MRCPSP.Logger;
+using MRCPSP.Gui.LoggerManagment;
+using MRCPSP.Log;
 using MRCPSP.Gui.ProblemSolver;
 using MRCPSP.Gui.StatisticsViewer;
 using MRCPSP.Controllers;
@@ -19,7 +19,7 @@ namespace MRCPSP.Gui {
         private ToolStripButton m_solve_problem_button;
         private ToolStripButton m_view_statistics_button;
         private StatusStrip statusStrip1;
-        private MRCPSP.Logger.Logger m_logger;
+        private MRCPSP.Log.Logger m_logger;
         private static int m_problem_monitor_id;
         private ProblemSolverMonitor m_problem_solver_monitor;
         private StatisticsMonitor m_statistics_monitor;
@@ -31,7 +31,7 @@ namespace MRCPSP.Gui {
  
         public ApplicationFrame() { 
             //initalizing the logger
-            this.m_logger = LoggerFactory.getSimpleLogger();
+            this.m_logger = Logger.Instance;
             // Create a main menu object. 
             MyMenu  = new MainMenu(); 
             // Add top-level menu items to the menu. 

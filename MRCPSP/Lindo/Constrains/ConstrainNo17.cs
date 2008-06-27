@@ -6,6 +6,7 @@ using MRCPSP.CommonTypes;
 using MRCPSP.Domain;
 using MRCPSP.Algorithm;
 using MRCPSP.Exceptions;
+using MRCPSP.Log;
 
 namespace MRCPSP.Lindo.Constrains
 {
@@ -39,7 +40,7 @@ namespace MRCPSP.Lindo.Constrains
                     String toPrint = "Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id + LindoContainer.TjfiType + " -T" + r + "," + t + LindoContainer.TrlType;
                     double startUsingResource = mode.startUsingResourceTime(prob.Resources[r]);
 
-                    Console.WriteLine(toPrint + " = " + -1 * startUsingResource);
+                    Logger.Instance.debug(toPrint + " = " + -1 * startUsingResource);
                     LindoContainer.Instance.RightHandSideValues.Add(-1 * startUsingResource);
                     LindoContainer.Instance.ConstraintsSenses.Add("E");
                     LindoContainer.Instance.ConstrainsCounter++;

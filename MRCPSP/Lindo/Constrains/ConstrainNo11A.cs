@@ -6,6 +6,7 @@ using MRCPSP.CommonTypes;
 using MRCPSP.Algorithm;
 using MRCPSP.Domain;
 using MRCPSP.Exceptions;
+using MRCPSP.Log;
 
 namespace MRCPSP.Lindo.Constrains
 {
@@ -45,9 +46,7 @@ namespace MRCPSP.Lindo.Constrains
                         LindoContainer.Instance.Variables["T" + cell.jobId + "," + cell.product.Id + "," + s2.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1.0);
                         LindoContainer.Instance.Variables["T" + cell.jobId + "," + cell.product.Id + "," + s1.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, -1.0);
 
-                        Console.Write("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "," + cell.product.Id + "," + s2.Id + LindoContainer.TjfiType + " - T" + cell.jobId + "," + cell.product.Id + "," + s1.Id + LindoContainer.TjfiType);
-
-                        Console.WriteLine(" >= " + mode.getTotalProcessTime() + " + " + cons.MinQueueTime);
+                        Logger.Instance.debug("Constrain No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "," + cell.product.Id + "," + s2.Id + LindoContainer.TjfiType + " - T" + cell.jobId + "," + cell.product.Id + "," + s1.Id + LindoContainer.TjfiType+" >= " + mode.getTotalProcessTime() + " + " + cons.MinQueueTime);
                         LindoContainer.Instance.RightHandSideValues.Add(mode.getTotalProcessTime() + cons.MinQueueTime);
                         LindoContainer.Instance.ConstraintsSenses.Add("G");
                         LindoContainer.Instance.ConstrainsCounter++;

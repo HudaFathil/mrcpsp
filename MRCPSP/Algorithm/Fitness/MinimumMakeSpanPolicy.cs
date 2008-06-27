@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MRCPSP.Logger;
+using MRCPSP.Log;
 using MRCPSP.CommonTypes;
 using MRCPSP.Domain;
 using System.Runtime.InteropServices;
@@ -36,7 +36,7 @@ namespace MRCPSP.Algorithm.Fitness
         */
         public override void evalFitness(Solution solution, MRCPSP.Domain.Problem problem)
         {
-            LoggerFactory.getSimpleLogger().info("MinimumMakeSpanPolicy::evalFitness");
+            Logger.Instance.info("MinimumMakeSpanPolicy::evalFitness");
             ApplicManager.Instance.CurrentSolution = solution;
             
             LindoAPIHandler l1 = new LindoAPIHandler();
@@ -56,9 +56,9 @@ namespace MRCPSP.Algorithm.Fitness
 
         private void connectToLindo()
         {
-            LoggerFactory.getSimpleLogger().info("MinimumMakeSpanPolicy::connectToLindo() start");
-       
-            LoggerFactory.getSimpleLogger().info("MinimumMakeSpanPolicy::connectToLindo() done");
+            Logger.Instance.info("MinimumMakeSpanPolicy::connectToLindo() start");
+
+            Logger.Instance.info("MinimumMakeSpanPolicy::connectToLindo() done");
         }
 
         /*

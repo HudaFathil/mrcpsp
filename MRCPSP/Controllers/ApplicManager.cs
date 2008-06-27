@@ -5,7 +5,7 @@ using System.Text;
 
 using MRCPSP.Domain;
 using MRCPSP.CommonTypes;
-using MRCPSP.Logger;
+using MRCPSP.Log;
 using MRCPSP.Algorithm;
 using MRCPSP.Algorithm.FirstGeneration;
 using MRCPSP.Algorithm.CrossOver;
@@ -61,7 +61,7 @@ namespace MRCPSP.Controllers
         {
             int problemID = DBHandler.Instance.queryProblemForProblemID(title);
             m_current_problem = ProblemLoader.queryProblem(problemID);
-            LoggerFactory.getSimpleLogger().info("ApplicManager::lodProblemFromDataBase, title: " + title);
+            Logger.Instance.info("ApplicManager::lodProblemFromDataBase, title: " + title);
         }
 
         /*

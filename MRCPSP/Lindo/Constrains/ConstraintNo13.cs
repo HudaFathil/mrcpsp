@@ -6,6 +6,7 @@ using MRCPSP.CommonTypes;
 using MRCPSP.Algorithm;
 using MRCPSP.Domain;
 using MRCPSP.Exceptions;
+using MRCPSP.Log;
 
 namespace MRCPSP.Lindo.Constrains
 {
@@ -44,7 +45,7 @@ namespace MRCPSP.Lindo.Constrains
                               ujf = j.Units;
 
                       }
-                      Console.WriteLine("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") V" + r + "," + taskList[t] + " > " + dlimr * ujf);
+                      Logger.Instance.debug("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") V" + r + "," + taskList[t] + " > " + dlimr * ujf);
                       LindoContainer.Instance.RightHandSideValues.Add(dlimr*ujf);
                       LindoContainer.Instance.ConstraintsSenses.Add("G");
                       LindoContainer.Instance.ConstrainsCounter++;
