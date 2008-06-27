@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using System.Linq;
 using System.Text;
 
-namespace MRCPSP.Gui.Logger
+namespace MRCPSP.Gui.LoggerManagment
 {
    
     class LoggerFrame : Form
