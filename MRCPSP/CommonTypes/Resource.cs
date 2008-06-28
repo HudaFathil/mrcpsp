@@ -12,7 +12,7 @@ namespace MRCPSP.CommonTypes
         private int m_arrive_time;
         private string m_resource_name;
         private int m_capacity;
-
+  
         public Resource(string name , int arriveTime)
         {
             m_resource_name = name;
@@ -49,6 +49,11 @@ namespace MRCPSP.CommonTypes
         public int Capacity
         {
             get { return m_capacity; }
+        }
+
+        public bool isBatch()
+        {
+            return  m_capacity > 1;       
         }
 
         public int ArriveTime

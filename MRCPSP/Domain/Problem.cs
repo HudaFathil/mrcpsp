@@ -354,6 +354,11 @@ namespace MRCPSP.Domain
             }
             return null;
         }
+
+        public bool isResourceByIndexIsBatch(int idx)
+        {
+            return m_resource_list[idx].isBatch();
+        }
      /*    
         public LinkedList<Step> topologicalSortStepsForProduct(Product p) 
         {

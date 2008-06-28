@@ -12,11 +12,8 @@ namespace MRCPSP.Algorithm.FirstGeneration
 {
     class GenerateByOperation: GeneratePolicyBase
     {
-
-        private Random m_random;
         public GenerateByOperation() : base()
         {
-            m_random = new Random();
         }
 
 
@@ -26,11 +23,7 @@ namespace MRCPSP.Algorithm.FirstGeneration
             int distribution_count = problem.getTotalDistributionSize();
             int resource_count = problem.getNumberOfResources();
 
-            for (int i = 0; i < distribution_count; i++)
-            {
-                int available_modes = problem.getNumberOfModesById(i);
-                solution.SelectedModeList[i] = m_random.Next(available_modes) + 1;
-            }
+            fillAllModeListRandomly(solution, distribution_count);
         
             MatrixCell[] cells = createAllPossibleMatrixCells();
             int[] permutation = CommonFunctions.Instance.createPermutation(distribution_count);
@@ -39,55 +32,23 @@ namespace MRCPSP.Algorithm.FirstGeneration
             {
                 items_to_sort.Add(cells[permutation[j] - 1]);
             }
-            MatrixCellComparer<MatrixCell> compare =  new MatrixCellComparer<MatrixCell>();
-            for (int m = 0; m < ApplicManager.Instance.CurrentProblem.getTotalDistributionSize() - 1; m++)
-            {
-                MatrixCell toCheckFirst = items_to_sort[m];
-                for (int n = m + 1; n < ApplicManager.Instance.CurrentProblem.getTotalDistributionSize(); n++)
-                {
-                    MatrixCell toCheckSecond = items_to_sort[n];
-                    if (compare.Compare(toCheckFirst,toCheckSecond) > 0)
-                    {
-                        MatrixCell temp = toCheckFirst;
-                        items_to_sort[m] = toCheckSecond;
-                        items_to_sort[n] = temp;
-                        m--;
-                        break;
-                    }
-                }
-            }
+            sortMatrixRow(items_to_sort);
                 
             /*
             items_to_sort.Sort(new MatrixCellComparer<MatrixCell>());
             */
-            for (int j = 0; j < distribution_count; j++)
+            for (int i = 0; i < resource_count; i++)
             {
-                for (int i = 0; i < resource_count; i++)
-                {           
+                bool batch_resource = ApplicManager.Instance.CurrentProblem.isResourceByIndexIsBatch(i);
+                for (int j = 0; j < distribution_count; j++)
+                {                         
                     solution.DistributionMatrix[i, j] = new MatrixCell(items_to_sort[j]);
+                    if (batch_resource)
+                        updateBatchParam(solution.DistributionMatrix[i, j]);
                 }
             }
      
         }   
-
-        private MatrixCell[] createAllPossibleMatrixCells()
-        {
-            int counter =0;
-            MatrixCell[] cells = new MatrixCell[ApplicManager.Instance.CurrentProblem.getTotalDistributionSize()];
-            for (int p = 0; p < ApplicManager.Instance.CurrentProblem.Products.Count; p++)
-            {
-                for (int j = 0; j < ApplicManager.Instance.CurrentProblem.Products[p].Size; j++)
-                {
-                    List<Step> steps = ApplicManager.Instance.CurrentProblem.StepsInProduct[ApplicManager.Instance.CurrentProblem.Products[p]];
-                    for (int s = 0; s < steps.Count; s++)
-                    {                   
-                        cells[counter] = new MatrixCell(ApplicManager.Instance.CurrentProblem.Products[p], j, steps[s]);
-                        counter++;
-                    }
-                }
-            }
-            return cells;
-        }
 
         public override string ToString()
         {

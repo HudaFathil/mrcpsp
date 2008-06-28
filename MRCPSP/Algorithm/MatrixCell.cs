@@ -43,12 +43,14 @@ namespace MRCPSP.Algorithm
         public Product product;
         public int jobId;
         public Step step;
+        public bool doBatch;
 
         public MatrixCell(Product p, int job, Step s)
         {
             product = p;
             jobId = job;
             step = s;
+            doBatch = false;
         }
 
         public MatrixCell(MatrixCell toCopy)
@@ -56,6 +58,7 @@ namespace MRCPSP.Algorithm
             product = toCopy.product; 
             jobId = toCopy.jobId;
             step = toCopy.step;
+            doBatch = toCopy.doBatch;
         }
 
         public override bool Equals(object obj)
