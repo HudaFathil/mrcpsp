@@ -105,9 +105,6 @@
     <Compile Include="Gui\StatisticsViewer\ProblemCreator\ResourceTimeConstraint.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\SetupTimeWidget.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Gui\ProcessingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -278,9 +275,6 @@
     <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\ResourceTimeConstraint.resx">
       <DependentUpon>ResourceTimeConstraint.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\SetupTimeWidget.resx">
-      <DependentUpon>SetupTimeWidget.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\ProcessingForm.resx">
       <DependentUpon>ProcessingForm.cs</DependentUpon>

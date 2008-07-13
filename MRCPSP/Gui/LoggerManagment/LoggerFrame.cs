@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Linq;
 using System.Text;
+using MRCPSP.Log;
 
 namespace MRCPSP.Gui.LoggerManagment
 {
@@ -68,12 +69,14 @@ namespace MRCPSP.Gui.LoggerManagment
             // 
             // m_save
             // 
+            this.m_save.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.m_save.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.m_save.Location = new System.Drawing.Point(132, 75);
             this.m_save.Name = "m_save";
             this.m_save.Size = new System.Drawing.Size(75, 23);
             this.m_save.TabIndex = 2;
             this.m_save.Text = "Save";
+            this.m_save.Click += new System.EventHandler(this.m_save_Click);
             // 
             // LoggerFrame
             // 
@@ -105,6 +108,29 @@ namespace MRCPSP.Gui.LoggerManagment
 
         private void m_level_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void m_save_Click(object sender, EventArgs e)
+        {
+            String st = (String)this.m_level.SelectedItem;
+            if (st.Equals("DEBUG"))
+            {
+                Logger.Instance.State = Logger.LOGGER_STATE.DEBUG;
+            }
+            if (st.Equals("ERROR"))
+            {
+                Logger.Instance.State = Logger.LOGGER_STATE.ERROR;
+            }
+            if (st.Equals("INFO"))
+            {
+                Logger.Instance.State = Logger.LOGGER_STATE.INFO;
+            }
+            if (st.Equals("WARN"))
+            {
+                Logger.Instance.State = Logger.LOGGER_STATE.WARN;
+            }
+
 
         }
     }

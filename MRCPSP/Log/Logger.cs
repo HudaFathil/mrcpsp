@@ -17,7 +17,7 @@ namespace MRCPSP.Log
         private Logger()
         {
             m_instance = null;
-            m_state = LOGGER_STATE.DEBUG;
+            m_state = LOGGER_STATE.ERROR;
             m_outLog = new StreamWriter(LOG_FILE_NAME, false);
         }
 

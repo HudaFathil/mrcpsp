@@ -194,5 +194,29 @@ namespace MRCPSP.Algorithm
             throw new Exception("oops where is the mode, shay screw us");
         }
 
+        public Mode getSelectedModeByCell(Product p, Step s, int jobId)
+        {
+            int pos_in_list = 0;
+            for (int i = 0; i < ApplicManager.Instance.CurrentProblem.Products.Count; i++)
+            {
+                Product currentProblem = ApplicManager.Instance.CurrentProblem.Products[i];
+                int step_count = ApplicManager.Instance.CurrentProblem.StepsInProduct[currentProblem].Count;
+                int job_size = currentProblem.Size;
+
+                if (p.Equals(currentProblem))
+                {
+                    int step_id = ApplicManager.Instance.CurrentProblem.StepsInProduct[p].IndexOf(s);
+                    int mode_id = m_selected_mode_list[pos_in_list + (jobId * step_count) + step_id];
+                    return ApplicManager.Instance.CurrentProblem.getSelectedModeByStepAndModeId(s, mode_id);
+                }
+                else
+                {
+                    pos_in_list += job_size * step_count;
+                }
+            }
+            throw new Exception("oops where is the mode, shay screw us");
+        }
+
+
     }
 }

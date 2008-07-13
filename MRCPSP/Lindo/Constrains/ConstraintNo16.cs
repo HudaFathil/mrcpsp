@@ -36,11 +36,14 @@ namespace MRCPSP.Lindo.Constrains
                              ajf = j.ArriveTime;
 
                      }
-                     LindoContainer.Instance.Variables["T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1);
-                     Logger.Instance.debug("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id + LindoContainer.TjfiType + " > " + ajf);
-                     LindoContainer.Instance.RightHandSideValues.Add(ajf);
-                     LindoContainer.Instance.ConstraintsSenses.Add("G");
-                     LindoContainer.Instance.ConstrainsCounter++;
+                     if (ajf > 0)
+                     {
+                         LindoContainer.Instance.Variables["T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id + LindoContainer.TjfiType].AddCoefficient(LindoContainer.Instance.ConstrainsCounter, 1);
+                         Logger.Instance.debug("Constraint No " + LindoContainer.Instance.ConstrainsCounter + ") T" + cell.jobId + "," + cell.product.Id + "," + cell.step.Id + LindoContainer.TjfiType + " > " + ajf);
+                         LindoContainer.Instance.RightHandSideValues.Add(ajf);
+                         LindoContainer.Instance.ConstraintsSenses.Add("G");
+                         LindoContainer.Instance.ConstrainsCounter++;
+                     }
                  }
              }
          }
