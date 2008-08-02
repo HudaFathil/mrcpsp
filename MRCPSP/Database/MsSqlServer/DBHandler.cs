@@ -18,7 +18,7 @@ namespace MRCPSP.Database.MsSqlServer
         private DBHandler()
         {
             m_dataset = new DataSet1();
-            m_sqlConn = new SqlConnection("Server=SIVAN\\SQLEXPRESS;Database=MRSCSP;connection timeout=10 ; Trusted_Connection=True;");
+            m_sqlConn = new SqlConnection("Server=PC\\SQLEXPRESS;Database=MRSCSP;connection timeout=10 ; Trusted_Connection=True;");
             m_dataAdapter = new SqlDataAdapter();
            // m_sqlConn.Open();
         }
@@ -37,6 +37,31 @@ namespace MRCPSP.Database.MsSqlServer
             m_dataAdapter.SelectCommand = new SqlCommand("SELECT * FROM  "+tableName+" WHERE Problem_ID = " + problemID);
             m_dataAdapter.SelectCommand.Connection = m_sqlConn;
             m_dataAdapter.Fill(m_dataset, tableName);
+        }
+
+        public void loadSolution(int solutionID)
+        {
+            m_dataset.Clear();
+            m_sqlConn.Open();
+            fillDataSet(solutionID, "StatisticsSolutions");
+            fillDataSet(solutionID, "Generations");
+            fillDataSet(solutionID, "BestSolution");
+
+            int problemID = Convert.ToInt32(DBHandler.Instance.DataSet.Tables["StatisticsSolutions"].Rows[0]["Problem_ID"]);
+            fillDataSet(problemID, "Problems");
+            fillDataSet(problemID, "Families");
+            fillDataSet(problemID, "Jobs");
+            fillDataSet(problemID, "Operations");
+            fillDataSet(problemID, "OperationsToFamilies");
+            fillDataSet(problemID, "Modes");
+            fillDataSet(problemID, "Resources");
+            fillDataSet(problemID, "ResourceUsage");
+            fillDataSet(problemID, "FamilyCapacityOnResource");
+            fillDataSet(problemID, "Precedence");
+            fillDataSet(problemID, "LoadingTimes");
+            fillDataSet(problemID, "ConstantDelays");
+            
+            m_sqlConn.Close();
         }
 
         public void loadProblem(int problemID)
@@ -105,6 +130,8 @@ namespace MRCPSP.Database.MsSqlServer
              
             m_sqlConn.Close();
         }
+
+
         public DataSet DataSet
         {
             get { return m_dataset; }

@@ -75,7 +75,11 @@ namespace MRCPSP.Controllers
         {
             return DBHandler.Instance.getProblemNameList();
         }
- 
+
+        public void saveSolution()
+        {
+           SolutionSaver.saveSolution(m_saved_results[0]);
+        }
 
 
         /*
@@ -124,5 +128,9 @@ namespace MRCPSP.Controllers
             m_problem_solver_manager.loadProblemNames(problem_names);
         }
 
+         public void loadSolution(int solutionID)
+        {
+            SolutionLoader.loadSolution(solutionID);
+        }
     }
 }

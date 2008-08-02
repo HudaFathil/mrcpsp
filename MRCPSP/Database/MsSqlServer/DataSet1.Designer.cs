@@ -57,6 +57,12 @@ namespace MRCPSP.Database.MsSqlServer {
         
         private ExclusivesDataTable tableExclusives;
         
+        private StatisticsSolutionsDataTable tableStatisticsSolutions;
+        
+        private GenerationsDataTable tableGenerations;
+        
+        private BestSolutionDataTable tableBestSolution;
+        
         private global::System.Data.DataRelation relationResourcesResourceUsage;
         
         private global::System.Data.DataRelation relationModesResourceUsage;
@@ -74,6 +80,18 @@ namespace MRCPSP.Database.MsSqlServer {
         private global::System.Data.DataRelation relationFamiliesJobs;
         
         private global::System.Data.DataRelation relationResourcesLoadingTimes;
+        
+        private global::System.Data.DataRelation relationStatisticsSolutions_Generations;
+        
+        private global::System.Data.DataRelation relationProblems_Solutions;
+        
+        private global::System.Data.DataRelation relationStatisticsSolutions_BestSolution;
+        
+        private global::System.Data.DataRelation relationResources_BestSolution;
+        
+        private global::System.Data.DataRelation relationFamilies_BestSolution;
+        
+        private global::System.Data.DataRelation relationOperations_BestSolution;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -148,6 +166,15 @@ namespace MRCPSP.Database.MsSqlServer {
                 }
                 if ((ds.Tables["Exclusives"] != null)) {
                     base.Tables.Add(new ExclusivesDataTable(ds.Tables["Exclusives"]));
+                }
+                if ((ds.Tables["StatisticsSolutions"] != null)) {
+                    base.Tables.Add(new StatisticsSolutionsDataTable(ds.Tables["StatisticsSolutions"]));
+                }
+                if ((ds.Tables["Generations"] != null)) {
+                    base.Tables.Add(new GenerationsDataTable(ds.Tables["Generations"]));
+                }
+                if ((ds.Tables["BestSolution"] != null)) {
+                    base.Tables.Add(new BestSolutionDataTable(ds.Tables["BestSolution"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -312,6 +339,33 @@ namespace MRCPSP.Database.MsSqlServer {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public StatisticsSolutionsDataTable StatisticsSolutions {
+            get {
+                return this.tableStatisticsSolutions;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public GenerationsDataTable Generations {
+            get {
+                return this.tableGenerations;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public BestSolutionDataTable BestSolution {
+            get {
+                return this.tableBestSolution;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -417,6 +471,15 @@ namespace MRCPSP.Database.MsSqlServer {
                 }
                 if ((ds.Tables["Exclusives"] != null)) {
                     base.Tables.Add(new ExclusivesDataTable(ds.Tables["Exclusives"]));
+                }
+                if ((ds.Tables["StatisticsSolutions"] != null)) {
+                    base.Tables.Add(new StatisticsSolutionsDataTable(ds.Tables["StatisticsSolutions"]));
+                }
+                if ((ds.Tables["Generations"] != null)) {
+                    base.Tables.Add(new GenerationsDataTable(ds.Tables["Generations"]));
+                }
+                if ((ds.Tables["BestSolution"] != null)) {
+                    base.Tables.Add(new BestSolutionDataTable(ds.Tables["BestSolution"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -544,6 +607,24 @@ namespace MRCPSP.Database.MsSqlServer {
                     this.tableExclusives.InitVars();
                 }
             }
+            this.tableStatisticsSolutions = ((StatisticsSolutionsDataTable)(base.Tables["StatisticsSolutions"]));
+            if ((initTable == true)) {
+                if ((this.tableStatisticsSolutions != null)) {
+                    this.tableStatisticsSolutions.InitVars();
+                }
+            }
+            this.tableGenerations = ((GenerationsDataTable)(base.Tables["Generations"]));
+            if ((initTable == true)) {
+                if ((this.tableGenerations != null)) {
+                    this.tableGenerations.InitVars();
+                }
+            }
+            this.tableBestSolution = ((BestSolutionDataTable)(base.Tables["BestSolution"]));
+            if ((initTable == true)) {
+                if ((this.tableBestSolution != null)) {
+                    this.tableBestSolution.InitVars();
+                }
+            }
             this.relationResourcesResourceUsage = this.Relations["ResourcesResourceUsage"];
             this.relationModesResourceUsage = this.Relations["ModesResourceUsage"];
             this.relationFamiliesOperationsToFamilies = this.Relations["FamiliesOperationsToFamilies"];
@@ -553,6 +634,12 @@ namespace MRCPSP.Database.MsSqlServer {
             this.relationFamiliesPrecedence = this.Relations["FamiliesPrecedence"];
             this.relationFamiliesJobs = this.Relations["FamiliesJobs"];
             this.relationResourcesLoadingTimes = this.Relations["ResourcesLoadingTimes"];
+            this.relationStatisticsSolutions_Generations = this.Relations["StatisticsSolutions_Generations"];
+            this.relationProblems_Solutions = this.Relations["Problems_Solutions"];
+            this.relationStatisticsSolutions_BestSolution = this.Relations["StatisticsSolutions_BestSolution"];
+            this.relationResources_BestSolution = this.Relations["Resources_BestSolution"];
+            this.relationFamilies_BestSolution = this.Relations["Families_BestSolution"];
+            this.relationOperations_BestSolution = this.Relations["Operations_BestSolution"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -594,6 +681,12 @@ namespace MRCPSP.Database.MsSqlServer {
             base.Tables.Add(this.tableComplementaries);
             this.tableExclusives = new ExclusivesDataTable();
             base.Tables.Add(this.tableExclusives);
+            this.tableStatisticsSolutions = new StatisticsSolutionsDataTable();
+            base.Tables.Add(this.tableStatisticsSolutions);
+            this.tableGenerations = new GenerationsDataTable();
+            base.Tables.Add(this.tableGenerations);
+            this.tableBestSolution = new BestSolutionDataTable();
+            base.Tables.Add(this.tableBestSolution);
             global::System.Data.ForeignKeyConstraint fkc;
             fkc = new global::System.Data.ForeignKeyConstraint("ResourcesResourceUsage", new global::System.Data.DataColumn[] {
                         this.tableResources.Problem_IDColumn,
@@ -734,6 +827,40 @@ namespace MRCPSP.Database.MsSqlServer {
                         this.tableLoadingTimes.Problem_IDColumn,
                         this.tableLoadingTimes.Resource_IDColumn}, false);
             this.Relations.Add(this.relationResourcesLoadingTimes);
+            this.relationStatisticsSolutions_Generations = new global::System.Data.DataRelation("StatisticsSolutions_Generations", new global::System.Data.DataColumn[] {
+                        this.tableStatisticsSolutions.Solution_IDColumn,
+                        this.tableStatisticsSolutions.Problem_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableGenerations.Solution_IDColumn,
+                        this.tableGenerations.Problem_IDColumn}, false);
+            this.Relations.Add(this.relationStatisticsSolutions_Generations);
+            this.relationProblems_Solutions = new global::System.Data.DataRelation("Problems_Solutions", new global::System.Data.DataColumn[] {
+                        this.tableProblems.Problem_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableStatisticsSolutions.Problem_IDColumn}, false);
+            this.Relations.Add(this.relationProblems_Solutions);
+            this.relationStatisticsSolutions_BestSolution = new global::System.Data.DataRelation("StatisticsSolutions_BestSolution", new global::System.Data.DataColumn[] {
+                        this.tableStatisticsSolutions.Solution_IDColumn,
+                        this.tableStatisticsSolutions.Problem_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBestSolution.Solution_IDColumn,
+                        this.tableBestSolution.Problem_IDColumn}, false);
+            this.Relations.Add(this.relationStatisticsSolutions_BestSolution);
+            this.relationResources_BestSolution = new global::System.Data.DataRelation("Resources_BestSolution", new global::System.Data.DataColumn[] {
+                        this.tableResources.Problem_IDColumn,
+                        this.tableResources.Resource_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBestSolution.Problem_IDColumn,
+                        this.tableBestSolution.Resource_IDColumn}, false);
+            this.Relations.Add(this.relationResources_BestSolution);
+            this.relationFamilies_BestSolution = new global::System.Data.DataRelation("Families_BestSolution", new global::System.Data.DataColumn[] {
+                        this.tableFamilies.Problem_IDColumn,
+                        this.tableFamilies.Family_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBestSolution.Problem_IDColumn,
+                        this.tableBestSolution.Family_IDColumn}, false);
+            this.Relations.Add(this.relationFamilies_BestSolution);
+            this.relationOperations_BestSolution = new global::System.Data.DataRelation("Operations_BestSolution", new global::System.Data.DataColumn[] {
+                        this.tableOperations.Problem_IDColumn,
+                        this.tableOperations.Operation_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBestSolution.Problem_IDColumn,
+                        this.tableBestSolution.Step_IDColumn}, false);
+            this.Relations.Add(this.relationOperations_BestSolution);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -813,6 +940,21 @@ namespace MRCPSP.Database.MsSqlServer {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private bool ShouldSerializeExclusives() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeStatisticsSolutions() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeGenerations() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeBestSolution() {
             return false;
         }
         
@@ -900,6 +1042,12 @@ namespace MRCPSP.Database.MsSqlServer {
         public delegate void ComplementariesRowChangeEventHandler(object sender, ComplementariesRowChangeEvent e);
         
         public delegate void ExclusivesRowChangeEventHandler(object sender, ExclusivesRowChangeEvent e);
+        
+        public delegate void StatisticsSolutionsRowChangeEventHandler(object sender, StatisticsSolutionsRowChangeEvent e);
+        
+        public delegate void GenerationsRowChangeEventHandler(object sender, GenerationsRowChangeEvent e);
+        
+        public delegate void BestSolutionRowChangeEventHandler(object sender, BestSolutionRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -5728,6 +5876,951 @@ namespace MRCPSP.Database.MsSqlServer {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class StatisticsSolutionsDataTable : global::System.Data.TypedTableBase<StatisticsSolutionsRow> {
+            
+            private global::System.Data.DataColumn columnSolution_ID;
+            
+            private global::System.Data.DataColumn columnProblem_ID;
+            
+            private global::System.Data.DataColumn columnPopulation_Size;
+            
+            private global::System.Data.DataColumn columnStart_Time;
+            
+            private global::System.Data.DataColumn columnFinish_Time;
+            
+            private global::System.Data.DataColumn columnMutation_precent;
+            
+            private global::System.Data.DataColumn columnSolution_Name;
+            
+            private global::System.Data.DataColumn columnSeletion_Type;
+            
+            private global::System.Data.DataColumn columnCrossover_Type;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StatisticsSolutionsDataTable() {
+                this.TableName = "StatisticsSolutions";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal StatisticsSolutionsDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected StatisticsSolutionsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Solution_IDColumn {
+                get {
+                    return this.columnSolution_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Problem_IDColumn {
+                get {
+                    return this.columnProblem_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Population_SizeColumn {
+                get {
+                    return this.columnPopulation_Size;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Start_TimeColumn {
+                get {
+                    return this.columnStart_Time;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Finish_TimeColumn {
+                get {
+                    return this.columnFinish_Time;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Mutation_precentColumn {
+                get {
+                    return this.columnMutation_precent;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Solution_NameColumn {
+                get {
+                    return this.columnSolution_Name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Seletion_TypeColumn {
+                get {
+                    return this.columnSeletion_Type;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Crossover_TypeColumn {
+                get {
+                    return this.columnCrossover_Type;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StatisticsSolutionsRow this[int index] {
+                get {
+                    return ((StatisticsSolutionsRow)(this.Rows[index]));
+                }
+            }
+            
+            public event StatisticsSolutionsRowChangeEventHandler StatisticsSolutionsRowChanging;
+            
+            public event StatisticsSolutionsRowChangeEventHandler StatisticsSolutionsRowChanged;
+            
+            public event StatisticsSolutionsRowChangeEventHandler StatisticsSolutionsRowDeleting;
+            
+            public event StatisticsSolutionsRowChangeEventHandler StatisticsSolutionsRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddStatisticsSolutionsRow(StatisticsSolutionsRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StatisticsSolutionsRow AddStatisticsSolutionsRow(int Solution_ID, ProblemsRow parentProblemsRowByProblems_Solutions, int Population_Size, string Start_Time, string Finish_Time, string Mutation_precent, string Solution_Name, string Seletion_Type, string Crossover_Type) {
+                StatisticsSolutionsRow rowStatisticsSolutionsRow = ((StatisticsSolutionsRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Solution_ID,
+                        null,
+                        Population_Size,
+                        Start_Time,
+                        Finish_Time,
+                        Mutation_precent,
+                        Solution_Name,
+                        Seletion_Type,
+                        Crossover_Type};
+                if ((parentProblemsRowByProblems_Solutions != null)) {
+                    columnValuesArray[1] = parentProblemsRowByProblems_Solutions[0];
+                }
+                rowStatisticsSolutionsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowStatisticsSolutionsRow);
+                return rowStatisticsSolutionsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                StatisticsSolutionsDataTable cln = ((StatisticsSolutionsDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new StatisticsSolutionsDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnSolution_ID = base.Columns["Solution_ID"];
+                this.columnProblem_ID = base.Columns["Problem_ID"];
+                this.columnPopulation_Size = base.Columns["Population_Size"];
+                this.columnStart_Time = base.Columns["Start_Time"];
+                this.columnFinish_Time = base.Columns["Finish_Time"];
+                this.columnMutation_precent = base.Columns["Mutation_precent"];
+                this.columnSolution_Name = base.Columns["Solution_Name"];
+                this.columnSeletion_Type = base.Columns["Seletion_Type"];
+                this.columnCrossover_Type = base.Columns["Crossover_Type"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnSolution_ID = new global::System.Data.DataColumn("Solution_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSolution_ID);
+                this.columnProblem_ID = new global::System.Data.DataColumn("Problem_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProblem_ID);
+                this.columnPopulation_Size = new global::System.Data.DataColumn("Population_Size", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPopulation_Size);
+                this.columnStart_Time = new global::System.Data.DataColumn("Start_Time", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStart_Time);
+                this.columnFinish_Time = new global::System.Data.DataColumn("Finish_Time", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFinish_Time);
+                this.columnMutation_precent = new global::System.Data.DataColumn("Mutation_precent", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMutation_precent);
+                this.columnSolution_Name = new global::System.Data.DataColumn("Solution_Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSolution_Name);
+                this.columnSeletion_Type = new global::System.Data.DataColumn("Seletion_Type", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSeletion_Type);
+                this.columnCrossover_Type = new global::System.Data.DataColumn("Crossover_Type", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCrossover_Type);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("SolutionsKey1", new global::System.Data.DataColumn[] {
+                                this.columnSolution_ID,
+                                this.columnProblem_ID}, false));
+                this.columnSolution_ID.AllowDBNull = false;
+                this.columnProblem_ID.AllowDBNull = false;
+                this.columnPopulation_Size.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StatisticsSolutionsRow NewStatisticsSolutionsRow() {
+                return ((StatisticsSolutionsRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new StatisticsSolutionsRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(StatisticsSolutionsRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.StatisticsSolutionsRowChanged != null)) {
+                    this.StatisticsSolutionsRowChanged(this, new StatisticsSolutionsRowChangeEvent(((StatisticsSolutionsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.StatisticsSolutionsRowChanging != null)) {
+                    this.StatisticsSolutionsRowChanging(this, new StatisticsSolutionsRowChangeEvent(((StatisticsSolutionsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.StatisticsSolutionsRowDeleted != null)) {
+                    this.StatisticsSolutionsRowDeleted(this, new StatisticsSolutionsRowChangeEvent(((StatisticsSolutionsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.StatisticsSolutionsRowDeleting != null)) {
+                    this.StatisticsSolutionsRowDeleting(this, new StatisticsSolutionsRowChangeEvent(((StatisticsSolutionsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveStatisticsSolutionsRow(StatisticsSolutionsRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DataSet1 ds = new DataSet1();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "StatisticsSolutionsDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class GenerationsDataTable : global::System.Data.TypedTableBase<GenerationsRow> {
+            
+            private global::System.Data.DataColumn columnSolution_ID;
+            
+            private global::System.Data.DataColumn columnProblem_ID;
+            
+            private global::System.Data.DataColumn columnGeneration_Number;
+            
+            private global::System.Data.DataColumn columnGeneration_Min_Score;
+            
+            private global::System.Data.DataColumn columnGeneration_Max_Score;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GenerationsDataTable() {
+                this.TableName = "Generations";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal GenerationsDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected GenerationsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Solution_IDColumn {
+                get {
+                    return this.columnSolution_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Problem_IDColumn {
+                get {
+                    return this.columnProblem_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Generation_NumberColumn {
+                get {
+                    return this.columnGeneration_Number;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Generation_Min_ScoreColumn {
+                get {
+                    return this.columnGeneration_Min_Score;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Generation_Max_ScoreColumn {
+                get {
+                    return this.columnGeneration_Max_Score;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GenerationsRow this[int index] {
+                get {
+                    return ((GenerationsRow)(this.Rows[index]));
+                }
+            }
+            
+            public event GenerationsRowChangeEventHandler GenerationsRowChanging;
+            
+            public event GenerationsRowChangeEventHandler GenerationsRowChanged;
+            
+            public event GenerationsRowChangeEventHandler GenerationsRowDeleting;
+            
+            public event GenerationsRowChangeEventHandler GenerationsRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddGenerationsRow(GenerationsRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GenerationsRow AddGenerationsRow(int Solution_ID, int Problem_ID, int Generation_Number, double Generation_Min_Score, double Generation_Max_Score) {
+                GenerationsRow rowGenerationsRow = ((GenerationsRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Solution_ID,
+                        Problem_ID,
+                        Generation_Number,
+                        Generation_Min_Score,
+                        Generation_Max_Score};
+                rowGenerationsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowGenerationsRow);
+                return rowGenerationsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                GenerationsDataTable cln = ((GenerationsDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new GenerationsDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnSolution_ID = base.Columns["Solution_ID"];
+                this.columnProblem_ID = base.Columns["Problem_ID"];
+                this.columnGeneration_Number = base.Columns["Generation_Number"];
+                this.columnGeneration_Min_Score = base.Columns["Generation_Min_Score"];
+                this.columnGeneration_Max_Score = base.Columns["Generation_Max_Score"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnSolution_ID = new global::System.Data.DataColumn("Solution_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSolution_ID);
+                this.columnProblem_ID = new global::System.Data.DataColumn("Problem_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProblem_ID);
+                this.columnGeneration_Number = new global::System.Data.DataColumn("Generation_Number", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGeneration_Number);
+                this.columnGeneration_Min_Score = new global::System.Data.DataColumn("Generation_Min_Score", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGeneration_Min_Score);
+                this.columnGeneration_Max_Score = new global::System.Data.DataColumn("Generation_Max_Score", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGeneration_Max_Score);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("GenerationsKey2", new global::System.Data.DataColumn[] {
+                                this.columnSolution_ID,
+                                this.columnProblem_ID,
+                                this.columnGeneration_Number}, false));
+                this.columnSolution_ID.AllowDBNull = false;
+                this.columnProblem_ID.AllowDBNull = false;
+                this.columnGeneration_Number.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GenerationsRow NewGenerationsRow() {
+                return ((GenerationsRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new GenerationsRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(GenerationsRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.GenerationsRowChanged != null)) {
+                    this.GenerationsRowChanged(this, new GenerationsRowChangeEvent(((GenerationsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.GenerationsRowChanging != null)) {
+                    this.GenerationsRowChanging(this, new GenerationsRowChangeEvent(((GenerationsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.GenerationsRowDeleted != null)) {
+                    this.GenerationsRowDeleted(this, new GenerationsRowChangeEvent(((GenerationsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.GenerationsRowDeleting != null)) {
+                    this.GenerationsRowDeleting(this, new GenerationsRowChangeEvent(((GenerationsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveGenerationsRow(GenerationsRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DataSet1 ds = new DataSet1();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "GenerationsDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class BestSolutionDataTable : global::System.Data.TypedTableBase<BestSolutionRow> {
+            
+            private global::System.Data.DataColumn columnSolution_ID;
+            
+            private global::System.Data.DataColumn columnProblem_ID;
+            
+            private global::System.Data.DataColumn columnResource_ID;
+            
+            private global::System.Data.DataColumn columnFamily_ID;
+            
+            private global::System.Data.DataColumn columnStep_ID;
+            
+            private global::System.Data.DataColumn columnJob_ID;
+            
+            private global::System.Data.DataColumn columnStart_Time;
+            
+            private global::System.Data.DataColumn columnFinish_Time;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public BestSolutionDataTable() {
+                this.TableName = "BestSolution";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal BestSolutionDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected BestSolutionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Solution_IDColumn {
+                get {
+                    return this.columnSolution_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Problem_IDColumn {
+                get {
+                    return this.columnProblem_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Resource_IDColumn {
+                get {
+                    return this.columnResource_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Family_IDColumn {
+                get {
+                    return this.columnFamily_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Step_IDColumn {
+                get {
+                    return this.columnStep_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Job_IDColumn {
+                get {
+                    return this.columnJob_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Start_TimeColumn {
+                get {
+                    return this.columnStart_Time;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Finish_TimeColumn {
+                get {
+                    return this.columnFinish_Time;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public BestSolutionRow this[int index] {
+                get {
+                    return ((BestSolutionRow)(this.Rows[index]));
+                }
+            }
+            
+            public event BestSolutionRowChangeEventHandler BestSolutionRowChanging;
+            
+            public event BestSolutionRowChangeEventHandler BestSolutionRowChanged;
+            
+            public event BestSolutionRowChangeEventHandler BestSolutionRowDeleting;
+            
+            public event BestSolutionRowChangeEventHandler BestSolutionRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddBestSolutionRow(BestSolutionRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public BestSolutionRow AddBestSolutionRow(int Solution_ID, int Problem_ID, int Resource_ID, int Family_ID, int Step_ID, int Job_ID, double Start_Time, double Finish_Time) {
+                BestSolutionRow rowBestSolutionRow = ((BestSolutionRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Solution_ID,
+                        Problem_ID,
+                        Resource_ID,
+                        Family_ID,
+                        Step_ID,
+                        Job_ID,
+                        Start_Time,
+                        Finish_Time};
+                rowBestSolutionRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowBestSolutionRow);
+                return rowBestSolutionRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                BestSolutionDataTable cln = ((BestSolutionDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new BestSolutionDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnSolution_ID = base.Columns["Solution_ID"];
+                this.columnProblem_ID = base.Columns["Problem_ID"];
+                this.columnResource_ID = base.Columns["Resource_ID"];
+                this.columnFamily_ID = base.Columns["Family_ID"];
+                this.columnStep_ID = base.Columns["Step_ID"];
+                this.columnJob_ID = base.Columns["Job_ID"];
+                this.columnStart_Time = base.Columns["Start_Time"];
+                this.columnFinish_Time = base.Columns["Finish_Time"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnSolution_ID = new global::System.Data.DataColumn("Solution_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSolution_ID);
+                this.columnProblem_ID = new global::System.Data.DataColumn("Problem_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProblem_ID);
+                this.columnResource_ID = new global::System.Data.DataColumn("Resource_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnResource_ID);
+                this.columnFamily_ID = new global::System.Data.DataColumn("Family_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFamily_ID);
+                this.columnStep_ID = new global::System.Data.DataColumn("Step_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStep_ID);
+                this.columnJob_ID = new global::System.Data.DataColumn("Job_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnJob_ID);
+                this.columnStart_Time = new global::System.Data.DataColumn("Start_Time", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStart_Time);
+                this.columnFinish_Time = new global::System.Data.DataColumn("Finish_Time", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFinish_Time);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("BestSolutionKey1", new global::System.Data.DataColumn[] {
+                                this.columnSolution_ID,
+                                this.columnProblem_ID,
+                                this.columnResource_ID,
+                                this.columnFamily_ID,
+                                this.columnStep_ID,
+                                this.columnJob_ID}, false));
+                this.columnSolution_ID.AllowDBNull = false;
+                this.columnProblem_ID.AllowDBNull = false;
+                this.columnResource_ID.AllowDBNull = false;
+                this.columnFamily_ID.AllowDBNull = false;
+                this.columnStep_ID.AllowDBNull = false;
+                this.columnJob_ID.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public BestSolutionRow NewBestSolutionRow() {
+                return ((BestSolutionRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new BestSolutionRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(BestSolutionRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.BestSolutionRowChanged != null)) {
+                    this.BestSolutionRowChanged(this, new BestSolutionRowChangeEvent(((BestSolutionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.BestSolutionRowChanging != null)) {
+                    this.BestSolutionRowChanging(this, new BestSolutionRowChangeEvent(((BestSolutionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.BestSolutionRowDeleted != null)) {
+                    this.BestSolutionRowDeleted(this, new BestSolutionRowChangeEvent(((BestSolutionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.BestSolutionRowDeleting != null)) {
+                    this.BestSolutionRowDeleting(this, new BestSolutionRowChangeEvent(((BestSolutionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveBestSolutionRow(BestSolutionRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DataSet1 ds = new DataSet1();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "BestSolutionDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -5975,6 +7068,16 @@ namespace MRCPSP.Database.MsSqlServer {
                     return ((OperationsToFamiliesRow[])(base.GetChildRows(this.Table.ChildRelations["FamiliesOperationsToFamilies"])));
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public BestSolutionRow[] GetBestSolutionRows() {
+                if ((this.Table.ChildRelations["Families_BestSolution"] == null)) {
+                    return new BestSolutionRow[0];
+                }
+                else {
+                    return ((BestSolutionRow[])(base.GetChildRows(this.Table.ChildRelations["Families_BestSolution"])));
+                }
+            }
         }
         
         /// <summary>
@@ -6078,6 +7181,16 @@ namespace MRCPSP.Database.MsSqlServer {
                 }
                 else {
                     return ((OperationsToFamiliesRow[])(base.GetChildRows(this.Table.ChildRelations["OperationsOperationsToFamilies"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public BestSolutionRow[] GetBestSolutionRows() {
+                if ((this.Table.ChildRelations["Operations_BestSolution"] == null)) {
+                    return new BestSolutionRow[0];
+                }
+                else {
+                    return ((BestSolutionRow[])(base.GetChildRows(this.Table.ChildRelations["Operations_BestSolution"])));
                 }
             }
         }
@@ -6480,6 +7593,16 @@ namespace MRCPSP.Database.MsSqlServer {
             public void SetRF_NBCNull() {
                 this[this.tableProblems.RF_NBCColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StatisticsSolutionsRow[] GetStatisticsSolutionsRows() {
+                if ((this.Table.ChildRelations["Problems_Solutions"] == null)) {
+                    return new StatisticsSolutionsRow[0];
+                }
+                else {
+                    return ((StatisticsSolutionsRow[])(base.GetChildRows(this.Table.ChildRelations["Problems_Solutions"])));
+                }
+            }
         }
         
         /// <summary>
@@ -6788,6 +7911,16 @@ namespace MRCPSP.Database.MsSqlServer {
                 }
                 else {
                     return ((ResourceUsageRow[])(base.GetChildRows(this.Table.ChildRelations["ResourcesResourceUsage"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public BestSolutionRow[] GetBestSolutionRows() {
+                if ((this.Table.ChildRelations["Resources_BestSolution"] == null)) {
+                    return new BestSolutionRow[0];
+                }
+                else {
+                    return ((BestSolutionRow[])(base.GetChildRows(this.Table.ChildRelations["Resources_BestSolution"])));
                 }
             }
         }
@@ -7754,6 +8887,502 @@ namespace MRCPSP.Database.MsSqlServer {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class StatisticsSolutionsRow : global::System.Data.DataRow {
+            
+            private StatisticsSolutionsDataTable tableStatisticsSolutions;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal StatisticsSolutionsRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableStatisticsSolutions = ((StatisticsSolutionsDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Solution_ID {
+                get {
+                    return ((int)(this[this.tableStatisticsSolutions.Solution_IDColumn]));
+                }
+                set {
+                    this[this.tableStatisticsSolutions.Solution_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Problem_ID {
+                get {
+                    return ((int)(this[this.tableStatisticsSolutions.Problem_IDColumn]));
+                }
+                set {
+                    this[this.tableStatisticsSolutions.Problem_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Population_Size {
+                get {
+                    return ((int)(this[this.tableStatisticsSolutions.Population_SizeColumn]));
+                }
+                set {
+                    this[this.tableStatisticsSolutions.Population_SizeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Start_Time {
+                get {
+                    try {
+                        return ((string)(this[this.tableStatisticsSolutions.Start_TimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Start_Time\' in table \'StatisticsSolutions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStatisticsSolutions.Start_TimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Finish_Time {
+                get {
+                    try {
+                        return ((string)(this[this.tableStatisticsSolutions.Finish_TimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Finish_Time\' in table \'StatisticsSolutions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStatisticsSolutions.Finish_TimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Mutation_precent {
+                get {
+                    try {
+                        return ((string)(this[this.tableStatisticsSolutions.Mutation_precentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Mutation_precent\' in table \'StatisticsSolutions\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableStatisticsSolutions.Mutation_precentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Solution_Name {
+                get {
+                    try {
+                        return ((string)(this[this.tableStatisticsSolutions.Solution_NameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Solution_Name\' in table \'StatisticsSolutions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStatisticsSolutions.Solution_NameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Seletion_Type {
+                get {
+                    try {
+                        return ((string)(this[this.tableStatisticsSolutions.Seletion_TypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Seletion_Type\' in table \'StatisticsSolutions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStatisticsSolutions.Seletion_TypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Crossover_Type {
+                get {
+                    try {
+                        return ((string)(this[this.tableStatisticsSolutions.Crossover_TypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Crossover_Type\' in table \'StatisticsSolutions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStatisticsSolutions.Crossover_TypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ProblemsRow ProblemsRow {
+                get {
+                    return ((ProblemsRow)(this.GetParentRow(this.Table.ParentRelations["Problems_Solutions"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Problems_Solutions"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsStart_TimeNull() {
+                return this.IsNull(this.tableStatisticsSolutions.Start_TimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetStart_TimeNull() {
+                this[this.tableStatisticsSolutions.Start_TimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsFinish_TimeNull() {
+                return this.IsNull(this.tableStatisticsSolutions.Finish_TimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetFinish_TimeNull() {
+                this[this.tableStatisticsSolutions.Finish_TimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsMutation_precentNull() {
+                return this.IsNull(this.tableStatisticsSolutions.Mutation_precentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetMutation_precentNull() {
+                this[this.tableStatisticsSolutions.Mutation_precentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsSolution_NameNull() {
+                return this.IsNull(this.tableStatisticsSolutions.Solution_NameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetSolution_NameNull() {
+                this[this.tableStatisticsSolutions.Solution_NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsSeletion_TypeNull() {
+                return this.IsNull(this.tableStatisticsSolutions.Seletion_TypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetSeletion_TypeNull() {
+                this[this.tableStatisticsSolutions.Seletion_TypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsCrossover_TypeNull() {
+                return this.IsNull(this.tableStatisticsSolutions.Crossover_TypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetCrossover_TypeNull() {
+                this[this.tableStatisticsSolutions.Crossover_TypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GenerationsRow[] GetGenerationsRows() {
+                if ((this.Table.ChildRelations["StatisticsSolutions_Generations"] == null)) {
+                    return new GenerationsRow[0];
+                }
+                else {
+                    return ((GenerationsRow[])(base.GetChildRows(this.Table.ChildRelations["StatisticsSolutions_Generations"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public BestSolutionRow[] GetBestSolutionRows() {
+                if ((this.Table.ChildRelations["StatisticsSolutions_BestSolution"] == null)) {
+                    return new BestSolutionRow[0];
+                }
+                else {
+                    return ((BestSolutionRow[])(base.GetChildRows(this.Table.ChildRelations["StatisticsSolutions_BestSolution"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class GenerationsRow : global::System.Data.DataRow {
+            
+            private GenerationsDataTable tableGenerations;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal GenerationsRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableGenerations = ((GenerationsDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Solution_ID {
+                get {
+                    return ((int)(this[this.tableGenerations.Solution_IDColumn]));
+                }
+                set {
+                    this[this.tableGenerations.Solution_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Problem_ID {
+                get {
+                    return ((int)(this[this.tableGenerations.Problem_IDColumn]));
+                }
+                set {
+                    this[this.tableGenerations.Problem_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Generation_Number {
+                get {
+                    return ((int)(this[this.tableGenerations.Generation_NumberColumn]));
+                }
+                set {
+                    this[this.tableGenerations.Generation_NumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double Generation_Min_Score {
+                get {
+                    try {
+                        return ((double)(this[this.tableGenerations.Generation_Min_ScoreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Generation_Min_Score\' in table \'Generations\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGenerations.Generation_Min_ScoreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double Generation_Max_Score {
+                get {
+                    try {
+                        return ((double)(this[this.tableGenerations.Generation_Max_ScoreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Generation_Max_Score\' in table \'Generations\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGenerations.Generation_Max_ScoreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StatisticsSolutionsRow StatisticsSolutionsRowParent {
+                get {
+                    return ((StatisticsSolutionsRow)(this.GetParentRow(this.Table.ParentRelations["StatisticsSolutions_Generations"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["StatisticsSolutions_Generations"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsGeneration_Min_ScoreNull() {
+                return this.IsNull(this.tableGenerations.Generation_Min_ScoreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetGeneration_Min_ScoreNull() {
+                this[this.tableGenerations.Generation_Min_ScoreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsGeneration_Max_ScoreNull() {
+                return this.IsNull(this.tableGenerations.Generation_Max_ScoreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetGeneration_Max_ScoreNull() {
+                this[this.tableGenerations.Generation_Max_ScoreColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class BestSolutionRow : global::System.Data.DataRow {
+            
+            private BestSolutionDataTable tableBestSolution;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal BestSolutionRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableBestSolution = ((BestSolutionDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Solution_ID {
+                get {
+                    return ((int)(this[this.tableBestSolution.Solution_IDColumn]));
+                }
+                set {
+                    this[this.tableBestSolution.Solution_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Problem_ID {
+                get {
+                    return ((int)(this[this.tableBestSolution.Problem_IDColumn]));
+                }
+                set {
+                    this[this.tableBestSolution.Problem_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Resource_ID {
+                get {
+                    return ((int)(this[this.tableBestSolution.Resource_IDColumn]));
+                }
+                set {
+                    this[this.tableBestSolution.Resource_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Family_ID {
+                get {
+                    return ((int)(this[this.tableBestSolution.Family_IDColumn]));
+                }
+                set {
+                    this[this.tableBestSolution.Family_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Step_ID {
+                get {
+                    return ((int)(this[this.tableBestSolution.Step_IDColumn]));
+                }
+                set {
+                    this[this.tableBestSolution.Step_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Job_ID {
+                get {
+                    return ((int)(this[this.tableBestSolution.Job_IDColumn]));
+                }
+                set {
+                    this[this.tableBestSolution.Job_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double Start_Time {
+                get {
+                    try {
+                        return ((double)(this[this.tableBestSolution.Start_TimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Start_Time\' in table \'BestSolution\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBestSolution.Start_TimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public double Finish_Time {
+                get {
+                    try {
+                        return ((double)(this[this.tableBestSolution.Finish_TimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Finish_Time\' in table \'BestSolution\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBestSolution.Finish_TimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StatisticsSolutionsRow StatisticsSolutionsRowParent {
+                get {
+                    return ((StatisticsSolutionsRow)(this.GetParentRow(this.Table.ParentRelations["StatisticsSolutions_BestSolution"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["StatisticsSolutions_BestSolution"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ResourcesRow ResourcesRowParent {
+                get {
+                    return ((ResourcesRow)(this.GetParentRow(this.Table.ParentRelations["Resources_BestSolution"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Resources_BestSolution"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public FamiliesRow FamiliesRowParent {
+                get {
+                    return ((FamiliesRow)(this.GetParentRow(this.Table.ParentRelations["Families_BestSolution"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Families_BestSolution"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public OperationsRow OperationsRowParent {
+                get {
+                    return ((OperationsRow)(this.GetParentRow(this.Table.ParentRelations["Operations_BestSolution"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Operations_BestSolution"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsStart_TimeNull() {
+                return this.IsNull(this.tableBestSolution.Start_TimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetStart_TimeNull() {
+                this[this.tableBestSolution.Start_TimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsFinish_TimeNull() {
+                return this.IsNull(this.tableBestSolution.Finish_TimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetFinish_TimeNull() {
+                this[this.tableBestSolution.Finish_TimeColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -8236,6 +9865,99 @@ namespace MRCPSP.Database.MsSqlServer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public ExclusivesRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class StatisticsSolutionsRowChangeEvent : global::System.EventArgs {
+            
+            private StatisticsSolutionsRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StatisticsSolutionsRowChangeEvent(StatisticsSolutionsRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StatisticsSolutionsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class GenerationsRowChangeEvent : global::System.EventArgs {
+            
+            private GenerationsRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GenerationsRowChangeEvent(GenerationsRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public GenerationsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class BestSolutionRowChangeEvent : global::System.EventArgs {
+            
+            private BestSolutionRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public BestSolutionRowChangeEvent(BestSolutionRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public BestSolutionRow Row {
                 get {
                     return this.eventRow;
                 }

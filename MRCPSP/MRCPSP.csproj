@@ -81,6 +81,12 @@
     <Compile Include="CommonTypes\Job.cs" />
     <Compile Include="CommonTypes\ResourceConstraint.cs" />
     <Compile Include="CommonTypes\SetupTime.cs" />
+    <Compile Include="Database\MsSqlServer\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Database\MsSqlServer\SolutionLoader.cs" />
+    <Compile Include="Database\MsSqlServer\SolutionSaver.cs" />
     <Compile Include="Database\MsSqlServer\DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

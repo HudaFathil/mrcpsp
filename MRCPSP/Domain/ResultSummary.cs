@@ -154,5 +154,11 @@ namespace MRCPSP.Domain
         {
             get { return getBestSolution().scoreFromLindo; }
         }
+
+        public String getSolutionName()
+        {
+            return m_problem_title + "_" + m_start_time;
+            
+        }
     }
 }
