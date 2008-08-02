@@ -98,13 +98,39 @@
     <Compile Include="Gui\DBManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ConstraintProperties.cs">
+    <Compile Include="Gui\ProblemsCreator\CanvasEditor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Gui\ProblemsCreator\ConstraintFromState.cs" />
+    <Compile Include="Gui\ProblemsCreator\ConstraintItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gui\ProblemsCreator\ConstraintProperties.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ResourceObserver.cs" />
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ResourceTimeConstraint.cs">
+    <Compile Include="Gui\ProblemsCreator\ConstraintToState.cs" />
+    <Compile Include="Gui\ProblemsCreator\EraserState.cs" />
+    <Compile Include="Gui\ProblemsCreator\Machine.cs" />
+    <Compile Include="Gui\ProblemsCreator\ModesMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Gui\ProblemsCreator\PointerState.cs" />
+    <Compile Include="Gui\ProblemsCreator\ProblemCreatorMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\ProblemsCreator\ProblemCreatorState.cs" />
+    <Compile Include="Gui\ProblemsCreator\ProductItem.cs" />
+    <Compile Include="Gui\ProblemsCreator\ResourceBase.cs" />
+    <Compile Include="Gui\ProblemsCreator\ResourceObserver.cs" />
+    <Compile Include="Gui\ProblemsCreator\ResourceTimeConstraint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\ProblemsCreator\StateBase.cs" />
+    <Compile Include="Gui\ProblemsCreator\StepItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Gui\ProblemsCreator\StepState.cs" />
+    <Compile Include="Gui\ProblemsCreator\Worker.cs" />
     <Compile Include="Gui\ProcessingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,36 +189,6 @@
     </Compile>
     <Compile Include="Gui\LoggerManagment\LoggerFrame.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\CanvasEditor.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ConstraintFromState.cs" />
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ConstraintItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ConstraintToState.cs" />
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\EraserState.cs" />
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\Machine.cs">
-    </Compile>
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ModesMonitor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\PointerState.cs" />
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ProblemCreatorMonitor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ProblemCreatorState.cs" />
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ProductItem.cs" />
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\ResourceBase.cs">
-    </Compile>
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\StateBase.cs">
-    </Compile>
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\StepItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\StepState.cs" />
-    <Compile Include="Gui\StatisticsViewer\ProblemCreator\Worker.cs">
     </Compile>
     <Compile Include="Gui\ProblemSolver\ProblemSolverMonitor.cs">
       <SubType>Form</SubType>
@@ -268,14 +264,25 @@
       <DependentUpon>LoggerFrame.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\ConstraintProperties.resx">
+    <EmbeddedResource Include="Gui\ProblemsCreator\CanvasEditor.resx">
+      <DependentUpon>CanvasEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProblemsCreator\ConstraintProperties.resx">
       <DependentUpon>ConstraintProperties.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\ResourceTimeConstraint.resx">
+    <EmbeddedResource Include="Gui\ProblemsCreator\ModesMonitor.resx">
+      <DependentUpon>ModesMonitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProblemsCreator\ProblemCreatorMonitor.resx">
+      <DependentUpon>ProblemCreatorMonitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProblemsCreator\ResourceBase.resx">
+      <DependentUpon>ResourceBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProblemsCreator\ResourceTimeConstraint.resx">
       <DependentUpon>ResourceTimeConstraint.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProblemsCreator\StepItem.resx" />
     <EmbeddedResource Include="Gui\ProcessingForm.resx">
       <DependentUpon>ProcessingForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -290,26 +297,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\StatisticsViewer\Graph\XYGraph.resx">
       <DependentUpon>XYGraph.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\CanvasEditor.resx">
-      <DependentUpon>CanvasEditor.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\ModesMonitor.resx">
-      <DependentUpon>ModesMonitor.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\ProblemCreatorMonitor.resx">
-      <DependentUpon>ProblemCreatorMonitor.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\ResourceBase.resx">
-      <DependentUpon>ResourceBase.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\StatisticsViewer\ProblemCreator\StepItem.resx">
-      <DependentUpon>StepItem.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\ProblemSolver\ProblemSolverMonitor.resx">

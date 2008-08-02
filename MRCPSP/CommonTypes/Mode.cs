@@ -132,6 +132,16 @@ namespace MRCPSP.CommonTypes
             return false;
         }
 
+        public int getMaximumBatchSize()
+        {
+            int minBatchInRes = -1;
+            foreach (Operation op in m_operations_list)
+            {
+                if (op.Rseource.Capacity < minBatchInRes || minBatchInRes  == -1)
+                    minBatchInRes = op.Rseource.Capacity;
+            }
+            return minBatchInRes;
+        }
 
         public double startUsingResourceTime(Resource r)
         {
