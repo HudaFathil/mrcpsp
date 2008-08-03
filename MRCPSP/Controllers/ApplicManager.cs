@@ -76,9 +76,9 @@ namespace MRCPSP.Controllers
             return DBHandler.Instance.getProblemNameList();
         }
 
-        public void saveSolution()
+        public void saveSolution(ResultSummary summary)
         {
-           SolutionSaver.saveSolution(m_saved_results[0]);
+           SolutionSaver.saveSolution(summary);
         }
 
 

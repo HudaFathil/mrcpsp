@@ -242,6 +242,13 @@ namespace MRCPSP.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap save_icon {
+            get {
+                object obj = ResourceManager.GetObject("save_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap step_not_animated {
             get {
                 object obj = ResourceManager.GetObject("step_not_animated", resourceCulture);

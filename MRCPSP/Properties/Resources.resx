@@ -121,8 +121,8 @@
   <data name="DNA_Overview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\DNA_Overview.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DNA_animated" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Gui\pics\DNA_animated.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dna" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\dna.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="new_problem" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\new_problem.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -130,11 +130,11 @@
   <data name="dna800x6001" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\dna800x600.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="step_not_animated" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\step_not_animated.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bulb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\bulb.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cursor_not_animated" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Gui\pics\cursor_not_animated.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="new_step_pic2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\new_step_pic.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,11 +148,11 @@
   <data name="new_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\new_arrow.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="cursor_not_animated" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\cursor_not_animated.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="DNAComp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\DNAComp.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="eraser_animated-w" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Gui\pics\eraser_animated-w.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\stop.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,8 +184,11 @@
   <data name="circle_cromosom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\circle_cromosom.GIF;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dna" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Gui\pics\dna.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cursor_animated" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\cursor_animated.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DNA_animated" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\DNA_animated.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="new_step_pic1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\new_step_pic.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,13 +196,13 @@
   <data name="dna_alfa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\dna_alfa.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cursor_animated" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Gui\pics\cursor_animated.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="eraser_animated-w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\eraser_animated-w.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Gui\pics\arrow_left.GIF;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="step_not_animated" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Gui\pics\step_not_animated.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="save_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Gui\pics\save_icon.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -21,7 +21,7 @@ namespace MRCPSP.Database.MsSqlServer
             ResultSummary rs = new ResultSummary();
             rs.CrossoverType = DBHandler.Instance.DataSet.Tables["StatisticsSolutions"].Rows[0]["Crossover_Type"].ToString() ;
             rs.SelectionType = DBHandler.Instance.DataSet.Tables["StatisticsSolutions"].Rows[0]["Seletion_Type"].ToString();
-            rs.SizeOfPopulation = Convert.ToInt32(DBHandler.Instance.DataSet.Tables["StatisticsSolutions"].Rows[0]["Population_Size"].ToString());
+            rs.SizeOfPopulation = DBHandler.Instance.DataSet.Tables["StatisticsSolutions"].Rows[0]["Population_Size"].ToString();
             rs.MutationPercent = DBHandler.Instance.DataSet.Tables["StatisticsSolutions"].Rows[0]["Mutation_precent"].ToString();
             rs.StartTime = DBHandler.Instance.DataSet.Tables["StatisticsSolutions"].Rows[0]["Start_Time"].ToString();
             rs.FinishTime = DBHandler.Instance.DataSet.Tables["StatisticsSolutions"].Rows[0]["Finish_Time"].ToString();

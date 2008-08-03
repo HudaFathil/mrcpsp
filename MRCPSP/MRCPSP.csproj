@@ -250,6 +250,7 @@
     <Content Include="Gui\pics\new_arrow_pic.bmp" />
     <Content Include="Gui\pics\new_problem.bmp" />
     <Content Include="Gui\pics\new_step_pic.bmp" />
+    <None Include="Gui\pics\save_icon.jpg" />
     <Content Include="nunit.framework.dll" />
     <None Include="Gui\pics\step_not_animated.gif" />
     <None Include="Gui\pics\step_animated.gif" />
@@ -288,7 +289,9 @@
     <EmbeddedResource Include="Gui\ProblemsCreator\ResourceTimeConstraint.resx">
       <DependentUpon>ResourceTimeConstraint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gui\ProblemsCreator\StepItem.resx" />
+    <EmbeddedResource Include="Gui\ProblemsCreator\StepItem.resx">
+      <DependentUpon>StepItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Gui\ProcessingForm.resx">
       <DependentUpon>ProcessingForm.cs</DependentUpon>
       <SubType>Designer</SubType>
