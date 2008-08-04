@@ -23,7 +23,9 @@ namespace MRCPSP.Algorithm
             m_distribution_matrix = new MatrixCell [ApplicManager.Instance.CurrentProblem.getNumberOfResources(), ApplicManager.Instance.CurrentProblem.getTotalDistributionSize()];
                                             
         }
-
+        public Solution(bool dummy)
+        {
+        }
         // for debugging only for Ofir!!!!!
         public Solution(int distSize, int resourceNum)
         {

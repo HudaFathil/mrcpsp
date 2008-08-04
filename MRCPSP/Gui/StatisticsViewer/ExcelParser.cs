@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,12 +35,12 @@ namespace MRCPSP.Gui.StatisticsViewer
             loadResourceUsage();
             loadResourceDistribute();
 
-            /*
-            m_objSheet.get_Range("A1", "A1").Font.Bold = true;
-            m_objSheet.get_Range("A1", "A6").EntireColumn.AutoFit();
-            m_objSheet.get_Range("A1", "A7").BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlMedium,
+            
+            //m_objSheet.get_Range("A1", "A1").Font.Bold = true;
+           // m_objSheet.get_Range("A1", "A6").EntireColumn.AutoFit();
+            //m_objSheet.get_Range("A1", "A7").BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlMedium,
                             Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
-	        */
+	       
            
           
             m_objBook.SaveCopyAs(filename);
@@ -151,3 +151,4 @@ namespace MRCPSP.Gui.StatisticsViewer
 
     }
 }
+*/

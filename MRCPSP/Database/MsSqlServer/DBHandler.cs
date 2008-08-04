@@ -14,6 +14,8 @@ namespace MRCPSP.Database.MsSqlServer
         private SqlConnection m_sqlConn;
         SqlDataAdapter m_dataAdapter;
         private static DBHandler m_dbHandler = null;
+        private static String SOLOUTION_ID = "SOLUTION_ID";
+        private static String PROBLEM_ID = "PROBLEM_ID";
 
         private DBHandler()
         {
@@ -32,54 +34,56 @@ namespace MRCPSP.Database.MsSqlServer
             }
         }
 
-        public void fillDataSet(int problemID, String tableName)
+        public void fillDataSet(String keyName, int keyValue, String tableName)
         {
-            m_dataAdapter.SelectCommand = new SqlCommand("SELECT * FROM  "+tableName+" WHERE Problem_ID = " + problemID);
+            m_dataAdapter.SelectCommand = new SqlCommand("SELECT * FROM  "+tableName+" WHERE "+keyName+" = " + keyValue);
             m_dataAdapter.SelectCommand.Connection = m_sqlConn;
             m_dataAdapter.Fill(m_dataset, tableName);
         }
 
-        public void loadSolution(int solutionID)
+        public void loadSolution(int solutionID , int problemID)
         {
             m_dataset.Clear();
             m_sqlConn.Open();
-            fillDataSet(solutionID, "StatisticsSolutions");
-            fillDataSet(solutionID, "Generations");
-            fillDataSet(solutionID, "BestSolution");
+            fillDataSet(PROBLEM_ID, problemID, "Problems");
+            fillDataSet(PROBLEM_ID, problemID, "Families");
+            fillDataSet(PROBLEM_ID, problemID, "Jobs");
+            fillDataSet(PROBLEM_ID, problemID, "Operations");
+            fillDataSet(PROBLEM_ID, problemID, "OperationsToFamilies");
+            fillDataSet(PROBLEM_ID, problemID, "Modes");
+            fillDataSet(PROBLEM_ID, problemID, "Resources");
+            fillDataSet(PROBLEM_ID, problemID, "ResourceUsage");
+            fillDataSet(PROBLEM_ID, problemID, "FamilyCapacityOnResource");
+            fillDataSet(PROBLEM_ID, problemID, "Precedence");
+            fillDataSet(PROBLEM_ID, problemID, "LoadingTimes");
+            fillDataSet(PROBLEM_ID, problemID, "ConstantDelays");
 
-            int problemID = Convert.ToInt32(DBHandler.Instance.DataSet.Tables["StatisticsSolutions"].Rows[0]["Problem_ID"]);
-            fillDataSet(problemID, "Problems");
-            fillDataSet(problemID, "Families");
-            fillDataSet(problemID, "Jobs");
-            fillDataSet(problemID, "Operations");
-            fillDataSet(problemID, "OperationsToFamilies");
-            fillDataSet(problemID, "Modes");
-            fillDataSet(problemID, "Resources");
-            fillDataSet(problemID, "ResourceUsage");
-            fillDataSet(problemID, "FamilyCapacityOnResource");
-            fillDataSet(problemID, "Precedence");
-            fillDataSet(problemID, "LoadingTimes");
-            fillDataSet(problemID, "ConstantDelays");
+            fillDataSet(SOLOUTION_ID,solutionID, "StatisticsSolutions");
+            fillDataSet(SOLOUTION_ID,solutionID, "Generations");
+            fillDataSet(SOLOUTION_ID,solutionID, "BestSolution");
+
+            //int problemID = Convert.ToInt32(DBHandler.Instance.DataSet.Tables["StatisticsSolutions"].Rows[0]["Problem_ID"]);
+          
             
             m_sqlConn.Close();
         }
 
-        public void loadProblem(int problemID)
+        public void loadProblemToDataSet(int problemID)
         {
             m_dataset.Clear();
             m_sqlConn.Open();
-            fillDataSet(problemID, "Problems");
-            fillDataSet(problemID, "Families");
-            fillDataSet(problemID, "Jobs");
-            fillDataSet(problemID, "Operations");
-            fillDataSet(problemID, "OperationsToFamilies");
-            fillDataSet(problemID, "Modes");
-            fillDataSet(problemID, "Resources");
-            fillDataSet(problemID, "ResourceUsage");
-            fillDataSet(problemID, "FamilyCapacityOnResource");
-            fillDataSet(problemID, "Precedence");
-            fillDataSet(problemID, "LoadingTimes");
-            fillDataSet(problemID, "ConstantDelays");
+            fillDataSet(PROBLEM_ID, problemID, "Problems");
+            fillDataSet(PROBLEM_ID, problemID, "Families");
+            fillDataSet(PROBLEM_ID, problemID, "Jobs");
+            fillDataSet(PROBLEM_ID, problemID, "Operations");
+            fillDataSet(PROBLEM_ID, problemID, "OperationsToFamilies");
+            fillDataSet(PROBLEM_ID, problemID, "Modes");
+            fillDataSet(PROBLEM_ID, problemID, "Resources");
+            fillDataSet(PROBLEM_ID, problemID, "ResourceUsage");
+            fillDataSet(PROBLEM_ID, problemID, "FamilyCapacityOnResource");
+            fillDataSet(PROBLEM_ID, problemID, "Precedence");
+            fillDataSet(PROBLEM_ID, problemID, "LoadingTimes");
+            fillDataSet(PROBLEM_ID, problemID, "ConstantDelays");
             m_sqlConn.Close();
         }
 
@@ -98,6 +102,28 @@ namespace MRCPSP.Database.MsSqlServer
             m_sqlConn.Close();
             return prNameList;
             
+        }
+
+        public List<String> getSolutionNameList(String problemName)
+        {
+           
+            int problemID = queryProblemForProblemID(problemName);
+            m_sqlConn.Open();
+            String cmd = "SELECT * FROM StatisticsSolutions WHERE PROBLEM_ID=" + problemID;
+            m_dataAdapter.SelectCommand = new SqlCommand(cmd);
+            m_dataAdapter.SelectCommand.Connection = m_sqlConn;
+            SqlDataReader data = m_dataAdapter.SelectCommand.ExecuteReader();
+            List<String> solNameList = new List<String>();
+            while (data.Read())
+            {
+                String solutionName = data["SOLUTION_NAME"].ToString();
+                char[] c = { ' ','\0','\r','\b' };
+                solutionName.TrimEnd(c);
+                solNameList.Add(solutionName);
+            }
+            m_sqlConn.Close();
+            return solNameList;
+
         }
 
 

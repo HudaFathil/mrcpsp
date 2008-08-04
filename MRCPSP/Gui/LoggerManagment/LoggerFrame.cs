@@ -131,7 +131,7 @@ namespace MRCPSP.Gui.LoggerManagment
                 Logger.Instance.State = Logger.LOGGER_STATE.WARN;
             }
 
-
+            MessageBox.Show("Logger state changed successfully", "notify");
         }
     }
 }

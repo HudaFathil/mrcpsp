@@ -295,7 +295,7 @@ namespace MRCPSP.Gui.ProblemCreator
                     product_steps.Add(c.StepTo);
             }
             List<SetupTime> setup_time = new List<SetupTime>();
-            ApplicManager.Instance.loadProblem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product, steps_in_product, resource_constraints, setup_time, title);
+            ApplicManager.Instance.loadProblem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product, steps_in_product, resource_constraints, setup_time, title ,title.GetHashCode());
         }
 
         public void saveCurrentProblem()

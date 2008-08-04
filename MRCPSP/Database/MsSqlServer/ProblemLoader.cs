@@ -8,6 +8,7 @@ using System.Data.SqlTypes;
 using System.Data.SqlClient;
 using MRCPSP.CommonTypes;
 using MRCPSP.Domain;
+using MRCPSP.Controllers;
 
 namespace MRCPSP.Database.MsSqlServer
 {
@@ -170,9 +171,8 @@ namespace MRCPSP.Database.MsSqlServer
         }
         
         // Problem 
-        public static Problem queryProblem(int problemID)
+        public static Problem loadProblemToMemory()
         {
-            DBHandler.Instance.loadProblem(problemID);
             //int problemID = problemTitle.GetHashCode();
             List<Resource> rList = queryResourcesForProblem();
             List<Product> pList = queryFamiliesForProblem();
@@ -240,8 +240,9 @@ namespace MRCPSP.Database.MsSqlServer
                     }
                 }
             }
-
-            Problem p = new Problem(rList, modesInStep, sList, cList, pList, pjDic,stepInProduct, rcList,setupTimeList, DBHandler.Instance.DataSet.Tables["Problems"].Rows[0]["Description"].ToString());
+            int problemID = Convert.ToInt32(DBHandler.Instance.DataSet.Tables["Problems"].Rows[0]["PROBLEM_ID"].ToString());
+            Problem p = new Problem(rList, modesInStep, sList, cList, pList, pjDic, stepInProduct, rcList, setupTimeList, DBHandler.Instance.DataSet.Tables["Problems"].Rows[0]["Description"].ToString(), problemID);
+            ApplicManager.Instance.CurrentProblem = p;
             return p;    
         }
      

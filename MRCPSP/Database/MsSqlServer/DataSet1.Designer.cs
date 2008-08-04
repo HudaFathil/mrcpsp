@@ -63,13 +63,13 @@ namespace MRCPSP.Database.MsSqlServer {
         
         private BestSolutionDataTable tableBestSolution;
         
-        private global::System.Data.DataRelation relationResourcesResourceUsage;
-        
         private global::System.Data.DataRelation relationModesResourceUsage;
         
-        private global::System.Data.DataRelation relationFamiliesOperationsToFamilies;
+        private global::System.Data.DataRelation relationResourcesResourceUsage;
         
         private global::System.Data.DataRelation relationOperationsOperationsToFamilies;
+        
+        private global::System.Data.DataRelation relationFamiliesOperationsToFamilies;
         
         private global::System.Data.DataRelation relationOperationsModes;
         
@@ -625,10 +625,10 @@ namespace MRCPSP.Database.MsSqlServer {
                     this.tableBestSolution.InitVars();
                 }
             }
-            this.relationResourcesResourceUsage = this.Relations["ResourcesResourceUsage"];
             this.relationModesResourceUsage = this.Relations["ModesResourceUsage"];
-            this.relationFamiliesOperationsToFamilies = this.Relations["FamiliesOperationsToFamilies"];
+            this.relationResourcesResourceUsage = this.Relations["ResourcesResourceUsage"];
             this.relationOperationsOperationsToFamilies = this.Relations["OperationsOperationsToFamilies"];
+            this.relationFamiliesOperationsToFamilies = this.Relations["FamiliesOperationsToFamilies"];
             this.relationOperationsModes = this.Relations["OperationsModes"];
             this.relationFamiliesFamilyCapacityOnResource = this.Relations["FamiliesFamilyCapacityOnResource"];
             this.relationFamiliesPrecedence = this.Relations["FamiliesPrecedence"];
@@ -688,15 +688,6 @@ namespace MRCPSP.Database.MsSqlServer {
             this.tableBestSolution = new BestSolutionDataTable();
             base.Tables.Add(this.tableBestSolution);
             global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("ResourcesResourceUsage", new global::System.Data.DataColumn[] {
-                        this.tableResources.Problem_IDColumn,
-                        this.tableResources.Resource_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableResourceUsage.Problem_IDColumn,
-                        this.tableResourceUsage.Resource_IDColumn});
-            this.tableResourceUsage.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("ModesResourceUsage", new global::System.Data.DataColumn[] {
                         this.tableModes.Problem_IDColumn,
                         this.tableModes.Operation_IDColumn,
@@ -708,12 +699,12 @@ namespace MRCPSP.Database.MsSqlServer {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FamiliesOperationsToFamilies", new global::System.Data.DataColumn[] {
-                        this.tableFamilies.Problem_IDColumn,
-                        this.tableFamilies.Family_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOperationsToFamilies.Problem_IDColumn,
-                        this.tableOperationsToFamilies.Family_IDColumn});
-            this.tableOperationsToFamilies.Constraints.Add(fkc);
+            fkc = new global::System.Data.ForeignKeyConstraint("ResourcesResourceUsage", new global::System.Data.DataColumn[] {
+                        this.tableResources.Problem_IDColumn,
+                        this.tableResources.Resource_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableResourceUsage.Problem_IDColumn,
+                        this.tableResourceUsage.Resource_IDColumn});
+            this.tableResourceUsage.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
@@ -722,6 +713,15 @@ namespace MRCPSP.Database.MsSqlServer {
                         this.tableOperations.Operation_IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableOperationsToFamilies.Problem_IDColumn,
                         this.tableOperationsToFamilies.Operation_IDColumn});
+            this.tableOperationsToFamilies.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("FamiliesOperationsToFamilies", new global::System.Data.DataColumn[] {
+                        this.tableFamilies.Problem_IDColumn,
+                        this.tableFamilies.Family_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableOperationsToFamilies.Problem_IDColumn,
+                        this.tableOperationsToFamilies.Family_IDColumn});
             this.tableOperationsToFamilies.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
@@ -771,12 +771,6 @@ namespace MRCPSP.Database.MsSqlServer {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationResourcesResourceUsage = new global::System.Data.DataRelation("ResourcesResourceUsage", new global::System.Data.DataColumn[] {
-                        this.tableResources.Problem_IDColumn,
-                        this.tableResources.Resource_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableResourceUsage.Problem_IDColumn,
-                        this.tableResourceUsage.Resource_IDColumn}, false);
-            this.Relations.Add(this.relationResourcesResourceUsage);
             this.relationModesResourceUsage = new global::System.Data.DataRelation("ModesResourceUsage", new global::System.Data.DataColumn[] {
                         this.tableModes.Problem_IDColumn,
                         this.tableModes.Operation_IDColumn,
@@ -785,18 +779,24 @@ namespace MRCPSP.Database.MsSqlServer {
                         this.tableResourceUsage.Operation_IDColumn,
                         this.tableResourceUsage.Mode_IDColumn}, false);
             this.Relations.Add(this.relationModesResourceUsage);
-            this.relationFamiliesOperationsToFamilies = new global::System.Data.DataRelation("FamiliesOperationsToFamilies", new global::System.Data.DataColumn[] {
-                        this.tableFamilies.Problem_IDColumn,
-                        this.tableFamilies.Family_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOperationsToFamilies.Problem_IDColumn,
-                        this.tableOperationsToFamilies.Family_IDColumn}, false);
-            this.Relations.Add(this.relationFamiliesOperationsToFamilies);
+            this.relationResourcesResourceUsage = new global::System.Data.DataRelation("ResourcesResourceUsage", new global::System.Data.DataColumn[] {
+                        this.tableResources.Problem_IDColumn,
+                        this.tableResources.Resource_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableResourceUsage.Problem_IDColumn,
+                        this.tableResourceUsage.Resource_IDColumn}, false);
+            this.Relations.Add(this.relationResourcesResourceUsage);
             this.relationOperationsOperationsToFamilies = new global::System.Data.DataRelation("OperationsOperationsToFamilies", new global::System.Data.DataColumn[] {
                         this.tableOperations.Problem_IDColumn,
                         this.tableOperations.Operation_IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableOperationsToFamilies.Problem_IDColumn,
                         this.tableOperationsToFamilies.Operation_IDColumn}, false);
             this.Relations.Add(this.relationOperationsOperationsToFamilies);
+            this.relationFamiliesOperationsToFamilies = new global::System.Data.DataRelation("FamiliesOperationsToFamilies", new global::System.Data.DataColumn[] {
+                        this.tableFamilies.Problem_IDColumn,
+                        this.tableFamilies.Family_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableOperationsToFamilies.Problem_IDColumn,
+                        this.tableOperationsToFamilies.Family_IDColumn}, false);
+            this.Relations.Add(this.relationFamiliesOperationsToFamilies);
             this.relationOperationsModes = new global::System.Data.DataRelation("OperationsModes", new global::System.Data.DataColumn[] {
                         this.tableOperations.Problem_IDColumn,
                         this.tableOperations.Operation_IDColumn}, new global::System.Data.DataColumn[] {
@@ -5901,6 +5901,10 @@ namespace MRCPSP.Database.MsSqlServer {
             
             private global::System.Data.DataColumn columnCrossover_Type;
             
+            private global::System.Data.DataColumn columnFirst_Population;
+            
+            private global::System.Data.DataColumn columnIteration_Number;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public StatisticsSolutionsDataTable() {
                 this.TableName = "StatisticsSolutions";
@@ -5995,6 +5999,20 @@ namespace MRCPSP.Database.MsSqlServer {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn First_PopulationColumn {
+                get {
+                    return this.columnFirst_Population;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Iteration_NumberColumn {
+                get {
+                    return this.columnIteration_Number;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6023,7 +6041,7 @@ namespace MRCPSP.Database.MsSqlServer {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public StatisticsSolutionsRow AddStatisticsSolutionsRow(int Solution_ID, ProblemsRow parentProblemsRowByProblems_Solutions, int Population_Size, string Start_Time, string Finish_Time, string Mutation_precent, string Solution_Name, string Seletion_Type, string Crossover_Type) {
+            public StatisticsSolutionsRow AddStatisticsSolutionsRow(int Solution_ID, ProblemsRow parentProblemsRowByProblems_Solutions, int Population_Size, string Start_Time, string Finish_Time, string Mutation_precent, string Solution_Name, string Seletion_Type, string Crossover_Type, string First_Population, int Iteration_Number) {
                 StatisticsSolutionsRow rowStatisticsSolutionsRow = ((StatisticsSolutionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Solution_ID,
@@ -6034,7 +6052,9 @@ namespace MRCPSP.Database.MsSqlServer {
                         Mutation_precent,
                         Solution_Name,
                         Seletion_Type,
-                        Crossover_Type};
+                        Crossover_Type,
+                        First_Population,
+                        Iteration_Number};
                 if ((parentProblemsRowByProblems_Solutions != null)) {
                     columnValuesArray[1] = parentProblemsRowByProblems_Solutions[0];
                 }
@@ -6066,6 +6086,8 @@ namespace MRCPSP.Database.MsSqlServer {
                 this.columnSolution_Name = base.Columns["Solution_Name"];
                 this.columnSeletion_Type = base.Columns["Seletion_Type"];
                 this.columnCrossover_Type = base.Columns["Crossover_Type"];
+                this.columnFirst_Population = base.Columns["First_Population"];
+                this.columnIteration_Number = base.Columns["Iteration_Number"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6088,6 +6110,10 @@ namespace MRCPSP.Database.MsSqlServer {
                 base.Columns.Add(this.columnSeletion_Type);
                 this.columnCrossover_Type = new global::System.Data.DataColumn("Crossover_Type", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCrossover_Type);
+                this.columnFirst_Population = new global::System.Data.DataColumn("First_Population", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFirst_Population);
+                this.columnIteration_Number = new global::System.Data.DataColumn("Iteration_Number", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIteration_Number);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("SolutionsKey1", new global::System.Data.DataColumn[] {
                                 this.columnSolution_ID,
                                 this.columnProblem_ID}, false));
@@ -6905,22 +6931,22 @@ namespace MRCPSP.Database.MsSqlServer {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ResourcesRow ResourcesRowParent {
-                get {
-                    return ((ResourcesRow)(this.GetParentRow(this.Table.ParentRelations["ResourcesResourceUsage"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["ResourcesResourceUsage"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public ModesRow ModesRowParent {
                 get {
                     return ((ModesRow)(this.GetParentRow(this.Table.ParentRelations["ModesResourceUsage"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["ModesResourceUsage"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ResourcesRow ResourcesRowParent {
+                get {
+                    return ((ResourcesRow)(this.GetParentRow(this.Table.ParentRelations["ResourcesResourceUsage"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["ResourcesResourceUsage"]);
                 }
             }
             
@@ -7650,22 +7676,22 @@ namespace MRCPSP.Database.MsSqlServer {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public FamiliesRow FamiliesRowParent {
-                get {
-                    return ((FamiliesRow)(this.GetParentRow(this.Table.ParentRelations["FamiliesOperationsToFamilies"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FamiliesOperationsToFamilies"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public OperationsRow OperationsRowParent {
                 get {
                     return ((OperationsRow)(this.GetParentRow(this.Table.ParentRelations["OperationsOperationsToFamilies"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["OperationsOperationsToFamilies"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public FamiliesRow FamiliesRowParent {
+                get {
+                    return ((FamiliesRow)(this.GetParentRow(this.Table.ParentRelations["FamiliesOperationsToFamilies"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FamiliesOperationsToFamilies"]);
                 }
             }
         }
@@ -9022,6 +9048,38 @@ namespace MRCPSP.Database.MsSqlServer {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string First_Population {
+                get {
+                    try {
+                        return ((string)(this[this.tableStatisticsSolutions.First_PopulationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'First_Population\' in table \'StatisticsSolutions\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableStatisticsSolutions.First_PopulationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Iteration_Number {
+                get {
+                    try {
+                        return ((int)(this[this.tableStatisticsSolutions.Iteration_NumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Iteration_Number\' in table \'StatisticsSolutions\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableStatisticsSolutions.Iteration_NumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public ProblemsRow ProblemsRow {
                 get {
                     return ((ProblemsRow)(this.GetParentRow(this.Table.ParentRelations["Problems_Solutions"])));
@@ -9089,6 +9147,26 @@ namespace MRCPSP.Database.MsSqlServer {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetCrossover_TypeNull() {
                 this[this.tableStatisticsSolutions.Crossover_TypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsFirst_PopulationNull() {
+                return this.IsNull(this.tableStatisticsSolutions.First_PopulationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetFirst_PopulationNull() {
+                this[this.tableStatisticsSolutions.First_PopulationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsIteration_NumberNull() {
+                return this.IsNull(this.tableStatisticsSolutions.Iteration_NumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetIteration_NumberNull() {
+                this[this.tableStatisticsSolutions.Iteration_NumberColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -46,10 +46,17 @@ namespace MRCPSP.Controllers
                         Dictionary<Product, List<Step>> steps_in_product,
                         List<ResourceConstraint> resource_time_constraints,
                         List<SetupTime> setup_time,
-                        String title)                                                         
+                        String title,
+                        int id)                                                         
         {
-            m_current_problem = new Problem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product,steps_in_product, resource_time_constraints,setup_time, title);
+            m_current_problem = new Problem(resource_list, modes_in_step, step_list, all_constraints, products_list, jobs_in_product,steps_in_product, resource_time_constraints,setup_time, title,id);
            
+        }
+
+
+        public List<String> getSolutionsListFromDB(String problemName)
+        {
+            return DBHandler.Instance.getSolutionNameList(problemName);
         }
 
         public void saveProblemToDB()
@@ -60,7 +67,8 @@ namespace MRCPSP.Controllers
         public void loadProblemFromDataBase(string title)
         {
             int problemID = DBHandler.Instance.queryProblemForProblemID(title);
-            m_current_problem = ProblemLoader.queryProblem(problemID);
+            DBHandler.Instance.loadProblemToDataSet(problemID);
+            ProblemLoader.loadProblemToMemory();
             Logger.Instance.info("ApplicManager::lodProblemFromDataBase, title: " + title);
         }
 
@@ -128,9 +136,10 @@ namespace MRCPSP.Controllers
             m_problem_solver_manager.loadProblemNames(problem_names);
         }
 
-         public void loadSolution(int solutionID)
+         public void loadSolution(int solutionID,String problemName)
         {
-            SolutionLoader.loadSolution(solutionID);
+            int problemID = DBHandler.Instance.queryProblemForProblemID(problemName);
+            SolutionLoader.loadSolution(solutionID,problemID);
         }
     }
 }

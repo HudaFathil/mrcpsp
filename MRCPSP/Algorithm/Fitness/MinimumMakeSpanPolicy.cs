@@ -41,6 +41,8 @@ namespace MRCPSP.Algorithm.Fitness
             
             LindoAPIHandler l1 = new LindoAPIHandler();
             double score = l1.getResults();
+            if (score < 64)
+                Console.WriteLine("ERROR");
             solution.scoreFromLindo = score;
             solution.resultFromLindo = LindoContainer.Instance.getResults();
           

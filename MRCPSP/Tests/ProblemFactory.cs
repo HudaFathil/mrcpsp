@@ -67,7 +67,7 @@ namespace MRCPSP.Tests
 
             List<SetupTime> setup_time = new List<SetupTime>();
 
-            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, steps_in_product, resource_time_constraints,setup_time,"test1");
+            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, steps_in_product, resource_time_constraints,setup_time,"test1",0);
         }
 
         public static Problem getIntermediateProblem()
@@ -141,7 +141,7 @@ namespace MRCPSP.Tests
             steps_in_product[p].Add(s2);
             steps_in_product[p].Add(s3);
             List<SetupTime> setup_time = new List<SetupTime>();
-            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, steps_in_product, resource_time_constraints,setup_time, "test2");
+            return new Problem(resource_list, modes_in_step, step_list, constraints_list, products_list, jobs_in_product, steps_in_product, resource_time_constraints,setup_time, "test2",0);
         }
 
 

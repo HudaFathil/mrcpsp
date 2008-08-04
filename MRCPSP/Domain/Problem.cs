@@ -22,6 +22,7 @@ namespace MRCPSP.Domain
         private List<ResourceConstraint> m_resource_time_constraints;
         private List<SetupTime> m_setup_times;
         private String m_title = "N/A";
+        private int m_id;
 
         public Problem(List<Resource> resource_list,
                         Dictionary<Step, List<Mode>> modes_in_step,
@@ -32,13 +33,15 @@ namespace MRCPSP.Domain
                         Dictionary<Product, List<Step>> step_in_product,
                         List<ResourceConstraint> resource_time_constraints,
                         List<SetupTime> setup_times,
-                        String title)
+                        String title,
+                        int id)
         {
             m_title = title;
             m_resource_list = resource_list;
             m_setup_times = setup_times;
             m_modes_in_step = modes_in_step;
             m_resource_time_constraints = resource_time_constraints;
+            m_id = id;
             foreach (Step s in modes_in_step.Keys)
             {
                 foreach (Mode m in modes_in_step[s])
@@ -87,6 +90,11 @@ namespace MRCPSP.Domain
         public List<SetupTime> SetupTimeList
         {
             get { return m_setup_times; }
+        }
+
+        public int ID
+        {
+            get { return m_id; }
         }
 
         public int getTotalDistributionSize()

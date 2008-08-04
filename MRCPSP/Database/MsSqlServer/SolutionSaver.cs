@@ -18,8 +18,10 @@ namespace MRCPSP.Database.MsSqlServer
         {
             String solutionName = rs.getSolutionName();
             int solutionID = solutionName.GetHashCode();
-            int problemID = Convert.ToInt32(DBHandler.Instance.DataSet.Tables["Problems"].Rows[0]["Problem_ID"].ToString());
-            String cmdStr = "INSERT INTO StatisticsSolutions VALUES(" + solutionID + "," + problemID + "," + rs.SizeOfPopulation + ",'" + rs.StartTime + "','" + rs.FinishTime+"','"+rs.MutationPercent+"','"+solutionName +"','"+rs.SelectionType+"','" + rs.CrossoverType+"')";
+            int problemID = rs.ProblemID;
+            DBHandler.Instance.loadProblemToDataSet(problemID);
+            ProblemLoader.loadProblemToMemory();
+            String cmdStr = "INSERT INTO StatisticsSolutions VALUES(" + solutionID + "," + problemID + "," + rs.SizeOfPopulation + ",'" + rs.StartTime + "','" + rs.FinishTime+"','"+rs.MutationPercent+"','"+solutionName +"','"+rs.SelectionType+"','" + rs.CrossoverType+"','"+rs.GeneratePopulationType+"',"+rs.NumberOfIterations+")";
             Object[] values = { solutionID , problemID, rs.SizeOfPopulation , rs.StartTime , rs.FinishTime , rs.MutationPercent ,solutionName };
             DBHandler.Instance.DataSet.Tables["StatisticsSolutions"].Rows.Add(values);
             DBHandler.Instance.updateDatabase(cmdStr, "StatisticsSolutions");

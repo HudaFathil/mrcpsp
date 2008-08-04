@@ -77,6 +77,7 @@ namespace MRCPSP.Gui.StatisticsViewer
         private System.Windows.Forms.Label label15;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton m_save_result_button;
+        private ToolStripButton m_load_solution_button;
         private MRCPSP.Gui.StatisticsViewer.Graph.XYGraph m_generation_over_time_graph;
 
         public StatisticsMonitor()
@@ -104,6 +105,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.m_population_size_lbl = new System.Windows.Forms.Label();
@@ -141,7 +143,6 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.label4 = new System.Windows.Forms.Label();
             this.m_export_to_excel_button = new System.Windows.Forms.Button();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
@@ -150,6 +151,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.m_save_result_button = new System.Windows.Forms.ToolStripButton();
+            this.m_load_solution_button = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.m_bind_navigator)).BeginInit();
             this.m_bind_navigator.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -180,7 +182,8 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorDeleteItem,
             this.toolStripSeparator1,
-            this.m_save_result_button});
+            this.m_save_result_button,
+            this.m_load_solution_button});
             this.m_bind_navigator.Location = new System.Drawing.Point(0, 0);
             this.m_bind_navigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.m_bind_navigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -195,7 +198,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(41, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -222,6 +225,11 @@ namespace MRCPSP.Gui.StatisticsViewer
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // label1
             // 
@@ -616,11 +624,6 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.panel1.Size = new System.Drawing.Size(959, 454);
             this.panel1.TabIndex = 11;
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // label4
             // 
             this.label4.AutoEllipsis = true;
@@ -701,8 +704,18 @@ namespace MRCPSP.Gui.StatisticsViewer
             this.m_save_result_button.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_save_result_button.Name = "m_save_result_button";
             this.m_save_result_button.Size = new System.Drawing.Size(23, 22);
-            this.m_save_result_button.Text = "toolStripButton1";
+            this.m_save_result_button.Text = "Save Solution to DB";
             this.m_save_result_button.Click += new System.EventHandler(this.m_save_result_button_Click);
+            // 
+            // m_load_solution_button
+            // 
+            this.m_load_solution_button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.m_load_solution_button.Image = global::MRCPSP.Properties.Resources.open_file;
+            this.m_load_solution_button.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.m_load_solution_button.Name = "m_load_solution_button";
+            this.m_load_solution_button.Size = new System.Drawing.Size(23, 22);
+            this.m_load_solution_button.Text = "Load Solution from DB";
+            this.m_load_solution_button.Click += new System.EventHandler(this.m_load_solution_button_Click);
             // 
             // StatisticsMonitor
             // 
@@ -776,9 +789,9 @@ namespace MRCPSP.Gui.StatisticsViewer
         private void updateGenerationOverTime()
         {
             PointPairList list = new PointPairList();
-            for (int i = 0; i < m_current_summary.BestSolutions.Count; i++)
+            for (int i = 0; i < m_current_summary.MinMaxPerGeneration.Count; i++)
             {
-                list.Add(i, m_current_summary.BestSolutions[i].scoreFromLindo);
+                list.Add(i, m_current_summary.MinMaxPerGeneration[i].Key);
             }
             m_generation_over_time_graph.setGraphData(list, "solution");
             m_generation_over_time_graph.XAxis = "Generation Number";
@@ -908,7 +921,7 @@ namespace MRCPSP.Gui.StatisticsViewer
             if (! saveFileDialog1.FileName.EndsWith(".xlsx"))
                 saveFileDialog1.FileName = saveFileDialog1.FileName + ".xlsx";
               */
-            ExcelParser excel = new ExcelParser(saveFileDialog1.FileName, m_current_summary);
+            //ExcelParser excel = new ExcelParser(saveFileDialog1.FileName, m_current_summary);
            // ExcelParser excel = new ExcelParser( m_current_summary);
             //m_resources_gantt.saveImage(Application.StartupPath + "gantt.png");   
 
@@ -927,6 +940,16 @@ namespace MRCPSP.Gui.StatisticsViewer
         private void m_save_result_button_Click(object sender, EventArgs e)
         {
             ApplicManager.Instance.saveSolution(m_current_summary);
+            MessageBox.Show("Soltion saved to database", "notify");
+        }
+
+        private void m_load_solution_button_Click(object sender, EventArgs e)
+        {
+        
+            LoadSolutionForm lsf = new LoadSolutionForm();
+            lsf.ShowDialog(new Form());
+            refreshMonitor();
+
         }
 
        

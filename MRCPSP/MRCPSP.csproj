@@ -140,6 +140,9 @@
     <Compile Include="Gui\ProcessingForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Gui\StatisticsViewer\LoadSolutionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Gui\StatisticsViewer\ExcelParser.cs" />
     <Compile Include="Gui\StatisticsViewer\Graph\GanttChart.cs">
       <SubType>Component</SubType>
@@ -251,6 +254,7 @@
     <Content Include="Gui\pics\new_problem.bmp" />
     <Content Include="Gui\pics\new_step_pic.bmp" />
     <None Include="Gui\pics\save_icon.jpg" />
+    <None Include="Gui\pics\open_file.jpg" />
     <Content Include="nunit.framework.dll" />
     <None Include="Gui\pics\step_not_animated.gif" />
     <None Include="Gui\pics\step_animated.gif" />
@@ -310,6 +314,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\ProblemSolver\ProblemSolverMonitor.resx">
       <DependentUpon>ProblemSolverMonitor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\StatisticsViewer\LoadSolutionForm.resx">
+      <DependentUpon>LoadSolutionForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\StatisticsViewer\StatisticsMonitor.resx">

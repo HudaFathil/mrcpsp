@@ -235,6 +235,13 @@ namespace MRCPSP.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap open_file {
+            get {
+                object obj = ResourceManager.GetObject("open_file", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap play {
             get {
                 object obj = ResourceManager.GetObject("play", resourceCulture);

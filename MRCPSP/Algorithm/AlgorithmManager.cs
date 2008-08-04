@@ -51,6 +51,7 @@ namespace MRCPSP.Algorithm
 
             performingGrowingLoop(population_size, num_of_generation, mutate_percent);
 
+            m_result_summary.ProblemID = ApplicManager.Instance.CurrentProblem.ID;
             return m_result_summary;
         }
 

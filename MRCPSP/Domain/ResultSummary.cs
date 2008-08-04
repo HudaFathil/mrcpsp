@@ -22,6 +22,7 @@ namespace MRCPSP.Domain
         private String m_finish_time;
         private String m_mutation_percent;
         private int m_number_of_iteration;
+        private int m_problem_id;
         private List<KeyValuePair<double, double>> m_min_max_per_generation;
 
         public ResultSummary()
@@ -45,6 +46,15 @@ namespace MRCPSP.Domain
             set
             {
                 m_min_max_per_generation = value;
+            }
+        }
+
+        public int ProblemID
+        {
+            get { return m_problem_id; }
+            set
+            {
+                m_problem_id = value;
             }
         }
 
