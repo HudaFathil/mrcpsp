@@ -215,7 +215,9 @@
     <Compile Include="Tests\MatrixCellTest.cs" />
     <Compile Include="Tests\OnePointCrossOverTest.cs" />
     <Compile Include="Tests\ProblemFactory.cs" />
+    <Compile Include="Util\ConfigConsts.cs" />
     <Compile Include="Util\CommonFunctions.cs" />
+    <Compile Include="Util\ConfigUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database\MsSqlServer\DataSet1.xsc">
@@ -245,6 +247,7 @@
     <None Include="Gui\pics\cursor_animated.gif" />
     <None Include="Gui\pics\cursor_not_animated.gif" />
     <None Include="Gui\pics\cursor_not_animated.jpg" />
+    <Content Include="Util\config.txt" />
     <Content Include="Gui\pics\eraser_pic.bmp" />
     <None Include="Gui\pics\graphs.bmp" />
     <None Include="Gui\pics\neurons.jpg" />

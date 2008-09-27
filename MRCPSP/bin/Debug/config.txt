@@ -1,0 +1,2 @@
+﻿LindoLicense "C:\\Lindoapi\\license\\lndapi40.lic"
+DBServerName "SIVAN\SQLEXPRESS"

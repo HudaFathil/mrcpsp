@@ -7,6 +7,7 @@ using MRCPSP.Lindo;
 using System.Runtime.InteropServices;
 using MRCPSP.Lindo.Constrains;
 using MRCPSP.Log;
+using MRCPSP.Util;
 
 namespace MRCPSP.Lindo
 {
@@ -80,7 +81,8 @@ namespace MRCPSP.Lindo
             MY_LICENSE_KEY must be defined to be the license key
             shipped with your software. */
 
-            nErrorCode = lindo.LSloadLicenseString("C:\\Lindoapi\\license\\lndapi40.lic", LicenseKey);
+           nErrorCode = lindo.LSloadLicenseString(ConfigUtil.Instance.getStringValue(ConfigConsts.LINDO_LISENCE), LicenseKey);
+           // nErrorCode = lindo.LSloadLicenseString("C:\\Lindoapi\\license\\lndapi40.lic", LicenseKey);
             
            APIErrorCheck((System.IntPtr)pEnv, nErrorCode);
            pEnv = lindo.LScreateEnv(ref nErrorCode, LicenseKey.ToString());
