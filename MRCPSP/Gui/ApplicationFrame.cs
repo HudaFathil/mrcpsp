@@ -45,14 +45,11 @@ namespace MRCPSP.Gui {
             MenuItem subm2 = new MenuItem("Exit"); 
             m1.MenuItems.Add(subm2); 
             // Create Tools submenu
-            MenuItem subm3 = new MenuItem("Database Management");
-            m2.MenuItems.Add(subm3);
             MenuItem subm4 = new MenuItem("Log Controller");
             m2.MenuItems.Add(subm4); 
             // Add event handlers for the menu items. 
             subm1.Click += new EventHandler(MMNewClick);        
             subm2.Click += new EventHandler(MMExitClick);
-            subm3.Click += new EventHandler(MMSelectDBClick);
             subm4.Click += new EventHandler(MMLogController); 
             // Assign the menu to the form. 
             Menu = MyMenu;
@@ -119,13 +116,6 @@ namespace MRCPSP.Gui {
                                     "Terminate",
                                      MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes) Application.Exit();
-        }
-
-  // Handler for main menu Exit selection. 
-        protected void MMSelectDBClick(object who, EventArgs e)
-        {
-            DBManagement dbm =  new DBManagement();
-            dbm.ShowDialog(new Form());
         }
 
         private void InitializeComponent()

@@ -22,7 +22,6 @@ namespace MRCPSP.Database.MsSqlServer
         {
             m_dataset = new DataSet1();
             m_sqlConn = new SqlConnection("Server="+ConfigUtil.Instance.getStringValue(ConfigConsts.DB_SERVER_NAME)+";Database=MRSCSP;connection timeout=10 ; Trusted_Connection=True;");
-            Console.WriteLine(ConfigUtil.Instance.getStringValue(ConfigConsts.DB_SERVER_NAME));
             m_dataAdapter = new SqlDataAdapter();
            // m_sqlConn.Open();
         }
