@@ -1,0 +1,1 @@
+a genetic algorithm to solve np problem of resource scheduling
